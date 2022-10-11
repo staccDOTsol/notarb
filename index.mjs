@@ -93,7 +93,8 @@ const getTransaction = (route) => {
   return got
     .post("https://quote-api.jup.ag/v1/swap", {
       json: {
-        slippage: 0.99,
+        swapMode: 'exactIn',
+        slippage: 99,
         route: route,
         userPublicKey: wallet.publicKey.toString(),
         // to make sure it doesnt close the sol account
@@ -139,7 +140,7 @@ let initial = 20_000_000;
 import { Prism } from "@prism-hq/prism-ag";
 let prism = await Prism.init({
     // user executing swap
-    slippage: 0.99,
+    slippage: 99,
     user: payer,               // optional (if you don't provide upon init, then you'll need to call prism.setSigner() after user connects the wallet)
 connection: new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr")
     // rpc connection
