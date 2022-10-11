@@ -431,7 +431,8 @@ tx2.sign(payer)
 if (!dg1){
 try {
   
-await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: true})
+let hm = await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: true})
+console.log(hm)
 } catch (err){
     
 }
