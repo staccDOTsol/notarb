@@ -85,7 +85,7 @@ console.log(mints.length)
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
-      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}`
+      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=99`
     )
     .json();
 
@@ -93,8 +93,6 @@ const getTransaction = (route) => {
   return got
     .post("https://quote-api.jup.ag/v1/swap", {
       json: {
-        swapMode: 'exactIn',
-        slippage: 99,
         route: route,
         userPublicKey: wallet.publicKey.toString(),
         // to make sure it doesnt close the sol account
