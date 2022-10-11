@@ -86,7 +86,7 @@ console.log(mints.length)
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
-      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=99`
+      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=0.01`
     )
     .json();
 
@@ -139,7 +139,7 @@ let initial = 20_000_000;
 import { Prism } from "@prism-hq/prism-ag";
 let prism = await Prism.init({
     // user executing swap
-    slippage: 99,
+    slippage: 0.01,
     user: payer,               // optional (if you don't provide upon init, then you'll need to call prism.setSigner() after user connects the wallet)
 connection: new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr")
     // rpc connection
@@ -184,7 +184,7 @@ let routes = prism.getRoutes(Math.floor(usdcToSol.data[0].outAmount ) / 10 ** de
 console.log(routes[0].amountOut)   
 var returns = (((routes[0].amountOut / (initial / 10 ** dec))- 1))
 console.log(returns)
-  if (returns > 0){
+  if (returns > 0.02){
   console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
   }
   // when outAmount more than initial
