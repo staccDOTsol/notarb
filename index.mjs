@@ -56,7 +56,6 @@ const has = [
     "USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX",
     "Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS",
     "7kbnvuGBxxj8AG9qp8Scn56muWGaRaFqxg1FsRp3PaFT",
-    "9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6"
 ]
 let somestuff = JSON.parse(fs.readFileSync('./stuff.json').toString())
 
