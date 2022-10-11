@@ -225,7 +225,7 @@ if (!Object.keys(ss2).includes(USDC_MINT+ " <-> " + SOL_MINT )){
   fs.writeFileSync('./ss2.json', JSON.stringify(ss2))
 }
 else {
-  lookupTableAddress = ss2[USDC_MINT+ " <-> " + SOL_MINT] 
+  lookupTableAddress = new PublicKey(ss2[USDC_MINT+ " <-> " + SOL_MINT] )
   dontgo1 = true 
 }
     const token = new Token(connection, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
@@ -339,6 +339,7 @@ fs.writeFileSync('./stuff.json', JSON.stringify(somestuff))
   }
 }
 }
+console.log(ss.length)
 if (ss.length == 0){
   dg1 = true
 }
@@ -363,6 +364,7 @@ if (aaa < messageV0.staticAccountKeys.length / 3 * 2  && (aaa >= messageV0.stati
 
 }
 }
+console.log(ss.length)
 if (ss.length == 0){
   dg2 = true
 }
@@ -386,6 +388,7 @@ if (aaa >= messageV0.staticAccountKeys.length / 3 * 2   ){
 
   }}
 }
+console.log(ss.length)
 if (ss.length == 0){
   dg3 = true
 }
@@ -477,7 +480,7 @@ const messageV00 = new TransactionMessage({
 }).compileToV0Message([lookupTableAccount]);
   const transaction = new VersionedTransaction(messageV00);
   // sign your transaction with the required `Signers`
- await transaction.sign([payer, delegate])
+ await transaction.sign([payer, delegate, ...swapTransaction.preSigners])
  console.log(transaction)
  try {
   await sendAndConfirmTransaction(connection, transaction)
