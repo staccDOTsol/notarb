@@ -66,6 +66,7 @@ const has = [
 let somestuff = JSON.parse(fs.readFileSync('./stuff.json').toString())
 
 let ss2 = JSON.parse(fs.readFileSync('./ss2.json').toString())
+let ss3 = JSON.parse(fs.readFileSync('./ss3.json').toString())
 
 let mints = [    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", // USDC
 "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB", // USDT JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD
@@ -222,14 +223,15 @@ let [lookupTableInst, lookupTableAddress] =
 //lookupTableAddress = new PublicKey("H3pPX8AYP2neyH6AL5mPZmcEWzCbKEU22gWUpY8JASu5")
 console.log("lookup table address:", lookupTableAddress.toBase58());
 let dontgo1 = false
-if (!Object.keys(ss2).includes(USDC_MINT+ " <-> " + SOL_MINT )){
+let lookupTableAddress2 = new PublicKey(ss2[USDC_MINT+ " <-> " + SOL_MINT] )
+
+if (!Object.keys(ss3).includes(USDC_MINT+ " <-> " + SOL_MINT )){
   somestuff[USDC_MINT+ " <-> " + SOL_MINT ] = []
-  ss2[USDC_MINT+ " <-> " + SOL_MINT] = lookupTableAddress
+  ss3[USDC_MINT+ " <-> " + SOL_MINT] = lookupTableAddress
   console.log('blarg')
   fs.writeFileSync('./ss2.json', JSON.stringify(ss2))
 }
 else {
-  lookupTableAddress = new PublicKey(ss2[USDC_MINT+ " <-> " + SOL_MINT] )
   dontgo1 = true 
 }
     const token = new Token(connection, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
@@ -474,6 +476,9 @@ await sleep(3000)
 const lookupTableAccount = await connection
   .getAddressLookupTable(lookupTableAddress)
   .then((res) => res.value);
+  const lookupTableAccount2 = await connection
+    .getAddressLookupTable(lookupTableAddress2)
+    .then((res) => res.value);
 console.log(lookupTableAccount)
 blockhash = await connection
     .getLatestBlockhash()
@@ -482,7 +487,7 @@ const messageV00 = new TransactionMessage({
   payerKey: wallet.publicKey,
   recentBlockhash: blockhash,
   instructions,
-}).compileToV0Message([lookupTableAccount]);
+}).compileToV0Message([lookupTableAccount, lookupTableAccount2]);
   const transaction = new VersionedTransaction(messageV00);
   // sign your transaction with the required `Signers`
  await transaction.sign([payer, delegate, ...swapTransaction.preSigners])
