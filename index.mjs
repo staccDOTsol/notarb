@@ -239,7 +239,7 @@ else {
 
     const delegate = Keypair.generate();
     try {
-     //token.approve(tokenAccount, delegate.publicKey, payer, [], 100000000);
+     token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
     } catch (err){
 
     }
