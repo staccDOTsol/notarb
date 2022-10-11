@@ -232,7 +232,7 @@ if (!Object.keys(ss3).includes(USDC_MINT+ " <-> " + SOL_MINT )){
   fs.writeFileSync('./ss2.json', JSON.stringify(ss2))
   fs.writeFileSync('./ss3.json', JSON.stringify(ss3))
 }
-else if (!Object.keys(ss3).includes(USDC_MINT+ " <-> " + SOL_MINT )){
+else if (!Object.keys(ss2).includes(USDC_MINT+ " <-> " + SOL_MINT )){
   dontgo1 = true 
 }
     const token = new Token(connection, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
