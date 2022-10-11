@@ -62,11 +62,10 @@ let somestuff = JSON.parse(fs.readFileSync('./stuff.json').toString())
 let ss2 = JSON.parse(fs.readFileSync('./ss2.json').toString())
 let ss3 = JSON.parse(fs.readFileSync('./ss3.json').toString())
 
-let mints = [    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", // USDC
-"Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB", // USDT JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD
-"So11111111111111111111111111111111111111112", // WSOl
-"SLNDpmoWTVADgEdndyvWzroNL7zSi1dF9PC3xHGtPwp",
-"mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So",
+let mints = [   
+"So11111111111111111111111111111111111111112", "LFNTYraetVioAPnGJht4yNg2aUZFXR776cMeN9VMjXp",
+"SLNDpmoWTVADgEdndyvWzroNL7zSi1dF9PC3xHGtPwp","E5ndSkaB17Dm7CsD22dvcjfrYSDLCxFcMd6z8ddCk5wp",
+"mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So","7i5KKsX2weiTkry7jA4ZwSuXGhs5eJBEjY8vVxR4pfRx",
 "7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj","DUSTawucrTsGU8hcqRdHDCbuYhCPADMLM2VcCb8VnFnQ",
 "4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R",
 "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",]
@@ -243,11 +242,11 @@ console.log(routes[aa1].amountOut )
 console.log(usdcToSol.data[aa2].outAmount)   
 var returns = ((((usdcToSol.data[aa2].outAmount / 10  ** dec2 )/ (initial / 10 ** dec ))- 1))
 console.log(returns)
-  if (returns > 0.02){
+  if (returns > 0.0){
   console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
   }
   // when outAmount more than initial
-  if (returns >0.02 ) {
+  if (returns >0.0 ) {
   
     const market = await SolendMarket.initialize(
       connection,
