@@ -174,7 +174,7 @@ while (true) {
 
       const tokenAccount2 =  new PublicKey(atas[cba]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
       let dec2 = ((await connection.getTokenAccountBalance(tokenAccount2)).value.decimals)
-   initial = Math.floor(Math.random() * 5.66* 10 ** dec + 0.2666 * 10 ** dec);
+   initial = Math.floor(Math.random() * 35.66* 10 ** dec + 2.2666 * 10 ** dec);
    //console.log(initial / 10 ** dec)
   // 0.1 SOL
   const usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, initial);
@@ -232,7 +232,7 @@ if (!Object.keys(ss3).includes(USDC_MINT+ " <-> " + SOL_MINT )){
   fs.writeFileSync('./ss2.json', JSON.stringify(ss2))
   fs.writeFileSync('./ss3.json', JSON.stringify(ss3))
 }
-else {
+else if (!Object.keys(ss3).includes(USDC_MINT+ " <-> " + SOL_MINT )){
   dontgo1 = true 
 }
     const token = new Token(connection, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
