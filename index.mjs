@@ -188,7 +188,7 @@ console.log(returns)
   console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
   }
   // when outAmount more than initial
-  if (returns >0 ) {
+  if (returns >0.02 ) {
   
     const market = await SolendMarket.initialize(
       connection,
