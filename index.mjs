@@ -38,9 +38,9 @@ dotenv.config();
 const connection = new Connection("http://69.46.29.78:8899", {skipPreflight: true});
 const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true});
 const wallet = new Wallet(
-  Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/ubuntu/notjaregm.json').toString()))));
+  Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/Users/jarettdunn/notjaregm.json').toString()))));
   const payer = (
-    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/ubuntu/notjaregm.json').toString()))));
+    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/Users/jarettdunn/notjaregm.json').toString()))));
 import { SolendAction, SolendMarket, SolendWallet, flashBorrowReserveLiquidityInstruction, flashRepayReserveLiquidityInstruction, SOLEND_PRODUCTION_PROGRAM_ID } from "@solendprotocol/solend-sdk";
 import * as anchor from '@project-serum/anchor';
 
@@ -220,7 +220,7 @@ while (true) {
   for (var USDC_MINT of has){
     let cba = -1
     abc++
-    for (var SOL_MINT of has){
+    for (var SOL_MINT of mints){
       cba++
       console.log(USDC_MINT+ " <-> " + SOL_MINT)
       try {
@@ -229,7 +229,7 @@ while (true) {
 
       const tokenAccount2 =   (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(SOL_MINT)})).value[0].pubkey //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
       let dec2 = ((await connection.getTokenAccountBalance(tokenAccount2)).value.decimals)
-   initial = Math.floor(Math.random() * 140.38* 10 ** dec + 10.02666 * 10 ** dec);
+   initial = Math.floor(Math.random() * 40.38* 10 ** dec2 + 1.02666 * 10 ** dec2);
    //console.log(initial / 10 ** dec)
   // 0.1 SOL
   await prism.loadRoutes(SOL_MINT, USDC_MINT); 
@@ -237,7 +237,7 @@ while (true) {
 let routes = prism.getRoutes(Math.floor(initial) / 10 ** dec2);
   let aa2 = Math.floor(Math.random()*2) 
   let aa1 = Math.floor(Math.random()*2)
-const usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, Math.floor(routes[aa2].amountOut  * 10 ** dec));
+const usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, Math.floor(routes[aa2].amountOut  * 10 ** dec2));
 console.log(routes[aa1].amountOut )
 console.log(usdcToSol.data[aa2].outAmount)   
 var returns = ((((usdcToSol.data[aa2].outAmount / 10  ** dec2 )/ (initial / 10 ** dec ))- 1))
