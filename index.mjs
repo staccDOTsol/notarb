@@ -56,12 +56,12 @@ const atas = [
 const somestuff2 = JSON.parse(fs.readFileSync("./hahapairs.json").toString())
 
 const has = [
-  "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", // USDC
-  "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB", // USDT JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD
-  "So11111111111111111111111111111111111111112", // WSOl
-  "SLNDpmoWTVADgEdndyvWzroNL7zSi1dF9PC3xHGtPwp",
-  "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So",
-  "7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj",
+    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", // USDC
+    "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB", // USDT JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD
+    "So11111111111111111111111111111111111111112", // WSOl
+    "SLNDpmoWTVADgEdndyvWzroNL7zSi1dF9PC3xHGtPwp",
+    "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So",
+    "7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj",
 ]
 let somestuff = JSON.parse(fs.readFileSync('./stuff.json').toString())
 
@@ -72,14 +72,7 @@ let mints = [    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", // USDC
 "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So",
 "7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj","DUSTawucrTsGU8hcqRdHDCbuYhCPADMLM2VcCb8VnFnQ",
 "4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R",
-"orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
-"SRMuApVNdxXokk5GT7XD5cUUgXMBCoAz2LHeuAoKWRt",
-"8HGyAAB1yoM1ttS7pXjHMa3dukTFGQggnFFH3hJZgzQh",
-"AFbX8oGjGpmVFywbVouvhQSRmiW2aR1mohfahi4Y2AdB",
-"FoRGERiW7odcCBGU1bztZi16osPBHjxharvDathL5eds",
-"kiGenopAScF8VF31Zbtx2Hg8qA5ArGqvnVtXb83sotc",
-
-"4SZjjNABoqhbd4hnapbvoEPEqT8mnNkfbEoAwALf1V8t"]
+"orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",]
 
 for (var add of somestuff2.data){
 for (var address of add.tokens){
@@ -174,16 +167,18 @@ while (true) {
       const tokenAccount =  new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
       let dec = ((await connection.getTokenAccountBalance(tokenAccount)).value.decimals)
 
-   initial = Math.floor(Math.random() * 6.66* 10 ** dec + 0.2666 * 10 ** dec);
+   initial = Math.floor(Math.random() * 5.66* 10 ** dec + 0.2666 * 10 ** dec);
    //console.log(initial / 10 ** dec)
   // 0.1 SOL
   const usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, initial);
   await prism.loadRoutes(SOL_MINT, USDC_MINT); 
 
-let routes = prism.getRoutes(Math.floor(usdcToSol.data[0].outAmount * 0.999));     
-var returns = (((routes[0].amountOut / initial * 0.999)- 1))
+let routes = prism.getRoutes(Math.floor(usdcToSol.data[0].outAmount * 0.999) / 10 ** dec);  
+console.log(routes[0].amountOut)   
+var returns = (((routes[0].amountOut / (initial / 10 ** dec) * 0.999)- 1))
+console.log(returns)
   if (returns > 0){
-  console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** 6).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
+  console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
   }
   // when outAmount more than initial
   if (returns >0 ) {
