@@ -236,8 +236,8 @@ while (true) {
   await prism.loadRoutes(SOL_MINT, USDC_MINT); 
 
 let routes = prism.getRoutes(Math.floor(initial) / 10 ** dec2);
-  let aa2 = Math.floor(Math.random()*4) 
-  let aa1 = Math.floor(Math.random()*4)
+  let aa2 = Math.floor(Math.random()*2) 
+  let aa1 = Math.floor(Math.random()*2)
 const usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, Math.floor(routes[aa2].amountOut  * 10 ** dec));
 console.log(routes[aa1].amountOut )
 console.log(usdcToSol.data[aa2].outAmount)   
