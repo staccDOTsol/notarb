@@ -230,6 +230,7 @@ if (!Object.keys(ss3).includes(USDC_MINT+ " <-> " + SOL_MINT )){
   ss3[USDC_MINT+ " <-> " + SOL_MINT] = lookupTableAddress
   console.log('blarg')
   fs.writeFileSync('./ss2.json', JSON.stringify(ss2))
+  fs.writeFileSync('./ss3.json', JSON.stringify(ss3))
 }
 else {
   dontgo1 = true 
