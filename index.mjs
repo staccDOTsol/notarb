@@ -36,10 +36,11 @@ dotenv.config();
 // This is a free Solana RPC endpoint. It may have ratelimit and sometimes
 // invalid cache. I will recommend using a paid RPC endpoint.
 const connection = new Connection("http://69.46.29.78:8899", {skipPreflight: true});
+const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true});
 const wallet = new Wallet(
-  Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/ubuntu/validator-keypair.json').toString()))));
+  Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/Users/jarettdunn/jaregm.json').toString()))));
   const payer = (
-    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/ubuntu/validator-keypair.json').toString()))));
+    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/Users/jarettdunn/jaregm.json').toString()))));
 import { SolendAction, SolendMarket, SolendWallet, flashBorrowReserveLiquidityInstruction, flashRepayReserveLiquidityInstruction, SOLEND_PRODUCTION_PROGRAM_ID } from "@solendprotocol/solend-sdk";
 import * as anchor from '@project-serum/anchor';
 
@@ -47,21 +48,15 @@ import fs from 'fs'
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 
-const atas = [
-  "2PYVzDJ6Buks4yUVeDEhLwc14wKpxbehEsbeU6yM8J8d",
-  "JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD",
-"J2cL94QELJ9pt8L93e38pgqgHjzysKPWD9BoaE22HYmy",  "8SRg1faUaqwqRyt2pC8xTC9Sg2hBabTH2GAKdKB5DqMk","HEZTNc9u5evA3vndyLBUt5nXREtMmdYMPfRmF4hksdLu","Becp7pmpFcbXUBwArc92Jkk6iS61nnfB9ajweVnpy6VG",
-
-]
 const somestuff2 = JSON.parse(fs.readFileSync("./hahapairs.json").toString())
 
 const has = [
-    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", // USDC
-    "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB", // USDT JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD
-    "So11111111111111111111111111111111111111112", // WSOl
-    "SLNDpmoWTVADgEdndyvWzroNL7zSi1dF9PC3xHGtPwp",
-    "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So",
-    "7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj",
+    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB", 
+    "USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX",
+    "Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS",
+    "7kbnvuGBxxj8AG9qp8Scn56muWGaRaFqxg1FsRp3PaFT",
+    "9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6"
 ]
 let somestuff = JSON.parse(fs.readFileSync('./stuff.json').toString())
 
@@ -86,7 +81,7 @@ console.log(mints.length)
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
-      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=0.025&swapMode=ExactIn`
+      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=5&swapMode=ExactIn`
     )
     .json();
 
@@ -139,7 +134,7 @@ let initial = 20_000_000;
 import { Prism } from "@prism-hq/prism-ag";
 let prism = await Prism.init({
     // user executing swap
-    slippage: 0.025,
+    slippage:5,
     user: payer,               // optional (if you don't provide upon init, then you'll need to call prism.setSigner() after user connects the wallet)
 connection: new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr")
     // rpc connection
@@ -147,7 +142,6 @@ connection: new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Iv
 for (var USDC_MINT of has){
  // abc++
   for (var SOL_MINT of mints){
-    console.log(USDC_MINT+ " <-> " + SOL_MINT)
         // load routes for tokens, tokenSymbol | tokenMint (base58 string)
     try 
    { 
@@ -160,37 +154,101 @@ console.log('')
 console.log('')
 
 console.log('')
+
+// wsol account
+const createWSolAccount = async () => {
+  try {
+  const wsolAddress = await Token.getAssociatedTokenAddress(
+    ASSOCIATED_TOKEN_PROGRAM_ID,
+    TOKEN_PROGRAM_ID,
+    new PublicKey(SOL_MINT),
+    wallet.publicKey
+  );
+
+  const wsolAccount = await connection.getAccountInfo(wsolAddress);
+
+  if (!wsolAccount) {
+    const transaction = new Transaction({
+      feePayer: wallet.publicKey,
+    });
+    const instructions = [];
+
+    instructions.push(
+      await Token.createAssociatedTokenAccountInstruction(
+        ASSOCIATED_TOKEN_PROGRAM_ID,
+        TOKEN_PROGRAM_ID,
+        new PublicKey(SOL_MINT),
+        wsolAddress,
+        wallet.publicKey,
+        wallet.publicKey
+      )
+    );
+
+    // fund 1 sol to the account
+    instructions.push(
+      SystemProgram.transfer({
+        fromPubkey: wallet.publicKey,
+        toPubkey: wsolAddress,
+        lamports: 1_00_000_000, // 1 sol
+      })
+    );
+
+    instructions.push(
+      // This is not exposed by the types, but indeed it exists
+      Token.createSyncNativeInstruction(TOKEN_PROGRAM_ID, wsolAddress)
+    );
+
+    transaction.add(...instructions);
+    transaction.recentBlockhash = await (
+      await connection.getRecentBlockhash()
+    ).blockhash;
+    transaction.partialSign(wallet.payer);
+    const result = await connection.sendTransaction(transaction, [
+      wallet.payer,
+    ]);
+    console.log({ result });
+  }
+
+  return wsolAccount;
+}
+catch (err){
+
+}
+};
 while (true) {
+//  await createWSolAccount();
+
   let abc = -1
   for (var USDC_MINT of has){
     let cba = -1
     abc++
     for (var SOL_MINT of has){
       cba++
-
+      console.log(USDC_MINT+ " <-> " + SOL_MINT)
       try {
-      const tokenAccount =  new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
+      const tokenAccount = (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
       let dec = ((await connection.getTokenAccountBalance(tokenAccount)).value.decimals)
 
-      const tokenAccount2 =  new PublicKey(atas[cba]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
+      const tokenAccount2 =   (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(SOL_MINT)})).value[0].pubkey //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
       let dec2 = ((await connection.getTokenAccountBalance(tokenAccount2)).value.decimals)
-   initial = Math.floor(Math.random() * 35.66* 10 ** dec + 2.2666 * 10 ** dec);
+   initial = Math.floor(Math.random() * 1.38* 10 ** dec + .02666 * 10 ** dec);
    //console.log(initial / 10 ** dec)
   // 0.1 SOL
   await prism.loadRoutes(SOL_MINT, USDC_MINT); 
 
-let routes = prism.getRoutes(Math.floor(initial) / 10 ** dec);
-  
-const usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, Math.floor(routes[0].amountOut * 10 ** dec));
-console.log(routes[0].amountOut )
-console.log(usdcToSol.data[0].outAmount)   
-var returns = ((((usdcToSol.data[0].outAmount / 10 ** dec2  )/ (initial / 10 ** dec))- 1))
+let routes = prism.getRoutes(Math.floor(initial) / 10 ** dec2);
+  let aa2 = Math.floor(Math.random()*4) 
+  let aa1 = Math.floor(Math.random()*4)
+const usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, Math.floor(routes[aa2].amountOut  * 10 ** dec));
+console.log(routes[aa1].amountOut )
+console.log(usdcToSol.data[aa2].outAmount)   
+var returns = ((((usdcToSol.data[aa2].outAmount / 10  ** dec )/ (initial / 10 ** dec ))- 1))
 console.log(returns)
-  if (returns > 0.04){
+  if (returns > 0.02){
   console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
   }
   // when outAmount more than initial
-  if (returns >0.04 ) {
+  if (returns >0.02 ) {
   
     const market = await SolendMarket.initialize(
       connection,
@@ -220,23 +278,34 @@ let [lookupTableInst, lookupTableAddress] =
   .getAddressLookupTable(lookupTableAddress)
   .then((res) => res.value);
   console.log(ttt)
+  let lookupTableAddress2
 
 //  lookupTableAddress = new PublicKey("7XH2JSueLJMTuDLE67Qw92KKwAdLjggszDSN5GVoK3qD")
 //lookupTableAddress = new PublicKey("H3pPX8AYP2neyH6AL5mPZmcEWzCbKEU22gWUpY8JASu5")
 console.log("lookup table address:", lookupTableAddress.toBase58());
 let dontgo1 = false
-let lookupTableAddress2 = new PublicKey(ss2[USDC_MINT+ " <-> " + SOL_MINT] )
-
-if (!Object.keys(ss3).includes(USDC_MINT+ " <-> " + SOL_MINT )){
-  somestuff[USDC_MINT+ " <-> " + SOL_MINT ] = []
+let ranran = Math.random()
+if (Object.keys(ss3).includes(USDC_MINT+ " <-> " + SOL_MINT )){
+  lookupTableAddress = new PublicKey(ss3[USDC_MINT+ " <-> " + SOL_MINT] )
+  dontgo1 = true
+}if (Object.keys(ss2).includes(USDC_MINT+ " <-> " + SOL_MINT )){
+  lookupTableAddress2 = new PublicKey( ss2[USDC_MINT+ " <-> " + SOL_MINT] )
+  dontgo1 = true
+}
+else 
+if (!Object.keys(ss3).includes(USDC_MINT+ " <-> " + SOL_MINT  ) && ranran < 0.5){
+  
   ss3[USDC_MINT+ " <-> " + SOL_MINT] = lookupTableAddress
   console.log('blarg')
-  fs.writeFileSync('./ss2.json', JSON.stringify(ss2))
   fs.writeFileSync('./ss3.json', JSON.stringify(ss3))
 }
-else if (!Object.keys(ss2).includes(USDC_MINT+ " <-> " + SOL_MINT )){
-  dontgo1 = true 
+else if  (!Object.keys(ss2).includes(USDC_MINT+ " <-> " + SOL_MINT ) && ranran >= 0.5){
+  
+  ss2[USDC_MINT+ " <-> " + SOL_MINT] = lookupTableAddress
+  console.log('blarg2')
+  fs.writeFileSync('./ss2.json', JSON.stringify(ss2))
 }
+
     const token = new Token(connection, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
 
     const delegate = Keypair.generate();
@@ -256,10 +325,24 @@ else if (!Object.keys(ss2).includes(USDC_MINT+ " <-> " + SOL_MINT )){
         SOLEND_PRODUCTION_PROGRAM_ID
       )
     )]
+    instructions = []
 let auxAccount = Keypair.generate()
   let signers = []
+
+    
+             // get routes based on from Token amount 10 USDC -> ? PRISM
+             try {
+              let swapTransaction = await prism.generateSwapTransactions(routes[aa1]);        // execute swap (sign, send and confirm transaction)
+              //console.log(swapTransaction)
+              await Promise.all(
+                [swapTransaction.preTransaction, swapTransaction.mainTransaction, swapTransaction.postTransaction]
+                  .filter(Boolean)
+                  .map(async (serializedTransaction) => {
+                    instructions.push(...serializedTransaction.instructions)
+                  }))
+              
     await Promise.all(
-      [usdcToSol.data[0]].map(async (route) => {
+      [usdcToSol.data[aa2]].map(async (route) => {
         const { setupTransaction, swapTransaction, cleanupTransaction } =
           await getTransaction(route);
           
@@ -293,22 +376,12 @@ console.log(err)
       })
       
     )
-    
-             // get routes based on from Token amount 10 USDC -> ? PRISM
-             try {
-let swapTransaction = await prism.generateSwapTransactions(routes[0]);        // execute swap (sign, send and confirm transaction)
-//console.log(swapTransaction)
-await Promise.all(
-  [swapTransaction.preTransaction, swapTransaction.mainTransaction, swapTransaction.postTransaction]
-    .filter(Boolean)
-    .map(async (serializedTransaction) => {
-      instructions.push(...serializedTransaction.instructions)
-    }))
-
 ;  var blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
-  instructions.push(
+    
+    //instructions.push(Token.createTransferInstruction(TOKEN_PROGRAM_ID,tokenAccount, tokenAccount, payer.publicKey, [], parseInt(initial * 1.00001)))
+ /* instructions.push(
     flashRepayReserveLiquidityInstruction(
       initial,
       0,
@@ -320,7 +393,8 @@ await Promise.all(
       new PublicKey(market.config.address),
       delegate.publicKey,
       SOLEND_PRODUCTION_PROGRAM_ID
-    ))
+    )) */
+
     blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
@@ -338,10 +412,13 @@ let ss = []
 let dg1 = false 
 let dg2 = false 
 let dg3 = false 
+if (!Object.keys(somestuff).includes(USDC_MINT+ " <-> " + SOL_MINT)){
+  somestuff[USDC_MINT+ " <-> " + SOL_MINT] = []
+}
 for (var bca of messageV0.staticAccountKeys){
 if (aaa < messageV0.staticAccountKeys.length / 3){
   aaa++
-  if (!somestuff[USDC_MINT+ " <-> " + SOL_MINT ].includes(bca)){
+  if (!somestuff[USDC_MINT+ " <-> " + SOL_MINT ].includes(bca.toBase58())){
 somestuff[USDC_MINT+ " <-> " + SOL_MINT ].push(bca)
 ss.push(bca)
 fs.writeFileSync('./stuff.json', JSON.stringify(somestuff))
@@ -364,7 +441,7 @@ aaa = 0
 for (var bca of messageV0.staticAccountKeys){
   aaa++
 if (aaa < messageV0.staticAccountKeys.length / 3 * 2  && (aaa >= messageV0.staticAccountKeys.length / 3  )){
-  if (!somestuff[USDC_MINT+ " <-> " + SOL_MINT ].includes(bca)){
+  if (!somestuff[USDC_MINT+ " <-> " + SOL_MINT ].includes(bca.toBase58())){
     somestuff[USDC_MINT+ " <-> " + SOL_MINT ].push(bca)
   ss.push(bca)  
   fs.writeFileSync('./stuff.json', JSON.stringify(somestuff))
@@ -390,7 +467,7 @@ aaa = 0
 for (var bca of messageV0.staticAccountKeys){
   aaa++
 if (aaa >= messageV0.staticAccountKeys.length / 3 * 2   ){
-  if (!somestuff[USDC_MINT+ " <-> " + SOL_MINT ].includes(bca)){
+  if (!somestuff[USDC_MINT+ " <-> " + SOL_MINT ].includes(bca.toBase58())){
     somestuff[USDC_MINT+ " <-> " + SOL_MINT ].push(bca)
    ss.push(bca) 
    fs.writeFileSync('./stuff.json', JSON.stringify(somestuff))
@@ -479,24 +556,44 @@ await sleep(3000)
 const lookupTableAccount = await connection
   .getAddressLookupTable(lookupTableAddress)
   .then((res) => res.value);
-  const lookupTableAccount2 = await connection
+  let  lookupTableAccount2 =  lookupTableAccount
+  
+  try {
+  lookupTableAccount2 = 
+   await connection
     .getAddressLookupTable(lookupTableAddress2)
     .then((res) => res.value);
+  }
+  catch (err){}
 console.log(lookupTableAccount)
 blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
-const messageV00 = new TransactionMessage({
+let messageV00 
+try { messageV00 =  new TransactionMessage({
   payerKey: wallet.publicKey,
   recentBlockhash: blockhash,
   instructions,
 }).compileToV0Message([lookupTableAccount, lookupTableAccount2]);
+} catch (err){
+  messageV00 =  new TransactionMessage({
+    payerKey: wallet.publicKey,
+    recentBlockhash: blockhash,
+    instructions,
+  }).compileToV0Message([lookupTableAccount]);
+}
   const transaction = new VersionedTransaction(messageV00);
   // sign your transaction with the required `Signers`
- await transaction.sign([payer, delegate, ...swapTransaction.preSigners])
+ await transaction.sign([payer, ...swapTransaction.preSigners])
  console.log(transaction)
  try {
   await sendAndConfirmTransaction(connection, transaction)
+
+  await prism.loadRoutes(USDC_MINT, splToken.NATIVE_MINT); 
+  let dec = ((await connection.getTokenAccountBalance(tokenAccount)).value.uiAmount)
+
+let routes = prism.getRoutes(dec);
+  await  prism.swap(routes[0]); 
  } catch (err){
   console.log(err)
  }
