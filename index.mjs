@@ -93,6 +93,7 @@ const getTransaction = (route) => {
   return got
     .post("https://quote-api.jup.ag/v1/swap", {
       json: {
+        slippage: 99,
         route: route,
         userPublicKey: wallet.publicKey.toString(),
         // to make sure it doesnt close the sol account
