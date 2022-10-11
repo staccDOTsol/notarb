@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 import dotenv from "dotenv";
 import bs58 from "bs58";
@@ -136,14 +137,18 @@ const getConfirmTransaction = async (txid) => {
 // initial 20 USDC for quote
 let initial = 20_000_000;
 import { Prism } from "@prism-hq/prism-ag";
+import { createInitializeAccountInstruction } from "@solana/spl-token";
+import { createCloseAccountInstruction } from "@solana/spl-token";
+
+
+setTimeout(async function(){
+
 let prism = await Prism.init({
     // user executing swap
     user: payer,               // optional (if you don't provide upon init, then you'll need to call prism.setSigner() after user connects the wallet)
 
     // rpc connection
 });
-
-
 while (true) {
   fs.writeFileSync('./somestuff.json', JSON.stringify(somestuff))
   let abc = -1
@@ -227,6 +232,21 @@ if (!Object.keys(somestuff).includes(USDC_MINT+ " <-> " + SOL_MINT )){
       )
     )]
 let auxAccount = Keypair.generate()
+instructions.push(...[SystemProgram.createAccount({
+    fromPubkey: payer.publicKey,
+    newAccountPubkey: auxAccount.publicKey,
+    space: Token.ACCOUNT_SIZE,
+    lamports:
+      100000 + 0, // rent + amount
+    programId: TOKEN_PROGRAM_ID,
+  }),
+  // init token account
+  createInitializeAccountInstruction(
+    auxAccount.publicKey,
+    new PublicKey(SOL_MINT),
+    payer.publicKey
+  ),]
+)
   let signers = []
     await Promise.all(
       [usdcToSol.data[0]].map(async (route) => {
@@ -290,6 +310,15 @@ await Promise.all(
       new PublicKey(market.config.address),
       delegate.publicKey,
       SOLEND_PRODUCTION_PROGRAM_ID
+    ))
+    instructions.push(createCloseAccountInstruction(
+      TOKEN_PROGRAM_ID, // fixed
+      auxAccount.publicKey, // to be closed token account
+      payer.publicKey, // rent's destination
+      payer.publicKey, // token account authority
+      [] // multisig
+  
+
     ))
     blockhash = await connection
     .getLatestBlockhash()
@@ -453,3 +482,4 @@ console.log(err)
 }
 }
 }
+})
