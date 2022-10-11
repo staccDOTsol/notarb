@@ -37,9 +37,9 @@ dotenv.config();
 // invalid cache. I will recommend using a paid RPC endpoint.
 const connection = new Connection("http://69.46.29.78:8899", {skipPreflight: true});
 const wallet = new Wallet(
-  Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/Users/jarettdunn/jaregm.json').toString()))));
+  Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/jarettdunn/validator-keypair.json').toString()))));
   const payer = (
-    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/Users/jarettdunn/jaregm.json').toString()))));
+    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/jarettdunn/validator-keypair.json').toString()))));
 import { SolendAction, SolendMarket, SolendWallet, flashBorrowReserveLiquidityInstruction, flashRepayReserveLiquidityInstruction, SOLEND_PRODUCTION_PROGRAM_ID } from "@solendprotocol/solend-sdk";
 import * as anchor from '@project-serum/anchor';
 
@@ -64,6 +64,8 @@ const has = [
     "7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj",
 ]
 let somestuff = JSON.parse(fs.readFileSync('./stuff.json').toString())
+
+let ss2 = JSON.parse(fs.readFileSync('./ss2.json').toString())
 
 let mints = [    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", // USDC
 "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB", // USDT JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD
@@ -173,9 +175,9 @@ while (true) {
   const usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, initial);
   await prism.loadRoutes(SOL_MINT, USDC_MINT); 
 
-let routes = prism.getRoutes(Math.floor(usdcToSol.data[0].outAmount * 0.999) / 10 ** dec);  
+let routes = prism.getRoutes(Math.floor(usdcToSol.data[0].outAmount ) / 10 ** dec);  
 console.log(routes[0].amountOut)   
-var returns = (((routes[0].amountOut / (initial / 10 ** dec) * 0.999)- 1))
+var returns = (((routes[0].amountOut / (initial / 10 ** dec))- 1))
 console.log(returns)
   if (returns > 0){
   console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
@@ -216,10 +218,14 @@ let [lookupTableInst, lookupTableAddress] =
 //lookupTableAddress = new PublicKey("H3pPX8AYP2neyH6AL5mPZmcEWzCbKEU22gWUpY8JASu5")
 console.log("lookup table address:", lookupTableAddress.toBase58());
 let dontgo1 = false
-if (!Object.keys(somestuff).includes(USDC_MINT+ " <-> " + SOL_MINT )){
+if (!Object.keys(ss2).includes(USDC_MINT+ " <-> " + SOL_MINT )){
   somestuff[USDC_MINT+ " <-> " + SOL_MINT ] = []
+  ss2[USDC_MINT+ " <-> " + SOL_MINT] = lookupTableAddress
+  console.log('blarg')
+  fs.writeFileSync('./ss2.json', JSON.stringify(ss2))
 }
 else {
+  lookupTableAddress = ss2[USDC_MINT+ " <-> " + SOL_MINT] 
   dontgo1 = true 
 }
     const token = new Token(connection, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
@@ -456,6 +462,7 @@ await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: true})
   }
 }
 console.log(2)
+await sleep(3000)
 const lookupTableAccount = await connection
   .getAddressLookupTable(lookupTableAddress)
   .then((res) => res.value);
