@@ -181,7 +181,7 @@ while (true) {
 
 let routes = prism.getRoutes(Math.floor(initial) / 10 ** dec);
   
-const usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, routes[0].amountOut * 10 ** dec2);
+const usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, Math.floor(routes[0].amountOut * 10 ** dec2));
 console.log(usdcToSol.data[0].outAmount)   
 var returns = ((((usdcToSol.data[0].outAmount  / 10 ** dec )/ (initial))- 1))
 console.log(returns)
