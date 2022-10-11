@@ -86,7 +86,7 @@ console.log(mints.length)
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
-      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=0.01`
+      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=0.1&swapMode=ExactOut`
     )
     .json();
 
@@ -177,12 +177,13 @@ while (true) {
    initial = Math.floor(Math.random() * 35.66* 10 ** dec + 2.2666 * 10 ** dec);
    //console.log(initial / 10 ** dec)
   // 0.1 SOL
-  const usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, initial);
   await prism.loadRoutes(SOL_MINT, USDC_MINT); 
 
-let routes = prism.getRoutes(Math.floor(usdcToSol.data[0].outAmount ) / 10 ** dec2);  
-console.log(routes[0].amountOut)   
-var returns = (((routes[0].amountOut / (initial / 10 ** dec))- 1))
+let routes = prism.getRoutes(Math.floor(initial) / 10 ** dec);
+  
+const usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, routes[0].amountOut * 10 ** dec2);
+console.log(usdcToSol.data[0].outAmount)   
+var returns = (((usdcToSol.data[0].outAmount / (initial / 10 ** dec))- 1))
 console.log(returns)
   if (returns > 0.02){
   console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
