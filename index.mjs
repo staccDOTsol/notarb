@@ -183,7 +183,7 @@ let routes = prism.getRoutes(Math.floor(initial) / 10 ** dec);
   
 const usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, routes[0].amountOut * 10 ** dec2);
 console.log(usdcToSol.data[0].outAmount)   
-var returns = (((usdcToSol.data[0].outAmount / (initial))- 1))
+var returns = ((((usdcToSol.data[0].outAmount  / 10 ** dec )/ (initial))- 1))
 console.log(returns)
   if (returns > 0.02){
   console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
