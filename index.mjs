@@ -576,11 +576,28 @@ try { messageV00 =  new TransactionMessage({
   instructions,
 }).compileToV0Message([lookupTableAccount, lookupTableAccount2]);
 } catch (err){
+  try 
+  {
   messageV00 =  new TransactionMessage({
     payerKey: wallet.publicKey,
     recentBlockhash: blockhash,
     instructions,
   }).compileToV0Message([lookupTableAccount]);
+  }
+  catch (err){
+    try {
+
+  messageV00 =  new TransactionMessage({
+    payerKey: wallet.publicKey,
+    recentBlockhash: blockhash,
+    instructions,
+  }).compileToV0Message([lookupTableAccount2]);
+
+    }
+    catch (err){
+      
+    }
+  }
 }
   const transaction = new VersionedTransaction(messageV00);
   // sign your transaction with the required `Signers`
