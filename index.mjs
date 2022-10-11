@@ -295,12 +295,18 @@ if (!Object.keys(ss3).includes(USDC_MINT+ " <-> " + SOL_MINT  ) && ranran < 0.5)
   
   ss3[USDC_MINT+ " <-> " + SOL_MINT] = lookupTableAddress
   console.log('blarg')
+
+ ss2 = JSON.parse(fs.readFileSync('./ss2.json').toString())
+ ss3 = JSON.parse(fs.readFileSync('./ss3.json').toString())
   fs.writeFileSync('./ss3.json', JSON.stringify(ss3))
 }
 else if  (!Object.keys(ss2).includes(USDC_MINT+ " <-> " + SOL_MINT ) && ranran >= 0.5){
   
   ss2[USDC_MINT+ " <-> " + SOL_MINT] = lookupTableAddress
   console.log('blarg2')
+
+ ss2 = JSON.parse(fs.readFileSync('./ss2.json').toString())
+ ss3 = JSON.parse(fs.readFileSync('./ss3.json').toString())
   fs.writeFileSync('./ss2.json', JSON.stringify(ss2))
 }
 
@@ -419,6 +425,7 @@ if (aaa < messageV0.staticAccountKeys.length / 3){
   if (!somestuff[USDC_MINT+ " <-> " + SOL_MINT ].includes(bca.toBase58())){
 somestuff[USDC_MINT+ " <-> " + SOL_MINT ].push(bca)
 ss.push(bca)
+ somestuff = JSON.parse(fs.readFileSync('./stuff.json').toString())
 fs.writeFileSync('./stuff.json', JSON.stringify(somestuff))
   }
 }
@@ -442,6 +449,7 @@ if (aaa < messageV0.staticAccountKeys.length / 3 * 2  && (aaa >= messageV0.stati
   if (!somestuff[USDC_MINT+ " <-> " + SOL_MINT ].includes(bca.toBase58())){
     somestuff[USDC_MINT+ " <-> " + SOL_MINT ].push(bca)
   ss.push(bca)  
+  somestuff = JSON.parse(fs.readFileSync('./stuff.json').toString())
   fs.writeFileSync('./stuff.json', JSON.stringify(somestuff))
 
   }
@@ -468,6 +476,7 @@ if (aaa >= messageV0.staticAccountKeys.length / 3 * 2   ){
   if (!somestuff[USDC_MINT+ " <-> " + SOL_MINT ].includes(bca.toBase58())){
     somestuff[USDC_MINT+ " <-> " + SOL_MINT ].push(bca)
    ss.push(bca) 
+   somestuff = JSON.parse(fs.readFileSync('./stuff.json').toString())
    fs.writeFileSync('./stuff.json', JSON.stringify(somestuff))
 
   }}
