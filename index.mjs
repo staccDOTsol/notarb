@@ -86,7 +86,7 @@ console.log(mints.length)
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
-      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=0.1&swapMode=ExactOut`
+      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=0.1&swapMode=ExactIn`
     )
     .json();
 
