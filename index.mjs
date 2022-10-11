@@ -85,7 +85,7 @@ console.log(mints.length)
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
-      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=0.2`
+      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=99`
     )
     .json();
 
@@ -162,20 +162,24 @@ console.log('')
 while (true) {
   let abc = -1
   for (var USDC_MINT of has){
+    let cba = -1
     abc++
-    for (var SOL_MINT of mints){
+    for (var SOL_MINT of has){
+      cba++
 
       try {
       const tokenAccount =  new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
       let dec = ((await connection.getTokenAccountBalance(tokenAccount)).value.decimals)
 
+      const tokenAccount2 =  new PublicKey(atas[cba]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
+      let dec2 = ((await connection.getTokenAccountBalance(tokenAccount2)).value.decimals)
    initial = Math.floor(Math.random() * 5.66* 10 ** dec + 0.2666 * 10 ** dec);
    //console.log(initial / 10 ** dec)
   // 0.1 SOL
   const usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, initial);
   await prism.loadRoutes(SOL_MINT, USDC_MINT); 
 
-let routes = prism.getRoutes(Math.floor(usdcToSol.data[0].outAmount ) / 10 ** dec);  
+let routes = prism.getRoutes(Math.floor(usdcToSol.data[0].outAmount ) / 10 ** dec2);  
 console.log(routes[0].amountOut)   
 var returns = (((routes[0].amountOut / (initial / 10 ** dec))- 1))
 console.log(returns)
