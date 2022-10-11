@@ -37,9 +37,9 @@ dotenv.config();
 // invalid cache. I will recommend using a paid RPC endpoint.
 const connection = new Connection("http://69.46.29.78:8899", {skipPreflight: true});
 const wallet = new Wallet(
-  Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/jarettdunn/validator-keypair.json').toString()))));
+  Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/ubuntu/validator-keypair.json').toString()))));
   const payer = (
-    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/jarettdunn/validator-keypair.json').toString()))));
+    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/ubuntu/validator-keypair.json').toString()))));
 import { SolendAction, SolendMarket, SolendWallet, flashBorrowReserveLiquidityInstruction, flashRepayReserveLiquidityInstruction, SOLEND_PRODUCTION_PROGRAM_ID } from "@solendprotocol/solend-sdk";
 import * as anchor from '@project-serum/anchor';
 
