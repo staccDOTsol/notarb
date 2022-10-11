@@ -242,7 +242,7 @@ let routes = prism.getRoutes(Math.floor(initial) / 10 ** dec2);
 const usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, Math.floor(routes[aa2].amountOut  * 10 ** dec));
 console.log(routes[aa1].amountOut )
 console.log(usdcToSol.data[aa2].outAmount)   
-var returns = ((((usdcToSol.data[aa2].outAmount / 10  ** dec )/ (initial / 10 ** dec ))- 1))
+var returns = ((((usdcToSol.data[aa2].outAmount / 10  ** dec2 )/ (initial / 10 ** dec ))- 1))
 console.log(returns)
   if (returns > 0.02){
   console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
@@ -595,7 +595,7 @@ try { messageV00 =  new TransactionMessage({
 
     }
     catch (err){
-      
+
     }
   }
 }
