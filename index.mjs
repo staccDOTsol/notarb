@@ -38,9 +38,9 @@ dotenv.config();
 const connection = new Connection("http://69.46.29.78:8899", {skipPreflight: true});
 const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true});
 const wallet = new Wallet(
-  Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/ubuntu/notjaregm.json').toString()))));
+  Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/Users/jarettdunn/notjaregm.json').toString()))));
   const payer = (
-    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/ubuntu/notjaregm.json').toString()))));
+    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/Users/jarettdunn/notjaregm.json').toString()))));
 import { SolendAction, SolendMarket, SolendWallet, flashBorrowReserveLiquidityInstruction, flashRepayReserveLiquidityInstruction, SOLEND_PRODUCTION_PROGRAM_ID } from "@solendprotocol/solend-sdk";
 import * as anchor from '@project-serum/anchor';
 
@@ -247,7 +247,7 @@ console.log(returns)
   console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
   }
   // when outAmount more than initial
-  if (returns >0.0 ) {
+  if (returns >-0.2 ) {
   
     const market = await SolendMarket.initialize(
       connection,
@@ -440,11 +440,10 @@ if (!Object.keys(somestuff).includes(USDC_MINT+ " <-> " + SOL_MINT)){
 for (var bca of messageV0.staticAccountKeys){
 if (aaa < messageV0.staticAccountKeys.length / 3){
   aaa++
+  
   if (!somestuff[USDC_MINT+ " <-> " + SOL_MINT ].includes(bca.toBase58())){
 somestuff[USDC_MINT+ " <-> " + SOL_MINT ].push(bca)
 ss.push(bca)
- somestuff = JSON.parse(fs.readFileSync('./stuff.json').toString())
-fs.writeFileSync('./stuff.json', JSON.stringify(somestuff))
   }
 }
 }
@@ -467,8 +466,6 @@ if (aaa < messageV0.staticAccountKeys.length / 3 * 2  && (aaa >= messageV0.stati
   if (!somestuff[USDC_MINT+ " <-> " + SOL_MINT ].includes(bca.toBase58())){
     somestuff[USDC_MINT+ " <-> " + SOL_MINT ].push(bca)
   ss.push(bca)  
-  somestuff = JSON.parse(fs.readFileSync('./stuff.json').toString())
-  fs.writeFileSync('./stuff.json', JSON.stringify(somestuff))
 
   }
 
@@ -494,8 +491,6 @@ if (aaa >= messageV0.staticAccountKeys.length / 3 * 2   ){
   if (!somestuff[USDC_MINT+ " <-> " + SOL_MINT ].includes(bca.toBase58())){
     somestuff[USDC_MINT+ " <-> " + SOL_MINT ].push(bca)
    ss.push(bca) 
-   somestuff = JSON.parse(fs.readFileSync('./stuff.json').toString())
-   fs.writeFileSync('./stuff.json', JSON.stringify(somestuff))
 
   }}
 }
@@ -503,6 +498,7 @@ console.log(ss.length)
 if (ss.length == 0){
   dg3 = true
 }
+fs.writeFileSync('./stuff.json', JSON.stringify(somestuff))
 const extendInstruction3 = AddressLookupTableProgram.extendLookupTable({
   payer: payer.publicKey,
   authority: payer.publicKey,
