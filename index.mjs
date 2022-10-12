@@ -295,7 +295,7 @@ if (Object.keys(ss).includes(USDC_MINT+ " <-> " + SOL_MINT )){
   lookupTableAddress3 = new PublicKey( ss3[USDC_MINT+ " <-> " + SOL_MINT] )
   dontgo1 = true
 }
-else 
+if (!dontgo1){ 
 if (!Object.keys(ss3).includes(USDC_MINT+ " <-> " + SOL_MINT  ) && ranran < 0.33){
   
   ss3[USDC_MINT+ " <-> " + SOL_MINT] = lookupTableAddress
@@ -326,7 +326,7 @@ else if  (!Object.keys(ss).includes(USDC_MINT+ " <-> " + SOL_MINT ) && ranran >=
  ss3 = JSON.parse(fs.readFileSync('./ss3.json').toString())
   fs.writeFileSync('./ss.json', JSON.stringify(ss2))
 }
-dontgo1 = false
+}
 
     const token = new Token(connection, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
 
