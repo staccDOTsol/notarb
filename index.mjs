@@ -288,10 +288,10 @@ let ranran = Math.random()
 if (Object.keys(ss).includes(USDC_MINT+ " <-> " + SOL_MINT )){
   lookupTableAddress = new PublicKey(ss[USDC_MINT+ " <-> " + SOL_MINT] )
   dontgo1 = true
-}if (Object.keys(ss2).includes(USDC_MINT+ " <-> " + SOL_MINT )){
+}else if (Object.keys(ss2).includes(USDC_MINT+ " <-> " + SOL_MINT )){
   lookupTableAddress2 = new PublicKey( ss2[USDC_MINT+ " <-> " + SOL_MINT] )
   dontgo1 = true
-}if (Object.keys(ss3).includes(USDC_MINT+ " <-> " + SOL_MINT )){
+}else if (Object.keys(ss3).includes(USDC_MINT+ " <-> " + SOL_MINT )){
   lookupTableAddress3 = new PublicKey( ss3[USDC_MINT+ " <-> " + SOL_MINT] )
   dontgo1 = true
 }
