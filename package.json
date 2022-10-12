@@ -9,6 +9,7 @@
   "author": "zhengyutay",
   "license": "ISC",
   "dependencies": {
+    "@blockworks-foundation/mango-client": "^3.6.20",
     "@prism-hq/prism-ag": "^0.2.10",
     "@project-serum/anchor": "^0.20.1",
     "@solana/spl-token": "0.1.8",

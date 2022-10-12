@@ -1,5 +1,7 @@
 
 import dotenv from "dotenv";
+import { IDS, MangoClient, Config, I80F48, makeWithdrawInstruction, makeDepositInstruction, getMarketIndexBySymbol  } from '@blockworks-foundation/mango-client';
+
 import bs58 from "bs58";
 import {
   Connection,
@@ -52,10 +54,6 @@ const somestuff2 = JSON.parse(fs.readFileSync("./hahapairs.json").toString())
 
 const has = [
     "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
-    "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB", 
-    "USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX",
-    "Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS",
-    "7kbnvuGBxxj8AG9qp8Scn56muWGaRaFqxg1FsRp3PaFT",
 ]
 let somestuff = JSON.parse(fs.readFileSync('./stuff.json').toString())
 
@@ -63,12 +61,7 @@ let ss2 = JSON.parse(fs.readFileSync('./ss2.json').toString())
 let ss3 = JSON.parse(fs.readFileSync('./ss3.json').toString())
 
 let mints = [   
-"So11111111111111111111111111111111111111112", "LFNTYraetVioAPnGJht4yNg2aUZFXR776cMeN9VMjXp",
-"SLNDpmoWTVADgEdndyvWzroNL7zSi1dF9PC3xHGtPwp","E5ndSkaB17Dm7CsD22dvcjfrYSDLCxFcMd6z8ddCk5wp",
-"mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So","7i5KKsX2weiTkry7jA4ZwSuXGhs5eJBEjY8vVxR4pfRx",
-"7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj","DUSTawucrTsGU8hcqRdHDCbuYhCPADMLM2VcCb8VnFnQ",
-"4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R",
-"orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",]
+"mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So"]
 
 for (var add of somestuff2.data){
 for (var address of add.tokens){
@@ -229,7 +222,7 @@ while (true) {
 
       const tokenAccount2 =   (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(SOL_MINT)})).value[0].pubkey //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
       let dec2 = ((await connection.getTokenAccountBalance(tokenAccount2)).value.decimals)
-   initial = Math.floor(Math.random() * 40.38* 10 ** dec2 + 1.02666 * 10 ** dec2);
+   initial = 10_000_000 * 10 ** 6 //.floor(Math.random() * 40.38* 10 ** dec2 + 1.02666 * 10 ** dec2);
    //console.log(initial / 10 ** dec)
   // 0.1 SOL
   await prism.loadRoutes(SOL_MINT, USDC_MINT); 
@@ -242,11 +235,11 @@ console.log(routes[aa1].amountOut )
 console.log(usdcToSol.data[aa2].outAmount)   
 var returns = ((((usdcToSol.data[aa2].outAmount / 10  ** dec2 )/ (initial / 10 ** dec ))- 1))
 console.log(returns)
-  if (returns > 0.0){
+  if (returns > -100.0){
   console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
   }
   // when outAmount more than initial
-  if (returns >0.0 ) {
+  if (returns >-100.0 ) {
   
     const market = await SolendMarket.initialize(
       connection,
@@ -276,8 +269,7 @@ let [lookupTableInst, lookupTableAddress] =
   .getAddressLookupTable(lookupTableAddress)
   .then((res) => res.value);
   console.log(ttt)
-  let lookupTableAddress2 = lookupTableAddress
-  let lookupTableAddress3= lookupTableAddress
+  let lookupTableAddress2
 
 //  lookupTableAddress = new PublicKey("7XH2JSueLJMTuDLE67Qw92KKwAdLjggszDSN5GVoK3qD")
 //lookupTableAddress = new PublicKey("H3pPX8AYP2neyH6AL5mPZmcEWzCbKEU22gWUpY8JASu5")
@@ -290,40 +282,25 @@ if (Object.keys(ss3).includes(USDC_MINT+ " <-> " + SOL_MINT )){
 }if (Object.keys(ss2).includes(USDC_MINT+ " <-> " + SOL_MINT )){
   lookupTableAddress2 = new PublicKey( ss2[USDC_MINT+ " <-> " + SOL_MINT] )
   dontgo1 = true
-}if (Object.keys(ss).includes(USDC_MINT+ " <-> " + SOL_MINT )){
-  lookupTableAddress3 = new PublicKey( ss[USDC_MINT+ " <-> " + SOL_MINT] )
-  dontgo1 = true
 }
 else 
-if (!Object.keys(ss3).includes(USDC_MINT+ " <-> " + SOL_MINT  ) && ranran < 0.33){
+if (!Object.keys(ss3).includes(USDC_MINT+ " <-> " + SOL_MINT  ) && ranran < 0.5){
   
   ss3[USDC_MINT+ " <-> " + SOL_MINT] = lookupTableAddress
   console.log('blarg')
 
-  ss = JSON.parse(fs.readFileSync('./ss.json').toString())
  ss2 = JSON.parse(fs.readFileSync('./ss2.json').toString())
  ss3 = JSON.parse(fs.readFileSync('./ss3.json').toString())
   fs.writeFileSync('./ss3.json', JSON.stringify(ss3))
 }
-else if  (!Object.keys(ss2).includes(USDC_MINT+ " <-> " + SOL_MINT ) && ranran >= 0.66){
+else if  (!Object.keys(ss2).includes(USDC_MINT+ " <-> " + SOL_MINT ) && ranran >= 0.5){
   
   ss2[USDC_MINT+ " <-> " + SOL_MINT] = lookupTableAddress
   console.log('blarg2')
 
-  ss = JSON.parse(fs.readFileSync('./ss.json').toString())
  ss2 = JSON.parse(fs.readFileSync('./ss2.json').toString())
  ss3 = JSON.parse(fs.readFileSync('./ss3.json').toString())
   fs.writeFileSync('./ss2.json', JSON.stringify(ss2))
-}
-else if  (!Object.keys(ss).includes(USDC_MINT+ " <-> " + SOL_MINT ) && ranran >= 0.33 && ranran < 0.66){
-  
-  ss2[USDC_MINT+ " <-> " + SOL_MINT] = lookupTableAddress
-  console.log('blarg2')
-
-  ss = JSON.parse(fs.readFileSync('./ss.json').toString())
- ss2 = JSON.parse(fs.readFileSync('./ss2.json').toString())
- ss3 = JSON.parse(fs.readFileSync('./ss3.json').toString())
-  fs.writeFileSync('./ss.json', JSON.stringify(ss2))
 }
 
     const token = new Token(connection, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
@@ -360,7 +337,89 @@ let auxAccount = Keypair.generate()
                   .map(async (serializedTransaction) => {
                     instructions.push(...serializedTransaction.instructions)
                   }))
-              
+
+                  const cluster = 'mainnet';
+                  const group = 'mainnet.1';
+                  
+                  const config = new Config(IDS);
+                  const groupConfig = config.getGroup(cluster, group);
+                  if (!groupConfig) {
+                      throw new Error("unable to get mango group config");
+                    }
+                  const mangoGroupKey = groupConfig.publicKey;
+                  
+                  const clusterData = IDS.groups.find((g) => {
+                      return g.name == group && g.cluster == cluster;
+                    });
+                  const mangoProgramIdPk = new PublicKey(clusterData.mangoProgramId);
+                  
+                  const clusterUrl = IDS.cluster_urls[cluster];
+                  const connection = new Connection(clusterUrl, 'singleGossip');
+                  const client = new MangoClient(connection, mangoProgramIdPk);
+                  const mangoGroup = await client.getMangoGroup(mangoGroupKey);
+                let tokenIndex =  mangoGroup.getTokenIndex(new PublicKey(SOL_MINT) )
+                let tokenIndex2 =  mangoGroup.getTokenIndex(new PublicKey(USDC_MINT) )
+
+                const vault =
+                mangoGroup.rootBankAccounts?.[tokenIndex]?.nodeBankAccounts[0].vault
+            
+                // fetch total deposits/borrows, deposit and borrow interest rates, as well as percent utilization of each token in the group
+
+    const myMangoAccountAddress = '5LCvTB7XxJZ5VVjMdCujd2Qmq4Z76B7dkgjgQsbuc2rh';
+
+    const serumProgramIdPk = new PublicKey(clusterData.serumProgramId);
+    
+    
+    const myMangoAccountPubKey = new PublicKey(myMangoAccountAddress);
+    const myMangoAccount = await client.getMangoAccount(myMangoAccountPubKey, serumProgramIdPk);
+                  client
+instructions.push(                  await  makeDepositInstruction(
+                    mangoGroup,
+                    myMangoAccount,
+                    wallet.adapter,
+                    mangoGroup.tokens[tokenIndex].rootBank,
+                    myMangoAccountPubKey,
+                    vault,
+                    tokenAccount2.publicKey,
+                    Number(((await connection.getTokenAccountBalance(tokenAccount2)).value.amount))
+                  )
+)/*            this.programId,
+            mangoGroup.publicKey,
+            mangoAccount.publicKey,
+            payer.publicKey,
+            mangoGroup.mangoCache,
+            rootBank.publicKey,
+            rootBank.nodeBanks[0],
+            rootBank.nodeBankAccounts[0].vault,
+            tokenAcc,
+            mangoGroup.signerKey,
+            mangoAccount.spotOpenOrders,
+            U64_MAX_BN,
+            false,
+*/
+for (const rootBank of mangoGroup.rootBankAccounts) {
+
+console.log(rootBank)
+}
+console.log(rootBank)
+              instructions.push(await makeWithdrawInstruction(
+                new PublicKey("mv3ekLzLbnVPNxjSKvqBpU3ZeZXPQdEC3bp5MDEBG68"),
+                //programId, mangoGroupPk, mangoAccountPk,
+              // walletPk, mangoCachePk, rootBankPk, nodeBankPk, vaultPk, tokenAccPk, signerKey, openOrders, nativeQuantity, allowBorrow) {
+                mangoGroup,
+                myMangoAccount,
+                wallet.publicKey,
+                mangoGroup.mangoCache,
+                mangoGroup.tokens[tokenIndex2].rootBank.publicKey,
+                rootBank.nodeBanks[0],
+                rootBank.nodeBankAccounts[0].vault,
+                tokenAccount2,
+                mangoGroup.signerKey,
+                myMangoAccount.spotOpenOrders,
+                Number(((await connection.getTokenAccountBalance(tokenAccount2)).value.amount) * 0.555 * 33),
+           
+                true
+              ))
     await Promise.all(
       [usdcToSol.data[aa2]].map(async (route) => {
         const { setupTransaction, swapTransaction, cleanupTransaction } =
@@ -401,7 +460,7 @@ console.log(err)
     .then((res) => res.blockhash);
     
     //instructions.push(Token.createTransferInstruction(TOKEN_PROGRAM_ID,tokenAccount, tokenAccount, payer.publicKey, [], parseInt(initial * 1.00001)))
- /* instructions.push(
+  instructions.push(
     flashRepayReserveLiquidityInstruction(
       initial,
       0,
@@ -413,12 +472,13 @@ console.log(err)
       new PublicKey(market.config.address),
       delegate.publicKey,
       SOLEND_PRODUCTION_PROGRAM_ID
-    )) */
+    )) 
 
     blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
           // create v0 compatible message
+          console.log(instructions)
   const messageV0 = new TransactionMessage({
     payerKey: wallet.publicKey,
     recentBlockhash: blockhash,
@@ -580,7 +640,6 @@ const lookupTableAccount = await connection
   .getAddressLookupTable(lookupTableAddress)
   .then((res) => res.value);
   let  lookupTableAccount2 =  lookupTableAccount
-  let  lookupTableAccount3 =  lookupTableAccount
   
   try {
   lookupTableAccount2 = 
@@ -589,13 +648,6 @@ const lookupTableAccount = await connection
     .then((res) => res.value);
   }
   catch (err){}
-  try {
-    lookupTableAccount3 = 
-     await connection
-      .getAddressLookupTable(lookupTableAddress3)
-      .then((res) => res.value);
-    }
-    catch (err){}
 console.log(lookupTableAccount)
 blockhash = await connection
     .getLatestBlockhash()
@@ -605,7 +657,7 @@ try { messageV00 =  new TransactionMessage({
   payerKey: wallet.publicKey,
   recentBlockhash: blockhash,
   instructions,
-}).compileToV0Message([lookupTableAccount, lookupTableAccount2, lookupTableAccount3]);
+}).compileToV0Message([lookupTableAccount, lookupTableAccount2]);
 } catch (err){
   try 
   {
