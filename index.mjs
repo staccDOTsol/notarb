@@ -59,6 +59,7 @@ const has = [
 ]
 let somestuff = JSON.parse(fs.readFileSync('./stuff.json').toString())
 
+let ss = JSON.parse(fs.readFileSync('./ss.json').toString())
 let ss2 = JSON.parse(fs.readFileSync('./ss2.json').toString())
 let ss3 = JSON.parse(fs.readFileSync('./ss3.json').toString())
 
@@ -284,14 +285,14 @@ let [lookupTableInst, lookupTableAddress] =
 console.log("lookup table address:", lookupTableAddress.toBase58());
 let dontgo1 = false
 let ranran = Math.random()
-if (Object.keys(ss3).includes(USDC_MINT+ " <-> " + SOL_MINT )){
-  lookupTableAddress = new PublicKey(ss3[USDC_MINT+ " <-> " + SOL_MINT] )
+if (Object.keys(ss).includes(USDC_MINT+ " <-> " + SOL_MINT )){
+  lookupTableAddress = new PublicKey(ss[USDC_MINT+ " <-> " + SOL_MINT] )
   dontgo1 = true
 }if (Object.keys(ss2).includes(USDC_MINT+ " <-> " + SOL_MINT )){
   lookupTableAddress2 = new PublicKey( ss2[USDC_MINT+ " <-> " + SOL_MINT] )
   dontgo1 = true
-}if (Object.keys(ss).includes(USDC_MINT+ " <-> " + SOL_MINT )){
-  lookupTableAddress3 = new PublicKey( ss[USDC_MINT+ " <-> " + SOL_MINT] )
+}if (Object.keys(ss3).includes(USDC_MINT+ " <-> " + SOL_MINT )){
+  lookupTableAddress3 = new PublicKey( ss3[USDC_MINT+ " <-> " + SOL_MINT] )
   dontgo1 = true
 }
 else 
