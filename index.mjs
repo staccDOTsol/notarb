@@ -326,6 +326,7 @@ else if  (!Object.keys(ss).includes(USDC_MINT+ " <-> " + SOL_MINT ) && ranran >=
  ss3 = JSON.parse(fs.readFileSync('./ss3.json').toString())
   fs.writeFileSync('./ss.json', JSON.stringify(ss2))
 }
+dontgo1 = false
 
     const token = new Token(connection, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
 
