@@ -1,0 +1,11 @@
+import BN from 'bn.js';
+export declare const DEFAULT_FARMING_TICKET_END_TIME: BN;
+export declare const FARMING_STATE_LAYOUT: import("@solana/buffer-layout").Structure;
+export declare const FARMING_TICKET_LAYOUT: import("@solana/buffer-layout").Structure;
+export declare const FARMING_CALC_LAYOUT: import("@solana/buffer-layout").Structure;
+export declare const END_FARMING_INSTRUCTION_LAYOUT: import("@solana/buffer-layout").Structure;
+export declare const CREATE_CALC_INSTRUCTION_LAYOUT: import("@solana/buffer-layout").Structure;
+export declare const WITHDRAW_FARMED_INSTRUCTION_LAYOUT: import("@solana/buffer-layout").Structure;
+export declare const CALCULATE_FARMED_INSTRUCTION: import("@solana/buffer-layout").Structure;
+export declare const START_FARMING_INSTRUCTION_LAYOUT: import("@solana/buffer-layout").Structure;
+export declare const SNAPSHOT_QUEUE_LAYOUT: import("@solana/buffer-layout").Structure;

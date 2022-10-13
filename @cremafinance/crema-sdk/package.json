@@ -1,0 +1,56 @@
+{
+  "name": "@cremafinance/crema-sdk",
+  "version": "1.1.14",
+  "description": "The front sdk for crema swap",
+  "license": "MIT",
+  "scripts": {
+    "build": "rm -fr dist/ && tsdx build --tsconfig ./tsconfig.esm.json",
+    "pre-swap": "ts-node ./cli/preSwap.ts",
+    "create-pool": "ts-node ./cli/createPool.ts",
+    "mint-pos": "ts-node ./cli/mintPosition.ts",
+    "swap-info": "ts-node ./cli/swapInfo.ts",
+    "liquity": "ts-node ./cli/liquity.ts",
+    "simulate-swap": "ts-node ./cli/simulateSwap.ts",
+    "math": "ts-node ./cli/math.ts",
+    "test:unit": "yarn mocha ./src/*/*.test.ts --require ts-node/register"
+  },
+  "peerDependencies": {
+    "@solana/web3.js": ">= 1.33.0"
+  },
+  "dependencies": {
+    "@solana/buffer-layout": "^4.0.0",
+    "@solana/spl-token": "^0.1.8",
+    "decimal.js": "^10.3.1",
+    "tiny-invariant": "^1.2.0",
+    "tslib": "^2.3.1"
+  },
+  "devDependencies": {
+    "@rushstack/eslint-patch": "^1.1.0",
+    "@saberhq/eslint-config": "^1.12.48",
+    "@saberhq/tsconfig": "^1.12.48",
+    "@types/chai": "^4.2.22",
+    "@types/prettier": "^2.4.4",
+    "chai": "^4.3.4",
+    "commander": "^9.0.0",
+    "console-table-printer": "^2.10.0",
+    "eslint": "^8.10.0",
+    "eslint-import-resolver-node": "^0.3.6",
+    "eslint-plugin-import": "^2.25.4",
+    "mocha": "^9.1.3",
+    "prettier": "^2.5.1",
+    "ts-node": "^10.4.0",
+    "tsdx": "^0.14.1",
+    "typescript": "^4.3.5"
+  },
+  "files": [
+    "dist",
+    "./cli"
+  ],
+  "lint-staged": {
+    "*.{ts,tsx}": "eslint --cache --fix",
+    "*.{js,json,jsx,html,css,md}": "prettier --write"
+  },
+  "typings": "dist/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.js"
+}

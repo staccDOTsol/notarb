@@ -96,7 +96,7 @@ console.log(mints.length)
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
-      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=5&swapMode=ExactIn`
+      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=5&swapMode=ExactIn&onlyDirectRoutes=true`
     )
     .json();
 
@@ -251,7 +251,7 @@ while (true) {
    initial = Math.floor(Math.random() * 278.38* 10 ** dec + 2.02666 * 10 ** dec);
    //console.log(initial / 10 ** dec)
   // 0.1 SOL
-  await prism.loadRoutes(USDC_MINT,SOL_MINT)//, true); 
+  await prism.loadRoutes(USDC_MINT,SOL_MINT, true); 
 
 let routes = prism.getRoutes(Math.floor(initial) / 10 ** dec);
 let route 
