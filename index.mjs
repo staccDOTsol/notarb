@@ -236,10 +236,19 @@ while (true) {
   await prism.loadRoutes(SOL_MINT, USDC_MINT); 
 
 let routes = prism.getRoutes(Math.floor(initial) / 10 ** dec2);
-  let aa2 = Math.floor(Math.random()*2) 
-  let aa1 = Math.floor(Math.random()*2)
-const usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, Math.floor(routes[aa2].amountOut  * 10 ** dec2));
-console.log(routes[aa1].amountOut )
+let route 
+var m  = 0
+for (var r of routes2.reverse()){
+  if (!r.providers.includes('saros')){
+    if (r.amountOut > m ){
+      m = r.amountOut
+      route = r 
+    }
+  }
+}
+  let aa2 = Math.floor(Math.random()*0.5) 
+  let aa1 = Math.floor(Math.random()*0.5)
+const usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, Math.floor(route.amountOut  * 10 ** dec2));
 console.log(usdcToSol.data[aa2].outAmount)   
 var returns = ((((usdcToSol.data[aa2].outAmount / 10  ** dec2 )/ (initial / 10 ** dec ))- 1))
 console.log(returns)
@@ -354,7 +363,7 @@ let auxAccount = Keypair.generate()
     
              // get routes based on from Token amount 10 USDC -> ? PRISM
              try {
-              let swapTransaction = await prism.generateSwapTransactions(routes[aa1]);        // execute swap (sign, send and confirm transaction)
+              let swapTransaction = await prism.generateSwapTransactions(route);        // execute swap (sign, send and confirm transaction)
               //console.log(swapTransaction)
               await Promise.all(
                 [swapTransaction.preTransaction, swapTransaction.mainTransaction, swapTransaction.postTransaction]
