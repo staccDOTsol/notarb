@@ -41,8 +41,9 @@ const wallet = new Wallet(
   Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/ubuntu/notjaregm.json').toString()))));
   const payer = (
     Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/ubuntu/notjaregm.json').toString()))));
-import { SolendAction, SolendMarket, SolendWallet, flashBorrowReserveLiquidityInstruction, flashRepayReserveLiquidityInstruction, SOLEND_PRODUCTION_PROGRAM_ID } from "@solendprotocol/solend-sdk";
-import * as anchor from '@project-serum/anchor';
+    const payer2 = (
+      Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/ubuntu/jaregm.json').toString()))));
+
 
 import fs from 'fs'
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
@@ -63,14 +64,24 @@ let ss = JSON.parse(fs.readFileSync('./ss.json').toString())
 let ss2 = JSON.parse(fs.readFileSync('./ss2.json').toString())
 let ss3 = JSON.parse(fs.readFileSync('./ss3.json').toString())
 
-let mints = [   
-"So11111111111111111111111111111111111111112", "LFNTYraetVioAPnGJht4yNg2aUZFXR776cMeN9VMjXp",
-"SLNDpmoWTVADgEdndyvWzroNL7zSi1dF9PC3xHGtPwp","E5ndSkaB17Dm7CsD22dvcjfrYSDLCxFcMd6z8ddCk5wp",
-"mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So","7i5KKsX2weiTkry7jA4ZwSuXGhs5eJBEjY8vVxR4pfRx",
-"7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj","DUSTawucrTsGU8hcqRdHDCbuYhCPADMLM2VcCb8VnFnQ",
-"4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R",
-"orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",]
+var mints = [   
+  "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+  "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB", 
+  "USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX",
+  "Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS",
+  "7kbnvuGBxxj8AG9qp8Scn56muWGaRaFqxg1FsRp3PaFT",]
 
+ mints = [   "LFNTYraetVioAPnGJht4yNg2aUZFXR776cMeN9VMjXp",
+  "SLNDpmoWTVADgEdndyvWzroNL7zSi1dF9PC3xHGtPwp","E5ndSkaB17Dm7CsD22dvcjfrYSDLCxFcMd6z8ddCk5wp",
+  "mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So","7i5KKsX2weiTkry7jA4ZwSuXGhs5eJBEjY8vVxR4pfRx",
+  "7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj","DUSTawucrTsGU8hcqRdHDCbuYhCPADMLM2VcCb8VnFnQ",
+  "4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R",
+  "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE",
+  "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+  "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB", 
+  "USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX",
+  "Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS",
+  "7kbnvuGBxxj8AG9qp8Scn56muWGaRaFqxg1FsRp3PaFT",]
 for (var add of somestuff2.data){
 for (var address of add.tokens){
 //mints.push(address.address)
@@ -168,7 +179,7 @@ const createWSolAccount = async () => {
 
   if (!wsolAccount) {
     const transaction = new Transaction({
-      feePayer: wallet.publicKey,
+      feePayer: payer2.publicKey,
     });
     const instructions = [];
 
@@ -202,8 +213,9 @@ const createWSolAccount = async () => {
       await connection.getRecentBlockhash()
     ).blockhash;
     transaction.partialSign(wallet.payer);
+    transaction.partialSign(payer2);
     const result = await connection.sendTransaction(transaction, [
-      wallet.payer,
+      wallet.payer,payer2
     ]);
     console.log({ result });
   }
@@ -230,45 +242,33 @@ while (true) {
 
       const tokenAccount2 =   (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(SOL_MINT)})).value[0].pubkey //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
       let dec2 = ((await connection.getTokenAccountBalance(tokenAccount2)).value.decimals)
-   initial = Math.floor(Math.random() * 48.58* 10 ** dec2 + 1.02666 * 10 ** dec2);
+   initial = Math.floor(Math.random() * 40.38* 10 ** dec + 2.02666 * 10 ** dec);
    //console.log(initial / 10 ** dec)
   // 0.1 SOL
-  await prism.loadRoutes(SOL_MINT, USDC_MINT); 
+  await prism.loadRoutes(SOL_MINT, USDC_MINT, true); 
 
-let routes = prism.getRoutes(Math.floor(initial) / 10 ** dec2);
+let routes = prism.getRoutes(Math.floor(initial) / 10 ** dec);
 let route 
 var m  = 0
 for (var r of routes.reverse()){
-  if (!r.providers.includes('saros')){
+  console.log(r.providers.length)
     if (r.amountOut > m ){
+      
       m = r.amountOut
       route = r 
     }
-  }
 }
   let aa2 = Math.floor(Math.random()*0.5) 
   let aa1 = Math.floor(Math.random()*0.5)
-const usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, Math.floor(route.amountOut  * 10 ** dec2));
-console.log(usdcToSol.data[aa2].outAmount)   
+const usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, Math.floor(route.amountOut * 10 ** dec));
+//console.log(usdcToSol.data[aa2].outAmount)   
 var returns = ((((usdcToSol.data[aa2].outAmount / 10  ** dec2 )/ (initial / 10 ** dec ))- 1))
 console.log(returns)
-  if (returns > 0.0){
-  console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
+  if (returns > 0.0015){
+  console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec2).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
   }
   // when outAmount more than initial
-  if (returns >0.0 ) {
-  
-    const market = await SolendMarket.initialize(
-      connection,
-      'production',
-    );
-
-    const reserve = market.reserves.find(res => res.config.liquidityToken.mint === USDC_MINT);
-    if (reserve == null) {
-      throw 'can\'t find reserve!';
-    }
-
-    console.log(`reserve: ${JSON.stringify(reserve?.config.liquidityToken.mint)}`);
+  if (returns >0.0015 ) {
     const slot = await connection.getSlot();
 
 // Assumption:
@@ -279,7 +279,7 @@ var blockhash = await connection
 let [lookupTableInst, lookupTableAddress] =
   AddressLookupTableProgram.createLookupTable({
     authority: payer.publicKey,
-    payer: payer.publicKey,
+    payer: payer2.publicKey,
     recentSlot: slot,
   });
   let ttt = await connection
@@ -310,9 +310,7 @@ if (!Object.keys(ss3).includes(USDC_MINT+ " <-> " + SOL_MINT  ) && ranran < 0.33
   ss3[USDC_MINT+ " <-> " + SOL_MINT] = lookupTableAddress
   console.log('blarg')
 
-  ss = JSON.parse(fs.readFileSync('./ss.json').toString())
- ss2 = JSON.parse(fs.readFileSync('./ss2.json').toString())
- ss3 = JSON.parse(fs.readFileSync('./ss3.json').toString())
+  
   fs.writeFileSync('./ss3.json', JSON.stringify(ss3))
 }
 else if  (!Object.keys(ss2).includes(USDC_MINT+ " <-> " + SOL_MINT ) && ranran >= 0.66){
@@ -320,9 +318,6 @@ else if  (!Object.keys(ss2).includes(USDC_MINT+ " <-> " + SOL_MINT ) && ranran >
   ss2[USDC_MINT+ " <-> " + SOL_MINT] = lookupTableAddress
   console.log('blarg2')
 
-  ss = JSON.parse(fs.readFileSync('./ss.json').toString())
- ss2 = JSON.parse(fs.readFileSync('./ss2.json').toString())
- ss3 = JSON.parse(fs.readFileSync('./ss3.json').toString())
   fs.writeFileSync('./ss2.json', JSON.stringify(ss2))
 }
 else if  (!Object.keys(ss).includes(USDC_MINT+ " <-> " + SOL_MINT ) && ranran >= 0.33 && ranran < 0.66){
@@ -330,33 +325,10 @@ else if  (!Object.keys(ss).includes(USDC_MINT+ " <-> " + SOL_MINT ) && ranran >=
   ss2[USDC_MINT+ " <-> " + SOL_MINT] = lookupTableAddress
   console.log('blarg2')
 
-  ss = JSON.parse(fs.readFileSync('./ss.json').toString())
- ss2 = JSON.parse(fs.readFileSync('./ss2.json').toString())
- ss3 = JSON.parse(fs.readFileSync('./ss3.json').toString())
   fs.writeFileSync('./ss.json', JSON.stringify(ss2))
 }
 }
-
-    const token = new Token(connection, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
-
-    const delegate = Keypair.generate();
-    try {
-     token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
-    } catch (err){
-
-    }
-    let tx = new Transaction();
-    let instructions = [(
-      flashBorrowReserveLiquidityInstruction(
-        initial,
-        new PublicKey(reserve.config.liquidityAddress),
-        tokenAccount,
-        new PublicKey(reserve.config.address),
-        new PublicKey(market.config.address),
-        SOLEND_PRODUCTION_PROGRAM_ID
-      )
-    )]
-    instructions = []
+ let   instructions = []
 let auxAccount = Keypair.generate()
   let signers = []
 
@@ -411,27 +383,13 @@ console.log(err)
     .getLatestBlockhash()
     .then((res) => res.blockhash);
     
-    //instructions.push(Token.createTransferInstruction(TOKEN_PROGRAM_ID,tokenAccount, tokenAccount, payer.publicKey, [], parseInt(initial * 1.00001)))
- /* instructions.push(
-    flashRepayReserveLiquidityInstruction(
-      initial,
-      0,
-      tokenAccount,
-      new PublicKey(reserve.config.liquidityAddress),
-      new PublicKey(reserve.config.liquidityFeeReceiverAddress),
-      tokenAccount,
-      new PublicKey(reserve.config.address),
-      new PublicKey(market.config.address),
-      delegate.publicKey,
-      SOLEND_PRODUCTION_PROGRAM_ID
-    )) */
 
     blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
           // create v0 compatible message
   const messageV0 = new TransactionMessage({
-    payerKey: wallet.publicKey,
+    payerKey: payer2.publicKey,
     recentBlockhash: blockhash,
     instructions,
   }).compileToV0Message();
@@ -461,7 +419,7 @@ if (ss.length == 0){
   dg1 = true
 }
 const extendInstruction = AddressLookupTableProgram.extendLookupTable({
-  payer: payer.publicKey,
+  payer: payer2.publicKey,
   authority: payer.publicKey,
   lookupTable: lookupTableAddress,
   addresses: ss
@@ -485,7 +443,7 @@ if (ss.length == 0){
   dg2 = true
 }
 const extendInstruction2 = AddressLookupTableProgram.extendLookupTable({
-  payer: payer.publicKey,
+  payer: payer2.publicKey,
   authority: payer.publicKey,
   lookupTable: lookupTableAddress,
   addresses: ss
@@ -509,7 +467,7 @@ if (ss.length == 0){
 }
 fs.writeFileSync('./stuff.json', JSON.stringify(somestuff))
 const extendInstruction3 = AddressLookupTableProgram.extendLookupTable({
-  payer: payer.publicKey,
+  payer: payer2.publicKey,
   authority: payer.publicKey,
   lookupTable: lookupTableAddress,
   addresses: ss
@@ -524,11 +482,13 @@ blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
 tx2.recentBlockhash = blockhash
+tx2.feePayer =payer2.publicKey
 tx2.sign(payer)
+tx2.sign(payer2)
 
 if (!dontgo1){
 try{
-  await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: true})
+  await sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: true})
 } catch (err){
     
 }
@@ -540,11 +500,14 @@ blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
 tx2.recentBlockhash = blockhash
+tx2.feePayer = payer2.publicKey
 tx2.sign(payer)
+tx2.sign(payer2)
+
 if (!dg1){
 try {
   
-let hm = await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: true})
+let hm = await sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: true})
 console.log(hm)
 } catch (err){
     
@@ -558,10 +521,13 @@ blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
 tx2.recentBlockhash = blockhash
+tx2.feePayer= payer2.publicKey
+tx2.sign(payer2)
+
 tx2.sign(payer)
 if (!dg2){
 try {
-await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: true})
+await sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: true})
 } catch (err){
     
 }
@@ -573,10 +539,13 @@ blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
 tx2.recentBlockhash = blockhash
+tx2.feePayer = payer2.publicKey 
+tx2.sign(payer2)
+
 tx2.sign(payer)
 if (!dg3){
   try {
-await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: true})
+await sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: true})
   } catch (err){
 
   }
@@ -609,7 +578,7 @@ blockhash = await connection
     .then((res) => res.blockhash);
 let messageV00 
 try { messageV00 =  new TransactionMessage({
-  payerKey: wallet.publicKey,
+  payerKey: payer2.publicKey,
   recentBlockhash: blockhash,
   instructions,
 }).compileToV0Message([lookupTableAccount, lookupTableAccount2, lookupTableAccount3]);
@@ -617,19 +586,19 @@ try { messageV00 =  new TransactionMessage({
   try 
   {
   messageV00 =  new TransactionMessage({
-    payerKey: wallet.publicKey,
+    payerKey: payer2.publicKey,
     recentBlockhash: blockhash,
     instructions,
-  }).compileToV0Message([lookupTableAccount]);
+  }).compileToV0Message([lookupTableAccount, lookupTableAccount2]);
   }
   catch (err){
     try {
 
   messageV00 =  new TransactionMessage({
-    payerKey: wallet.publicKey,
+    payerKey: payer2.publicKey,
     recentBlockhash: blockhash,
     instructions,
-  }).compileToV0Message([lookupTableAccount2]);
+  }).compileToV0Message([lookupTableAccount]);
 
     }
     catch (err){
@@ -639,7 +608,7 @@ try { messageV00 =  new TransactionMessage({
 }
   const transaction = new VersionedTransaction(messageV00);
   // sign your transaction with the required `Signers`
- await transaction.sign([payer, ...swapTransaction.preSigners])
+ await transaction.sign([payer,payer2, ...swapTransaction.preSigners])
  console.log(transaction)
  try {
   await sendAndConfirmTransaction(connection, transaction)
