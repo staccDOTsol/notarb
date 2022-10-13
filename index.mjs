@@ -230,7 +230,7 @@ while (true) {
 
       const tokenAccount2 =   (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(SOL_MINT)})).value[0].pubkey //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
       let dec2 = ((await connection.getTokenAccountBalance(tokenAccount2)).value.decimals)
-   initial = Math.floor(Math.random() * 40.38* 10 ** dec2 + 1.02666 * 10 ** dec2);
+   initial = Math.floor(Math.random() * 40.38* 10 ** dec2 + 2.02666 * 10 ** dec2);
    //console.log(initial / 10 ** dec)
   // 0.1 SOL
   await prism.loadRoutes(SOL_MINT, USDC_MINT); 
@@ -238,13 +238,11 @@ while (true) {
 let routes = prism.getRoutes(Math.floor(initial) / 10 ** dec2);
 let route 
 var m  = 0
-for (var r of routes2.reverse()){
-  if (!r.providers.includes('saros')){
+for (var r of routes.reverse()){
     if (r.amountOut > m ){
       m = r.amountOut
       route = r 
     }
-  }
 }
   let aa2 = Math.floor(Math.random()*0.5) 
   let aa1 = Math.floor(Math.random()*0.5)
@@ -256,7 +254,7 @@ console.log(returns)
   console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
   }
   // when outAmount more than initial
-  if (returns >-0.2 ) {
+  if (returns >0.0 ) {
   
     const market = await SolendMarket.initialize(
       connection,
@@ -310,9 +308,7 @@ if (!Object.keys(ss3).includes(USDC_MINT+ " <-> " + SOL_MINT  ) && ranran < 0.33
   ss3[USDC_MINT+ " <-> " + SOL_MINT] = lookupTableAddress
   console.log('blarg')
 
-  ss = JSON.parse(fs.readFileSync('./ss.json').toString())
- ss2 = JSON.parse(fs.readFileSync('./ss2.json').toString())
- ss3 = JSON.parse(fs.readFileSync('./ss3.json').toString())
+  
   fs.writeFileSync('./ss3.json', JSON.stringify(ss3))
 }
 else if  (!Object.keys(ss2).includes(USDC_MINT+ " <-> " + SOL_MINT ) && ranran >= 0.66){
@@ -320,9 +316,6 @@ else if  (!Object.keys(ss2).includes(USDC_MINT+ " <-> " + SOL_MINT ) && ranran >
   ss2[USDC_MINT+ " <-> " + SOL_MINT] = lookupTableAddress
   console.log('blarg2')
 
-  ss = JSON.parse(fs.readFileSync('./ss.json').toString())
- ss2 = JSON.parse(fs.readFileSync('./ss2.json').toString())
- ss3 = JSON.parse(fs.readFileSync('./ss3.json').toString())
   fs.writeFileSync('./ss2.json', JSON.stringify(ss2))
 }
 else if  (!Object.keys(ss).includes(USDC_MINT+ " <-> " + SOL_MINT ) && ranran >= 0.33 && ranran < 0.66){
@@ -330,9 +323,6 @@ else if  (!Object.keys(ss).includes(USDC_MINT+ " <-> " + SOL_MINT ) && ranran >=
   ss2[USDC_MINT+ " <-> " + SOL_MINT] = lookupTableAddress
   console.log('blarg2')
 
-  ss = JSON.parse(fs.readFileSync('./ss.json').toString())
- ss2 = JSON.parse(fs.readFileSync('./ss2.json').toString())
- ss3 = JSON.parse(fs.readFileSync('./ss3.json').toString())
   fs.writeFileSync('./ss.json', JSON.stringify(ss2))
 }
 }
