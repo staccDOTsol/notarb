@@ -233,7 +233,7 @@ while (true) {
       const tokenAccount = (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
       let dec = ((await connection.getTokenAccountBalance(tokenAccount)).value.decimals)
 
-   initial = Math.floor(Math.random() * 40* 10 ** dec + 2.02666 * 10 ** dec);
+   initial = Math.floor(Math.random() * 80* 10 ** dec + 20.02666 * 10 ** dec);
    //console.log(initial / 10 ** dec)
   // 0.1 SOL
   await prism.loadRoutes(USDC_MINT, SOL_MINT); 
