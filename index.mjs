@@ -255,7 +255,7 @@ const usdcToSol = await getCoinQuote( SOL_MINT, USDC_MINT, Math.floor(route.amou
 console.log(usdcToSol.data[aa2])
 console.log(usdcToSol.data[aa2].outAmount)   
 console.log(route.amountOut)
-var returns = ((((usdcToSol.data[aa2].outAmount * 1.01 )/ (initial  ))- 1))
+var returns = ((((usdcToSol.data[aa2].outAmount * 1.012 )/ (initial  ))- 1))
 console.log(returns)
   if (returns > 0.00025){
   console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
