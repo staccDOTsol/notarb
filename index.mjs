@@ -42,7 +42,7 @@ const wallet = new Wallet(
   const payer = (
     Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/ubuntu/notjaregm.json').toString()))));
     const payer2 = (
-      Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/ubuntu/notjaregm.json').toString()))));
+      Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/ubuntu/jaregm.json').toString()))));
 
 
 import fs from 'fs'
