@@ -74,7 +74,7 @@ var mints = [
   "Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS",
   "7kbnvuGBxxj8AG9qp8Scn56muWGaRaFqxg1FsRp3PaFT"]
 for (var add of somestuff2.data){
-for (var address of add.tokens){
+for (var address of add.token){
 mints.push(address.address)
 }
 }
