@@ -35,8 +35,7 @@ console.log({ dotenv });
 dotenv.config();
 // This is a free Solana RPC endpoint. It may have ratelimit and sometimes
 // invalid cache. I will recommend using a paid RPC endpoint.
-const connection = new Connection("http://69.46.29.78:8899", {skipPreflight: true});
-const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true});
+const connection = new Connection("http://localhost:8899", {skipPreflight: true});
 const wallet = new Wallet(
   Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/ubuntu/notjaregm.json').toString()))));
   const payer = (
@@ -230,8 +229,7 @@ while (true) {
       cba++
       console.log(USDC_MINT+ " <-> " + SOL_MINT)
       try {
-      const tokenAccount = (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
-      let dec = ((await connection.getTokenAccountBalance(tokenAccount)).value.decimals)
+let dec = 6
 
    initial = Math.floor(Math.random() * 80* 10 ** dec + 20.02666 * 10 ** dec);
    //console.log(initial / 10 ** dec)
@@ -261,10 +259,8 @@ console.log(returns)
   }
   // when outAmount more than initial
   if (returns >.00025 ) {
-    const slot = await connection.getSlot();
 
  let   instructions = []
-let auxAccount = Keypair.generate()
   let signers = []
 
     
@@ -319,27 +315,12 @@ console.log(err)
     .then((res) => res.blockhash);
     
 
-    blockhash = await connection
-    .getLatestBlockhash()
-    .then((res) => res.blockhash);
           // create v0 compatible message
   const messageV0 = new TransactionMessage({
     payerKey: payer2.publicKey,
     recentBlockhash: blockhash,
     instructions,
   }).compileToV0Message();
-  blockhash = await connection
-    .getLatestBlockhash()
-    .then((res) => res.blockhash);
-let aaa = 0
-let ss = []
-let dg1 = false 
-let dg2 = false 
-let dg3 = false 
-
-
-let goluts = []
-var stuff = ""
 let w = -1
 let c = -1
 let winner = ""
@@ -359,12 +340,7 @@ for (var bca of messageV0.staticAccountKeys){
     }
 }
 }
-console.log(c)
-console.log(w)
-console.log(winner)
-console.log(messageV0.staticAccountKeys.length)
 let goaccs = [(await connection.getAddressLookupTable(new PublicKey(winner))).value]
-console.log(...goaccs)
 blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
@@ -380,7 +356,6 @@ console.log(err)
   const transaction = new VersionedTransaction(messageV00);
   // sign your transaction with the required `Signers`
  await transaction.sign([payer,payer2, ...swapTransaction.preSigners])
- console.log(transaction)
  try {
   await sendAndConfirmTransaction(connection, transaction)
 
