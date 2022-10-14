@@ -1,0 +1,17 @@
+{
+  "name": "orca-whirlpools",
+  "private": true,
+  "workspaces": [
+    "sdk",
+    "scripts"
+  ],
+  "scripts": {
+    "idl": "anchor build -i $INIT_CWD/sdk/src/artifacts -t $INIT_CWD/sdk/src/artifacts"
+  },
+  "dependencies": {
+    "@orca-so/common-sdk": "^0.1.1",
+    "@orca-so/whirlpools-sdk": "^0.5.3",
+    "@solana/web3.js": "^1.64.0",
+    "@switchboard-xyz/switchboard-v2": "^0.0.137"
+  }
+}
