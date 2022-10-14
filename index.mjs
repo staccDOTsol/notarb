@@ -233,8 +233,6 @@ while (true) {
       const tokenAccount = (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
       let dec = ((await connection.getTokenAccountBalance(tokenAccount)).value.decimals)
 
-      const tokenAccount2 =   (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(SOL_MINT)})).value[0].pubkey //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
-      let dec2 = ((await connection.getTokenAccountBalance(tokenAccount2)).value.decimals)
    initial = Math.floor(Math.random() * 40* 10 ** dec + 2.02666 * 10 ** dec);
    //console.log(initial / 10 ** dec)
   // 0.1 SOL
@@ -245,15 +243,15 @@ let route
 var m  = 0
 for (var r of routes.reverse()){
 //  console.log(r.providers.length)
-   // if (r.amountOut > m && r.providers.includes('whirlpool') ){
+  if (r.amountOut > m ){
       
       m = r.amountOut
       route = r 
-  //  }
+    }
 }
   let aa2 = Math.floor(Math.random()*0.5) 
   let aa1 = Math.floor(Math.random()*0.5)
-const usdcToSol = await getCoinQuote( SOL_MINT, USDC_MINT, Math.floor(route.amountOut * 0.99 * 10 ** dec2)); // goddamn slippage
+const usdcToSol = await getCoinQuote( SOL_MINT, USDC_MINT, Math.floor(route.amountOut * 0.99 * 10 ** route.routeData.toCoin.decimals)); // goddamn slippage
 console.log(usdcToSol.data[aa2].outAmount)   
 console.log(route.amountOut)
 var returns = ((((usdcToSol.data[aa2].outAmount  )/ (initial  ))- 1))
