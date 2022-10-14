@@ -256,11 +256,11 @@ console.log(usdcToSol.data[aa2].outAmount)
 console.log(route.amountOut)
 var returns = ((((usdcToSol.data[aa2].outAmount  )/ (initial  ))- 1))
 console.log(returns)
-  if (returns > 0.00075){
+  if (returns > 0.00025){
   console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
   }
   // when outAmount more than initial
-  if (returns >.00075 ) {
+  if (returns >.00025 ) {
     const slot = await connection.getSlot();
 
  let   instructions = []
