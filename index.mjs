@@ -257,11 +257,12 @@ console.log(usdcToSol.data[aa2].outAmount)
 console.log(route.amountOut)
 var returns = ((((usdcToSol.data[aa2].outAmount * 1.012 )/ (initial  ))- 1))
 console.log(returns)
-  if (returns > 0.00025){
+  if (returns > 0.002){
   console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
   }
   // when outAmount more than initial
   if (returns >.002 ) {
+    console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
 
  let   instructions = []
   let signers = []
