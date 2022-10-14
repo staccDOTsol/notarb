@@ -36,6 +36,7 @@ dotenv.config();
 // This is a free Solana RPC endpoint. It may have ratelimit and sometimes
 // invalid cache. I will recommend using a paid RPC endpoint.
 const connection = new Connection("http://localhost:8899", {skipPreflight: true});
+const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true});
 const wallet = new Wallet(
   Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/ubuntu/notjaregm.json').toString()))));
   const payer = (
@@ -47,7 +48,6 @@ const wallet = new Wallet(
 import fs from 'fs'
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
-import { PromisePool} from "@supercharge/promise-pool";
 
 let myluts = JSON.parse(fs.readFileSync("./luts.json").toString())
 
@@ -240,19 +240,23 @@ let routes = prism.getRoutes(Math.floor(initial) / 10 ** dec);
 let route 
 var m  = 0
 for (var r of routes.reverse()){
+  if (r.type != "direct"){
+  //  console.log(r)
+  }
 //  console.log(r.providers.length)
-  if (r.amountOut > m ){
+  if (r.amountWithFees > m ){
       
-      m = r.amountOut
+      m = r.amountWithFees
       route = r 
     }
 }
   let aa2 = Math.floor(Math.random()*0.5) 
   let aa1 = Math.floor(Math.random()*0.5)
-const usdcToSol = await getCoinQuote( SOL_MINT, USDC_MINT, Math.floor(route.amountOut * 0.99 * 10 ** route.routeData.toCoin.decimals)); // goddamn slippage
+const usdcToSol = await getCoinQuote( SOL_MINT, USDC_MINT, Math.floor(route.amountWithFees * 0.99 * 10 ** route.routeData.toCoin.decimals)); // goddamn slippage
+console.log(usdcToSol.data[aa2])
 console.log(usdcToSol.data[aa2].outAmount)   
-console.log(route.amountOut)
-var returns = ((((usdcToSol.data[aa2].outAmount  )/ (initial  ))- 1))
+console.log(route.amountWithFees)
+var returns = ((((usdcToSol.data[aa2].amount  )/ (initial  ))- 1))
 console.log(returns)
   if (returns > 0.00025){
   console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
