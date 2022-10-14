@@ -219,7 +219,7 @@ catch (err){
 }
 };
 while (true) {
-//await sleep(Math.random() * 5000)
+  await sleep(Math.random() * 5000)
 //  await createWSolAccount();
 
   let abc = -1
