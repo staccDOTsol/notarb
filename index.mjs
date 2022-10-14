@@ -82,7 +82,7 @@ console.log(mints.length)
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
-      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=5&swapMode=ExactIn`
+      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=5&swapMode=ExactIn&onlyDirectRoutes=true`
     )
     .json();
 
@@ -234,7 +234,7 @@ let dec = 6
    initial = Math.floor(Math.random() * 80* 10 ** dec + 20.02666 * 10 ** dec);
    //console.log(initial / 10 ** dec)
   // 0.1 SOL
-  await prism.loadRoutes(USDC_MINT, SOL_MINT); 
+  await prism.loadRoutes(USDC_MINT, SOL_MINT, true); 
 
 let routes = prism.getRoutes(Math.floor(initial) / 10 ** dec);
 let route 
@@ -246,16 +246,16 @@ for (var r of routes.reverse()){
 //  console.log(r.providers.length)
   if (r.amountWithFees > m ){
       
-      m = r.amountWithFees
+      m = r.amountOut
       route = r 
     }
 }
   let aa2 = Math.floor(Math.random()*0.5) 
   let aa1 = Math.floor(Math.random()*0.5)
-const usdcToSol = await getCoinQuote( SOL_MINT, USDC_MINT, Math.floor(route.amountWithFees * 0.99 * 10 ** route.routeData.toCoin.decimals)); // goddamn slippage
+const usdcToSol = await getCoinQuote( SOL_MINT, USDC_MINT, Math.floor(route.amountOut * 0.99 * 10 ** route.routeData.toCoin.decimals)); // goddamn slippage
 console.log(usdcToSol.data[aa2])
 console.log(usdcToSol.data[aa2].outAmount)   
-console.log(route.amountWithFees)
+console.log(route.amountOut)
 var returns = ((((usdcToSol.data[aa2].outAmount  )/ (initial  ))- 1))
 console.log(returns)
   if (returns > 0.00025){
