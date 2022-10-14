@@ -4,27 +4,54 @@ import { FanoutClient , MembershipModel} from '@glasseaters/hydra-sdk'
 import fs from 'fs'
 import { findWhere, map } from 'underscore';
 
+import got from "got";
 import { Prism } from "@prism-hq/prism-ag";
 import { NATIVE_MINT, Token, TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { BN, sleep } from "@blockworks-foundation/mango-client";
+process.on('SIGTERM', function (signal) {
+  console.log("Process ".concat(process.pid, " received a SIGTERM signal"));
+  process.exit(0);
+});
+process.on('SIGINT', function (signal) {
+  console.log("Process ".concat(process.pid, " has been interrupted"));
+  process.exit(0);
+});
+const getTransaction = (route) => {
+  return got
+    .post("https://quote-api.jup.ag/v1/swap", {
+      json: {
+        route: route,
+        userPublicKey: payer.publicKey.toString(),
+        // to make sure it doesnt close the sol account
+        wrapUnwrapSOL: false,
+      },
+    })
+    .json();
+};
+
+const getCoinQuote2 = (inputMint, outputMint, amount) =>
+  got
+    .get(
+      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=0.99&SwapMode=ExactIn&onlyDirectRoutes=true`
+    )
+    .json();
+
+const getCoinQuote = (inputMint, outputMint, amount) =>
+  got
+    .get(
+      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=0.99&SwapMode=ExactIn&onlyDirectRoutes=true`
+    )
+    .json();
 
 let somestuff = JSON.parse(fs.readFileSync('./stuff.json').toString())
-let ss = JSON.parse(fs.readFileSync('./ss.json').toString())
-let SOL_MINT = "METAewgxyPbgwsseH8T16a39CQ5VyVxZi9zXiDPY18m"
-const payer = (
-    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/Users/jarettdunn/jaregm.json').toString()))));
-// 1. Initalize market with parameters and metadata
-let initial = 10000  * 10 ** 6;
-const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true});
-let prism = await Prism.init({
-    // user executing swap
 
-    
-    user: payer,               // optional (if you don't provide upon init, then you'll need to call prism.setSigner() after user connects the wallet)
-connection: new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr")
-    // rpc connection
-});
-let connection = new Connection("http://69.46.29.78:8899")
+const payer = (
+    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/Users/jarettdunn/notjaregm.json').toString()))));
+// 1. Initalize market with parameters and metadata
+let initial = 3  * 10 ** 6;
+const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true});
+
+let connection = new Connection("http://69.46.29.78:8899", {skipPreflight: true});
 const market = await SolendMarket.initialize(
   connection,
   "production", // optional environment argument
@@ -33,8 +60,8 @@ console.log(market.reserves.map((reserve) => reserve.config.loanToValueRatio));
 
 // 2. Read on-chain accounts for reserve data and cache
 await market.loadReserves();
-const USDC_MINT = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
-let MSOL_MINT = USDC_MINT
+const USDC_MINT = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v";
+const sms = ["iJF17JCu78E51eAgwtCwvgULHh2ZqCeRrcFP7wgcc6w", "jLPrgumWu7RBkja5gnw9BYtYvMq5sKWZFqY5QqwPhnf"];
 const reserve = market.reserves.find(res => res.config.liquidityToken.mint ===USDC_MINT);
 const reserve2 = market.reserves.find(res => res.config.liquidityToken.mint ===USDC_MINT);
 
@@ -48,19 +75,44 @@ await market.loadRewards();
 market.refreshAll();
 const tokenAccount = (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
 let dec = ((await connection.getTokenAccountBalance(tokenAccount)).value.decimals)
-const tokenAccount2 =   (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(SOL_MINT)})).value[0].pubkey //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
-let dec2 = ((await connection.getTokenAccountBalance(tokenAccount2)).value.decimals)
 
 const delegate = Keypair.generate();
 
 const token = new Token(connection2, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
 console.log(1)
- token.approve(tokenAccount, delegate.publicKey, payer, [], initial );
+// token.approve(tokenAccount, payer, [], initial );
 console.log(2)
 
+const slot = await connection.getSlot();
+
+let [lookupTableInst, lookupTableAddress] =
+  AddressLookupTableProgram.createLookupTable({
+    authority: payer.publicKey,
+    payer: payer.publicKey,
+    recentSlot: slot,
+  });
+  lookupTableAddress = new PublicKey("DLAb59s835vSPmtYms4zSWMMh5QiwDS2AZyDZYBDdmqn")
+while (true){
+  for (var SOL_MINT of sms){
+    try {
+  const usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, Math.floor(initial  ));
+  let route = usdcToSol.data[0]
+for (var data of usdcToSol.data){
+route = data 
+
+}
+await sleep(1000)
+  const solToUsdc = await getCoinQuote2(
+    SOL_MINT,
+    USDC_MINT,
+    Math.floor(route.outAmount * 0.65)
+  );
+     // execute swap (sign, send and confirm transaction)
+//console.log(swapTransaction)
+
 let instructions =
-
-
+  
+  
 [
   (
     flashBorrowReserveLiquidityInstruction(
@@ -72,117 +124,57 @@ let instructions =
       SOLEND_PRODUCTION_PROGRAM_ID
     )
   )]
-  await prism.loadRoutes(USDC_MINT, SOL_MINT); 
+  instructions = []
+  console.log(solToUsdc.data[0].outAmount)
+let signers2 = []
+// when outAmount more than initial
+if (true){//solToUsdc.data[0].outAmount > initial) {
+  await Promise.all(
+    [route, solToUsdc.data[0]].map(async (route) => {
+      const { setupTransaction, swapTransaction, cleanupTransaction } =
+        await getTransaction(route);
+        try {
+signers2.push(...swapTransaction.preSigners)
+        } catch (err){
 
-let routes = prism.getRoutes(Math.floor(initial ) / 10 ** 6);
-var route 
-var m  = 0
-for (var r of routes.reverse()){
-  if (!r.providers.includes('saros')){
-    if (r.amountOut > m ){
-      m = r.amountOut
-      route = r 
-    }
-  }
-}
-console.log(routes)
-let swapTransaction = await prism.generateSwapTransactions(route);    
-
-await prism.loadRoutes(SOL_MINT, USDC_MINT); 
-console.log(route.amountOut )
-let routes2 = prism.getRoutes(Math.floor(route.amountOut * 0.99  + 129));
-var route 
-var m  = 0
-for (var r of routes2.reverse()){
-  if (!r.providers.includes('saros')){
-    if (r.amountOut > m ){
-      m = r.amountOut
-      route = r 
-    }
-  }
-}
-console.log(routes2.length)
-console.log(route.amountOut )
-process.exit()
-let swapTransaction2 = await prism.generateSwapTransactions(route);       // execute swap (sign, send and confirm transaction)
-//console.log(swapTransaction)
-
-await Promise.all(
-  [swapTransaction.preTransaction, swapTransaction.mainTransaction, swapTransaction.postTransaction]
-    .filter(Boolean)
-    .map(async (serializedTransaction) => {
-      instructions.push(...serializedTransaction.instructions)
-    }))
-
-   let fanoutSdk = new FanoutClient(
-      connection,
-payer
+        }
+      await Promise.all(
+        [setupTransaction, swapTransaction, cleanupTransaction]
+          .filter(Boolean)
+          .map(async (serializedTransaction) => {
+            // get transaction object from serialized transaction
+            const transaction = Transaction.from(
+              Buffer.from(serializedTransaction, "base64")
+            );
+            // perform the swap
+            // Transaction might failed or dropped
+            instructions.push(...transaction.instructions)
+         
+          })
+      );
+    })
   );
-
-  var {instructions: i, signers: s} = await fanoutSdk.initializeFanoutInstructions({
-    totalShares: 100,
-    name: `Test${Date.now()}`,
-    membershipModel: MembershipModel.Wallet,
-});
-
-instructions.push(...i)
-    var {instructions: i, signers: s} = await fanoutSdk.initializeFanoutInstructions({
-      totalShares: 100,
-      name: `Test${Date.now()}`,
-      membershipModel: MembershipModel.Wallet,
-  });
-  
-instructions.push(...i)
-
-
-    var {instructions: i, signers: s} = await fanoutSdk.initializeFanoutInstructions({
-      totalShares: 100,
-      name: `Test${Date.now()}`,
-      membershipModel: MembershipModel.Wallet,
-  });
-  
-instructions.push(...i)
-
-            
-    await Promise.all(
-      [swapTransaction2.preTransaction, swapTransaction2.mainTransaction, swapTransaction2.postTransaction]
-        .filter(Boolean)
-        .map(async (serializedTransaction) => {
-          instructions.push(...serializedTransaction.instructions)
-        }))
-
-    //99999
-    
-    
-//instructions.push(...solendAction2.setupIxs)
-//instructions.push(...solendAction2.lendingIxs)
-
+}
+/*
 instructions.push(
-    flashRepayReserveLiquidityInstruction(
-      initial,
-      0,
-      tokenAccount,
-      new PublicKey(reserve.config.liquidityAddress),
-      new PublicKey(reserve.config.liquidityFeeReceiverAddress),
-      tokenAccount,
-      new PublicKey(reserve.config.address),
-      new PublicKey(market.config.address),
-      delegate.publicKey,
-      SOLEND_PRODUCTION_PROGRAM_ID
-    ))
-const slot = await connection.getSlot();
-
+  flashRepayReserveLiquidityInstruction(
+    initial,
+    0,
+    tokenAccount,
+    new PublicKey(reserve.config.liquidityAddress),
+    new PublicKey(reserve.config.liquidityFeeReceiverAddress),
+    tokenAccount,
+    new PublicKey(reserve.config.address),
+    new PublicKey(market.config.address),
+    delegate.publicKey,
+    SOLEND_PRODUCTION_PROGRAM_ID
+  )) */
 // Assumption:
 // `payer` is a valid `Keypair` with enough SOL to pay for the execution
 var blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
-let [lookupTableInst, lookupTableAddress] =
-  AddressLookupTableProgram.createLookupTable({
-    authority: payer.publicKey,
-    payer: payer.publicKey,
-    recentSlot: slot,
-  });
+
   let ttt = await connection
   .getAddressLookupTable(lookupTableAddress)
   .then((res) => res.value);
@@ -194,18 +186,7 @@ let [lookupTableInst, lookupTableAddress] =
 console.log("lookup table address:", lookupTableAddress.toBase58());
 let dontgo1 = false
 let ranran = Math.random()
-if (Object.keys(ss).includes(USDC_MINT+ " <-> " + SOL_MINT )){
- lookupTableAddress = new PublicKey(ss[USDC_MINT+ " <-> " + SOL_MINT] )
-  dontgo1 = true
-}
-if (!dontgo1){ if  (!Object.keys(ss).includes(USDC_MINT+ " <-> " + SOL_MINT ) ){
-  
-  ss[USDC_MINT+ " <-> " + SOL_MINT] = lookupTableAddress
-  console.log('blarg2')
-fs.writeFileSync("./ss.json", JSON.stringify(ss))
 
-}
-}
 
 console.log("lookup table address:", lookupTableAddress.toBase58());
     blockhash = await connection
@@ -223,10 +204,10 @@ console.log("lookup table address:", lookupTableAddress.toBase58());
     .getLatestBlockhash()
     .then((res) => res.blockhash);
 let aaa = 0
- ss = []
 let dg1 = false 
 let dg2 = false 
 let dg3 = false 
+let ssa = []
 if (!Object.keys(somestuff).includes(USDC_MINT+ " <-> " + SOL_MINT)){
   somestuff[USDC_MINT+ " <-> " + SOL_MINT] = []
 }
@@ -235,49 +216,49 @@ if (aaa < messageV0.staticAccountKeys.length / 2){
   aaa++
   if (!somestuff[USDC_MINT+ " <-> " + SOL_MINT ].includes(bca.toBase58())){
 somestuff[USDC_MINT+ " <-> " + SOL_MINT ].push(bca)
-ss.push(bca)
+ssa.push(bca)
 fs.writeFileSync('./stuff.json', JSON.stringify(somestuff))
   }
 }
 }
-console.log(ss.length)
-if (ss.length == 0){
+console.log(ssa.length)
+if (ssa.length == 0){
   dg1 = true
 }
 const extendInstruction = AddressLookupTableProgram.extendLookupTable({
   payer: payer.publicKey,
   authority: payer.publicKey,
   lookupTable: lookupTableAddress,
-  addresses: ss
+  addresses: ssa
   
 });
-ss = []
+ssa = []
 aaa = 0
 for (var bca of messageV0.staticAccountKeys){
   aaa++
   if (aaa >= messageV0.staticAccountKeys.length / 2){
     if (!somestuff[USDC_MINT+ " <-> " + SOL_MINT ].includes(bca.toBase58())){
   somestuff[USDC_MINT+ " <-> " + SOL_MINT ].push(bca)
-  ss.push(bca)
+  ssa.push(bca)
   fs.writeFileSync('./stuff.json', JSON.stringify(somestuff))
     }
   }
   }
-  console.log(ss.length)
-  if (ss.length == 0){
+  console.log(ssa.length)
+  if (ssa.length == 0){
     dg1 = true
   }
   const extendInstruction2 = AddressLookupTableProgram.extendLookupTable({
     payer: payer.publicKey,
     authority: payer.publicKey,
     lookupTable: lookupTableAddress,
-    addresses: ss
+    addresses: ssa
     
   });
 let ix2 =  [lookupTableInst,extendInstruction, extendInstruction2]
 
 
-if (!dontgo1){
+if (!true){
   let tx2 = new Transaction()
   tx2.add(ix2[0])
   console.log(1)
@@ -304,7 +285,7 @@ blockhash = await connection
     .then((res) => res.blockhash);
 tx2.recentBlockhash = blockhash
 tx2.sign(payer)
-if (!dg1){
+if (false){
 try {
   
 let hm = await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: true})
@@ -323,7 +304,7 @@ blockhash = await connection
     .then((res) => res.blockhash);
 tx2.recentBlockhash = blockhash
 tx2.sign(payer)
-if (!dg1){
+if (false){
 try {
   
 let hm = await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: true})
@@ -358,7 +339,7 @@ console.log(messageV00)
   const transaction = new VersionedTransaction(messageV00);
   // sign your transaction with the required `Signers`
  console.log(transaction)
- let signers = [...s,payer, delegate,...swapTransaction.preSigners,...swapTransaction2.preSigners]//, ...swapTransactionmm.preSigners, ...swapTransactionm.preSigners, ...swapTransactionp.preSigners
+ let signers = [payer,...signers2]//, ...swapTransactionmm.preSigners, ...swapTransactionm.preSigners, ...swapTransactionp.preSigners
 
  transaction.sign(signers)
  await sleep(100)
@@ -377,3 +358,10 @@ try {
     console.log(...err.logs)
   console.log(err)
  }
+  }
+catch (err){
+  console.log(err)
+}
+await sleep(5000)
+  }
+}
