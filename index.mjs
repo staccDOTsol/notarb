@@ -101,7 +101,7 @@ let connection = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWI
   } catch (err){
 
   }
-}, 60000)
+}, 5 *  60000)
 // This is a free Solana RPC endpoint. It may have ratelimit and sometimes
 // invalid cache. I will recommend using a paid RPC endpoint.
 let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://69.46.29.78' : 'http://69.46.29.78') +":8899", {skipPreflight: true});
