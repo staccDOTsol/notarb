@@ -115,6 +115,7 @@ for (var add of arg.data){
   }
 console.log(mints.length)
 //mints = []
+
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
@@ -275,9 +276,12 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
         try {
             
             if (!baddies.includes(USDC_MINT+SOL_MINT)){
+                await sleep(Math.random()*500)
         const usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, initial);
        if (usdcToSol.data[0] && !baddies.includes(SOL_MINT+USDC_MINT) ){
         try {
+            await sleep(Math.random()*500)
+
         const solToUsdc = await getCoinQuote(
           SOL_MINT,
           USDC_MINT,
