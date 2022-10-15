@@ -277,7 +277,7 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
         try {
             
             if (!baddies.includes(USDC_MINT+SOL_MINT)){
-                await sleep(Math.random()*100)
+                await sleep(Math.random()*1000)
         const usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, initial);
        if (usdcToSol.data[0] && !baddies.includes(SOL_MINT+USDC_MINT) ){
         try {
@@ -616,13 +616,26 @@ console.log(err)
 catch (err){
     baddies.push(SOL_MINT+USDC_MINT)
     console.log(baddies)
-    fs.writeFileSync('./baddies.json', JSON.stringify(baddies))
+
+    let tbaddies = JSON.parse(fs.readFileSync('./baddies.json').toString())
+    for (var b of baddies){
+        if (!tbaddies.includes(b)){
+            tbaddies.push(b)
+        }
+    }
+    fs.writeFileSync('./baddies.json', JSON.stringify(tbaddies))
 }}catch (err){
    
     baddies.push(USDC_MINT+SOL_MINT)
     console.log(baddies)
-    fs.writeFileSync('./baddies.json', JSON.stringify(baddies))
-}
+
+    let tbaddies = JSON.parse(fs.readFileSync('./baddies.json').toString())
+    for (var b of baddies){
+        if (!tbaddies.includes(b)){
+            tbaddies.push(b)
+        }
+    }
+    fs.writeFileSync('./baddies.json', JSON.stringify(tbaddies))}
 }
     }
 } catch (err){
