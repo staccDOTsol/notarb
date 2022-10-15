@@ -90,8 +90,8 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 let myluts = JSON.parse(fs.readFileSync("./luts.json").toString())
 
-const somestuff2 = {}//JSON.parse(fs.readFileSync("./hahapairs.json").toString())
-const somestuff3= {}//JSON.parse(fs.readFileSync("./stuff.json").toString())
+const somestuff2 = JSON.parse(fs.readFileSync("./hahapairs.json").toString())
+const somestuff3= JSON.parse(fs.readFileSync("./stuff.json").toString())
 
 const has = [
   "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
