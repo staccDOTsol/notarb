@@ -401,7 +401,7 @@ for (var bca of messageV0.staticAccountKeys){
       c++
       if (c > w){
         winner = Object.values(myluts)[vbb] 
-        if (await connection.getAddressLookupTable(new PublicKey(winner)).value.state.addresses < 100){
+        if ((await connection.getAddressLookupTable(new PublicKey(winner))).value.state.addresses < 100){
 
           w = c 
         }

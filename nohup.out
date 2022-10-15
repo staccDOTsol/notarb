@@ -1090,3 +1090,127 @@ Process 13244 received a SIGTERM signal
 Process 13270 received a SIGTERM signal
 Process 13232 received a SIGTERM signal
 Process 13229 received a SIGTERM signal
+{ dotenv: { config: [Function: config], parse: [Function: parse] } }
+node:fs:594
+  handleErrorFromBinding(ctx);
+  ^
+
+Error: ENOENT: no such file or directory, open '/Users/jarettdunn/notjaregm.json'
+    at Object.openSync (node:fs:594:3)
+    at Object.readFileSync (node:fs:462:35)
+    at file:///workspace/notarb/jupjup.mjs:79:54
+    at ModuleJob.run (node:internal/modules/esm/module_job:193:25)
+    at async Promise.all (index 0)
+    at async ESMLoader.import (node:internal/modules/esm/loader:533:24)
+    at async loadESM (node:internal/process/esm_loader:91:5)
+    at async handleMainPromise (node:internal/modules/run_main:65:12) {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/jarettdunn/notjaregm.json'
+}
+{ dotenv: { config: [Function: config], parse: [Function: parse] } }
+node:fs:594
+  handleErrorFromBinding(ctx);
+  ^
+
+Error: ENOENT: no such file or directory, open '/Users/jarettdunn/notjaregm.json'
+    at Object.openSync (node:fs:594:3)
+    at Object.readFileSync (node:fs:462:35)
+    at file:///workspace/notarb/jupjup.mjs:79:54
+    at ModuleJob.run (node:internal/modules/esm/module_job:193:25)
+    at async Promise.all (index 0)
+    at async ESMLoader.import (node:internal/modules/esm/loader:533:24)
+    at async loadESM (node:internal/process/esm_loader:91:5)
+    at async handleMainPromise (node:internal/modules/run_main:65:12) {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/jarettdunn/notjaregm.json'
+}
+{ dotenv: { config: [Function: config], parse: [Function: parse] } }
+node:fs:594
+  handleErrorFromBinding(ctx);
+  ^
+
+Error: ENOENT: no such file or directory, open '/Users/jarettdunn/notjaregm.json'
+    at Object.openSync (node:fs:594:3)
+    at Object.readFileSync (node:fs:462:35)
+    at file:///workspace/notarb/jupjup.mjs:79:54
+    at ModuleJob.run (node:internal/modules/esm/module_job:193:25)
+    at async Promise.all (index 0)
+    at async ESMLoader.import (node:internal/modules/esm/loader:533:24)
+    at async loadESM (node:internal/process/esm_loader:91:5)
+    at async handleMainPromise (node:internal/modules/run_main:65:12) {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/jarettdunn/notjaregm.json'
+}
+{ dotenv: { config: [Function: config], parse: [Function: parse] } }
+node:fs:594
+  handleErrorFromBinding(ctx);
+  ^
+
+Error: ENOENT: no such file or directory, open '/Users/jarettdunn/notjaregm.json'
+    at Object.openSync (node:fs:594:3)
+    at Object.readFileSync (node:fs:462:35)
+    at file:///workspace/notarb/jupjup.mjs:79:54
+    at ModuleJob.run (node:internal/modules/esm/module_job:193:25)
+    at async Promise.all (index 0)
+    at async ESMLoader.import (node:internal/modules/esm/loader:533:24)
+    at async loadESM (node:internal/process/esm_loader:91:5)
+    at async handleMainPromise (node:internal/modules/run_main:65:12) {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/jarettdunn/notjaregm.json'
+}
+{ dotenv: { config: [Function: config], parse: [Function: parse] } }
+{ dotenv: { config: [Function: config], parse: [Function: parse] } }
+{ dotenv: { config: [Function: config], parse: [Function: parse] } }
+{ dotenv: { config: [Function: config], parse: [Function: parse] } }
+file:///workspace/notarb/jupjup.mjs:78
+const wallet = new Wallet(
+               ^
+
+TypeError: Wallet is not a constructor
+    at file:///workspace/notarb/jupjup.mjs:78:16
+    at ModuleJob.run (node:internal/modules/esm/module_job:193:25)
+    at async Promise.all (index 0)
+    at async ESMLoader.import (node:internal/modules/esm/loader:533:24)
+    at async loadESM (node:internal/process/esm_loader:91:5)
+    at async handleMainPromise (node:internal/modules/run_main:65:12)
+file:///workspace/notarb/jupjup.mjs:78
+const wallet = new Wallet(
+               ^
+
+TypeError: Wallet is not a constructor
+    at file:///workspace/notarb/jupjup.mjs:78:16
+    at ModuleJob.run (node:internal/modules/esm/module_job:193:25)
+    at async Promise.all (index 0)
+    at async ESMLoader.import (node:internal/modules/esm/loader:533:24)
+    at async loadESM (node:internal/process/esm_loader:91:5)
+    at async handleMainPromise (node:internal/modules/run_main:65:12)
+file:///workspace/notarb/jupjup.mjs:78
+const wallet = new Wallet(
+               ^
+
+TypeError: Wallet is not a constructor
+    at file:///workspace/notarb/jupjup.mjs:78:16
+    at ModuleJob.run (node:internal/modules/esm/module_job:193:25)
+    at async Promise.all (index 0)
+    at async ESMLoader.import (node:internal/modules/esm/loader:533:24)
+    at async loadESM (node:internal/process/esm_loader:91:5)
+    at async handleMainPromise (node:internal/modules/run_main:65:12)
+file:///workspace/notarb/jupjup.mjs:78
+const wallet = new Wallet(
+               ^
+
+TypeError: Wallet is not a constructor
+    at file:///workspace/notarb/jupjup.mjs:78:16
+    at ModuleJob.run (node:internal/modules/esm/module_job:193:25)
+    at async Promise.all (index 0)
+    at async ESMLoader.import (node:internal/modules/esm/loader:533:24)
+    at async loadESM (node:internal/process/esm_loader:91:5)
+    at async handleMainPromise (node:internal/modules/run_main:65:12)
