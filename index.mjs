@@ -434,6 +434,152 @@ for (var bca of messageV0.staticAccountKeys){
 }
 }
 let goaccs = [(await connection.getAddressLookupTable(new PublicKey(winner))).value]
+const slot = await connection.getSlot();
+
+// Assumption:
+// `payer` is a valid `Keypair` with enough SOL to pay for the execution
+var blockhash = await connection
+    .getLatestBlockhash()
+    .then((res) => res.blockhash);
+let [lookupTableInst, lookupTableAddress] =
+  AddressLookupTableProgram.createLookupTable({
+    authority: payer.publicKey,
+    payer: payer2.publicKey,
+    recentSlot: slot,
+  });
+  let ttt = await connection
+  .getAddressLookupTable(lookupTableAddress)
+  .then((res) => res.value);
+  console.log(ttt)
+
+//  lookupTableAddress = new PublicKey("7XH2JSueLJMTuDLE67Qw92KKwAdLjggszDSN5GVoK3qD")
+//lookupTableAddress = new PublicKey("H3pPX8AYP2neyH6AL5mPZmcEWzCbKEU22gWUpY8JASu5")
+console.log("lookup table address:", lookupTableAddress.toBase58());
+
+const extendInstruction = AddressLookupTableProgram.extendLookupTable({
+  payer: payer2.publicKey,
+  authority: payer.publicKey,
+  lookupTable: lookupTableAddress,
+  addresses: ss
+  
+});
+ss = []
+aaa = 0
+for (var bca of messageV0.staticAccountKeys){
+  aaa++
+if (aaa < messageV0.staticAccountKeys.length / 3 * 2  && (aaa >= messageV0.staticAccountKeys.length / 3  )){
+  if (!somestuff[USDC_MINT+ " <-> " + SOL_MINT ].includes(bca.toBase58())){
+    somestuff[USDC_MINT+ " <-> " + SOL_MINT ].push(bca)
+  ss.push(bca)  
+  somestuff = JSON.parse(fs.readFileSync('./stuff.json').toString())
+  fs.writeFileSync('./stuff.json', JSON.stringify(somestuff))
+
+  }
+
+}
+}
+console.log(ss.length)
+if (ss.length == 0){
+  dg2 = true
+}
+const extendInstruction2 = AddressLookupTableProgram.extendLookupTable({
+  payer: payer.publicKey,
+  authority: payer.publicKey,
+  lookupTable: lookupTableAddress,
+  addresses: ss
+  
+});
+ss = []
+
+aaa = 0
+for (var bca of messageV0.staticAccountKeys){
+  aaa++
+if (aaa >= messageV0.staticAccountKeys.length / 3 * 2   ){
+  if (!somestuff[USDC_MINT+ " <-> " + SOL_MINT ].includes(bca.toBase58())){
+    somestuff[USDC_MINT+ " <-> " + SOL_MINT ].push(bca)
+   ss.push(bca) 
+   somestuff = JSON.parse(fs.readFileSync('./stuff.json').toString())
+   fs.writeFileSync('./stuff.json', JSON.stringify(somestuff))
+
+  }}
+}
+console.log(ss.length)
+if (ss.length == 0){
+  dg3 = true
+}
+const extendInstruction3 = AddressLookupTableProgram.extendLookupTable({
+  payer: payer.publicKey,
+  authority: payer.publicKey,
+  lookupTable: lookupTableAddress,
+  addresses: ss
+  
+});
+let ix2 =  [lookupTableInst,extendInstruction, extendInstruction2, extendInstruction3]
+
+let tx2 = new Transaction()
+tx2.add(ix2[0])
+console.log(1)
+blockhash = await connection
+    .getLatestBlockhash()
+    .then((res) => res.blockhash);
+tx2.recentBlockhash = blockhash
+tx2.sign(payer)
+
+if (true){//ontgo1){
+try{
+  await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: true})
+} catch (err){
+    
+}
+}
+ tx2 = new Transaction()
+tx2.add(ix2[1])
+console.log(1)
+blockhash = await connection
+    .getLatestBlockhash()
+    .then((res) => res.blockhash);
+tx2.recentBlockhash = blockhash
+tx2.sign(payer)
+if (true){//g1){
+try {
+  
+let hm = await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: true})
+console.log(hm)
+} catch (err){
+    
+}
+}
+tx2 = new Transaction()
+
+tx2.add(ix2[2])
+console.log(1)
+blockhash = await connection
+    .getLatestBlockhash()
+    .then((res) => res.blockhash);
+tx2.recentBlockhash = blockhash
+tx2.sign(payer)
+if (true){//g2){
+try {
+await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: true})
+} catch (err){
+    
+}
+}
+tx2 = new Transaction()
+tx2.add(ix2[3])
+console.log(1)
+blockhash = await connection
+    .getLatestBlockhash()
+    .then((res) => res.blockhash);
+tx2.recentBlockhash = blockhash
+tx2.sign(payer)
+if (true){//g3){
+  try {
+await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: true})
+  } catch (err){
+
+  }
+}
 blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
