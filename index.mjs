@@ -142,6 +142,7 @@ connection: new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Iv
 for (var USDC_MINT of has){
  // abc++
   for (var SOL_MINT of mints){
+    SOL_MINT = mints[Math.floor(Math.random() * mints.length)]
         // load routes for tokens, tokenSymbol | tokenMint (base58 string)
     try 
    { 
