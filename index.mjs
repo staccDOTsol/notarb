@@ -258,11 +258,13 @@ for (var market of markets){
 await market.loadReserves();
 market.refreshAll();
 for (var reserve of market.reserves){
-  reserve = market.reserves[Math.floor(Math.random(market.reserves.length))]
+  reserve = market.reserves[Math.floor(Math.random(market.reserves.length))]//SoLEao8wTzSfqhuou8rcYsVoLjthVmiXuEjzdNPMnCz
+  if (reserve.config.liquidityToken.mint != "SoLEao8wTzSfqhuou8rcYsVoLjthVmiXuEjzdNPMnCz"){
 var  USDC_MINT=reserve.config.liquidityToken.mint
 if (!mints.includes(USDC_MINT)){
 mints.push(USDC_MINT)
 }
+  }
 }
 }
 for (var market of markets){
@@ -271,6 +273,8 @@ await market.loadReserves();
 market.refreshAll();
 for (var reserve of market.reserves){
   reserve = market.reserves[Math.floor(Math.random(market.reserves.length))]
+  if (reserve.config.liquidityToken.mint != "SoLEao8wTzSfqhuou8rcYsVoLjthVmiXuEjzdNPMnCz"){
+
 var  USDC_MINT=reserve.config.liquidityToken.mint
 if (!mints.includes(USDC_MINT)){
 mints.push(USDC_MINT)
@@ -717,4 +721,5 @@ console.log(err)
 }
 }}
 
+}
 }
