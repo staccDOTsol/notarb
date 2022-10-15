@@ -249,7 +249,7 @@ let dec = 6
    }
 await prism.loadRoutes( SOL_MINT, USDC_MINT ); 
 
-let routes2 = prism.getRoutes(Math.floor(routes[0].amountWithFees * 0.999) );
+let routes2 = prism.getRoutes(Math.floor(routes[0].amountWithFees * 0.98) );
 let route2 
 var m  = 0
 var dec2 = 0
