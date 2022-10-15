@@ -281,9 +281,6 @@ let min = 0.001//( reserve.stats.borrowFeePercentage * 100)
                 try {
          usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, initial);
          usdcToSol.data[0] = usdcToSol.data.find(res => res.marketInfos.length <= 3);
-         for (var mi of usdcToSol.data[0].marketInfos){
-          createWSolAccount(mi.outputMint)
-         }
       } catch (err){
            
         //baddies.puah(USDC_MINT+SOL_MINT)
@@ -307,9 +304,6 @@ let min = 0.001//( reserve.stats.borrowFeePercentage * 100)
         );
 
         solToUsdc.data[0] = solToUsdc.data.find(res => res.marketInfos.length <= 3);
-          for (var mi of solToUsdc.data[0].marketInfos){
-          createWSolAccount(mi.outputMint)
-         }
       } catch (err){
            
         //baddies.puah(SOL_MINT + USC_MINT)
