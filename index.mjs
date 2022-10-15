@@ -289,7 +289,7 @@ if (qqq == abc2){
 }
 }
 
-await prism.loadRoutes( SOL_MINT, USDC_MINT, true ); 
+await prism.loadRoutes( SOL_MINT, USDC_MINT ); 
 
 let routes2 = prism.getRoutes(Math.floor(routes[0].amountWithFees) );
 let route2
