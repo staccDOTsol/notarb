@@ -326,7 +326,7 @@ if (returns > min && gogo){
   flashBorrowReserveLiquidityInstruction(
     initial,
     new PublicKey(reserve.config.liquidityAddress),
-    tokenAccount,
+    tokenAccount.publicKey,
     new PublicKey(reserve.config.address),
     new PublicKey(market.config.address),
     SOLEND_PRODUCTION_PROGRAM_ID
@@ -365,10 +365,10 @@ instructions = []
                         flashRepayReserveLiquidityInstruction(
                           initial,
                           0,
-                          tokenAccount,
+                          tokenAccount.publicKey,
                           new PublicKey(reserve.config.liquidityAddress),
                           new PublicKey(reserve.config.liquidityFeeReceiverAddress),
-                          tokenAccount,
+                          tokenAccount.publicKey,
                           new PublicKey(reserve.config.address),
                           new PublicKey(market.config.address),
                           delegate.publicKey,
