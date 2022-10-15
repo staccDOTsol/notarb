@@ -39,7 +39,7 @@ dotenv.config();
 // invalid cache. I will recommend using a paid RPC endpoint.
 let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://69.46.29.78' : 'http://69.46.29.78') +":8899", {skipPreflight: true});
 const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true});
-/*
+
 const market = await SolendMarket.initialize(
   connection2,
   
@@ -49,9 +49,7 @@ const market = await SolendMarket.initialize(
 await market.loadReserves();
 market.refreshAll();
 console.log(market.reserves[0].config)
-const reserve = market.reserves.find(res => res.config.liquidityToken.mint ==="EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v");
-console.log(reserve)
-*/
+
 const wallet = new Wallet(
   Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/Users/jarettdunn') + '/notjaregm.json').toString()))));
   const payer = (
@@ -175,7 +173,9 @@ while (true) {
   let abc = -1
   for (var USDC_MINT of has){
     USDC_MINT = has[Math.floor(Math.random() * has.length)]
-
+    const reserve = market.reserves.find(res => res.config.liquidityToken.mint ===USDC_MINT);
+    console.log(reserve)
+    
     let cba = -1
     abc++
     for (var SOL_MINT of mints){
@@ -255,22 +255,30 @@ let gogo = true
 for (var maybego of  dothethings){
   gogo = maybego
 }
-if (returns > 0.004 && gogo){
+if (returns > 0.1 && gogo){
   
   if (true){
   // when outAmount more than initial
   if (true){//false){//returns >11111.000 ) {
     console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
 
- let   instructions = []
+    const delegate = Keypair.generate();
+    const tokenAccount = (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
+    
+    const token = new Token(connection2, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
+    
+ let   instructions  = [(
+  flashBorrowReserveLiquidityInstruction(
+    initial,
+    new PublicKey(reserve.config.liquidityAddress),
+    tokenAccount,
+    new PublicKey(reserve.config.address),
+    new PublicKey(market.config.address),
+    SOLEND_PRODUCTION_PROGRAM_ID
+  )
+)]
   let signers = []
 
-    /*
-const delegate = Keypair.generate();
-const tokenAccount = (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
-
-const token = new Token(connection2, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
-*/
              // get routes based on from Token amount 10 USDC -> ? PRISM
              try {
               var swapTransaction = await prism.generateSwapTransactions(routes[0]);        // execute swap (sign, send and confirm transaction)
@@ -290,7 +298,7 @@ const token = new Token(connection2, new PublicKey(reserve.config.liquidityToken
                       .map(async (serializedTransaction) => {
                         instructions.push(...serializedTransaction.instructions)
                       }))
-                      /*
+                      
                       instructions.push(
                         flashRepayReserveLiquidityInstruction(
                           initial,
@@ -303,7 +311,7 @@ const token = new Token(connection2, new PublicKey(reserve.config.liquidityToken
                           new PublicKey(market.config.address),
                           delegate.publicKey,
                           SOLEND_PRODUCTION_PROGRAM_ID
-                        )) */
+                        )) 
     
   var blockhash = await connection
     .getLatestBlockhash()
@@ -350,10 +358,10 @@ console.log(err)
 }
   const transaction = new VersionedTransaction(messageV00);
   // sign your transaction with the required `Signers`
- await transaction.sign([payer,payer2, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
+ await transaction.sign([payer,payer2,delegate, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
  try {
   try {
- // await  token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
+ await  token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
    } catch (err){
   
    }
