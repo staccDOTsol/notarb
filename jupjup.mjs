@@ -255,7 +255,7 @@ market.refreshAll();
 for (var reserve of market.reserves){//["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "So11111111111111111111111111111111111111112"]){
   //const reserve = market.reserves.find(res => res.config.liquidityToken.mint ===ç);
 var USDC_MINT = reserve.config.liquidityToken.mint
-    if (USDC_MINT != "SoLEao8wTzSfqhuou8rcYsVoLjthVmiXuEjzdNPMnCz"){//true){//!baddies.includes(USDC_MINT+USDC_MINT)){
+    if (USDC_MINT != "SoLEao8wTzSfqhuou8rcYsVoLjthVmiXuEjzdNPMnCz" ){
   try {
   
 var dec = reserve.config.liquidityToken.decimals
@@ -265,7 +265,7 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
     abc++
     for (var SOL_MINT of mints){
         SOL_MINT = mints[Math.floor(Math.random() * mints.length)]
-        if (!baddies.includes(SOL_MINT+USDC_MINT)){
+        if (!baddies.includes(SOL_MINT+USDC_MINT) &&  !baddies.includes(USDC_MINT+SOL_MINT)){
       let dothethings = []
       cba++
       try {
@@ -615,6 +615,9 @@ catch (err){
     fs.writeFileSync('./baddies.json', JSON.stringify(baddies))
 }}catch (err){
    
+    baddies.push(USDC_MINT+SOL_MINT)
+    console.log(baddies)
+    fs.writeFileSync('./baddies.json', JSON.stringify(baddies))
 }
 }
     }
