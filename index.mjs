@@ -70,12 +70,11 @@ const somestuff2 = JSON.parse(fs.readFileSync("./hahapairs.json").toString())
 const somestuff3= JSON.parse(fs.readFileSync("./stuff.json").toString())
 
 const has = [
-    //"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
-    //"Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB", 
-    //"USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX",
-    //"Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS",
-    //"7kbnvuGBxxj8AG9qp8Scn56muWGaRaFqxg1FsRp3PaFT",
-"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+  "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB", 
+    "USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX",
+    "Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS",
+    "7kbnvuGBxxj8AG9qp8Scn56muWGaRaFqxg1FsRp3PaFT",
 ]
 
 var mints = [   
@@ -168,6 +167,8 @@ while (true) {
 
   let abc = -1
   for (var USDC_MINT of has){
+    USDC_MINT = has[Math.floor(Math.random() * has.length)]
+
     let cba = -1
     abc++
     for (var SOL_MINT of mints){
