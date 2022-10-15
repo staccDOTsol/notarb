@@ -275,7 +275,7 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
         try {
             
             if (!baddies.includes(USDC_MINT+SOL_MINT)){
-                await sleep(Math.random()*(Math.random()*1500)+666)
+                //await sleep(Math.random()*(Math.random()*1500)+666)
              let usdcToSol
              let solToUsdc
                 try {
