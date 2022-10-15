@@ -249,7 +249,7 @@ let dec = 6
    }
 await prism.loadRoutes( SOL_MINT, USDC_MINT ); 
 
-let routes2 = prism.getRoutes(Math.floor(routes[0].amountWithFees * 0.98) );
+let routes2 = prism.getRoutes(Math.floor(routes[0].amountOut * 0.98) );
 let route2 
 var m  = 0
 var dec2 = 0
@@ -266,7 +266,7 @@ if (r.type != "direct"){
  froms[Object.values(r.routeData)[1].from] = 0
  for (var i =  0; i < r.providers.length; i++){
 
-   tos[Object.values(r.routeData)[i].to] += Object.values(r.routeData)[i].amountWithFees
+   tos[Object.values(r.routeData)[i].to] += Object.values(r.routeData)[i].amountOut
    froms[Object.values(r.routeData)[i].from] += Object.values(r.routeData)[i].amountIn
 
    
@@ -304,7 +304,7 @@ if (qqq == abc2){
 }
 }
 }
-let returns = ((routes2[0].amountWithFees / (initial / 10 ** dec)) - 1) * 100
+let returns = ((routes2[0].amountOut / (initial / 10 ** dec)) - 1) * 100
 let gogo = true 
 for (var maybego of  dothethings){
   gogo = maybego
