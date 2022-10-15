@@ -185,7 +185,7 @@ for (var amarket of [
 
 "7tiNvRHSjYDfc6usrWnSNPyuN68xQfKs1ZG2oqtR5F46",
 "C3VQi4sKNXVsG36zhUnvNasXPhzGmWWVpaeSPv5Tf2AB"]){
-
+await sleep(Math.random()*1000)
 let market =  await SolendMarket.initialize(
     connection2,
     
