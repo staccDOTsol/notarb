@@ -411,7 +411,7 @@ if (returns > min && gogo){
 console.log(blockhash)
           // create v0 compatible message
   const messageV0 = new TransactionMessage({
-    payerKey: payer2.publicKey,
+    payerKey: payer.publicKey,
     recentBlockhash: blockhash,
     instructions,
   }).compileToV0Message();
