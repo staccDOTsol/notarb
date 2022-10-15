@@ -229,7 +229,7 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
       cba++
       try {
 
-   initial =  Math.floor(Math.random() * (5/ reserve.stats.assetPriceUSD) * 10 ** dec + 0.02666 * 10 ** dec);
+   initial =  Math.floor(Math.random() * (500/ reserve.stats.assetPriceUSD) * 10 ** dec + 0.02666 * 10 ** dec);
    //console.log(initial / 10 ** dec)
  //console.log(USDC_MINT, SOL_MINT)
    await prism.loadRoutes(USDC_MINT, SOL_MINT ); 
