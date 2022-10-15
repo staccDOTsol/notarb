@@ -39,16 +39,19 @@ dotenv.config();
 // invalid cache. I will recommend using a paid RPC endpoint.
 let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://69.46.29.78' : 'http://69.46.29.78') +":8899", {skipPreflight: true});
 const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true});
-
+/*
 const market = await SolendMarket.initialize(
   connection2,
   
   "production", // optional environment argument
- ("GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q")
+ ("7RCz8wb6WXxUhAigok9ttgrVgDFFFbibcirECzWSBauM")
 );
 await market.loadReserves();
 market.refreshAll();
 console.log(market.reserves[0].config)
+const reserve = market.reserves.find(res => res.config.liquidityToken.mint ==="EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v");
+console.log(reserve)
+*/
 const wallet = new Wallet(
   Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/Users/jarettdunn') + '/notjaregm.json').toString()))));
   const payer = (
@@ -172,8 +175,7 @@ while (true) {
   let abc = -1
   for (var USDC_MINT of has){
     USDC_MINT = has[Math.floor(Math.random() * has.length)]
-    const reserve = market.reserves.find(res => res.config.liquidityToken.mint ===USDC_MINT);
-    
+
     let cba = -1
     abc++
     for (var SOL_MINT of mints){
@@ -183,7 +185,7 @@ while (true) {
       try {
 let dec = 6
 
-   initial = Math.floor(Math.random() * (Math.random() * 800)* 10 ** dec + 1.02666 * 10 ** dec);
+   initial = Math.floor(Math.random() * (Math.random() * 8)* 10 ** dec + 1.02666 * 10 ** dec);
    //console.log(initial / 10 ** dec)
  
    await prism.loadRoutes(USDC_MINT, SOL_MINT); 
@@ -199,7 +201,7 @@ let dec = 6
    route = routes[0]
        var tos = {}
      var froms = {}
-     try {
+     if (r.type != "direct"){
        tos[Object.values(r.routeData)[0].to] =0
        froms[Object.values(r.routeData)[0].from] = 0
        tos[Object.values(r.routeData)[1].to] =0
@@ -215,7 +217,7 @@ let dec = 6
        fromArr.push(froms)
      }
     
-   catch (err) {
+   else {
      route = routes[0]
      dothethings.push(true)
      }}  
@@ -257,7 +259,7 @@ if (true){
 let  r = routes2[0]
  var tos = {}
 var froms = {}
-try {
+if (r.type != "direct"){
  tos[Object.values(r.routeData)[0].to] =0
  froms[Object.values(r.routeData)[0].from] = 0
  tos[Object.values(r.routeData)[1].to] =0
@@ -272,7 +274,7 @@ try {
  toArr.push(tos)
  fromArr.push(froms)
 }
-catch (err) {
+else {
 route2 = routes2[0]
 dothethings.push(true)
 }}  
@@ -314,27 +316,15 @@ if (returns > 0.00001 && gogo){
   if (true){//false){//returns >11111.000 ) {
     console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
 
-    const delegate = Keypair.generate();
-    const tokenAccount = (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
-    
-    const token = new Token(connection2, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
-    
- let instructions =
-  
-  
- [
-   (
-     flashBorrowReserveLiquidityInstruction(
-       initial,
-       new PublicKey(reserve.config.liquidityAddress),
-       tokenAccount,
-       new PublicKey(reserve.config.address),
-       new PublicKey(market.config.address),
-       SOLEND_PRODUCTION_PROGRAM_ID
-     )
-   )]
+ let   instructions = []
   let signers = []
 
+    /*
+const delegate = Keypair.generate();
+const tokenAccount = (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
+
+const token = new Token(connection2, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
+*/
              // get routes based on from Token amount 10 USDC -> ? PRISM
              try {
               var swapTransaction = await prism.generateSwapTransactions(routes[0]);        // execute swap (sign, send and confirm transaction)
@@ -354,7 +344,7 @@ if (returns > 0.00001 && gogo){
                       .map(async (serializedTransaction) => {
                         instructions.push(...serializedTransaction.instructions)
                       }))
-                
+                      /*
                       instructions.push(
                         flashRepayReserveLiquidityInstruction(
                           initial,
@@ -367,7 +357,7 @@ if (returns > 0.00001 && gogo){
                           new PublicKey(market.config.address),
                           delegate.publicKey,
                           SOLEND_PRODUCTION_PROGRAM_ID
-                        )) 
+                        )) */
     
   var blockhash = await connection
     .getLatestBlockhash()
@@ -414,10 +404,10 @@ console.log(err)
 }
   const transaction = new VersionedTransaction(messageV00);
   // sign your transaction with the required `Signers`
- await transaction.sign([payer,payer2,delegate, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
+ await transaction.sign([payer,payer2, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
  try {
   try {
- await  token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
+ // await  token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
    } catch (err){
   
    }
