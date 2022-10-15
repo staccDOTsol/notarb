@@ -35,6 +35,73 @@ process.on('SIGINT', signal => {
 })
 console.log({ dotenv });
 dotenv.config();
+import { PromisePool }from '@supercharge/promise-pool'
+setTimeout(async function(){
+  try {
+    const connection2 = new Connection("http://69.46.29.78:8899");
+  
+  let connection = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr")
+  
+      let luts = await connection.getProgramAccounts(AddressLookupTableProgram.programId)
+      console.log(luts)
+      await PromisePool.withConcurrency(50)
+      .for(luts)
+      // @ts-ignore
+      .handleError(async (err, asset) => {
+        console.error(`\nError uploading or whatever`, err.message);
+        console.log(err);
+      })
+      // @ts-ignore
+      .process(async (lut) => {
+        let maybemine = await connection2.getAddressLookupTable(lut.pubkey)
+        if (maybemine.value?.state.authority?.toBase58()== ("5kqGoFPBGoYpFcxpa6BFRp3zfNormf52KCo5vQ8Qn5bx"))
+        {
+  
+          let temp = ""
+          for (var abc of maybemine.value.state.addresses){
+            temp+=(abc.toBase58() + ",")
+          }
+       myluts[ temp ] = lut.pubkey
+        }
+      })
+      fs.writeFileSync('./luts.json', JSON.stringify(myluts))
+    } catch (err){
+      
+    }
+})
+setInterval(async function(){
+  try {
+  const connection2 = new Connection("http://69.46.29.78:8899");
+
+let connection = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr")
+
+    let luts = await connection.getProgramAccounts(AddressLookupTableProgram.programId)
+    console.log(luts)
+    await PromisePool.withConcurrency(50)
+    .for(luts)
+    // @ts-ignore
+    .handleError(async (err, asset) => {
+      console.error(`\nError uploading or whatever`, err.message);
+      console.log(err);
+    })
+    // @ts-ignore
+    .process(async (lut) => {
+      let maybemine = await connection2.getAddressLookupTable(lut.pubkey)
+      if (maybemine.value?.state.authority?.toBase58()== ("5kqGoFPBGoYpFcxpa6BFRp3zfNormf52KCo5vQ8Qn5bx"))
+      {
+
+        let temp = ""
+        for (var abc of maybemine.value.state.addresses){
+          temp+=(abc.toBase58() + ",")
+        }
+     myluts[ temp ] = lut.pubkey
+      }
+    })
+    fs.writeFileSync('./luts.json', JSON.stringify(myluts))
+  } catch (err){
+
+  }
+}, 60000)
 // This is a free Solana RPC endpoint. It may have ratelimit and sometimes
 // invalid cache. I will recommend using a paid RPC endpoint.
 let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://69.46.29.78' : 'http://69.46.29.78') +":8899", {skipPreflight: true});
@@ -92,7 +159,7 @@ for (var ohsa of Object.keys(somestuff3)){
   }
 }
 console.log(mints.length)
-mints = []
+//mints = []
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
@@ -217,7 +284,6 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
     abc++
     for (var SOL_MINT of mints){
       let dothethings = []
-      SOL_MINT = mints[Math.floor(Math.random() * mints.length)]
       cba++
       try {
 
@@ -433,14 +499,20 @@ for (var bca of messageV0.staticAccountKeys){
     }
 }
 }
+console.log(w)
+console.log(messageV0.staticAccountKeys.length)
 let goaccs = [(await connection.getAddressLookupTable(new PublicKey(winner))).value]
-const slot = await connection.getSlot();
+console.log( goaccs[0].state.addresses.length - 1)
+if (messageV0.staticAccountKeys.length >  goaccs[0].state.addresses - 1){
+  const slot = await connection.getSlot();
 
 // Assumption:
 // `payer` is a valid `Keypair` with enough SOL to pay for the execution
 var blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
+    lookupTableAddress = new PublicKey(winner)
+    /*
 let [lookupTableInst, lookupTableAddress] =
   AddressLookupTableProgram.createLookupTable({
     authority: payer.publicKey,
@@ -454,8 +526,30 @@ let [lookupTableInst, lookupTableAddress] =
 
 //  lookupTableAddress = new PublicKey("7XH2JSueLJMTuDLE67Qw92KKwAdLjggszDSN5GVoK3qD")
 //lookupTableAddress = new PublicKey("H3pPX8AYP2neyH6AL5mPZmcEWzCbKEU22gWUpY8JASu5")
-console.log("lookup table address:", lookupTableAddress.toBase58());
+*/
+console.log("lookup table address:", winner);
+let dg1 = false 
+let dg2 = false 
+let dg3 = false  
+let ss = []
+let aaa = 0
+let somestuff = {} 
+for (var bca of messageV0.staticAccountKeys){
+  aaa++
+if (aaa < messageV0.staticAccountKeys.length / 3 * 2  && (aaa >= messageV0.staticAccountKeys.length / 3  )){
+if (!goaccs[0].state.addresses.includes(bca)){
+  ss.push(bca)  
+}
 
+
+  }
+
+}
+
+console.log(ss.length)
+if (ss.length == 0){
+  dg1 = true
+}
 const extendInstruction = AddressLookupTableProgram.extendLookupTable({
   payer: payer2.publicKey,
   authority: payer.publicKey,
@@ -468,14 +562,9 @@ aaa = 0
 for (var bca of messageV0.staticAccountKeys){
   aaa++
 if (aaa < messageV0.staticAccountKeys.length / 3 * 2  && (aaa >= messageV0.staticAccountKeys.length / 3  )){
-  if (!somestuff[USDC_MINT+ " <-> " + SOL_MINT ].includes(bca.toBase58())){
-    somestuff[USDC_MINT+ " <-> " + SOL_MINT ].push(bca)
-  ss.push(bca)  
-  somestuff = JSON.parse(fs.readFileSync('./stuff.json').toString())
-  fs.writeFileSync('./stuff.json', JSON.stringify(somestuff))
-
+  if (!goaccs[0].state.addresses.includes(bca)){
+    ss.push(bca)  
   }
-
 }
 }
 console.log(ss.length)
@@ -483,7 +572,7 @@ if (ss.length == 0){
   dg2 = true
 }
 const extendInstruction2 = AddressLookupTableProgram.extendLookupTable({
-  payer: payer.publicKey,
+  payer: payer2.publicKey,
   authority: payer.publicKey,
   lookupTable: lookupTableAddress,
   addresses: ss
@@ -495,20 +584,17 @@ aaa = 0
 for (var bca of messageV0.staticAccountKeys){
   aaa++
 if (aaa >= messageV0.staticAccountKeys.length / 3 * 2   ){
-  if (!somestuff[USDC_MINT+ " <-> " + SOL_MINT ].includes(bca.toBase58())){
-    somestuff[USDC_MINT+ " <-> " + SOL_MINT ].push(bca)
-   ss.push(bca) 
-   somestuff = JSON.parse(fs.readFileSync('./stuff.json').toString())
-   fs.writeFileSync('./stuff.json', JSON.stringify(somestuff))
-
-  }}
+  if (!goaccs[0].state.addresses.includes(bca)){
+    ss.push(bca)  
+  }
+}
 }
 console.log(ss.length)
 if (ss.length == 0){
   dg3 = true
 }
 const extendInstruction3 = AddressLookupTableProgram.extendLookupTable({
-  payer: payer.publicKey,
+  payer: payer2.publicKey,
   authority: payer.publicKey,
   lookupTable: lookupTableAddress,
   addresses: ss
@@ -527,9 +613,9 @@ tx2.sign(payer)
 
 if (true){//ontgo1){
 try{
-  await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: true})
+ // await sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: true})
 } catch (err){
-    
+    console.log(err)
 }
 }
  tx2 = new Transaction()
@@ -540,13 +626,14 @@ blockhash = await connection
     .then((res) => res.blockhash);
 tx2.recentBlockhash = blockhash
 tx2.sign(payer)
-if (true){//g1){
+if (!dg1){
 try {
   
-let hm = await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: true})
+let hm = await sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: true})
 console.log(hm)
 } catch (err){
     
+  console.log(err)
 }
 }
 tx2 = new Transaction()
@@ -558,11 +645,12 @@ blockhash = await connection
     .then((res) => res.blockhash);
 tx2.recentBlockhash = blockhash
 tx2.sign(payer)
-if (true){//g2){
+if (!dg2){
 try {
-await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: true})
+await sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: true})
 } catch (err){
     
+  console.log(err)
 }
 }
 tx2 = new Transaction()
@@ -573,17 +661,23 @@ blockhash = await connection
     .then((res) => res.blockhash);
 tx2.recentBlockhash = blockhash
 tx2.sign(payer)
-if (true){//g3){
+if (!dg3){
   try {
-await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: true})
+await sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: true})
   } catch (err){
 
+    console.log(err)
   }
+}
+await sleep(50000)
+ goaccs = [(await connection.getAddressLookupTable(lookupTableAddress)).value]
+
 }
 blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
 let messageV00 
+console.log(goaccs)
 try { messageV00 =  new TransactionMessage({
   payerKey: payer2.publicKey,
   recentBlockhash: blockhash,
