@@ -221,7 +221,6 @@ while (true) {
       let dothethings = []
       SOL_MINT = mints[Math.floor(Math.random() * mints.length)]
       cba++
-      console.log(USDC_MINT+ " <-> " + SOL_MINT)
       try {
 let dec = 6
 
@@ -306,7 +305,6 @@ let  r = routes2[0]
  var tos = {}
 var froms = {}
 if (r.type != "direct"){
- console.log(r.providers.length)
  tos[Object.values(r.routeData)[0].to] =0
  froms[Object.values(r.routeData)[0].from] = 0
  tos[Object.values(r.routeData)[1].to] =0
@@ -325,8 +323,6 @@ else {
 route2 = routes2[0]
 dothethings.push(true)
 }}  
-console.log(toArr)
-console.log(fromArr)
 if (fromArr.length > 0){
 if (Object.keys(fromArr[0]).length > 0){
 for (var i in Object.keys(fromArr[0])){
@@ -353,15 +349,11 @@ if (qqq == abc2){
 }
 }
 }
-console.log(routes2[0].amountOut)
-console.log(initial)
 let returns = ((routes2[0].amountOut / (initial / 10 ** dec)) - 1) * 100
-console.log(returns)
 let gogo = true 
 for (var maybego of  dothethings){
   gogo = maybego
 }
-console.log(dothethings)
 if (returns > 0 && gogo){
   if (true){
   // when outAmount more than initial
