@@ -259,7 +259,7 @@ var returns = ((((usdcToSol.data[aa2].outAmount * 1.0 )/ (initial  ))- 1))
 console.log(returns)
 
   // when outAmount more than initial
-  if (returns >.0002 ) {
+  if (returns >.000 ) {
     console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
 
  let   instructions = []
