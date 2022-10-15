@@ -259,7 +259,7 @@ await market.loadReserves();
 market.refreshAll();
 for (var reserve of market.reserves){
   reserve = market.reserves[Math.floor(Math.random(market.reserves.length))]//SoLEao8wTzSfqhuou8rcYsVoLjthVmiXuEjzdNPMnCz
-  if (reserve.config.liquidityToken.mint != "SoLEao8wTzSfqhuou8rcYsVoLjthVmiXuEjzdNPMnCz"){
+  if (reserve.config.liquidityToken.mint != "SoLEao8wTzSfqhuou8rcYsVoLjthVmiXuEjzdNPMnCz" && reserve.config.liquidityToken.mint  != "CooLwkogVDEVCrY3r1Mtcen2H7ejJiW7CSMY7gWDBFNc"){
 var  USDC_MINT=reserve.config.liquidityToken.mint
 if (!mints.includes(USDC_MINT)){
 mints.push(USDC_MINT)
@@ -273,7 +273,7 @@ await market.loadReserves();
 market.refreshAll();
 for (var reserve of market.reserves){
   reserve = market.reserves[Math.floor(Math.random(market.reserves.length))]
-  if (reserve.config.liquidityToken.mint != "SoLEao8wTzSfqhuou8rcYsVoLjthVmiXuEjzdNPMnCz"){
+  if (reserve.config.liquidityToken.mint != "SoLEao8wTzSfqhuou8rcYsVoLjthVmiXuEjzdNPMnCz"&& reserve.config.liquidityToken.mint  != "CooLwkogVDEVCrY3r1Mtcen2H7ejJiW7CSMY7gWDBFNc"){
 
 var  USDC_MINT=reserve.config.liquidityToken.mint
 if (!mints.includes(USDC_MINT)){
