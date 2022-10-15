@@ -40,15 +40,6 @@ dotenv.config();
 let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://69.46.29.78' : 'http://69.46.29.78') +":8899", {skipPreflight: true});
 const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true});
 
-const market = await SolendMarket.initialize(
-  connection2,
-  
-  "production", // optional environment argument
- ("7RCz8wb6WXxUhAigok9ttgrVgDFFFbibcirECzWSBauM")
-);
-await market.loadReserves();
-market.refreshAll();
-console.log(market.reserves[0].config)
 
 const wallet = new Wallet(
   Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/Users/jarettdunn') + '/notjaregm.json').toString()))));
@@ -171,10 +162,18 @@ while (true) {
 //  await createWSolAccount();
 
   let abc = -1
-  for (var USDC_MINT of has){
-    USDC_MINT = has[Math.floor(Math.random() * has.length)]
-    const reserve = market.reserves.find(res => res.config.liquidityToken.mint ===USDC_MINT);
-    console.log(reserve)
+
+const market = await SolendMarket.initialize(
+  connection2,
+  
+  "production", // optional environment argument
+);
+await market.loadReserves();
+market.refreshAll();
+for (var reserve of market.reserves){
+var  USDC_MINT=(reserve.config.liquidityToken.mint)
+var dec = reserve.config.liquidityToken.decimals
+let min = ( reserve.stats.borrowFeePercentage * 100)
     
     let cba = -1
     abc++
@@ -183,9 +182,8 @@ while (true) {
       SOL_MINT = mints[Math.floor(Math.random() * mints.length)]
       cba++
       try {
-let dec = 6
 
-   initial =  Math.floor(Math.random() * 500* 10 ** dec + 2.02666 * 10 ** dec);
+   initial =  Math.floor(Math.random() * (500/ reserve.stats.assetPriceUSD) * 10 ** dec + 0.02666 * 10 ** dec);
    //console.log(initial / 10 ** dec)
  
    await prism.loadRoutes(USDC_MINT, SOL_MINT, true ); 
@@ -251,11 +249,13 @@ if (qqq == abc2){
 }
 }
 let returns = ((routes2[0].amountOut / (initial / 10 ** dec)) - 1) * 100
+console.log(initial / 10 ** dec)
+console.log(returns)
 let gogo = true 
 for (var maybego of  dothethings){
   gogo = maybego
 }
-if (returns > 0.1 && gogo){
+if (returns > min && gogo){
   
   if (true){
   // when outAmount more than initial
