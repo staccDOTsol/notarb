@@ -282,12 +282,12 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
          usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, initial);
       } catch (err){
            
-        baddies.push(USDC_MINT+SOL_MINT)
+        //baddies.puah(USDC_MINT+SOL_MINT)
     
         let tbaddies = JSON.parse(fs.readFileSync('./baddies.json').toString())
         for (var b of baddies){
             if (!tbaddies.includes(b)){
-                tbaddies.push(b)
+                t//baddies.puah(b)
             }
         }
         fs.writeFileSync('./baddies.json', JSON.stringify(tbaddies))
@@ -303,12 +303,12 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
         );
       } catch (err){
            
-        baddies.push(SOL_MINT + USC_MINT)
+        //baddies.puah(SOL_MINT + USC_MINT)
     
         let tbaddies = JSON.parse(fs.readFileSync('./baddies.json').toString())
         for (var b of baddies){
             if (!tbaddies.includes(b)){
-                tbaddies.push(b)
+                t//baddies.puah(b)
             }
         }
         fs.writeFileSync('./baddies.json', JSON.stringify(tbaddies))
