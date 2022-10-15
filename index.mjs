@@ -118,14 +118,6 @@ for (var add of arg.data){
   }
   
   }
-for (var ohsa of Object.keys(somestuff3)){
-  let twotoks = ohsa.split(' <-> ')
-  for (var atok of twotoks){
-    if (!mints.includes(atok)){
-      mints.push(atok)
-    }
-  }
-}
 console.log(mints.length)
 //mints = []
 const getCoinQuote = (inputMint, outputMint, amount) =>
