@@ -157,31 +157,26 @@ console.log('')
 console.log('')
 
 console.log('')
-var markets = [] 
-for (var amarket of [,
+var markets = [  await SolendMarket.initialize(
+  connection2,
+  
+  "production", // optional environment argument
+  amarket
+)]
+for (var amarket of [
 "Ckya2fwCXDqTUg9fnWbajR6YLcSfQmPxxy5MyAoZXgyb",
 "GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q",
 
 "7tiNvRHSjYDfc6usrWnSNPyuN68xQfKs1ZG2oqtR5F46",
 "C3VQi4sKNXVsG36zhUnvNasXPhzGmWWVpaeSPv5Tf2AB"]){
 
-let market 
-if (amarket.length > 0){
-market =  await SolendMarket.initialize(
-  connection2,
-  
-  "production", // optional environment argument
-  amarket
-);
-}
-else {
-market =  await SolendMarket.initialize(
+let market =  await SolendMarket.initialize(
     connection2,
     
     "production", // optional environment argument
   );
 
-}
+
 markets.push(market)
 }
 
@@ -190,6 +185,7 @@ while (true) {
 
   let abc = -1
 for (var market of markets){
+  market = markets[Math.floor(Math.random()*markets.length)]
 await market.loadReserves();
 market.refreshAll();
 for (var reserve of market.reserves){
