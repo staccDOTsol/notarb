@@ -1262,3 +1262,410 @@ TypeError: Wallet is not a constructor
     at async ESMLoader.import (node:internal/modules/esm/loader:533:24)
     at async loadESM (node:internal/process/esm_loader:91:5)
     at async handleMainPromise (node:internal/modules/run_main:65:12)
+{ dotenv: { config: [Function: config], parse: [Function: parse] } }
+{ dotenv: { config: [Function: config], parse: [Function: parse] } }
+{ dotenv: { config: [Function: config], parse: [Function: parse] } }
+{ dotenv: { config: [Function: config], parse: [Function: parse] } }
+85
+
+
+
+85
+85
+
+
+
+
+
+
+85
+
+
+
+2.19112067860896 initial, -0.590761070621526% yield on badboi C98A4nkJXhpVZNAZdHUA95RpTF3T4whtQubL3YobiUX9 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.931000232696533s, avg last 60 diffs: 6.416000008583069, lendiffs: 2, lenbaddies: 91
+8.97401773518261 initial, -0.7080050182134756% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 1.9479999542236328s, avg last 60 diffs: 4.540500044822693, lendiffs: 2, lenbaddies: 91
+1.2178118045836401 initial, -0.5323047425440541% yield on badboi C98A4nkJXhpVZNAZdHUA95RpTF3T4whtQubL3YobiUX9 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.38100004196167s, avg last 60 diffs: 5.432200002670288, lendiffs: 5, lenbaddies: 91
+9.02466584788065 initial, -0.7836800463787652% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 8.151000022888184s, avg last 60 diffs: 6.31166668732961, lendiffs: 6, lenbaddies: 91
+2.74376471755162 initial, -0.6141585653662407% yield on badboi C98A4nkJXhpVZNAZdHUA95RpTF3T4whtQubL3YobiUX9 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.3359999656677246s, avg last 60 diffs: 6.691124975681305, lendiffs: 8, lenbaddies: 91
+9.92097105254475 initial, -0.731658683145342% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> So11111111111111111111111111111111111111112, time since last arb checked: 8.251000165939331s, avg last 60 diffs: 6.547500014305115, lendiffs: 10, lenbaddies: 91
+0.6567966373899351 initial, -0.21931378212363128% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 17.594000101089478s, avg last 60 diffs: 6.589100003242493, lendiffs: 10, lenbaddies: 91
+2.8312566586880403 initial, -0.6315588151042384% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> So11111111111111111111111111111111111111112, time since last arb checked: 3.828000068664551s, avg last 60 diffs: 5.97216667731603, lendiffs: 12, lenbaddies: 91
+7.1467715821510795 initial, -0.8621211922420935% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.922999858856201s, avg last 60 diffs: 5.73761538358835, lendiffs: 13, lenbaddies: 91
+1.93211810612828 initial, -0.5798500964162123% yield on badboi C98A4nkJXhpVZNAZdHUA95RpTF3T4whtQubL3YobiUX9 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 22.133000135421753s, avg last 60 diffs: 8.573399996757507, lendiffs: 10, lenbaddies: 91
+2.891535273462 initial, -2.275067774019135% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> 4t5wBE1Urg4wCB4jRJ7fdW2XZ3ohrDNUZhmhmNpAuqRm, time since last arb checked: 8.278000116348267s, avg last 60 diffs: 5.919071435928345, lendiffs: 14, lenbaddies: 91
+0.84425126878488 initial, -0.8558903516366789% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> DUSTawucrTsGU8hcqRdHDCbuYhCPADMLM2VcCb8VnFnQ, time since last arb checked: 8.304999828338623s, avg last 60 diffs: 6.078133328755697, lendiffs: 15, lenbaddies: 91
+1.595819566167271 initial, -0.3765823623847808% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> 7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj, time since last arb checked: 8.784000158309937s, avg last 60 diffs: 6.420571429388864, lendiffs: 14, lenbaddies: 91
+4.39242638337822 initial, -0.5355543796332851% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.014000177383423s, avg last 60 diffs: 5.8866250067949295, lendiffs: 16, lenbaddies: 91
+4.77840904501394 initial, -0.6521876686781058% yield on badboi C98A4nkJXhpVZNAZdHUA95RpTF3T4whtQubL3YobiUX9 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 14.927000045776367s, avg last 60 diffs: 9.151000001213767, lendiffs: 11, lenbaddies: 91
+2.94273901771626 initial, -2.4427189784843817% yield on badboi C98A4nkJXhpVZNAZdHUA95RpTF3T4whtQubL3YobiUX9 <-> isktkk27QaTpoRUhwwS5n9YUoYf8ydCuoTz5R2tFEKu, time since last arb checked: 3.3320000171661377s, avg last 60 diffs: 8.224642855780465, lendiffs: 14, lenbaddies: 91
+3.43668264356998 initial, -0.724344088981721% yield on badboi C98A4nkJXhpVZNAZdHUA95RpTF3T4whtQubL3YobiUX9 <-> Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB, time since last arb checked: 2.1059999465942383s, avg last 60 diffs: 7.816733328501384, lendiffs: 15, lenbaddies: 91
+3.9681105438374398 initial, -0.9545937590692222% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX, time since last arb checked: 12.564000129699707s, avg last 60 diffs: 6.5499090931632304, lendiffs: 22, lenbaddies: 91
+5.10404970064341 initial, -0.50111611071334% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> So11111111111111111111111111111111111111112, time since last arb checked: 7.986000061035156s, avg last 60 diffs: 6.612347830896792, lendiffs: 23, lenbaddies: 91
+0.9060501420004999 initial, -0.7334858832014124% yield on badboi C98A4nkJXhpVZNAZdHUA95RpTF3T4whtQubL3YobiUX9 <-> So11111111111111111111111111111111111111112, time since last arb checked: 22.187000036239624s, avg last 60 diffs: 8.808611101574368, lendiffs: 18, lenbaddies: 91
+2.41447684454559 initial, -0.5497905640494238% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 14.765000104904175s, avg last 60 diffs: 6.75116000175476, lendiffs: 25, lenbaddies: 91
+7.8110355599907 initial, -0.21904443405751373% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.9660000801086426s, avg last 60 diffs: 7.624458332856496, lendiffs: 24, lenbaddies: 91
+2.103546436116154 initial, -0.21904502881570087% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.878000020980835s, avg last 60 diffs: 7.47460000038147, lendiffs: 25, lenbaddies: 91
+4.840953634766899 initial, -0.8788170365454984% yield on badboi C98A4nkJXhpVZNAZdHUA95RpTF3T4whtQubL3YobiUX9 <-> mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So, time since last arb checked: 3.63100004196167s, avg last 60 diffs: 9.269428571065268, lendiffs: 21, lenbaddies: 91
+2.9672784994890873 initial, -0.21909759654521466% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.307999849319458s, avg last 60 diffs: 7.314346148417546, lendiffs: 26, lenbaddies: 91
+2.8477940244081896 initial, -0.3860101046667008% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> So11111111111111111111111111111111111111112, time since last arb checked: 3.8489999771118164s, avg last 60 diffs: 6.713206899577174, lendiffs: 29, lenbaddies: 91
+2.1780789194207997 initial, -0.5162776883355646% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.052999973297119s, avg last 60 diffs: 6.438258063408636, lendiffs: 31, lenbaddies: 91
+9.425422606917715 initial, -0.22031680737339965% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS, time since last arb checked: 3.253999948501587s, avg last 60 diffs: 7.420499997479575, lendiffs: 28, lenbaddies: 91
+3.23270908384941 initial, -0.3834086592478303% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> So11111111111111111111111111111111111111112, time since last arb checked: 15.23200011253357s, avg last 60 diffs: 6.534382357316859, lendiffs: 34, lenbaddies: 91
+9.610609162214688 initial, -0.2190379754591798% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 14.559000015258789s, avg last 60 diffs: 7.357774188441615, lendiffs: 31, lenbaddies: 91
+8.47814906221478 initial, -3.9557272815609723% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> isktkk27QaTpoRUhwwS5n9YUoYf8ydCuoTz5R2tFEKu, time since last arb checked: 2.7870001792907715s, avg last 60 diffs: 6.825457143783569, lendiffs: 35, lenbaddies: 91
+4.715505858992531 initial, -0.2190557581257524% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 4.2749998569488525s, avg last 60 diffs: 6.75461110803816, lendiffs: 36, lenbaddies: 91
+6.104423666113005 initial, -0.21903606667914577% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.2200000286102295s, avg last 60 diffs: 6.659081078864433, lendiffs: 37, lenbaddies: 91
+6.95803118116689 initial, -0.9836662145413344% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 8.970999956130981s, avg last 60 diffs: 6.594743588031867, lendiffs: 39, lenbaddies: 91
+0.55861343574512 initial, -0.23591554177392338% yield on badboi C98A4nkJXhpVZNAZdHUA95RpTF3T4whtQubL3YobiUX9 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 23.842999935150146s, avg last 60 diffs: 9.324516127186437, lendiffs: 31, lenbaddies: 91
+3.7619386503248857 initial, -0.2190171537637675% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 26.91200017929077s, avg last 60 diffs: 7.216292683671161, lendiffs: 41, lenbaddies: 91
+1.73467139754133 initial, -0.21915884413404862% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.7169997692108154s, avg last 60 diffs: 7.109166661898295, lendiffs: 42, lenbaddies: 91
+4.7515273110151375 initial, -0.2190430877390459% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 5.55400013923645s, avg last 60 diffs: 6.983250000260093, lendiffs: 44, lenbaddies: 91
+3.8786008532114957 initial, -0.21906090623566854% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 4.418999910354614s, avg last 60 diffs: 6.9262666649288605, lendiffs: 45, lenbaddies: 91
+9.194131183771317 initial, -0.21899258284524548% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.8420000076293945s, avg last 60 diffs: 6.75259574423445, lendiffs: 47, lenbaddies: 91
+9.403269217727699 initial, -0.21899050676962295% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.4079999923706055s, avg last 60 diffs: 6.662083332737287, lendiffs: 48, lenbaddies: 91
+2.31309463260372 initial, -0.8032679809682142% yield on badboi C98A4nkJXhpVZNAZdHUA95RpTF3T4whtQubL3YobiUX9 <-> 7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj, time since last arb checked: 4.733999967575073s, avg last 60 diffs: 8.664684207815872, lendiffs: 38, lenbaddies: 91
+1.64743186427638 initial, -0.28033354050175374% yield on badboi C98A4nkJXhpVZNAZdHUA95RpTF3T4whtQubL3YobiUX9 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.694999933242798s, avg last 60 diffs: 8.511615380262716, lendiffs: 39, lenbaddies: 91
+8.178321409929 initial, -0.8785629807437911% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.8459999561309814s, avg last 60 diffs: 6.789448981382409, lendiffs: 49, lenbaddies: 91
+6.32175373526598 initial, -1.3298148869690607% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> DUSTawucrTsGU8hcqRdHDCbuYhCPADMLM2VcCb8VnFnQ, time since last arb checked: 4.41100001335144s, avg last 60 diffs: 6.74188000202179, lendiffs: 50, lenbaddies: 91
+6.029172225861839 initial, -0.8665635178540909% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So, time since last arb checked: 2.1599998474121094s, avg last 60 diffs: 6.5788269226367655, lendiffs: 52, lenbaddies: 91
+4.968419199173878 initial, -0.21896192245640655% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.3329999446868896s, avg last 60 diffs: 6.458090907877142, lendiffs: 55, lenbaddies: 91
+2.364011856691 initial, -0.20212132428507612% yield on badboi USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 5.025000095367432s, avg last 60 diffs: 8.357208331425985, lendiffs: 48, lenbaddies: 91
+8.129310500066044 initial, -0.21904643454309092% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 8.64900016784668s, avg last 60 diffs: 6.5695666670799255, lendiffs: 60, lenbaddies: 91
+1.10561069502 initial, -0.20215779704985115% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 9.528000116348267s, avg last 60 diffs: 132.44000005722046, lendiffs: 3, lenbaddies: 91
+3.986200370349637 initial, -0.21904460310306906% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 1.8929998874664307s, avg last 60 diffs: 6.492901637905934, lendiffs: 61, lenbaddies: 91
+8.287924209052418 initial, -0.2223575402602651% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX, time since last arb checked: 2.622999906539917s, avg last 60 diffs: 6.430483868045192, lendiffs: 62, lenbaddies: 91
+6.4964223668250005 initial, -3.2014740936809893% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> isktkk27QaTpoRUhwwS5n9YUoYf8ydCuoTz5R2tFEKu, time since last arb checked: 2.755000114440918s, avg last 60 diffs: 80.66860003471375, lendiffs: 5, lenbaddies: 91
+3.27384458055 initial, -0.20200199772125726% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.677999973297119s, avg last 60 diffs: 67.6701666911443, lendiffs: 6, lenbaddies: 91
+1.44001541269026 initial, -0.4052150230058116% yield on badboi C98A4nkJXhpVZNAZdHUA95RpTF3T4whtQubL3YobiUX9 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 4.119999885559082s, avg last 60 diffs: 7.196166666348775, lendiffs: 60, lenbaddies: 91
+5.514068495097416 initial, -0.21902755958256304% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 15.932000160217285s, avg last 60 diffs: 6.6535999995011545, lendiffs: 65, lenbaddies: 91
+2.52789804735552 initial, -0.8409617293481886% yield on badboi C98A4nkJXhpVZNAZdHUA95RpTF3T4whtQubL3YobiUX9 <-> mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So, time since last arb checked: 3.0249998569488525s, avg last 60 diffs: 7.023444444414169, lendiffs: 63, lenbaddies: 91
+6.655462933050001 initial, -0.20199151644646474% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.8330001831054688s, avg last 60 diffs: 40.9381818337874, lendiffs: 11, lenbaddies: 91
+1.3823554006746481 initial, -0.21908650941810937% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 8.553999900817871s, avg last 60 diffs: 6.604088232797735, lendiffs: 68, lenbaddies: 91
+6.69904245828 initial, -0.20197623218937144% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.4039998054504395s, avg last 60 diffs: 37.81033333142599, lendiffs: 12, lenbaddies: 91
+0.6233936047752 initial, -1.5479222311944874% yield on badboi C98A4nkJXhpVZNAZdHUA95RpTF3T4whtQubL3YobiUX9 <-> isktkk27QaTpoRUhwwS5n9YUoYf8ydCuoTz5R2tFEKu, time since last arb checked: 22.146000146865845s, avg last 60 diffs: 7.2043384625361515, lendiffs: 65, lenbaddies: 91
+4.53954314309188 initial, -0.4489646729630703% yield on badboi C98A4nkJXhpVZNAZdHUA95RpTF3T4whtQubL3YobiUX9 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 13.51200008392334s, avg last 60 diffs: 7.2999090931632304, lendiffs: 66, lenbaddies: 91
+2.8080787476127473 initial, -0.21909249331131253% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 11.130000114440918s, avg last 60 diffs: 6.769698629640553, lendiffs: 73, lenbaddies: 91
+4.80799427391 initial, -0.2019623838300344% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 9.73799991607666s, avg last 60 diffs: 31.171187505126, lendiffs: 16, lenbaddies: 91
+0.0351293790421 initial, -0.351811877095487% yield on badboi C98A4nkJXhpVZNAZdHUA95RpTF3T4whtQubL3YobiUX9 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.3350000381469727s, avg last 60 diffs: 7.018739726445446, lendiffs: 73, lenbaddies: 91
+9.84590059446 initial, -0.2019896083065298% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.747000217437744s, avg last 60 diffs: 25.515714293434506, lendiffs: 21, lenbaddies: 91
+9.268384704892913 initial, -0.21901129569488198% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 23.272000074386597s, avg last 60 diffs: 7.132789473784597, lendiffs: 76, lenbaddies: 91
+8.481948610178605 initial, -0.21902074490900425% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 18.10199999809265s, avg last 60 diffs: 7.275246753321065, lendiffs: 77, lenbaddies: 91
+8.244165257902146 initial, -0.21903534692118143% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.4719998836517334s, avg last 60 diffs: 7.233860758286488, lendiffs: 79, lenbaddies: 91
+0.470182027932604 initial, -0.22060193770726544% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX, time since last arb checked: 3.5950000286102295s, avg last 60 diffs: 7.188374999165535, lendiffs: 80, lenbaddies: 91
+8.342777987009999 initial, -0.20199015017825506% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 8.684999942779541s, avg last 60 diffs: 22.386230771358196, lendiffs: 26, lenbaddies: 91
+3.1229973010800003 initial, -0.2019604929795804% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.861999988555908s, avg last 60 diffs: 21.08275000538145, lendiffs: 28, lenbaddies: 91
+9.053695641977898 initial, -0.21902319946343063% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 11.461999893188477s, avg last 60 diffs: 7.210585364481298, lendiffs: 82, lenbaddies: 91
+7.98394342824 initial, -0.20196240723557857% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.427000045776367s, avg last 60 diffs: 19.85433333714803, lendiffs: 30, lenbaddies: 91
+2.799655206422711 initial, -0.21903814501008645% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 19.806999921798706s, avg last 60 diffs: 7.362349395292351, lendiffs: 83, lenbaddies: 91
+6.823307807415 initial, -0.2019912153900294% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 8.558000087738037s, avg last 60 diffs: 17.952485718045917, lendiffs: 35, lenbaddies: 91
+7.29885745107 initial, -0.23103054530169143% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> So11111111111111111111111111111111111111112, time since last arb checked: 4.601999998092651s, avg last 60 diffs: 17.581638892491657, lendiffs: 36, lenbaddies: 91
+3.12156725103 initial, -0.20198894234680909% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 18.555000066757202s, avg last 60 diffs: 17.24271052762082, lendiffs: 38, lenbaddies: 91
+9.01089382747204 initial, -0.21902015483896697% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.7200000286102295s, avg last 60 diffs: 7.359202245647988, lendiffs: 89, lenbaddies: 91
+4.28375163432174 initial, -0.6058049008714095% yield on badboi C98A4nkJXhpVZNAZdHUA95RpTF3T4whtQubL3YobiUX9 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 15.450000047683716s, avg last 60 diffs: 7.315344444910685, lendiffs: 90, lenbaddies: 91
+1.3063657212 initial, -0.20209443321697051% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.0989999771118164s, avg last 60 diffs: 16.88005128273597, lendiffs: 39, lenbaddies: 91
+6.847666659944999 initial, -0.20197367565948365% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 10.91700005531311s, avg last 60 diffs: 16.7309750020504, lendiffs: 40, lenbaddies: 91
+4.52806647678 initial, -0.20196965132683875% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.680999994277954s, avg last 60 diffs: 16.412682928690096, lendiffs: 41, lenbaddies: 91
+3.311596901835 initial, -0.2019942134652175% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.4070000648498535s, avg last 60 diffs: 16.103023812884377, lendiffs: 42, lenbaddies: 91
+0.140640912097557 initial, -0.17644625191655106% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 19.796000003814697s, avg last 60 diffs: 7.497388887405395, lendiffs: 90, lenbaddies: 91
+1.4089873764106748 initial, -0.21908657921981822% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 8.90499997138977s, avg last 60 diffs: 7.512857141075553, lendiffs: 91, lenbaddies: 91
+0.9732969345863399 initial, -0.5616962417541727% yield on badboi C98A4nkJXhpVZNAZdHUA95RpTF3T4whtQubL3YobiUX9 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 28.858999967575073s, avg last 60 diffs: 7.597655914163076, lendiffs: 93, lenbaddies: 91
+9.634340190105 initial, -0.20198249886366204% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 9.335000038146973s, avg last 60 diffs: 15.12870212818714, lendiffs: 47, lenbaddies: 91
+6.523157248553018 initial, -0.219035490218622% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 10.069000005722046s, avg last 60 diffs: 7.7319999997333815, lendiffs: 93, lenbaddies: 91
+3.1036813407125 initial, -0.20155358510690613% yield on badboi Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 19.257999897003174s, avg last 60 diffs: 14.754800000190734, lendiffs: 50, lenbaddies: 91
+0.1280173044875 initial, -0.15224464245693348% yield on badboi Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.013000011444092s, avg last 60 diffs: 14.104264151375249, lendiffs: 53, lenbaddies: 91
+9.442888342671845 initial, -0.21891005486972537% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.8399999141693115s, avg last 60 diffs: 7.752402059810677, lendiffs: 97, lenbaddies: 91
+9.659695 initial, -0.20304988925633483% yield on badboi EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 4.305000066757202s, avg last 60 diffs: 7.717224488452989, lendiffs: 98, lenbaddies: 91
+0.47808349615 initial, -0.20155783095630042% yield on badboi Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 12.315999984741211s, avg last 60 diffs: 14.071148148289433, lendiffs: 54, lenbaddies: 91
+9.629781852525 initial, -0.2015294291937808% yield on badboi Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.496999979019165s, avg last 60 diffs: 13.860709090666337, lendiffs: 55, lenbaddies: 91
+1.002553 initial, -0.20268255144615388% yield on badboi EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.3419997692108154s, avg last 60 diffs: 7.734524750473476, lendiffs: 101, lenbaddies: 91
+7.65725 initial, -0.20152143393515898% yield on badboi EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v <-> Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS, time since last arb checked: 4.28600001335144s, avg last 60 diffs: 7.70071568442326, lendiffs: 102, lenbaddies: 91
+5.17275111875 initial, -0.2015109496031342% yield on badboi Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.181999921798706s, avg last 60 diffs: 13.365016949378838, lendiffs: 59, lenbaddies: 91
+6.30703051985 initial, -0.20152144218262835% yield on badboi Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.1130001544952393s, avg last 60 diffs: 13.194150002797445, lendiffs: 60, lenbaddies: 91
+9.296042242480729 initial, -0.2189079153539497% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 11.073999881744385s, avg last 60 diffs: 7.565943396316384, lendiffs: 106, lenbaddies: 91
+7.555961937692884 initial, -3.614739332514161% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> isktkk27QaTpoRUhwwS5n9YUoYf8ydCuoTz5R2tFEKu, time since last arb checked: 9.805999994277954s, avg last 60 diffs: 7.586878504708548, lendiffs: 107, lenbaddies: 91
+4.51889 initial, -0.15284727001542153% yield on badboi EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v <-> mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So, time since last arb checked: 3.3480000495910645s, avg last 60 diffs: 7.476064220480962, lendiffs: 109, lenbaddies: 91
+4.347691 initial, -0.20277430019750575% yield on badboi EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.690999984741211s, avg last 60 diffs: 7.441654545610601, lendiffs: 110, lenbaddies: 91
+7.858786 initial, -0.5778373402711257% yield on badboi EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v <-> DUSTawucrTsGU8hcqRdHDCbuYhCPADMLM2VcCb8VnFnQ, time since last arb checked: 3.8949999809265137s, avg last 60 diffs: 7.40970270268552, lendiffs: 111, lenbaddies: 91
+1.616708213743791 initial, -0.21886638814886394% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 15.102999925613403s, avg last 60 diffs: 7.656472221568778, lendiffs: 108, lenbaddies: 91
+EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v@ 0.166154: 0.665%
+TransactionInstruction {
+  keys: [
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: false },
+    { pubkey: [PublicKey], isSigner: false, isWritable: false },
+    { pubkey: [PublicKey], isSigner: false, isWritable: false },
+    { pubkey: [PublicKey], isSigner: false, isWritable: false }
+  ],
+  programId: PublicKey {
+    _bn: <BN: 69b8b985aab532a45090de8557fcddcbe6cb7efc73a0a65b06f92035db73eec>
+  },
+  data: <Buffer 13 0a 89 02 00 00 00 00 00>
+} TransactionInstruction {
+  keys: [
+    { pubkey: [PublicKey], isSigner: true, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: true, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: false },
+    { pubkey: [PublicKey], isSigner: false, isWritable: false },
+    { pubkey: [PublicKey], isSigner: false, isWritable: false }
+  ],
+  programId: PublicKey {
+    _bn: <BN: 8c97258f4e2489f1bb3d1029148e0d830b5a1399daff1084048e7bd8dbe9f859>
+  },
+  data: <Buffer >
+} TransactionInstruction {
+  keys: [
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true }
+  ],
+  programId: PublicKey {
+    _bn: <BN: 479d51fa9cd4af6f7ab0ab06e482dc64c328daa59272abe2f4e9882575e0e78>
+  },
+  data: <Buffer e4 55 b9 70 4e 4f 4d 02>
+} TransactionInstruction {
+  keys: [
+    { pubkey: [PublicKey], isSigner: false, isWritable: false },
+    { pubkey: [PublicKey], isSigner: false, isWritable: false },
+    { pubkey: [PublicKey], isSigner: false, isWritable: false },
+    { pubkey: [PublicKey], isSigner: false, isWritable: false },
+    { pubkey: [PublicKey], isSigner: true, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true }
+  ],
+  programId: PublicKey {
+    _bn: <BN: 479d51fa9cd4af6f7ab0ab06e482dc64c328daa59272abe2f4e9882575e0e78>
+  },
+  data: <Buffer bb c0 76 d4 3e 6d 1c d5 01 8b 8a 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00>
+} TransactionInstruction {
+  keys: [
+    { pubkey: [PublicKey], isSigner: false, isWritable: false },
+    { pubkey: [PublicKey], isSigner: false, isWritable: false },
+    { pubkey: [PublicKey], isSigner: true, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: false },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true }
+  ],
+  programId: PublicKey {
+    _bn: <BN: 479d51fa9cd4af6f7ab0ab06e482dc64c328daa59272abe2f4e9882575e0e78>
+  },
+  data: <Buffer 7b e5 b8 3f 0c 00 5c 91 00 b1 6c 02 00 00 00 00 00 00 00>
+} TransactionInstruction {
+  keys: [
+    { pubkey: [PublicKey], isSigner: true, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: true, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: false },
+    { pubkey: [PublicKey], isSigner: false, isWritable: false },
+    { pubkey: [PublicKey], isSigner: false, isWritable: false }
+  ],
+  programId: PublicKey {
+    _bn: <BN: 8c97258f4e2489f1bb3d1029148e0d830b5a1399daff1084048e7bd8dbe9f859>
+  },
+  data: <Buffer >
+} TransactionInstruction {
+  keys: [
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true }
+  ],
+  programId: PublicKey {
+    _bn: <BN: 479d51fa9cd4af6f7ab0ab06e482dc64c328daa59272abe2f4e9882575e0e78>
+  },
+  data: <Buffer e4 55 b9 70 4e 4f 4d 02>
+} TransactionInstruction {
+  keys: [
+    { pubkey: [PublicKey], isSigner: false, isWritable: false },
+    { pubkey: [PublicKey], isSigner: false, isWritable: false },
+    { pubkey: [PublicKey], isSigner: false, isWritable: false },
+    { pubkey: [PublicKey], isSigner: false, isWritable: false },
+    { pubkey: [PublicKey], isSigner: true, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true }
+  ],
+  programId: PublicKey {
+    _bn: <BN: 479d51fa9cd4af6f7ab0ab06e482dc64c328daa59272abe2f4e9882575e0e78>
+  },
+  data: <Buffer bb c0 76 d4 3e 6d 1c d5 01 0a 89 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00>
+} TransactionInstruction {
+  keys: [
+    { pubkey: [PublicKey], isSigner: false, isWritable: false },
+    { pubkey: [PublicKey], isSigner: false, isWritable: false },
+    { pubkey: [PublicKey], isSigner: true, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: false },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true }
+  ],
+  programId: PublicKey {
+    _bn: <BN: 479d51fa9cd4af6f7ab0ab06e482dc64c328daa59272abe2f4e9882575e0e78>
+  },
+  data: <Buffer 7b e5 b8 3f 0c 00 5c 91 00 42 6b 02 00 00 00 00 00 00 00>
+} TransactionInstruction {
+  keys: [
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: true },
+    { pubkey: [PublicKey], isSigner: false, isWritable: false },
+    { pubkey: [PublicKey], isSigner: false, isWritable: false },
+    { pubkey: [PublicKey], isSigner: true, isWritable: false },
+    { pubkey: [PublicKey], isSigner: false, isWritable: false },
+    { pubkey: [PublicKey], isSigner: false, isWritable: false }
+  ],
+  programId: PublicKey {
+    _bn: <BN: 69b8b985aab532a45090de8557fcddcbe6cb7efc73a0a65b06f92035db73eec>
+  },
+  data: <Buffer 14 0a 89 02 00 00 00 00 00 00>
+}
+8kFJYQDLACzRKCxeorfimpC9uwb8k3n55RsQLwkaDQHB
+9
+33
+52
+SendTransactionError: failed to send transaction: encoded solana_sdk::transaction::versioned::VersionedTransaction too large: 1748 bytes (max: encoded/raw 1644/1232)
+    at Connection.sendEncodedTransaction (/Users/jarettdunn/newapi22/node_modules/@solana/web3.js/lib/index.cjs.js:6744:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async Connection.sendRawTransaction (/Users/jarettdunn/newapi22/node_modules/@solana/web3.js/lib/index.cjs.js:6701:20)
+    at async Connection.sendTransaction (/Users/jarettdunn/newapi22/node_modules/@solana/web3.js/lib/index.cjs.js:6648:14)
+    at async sendAndConfirmTransaction (/Users/jarettdunn/newapi22/node_modules/@solana/web3.js/lib/index.cjs.js:2218:21)
+    at async file:///Users/jarettdunn/newapi22/jupjup.mjs:635:3 {
+  logs: undefined
+}
+2.1223040502374997 initial, -0.2015684486641467% yield on badboi Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 4.01800012588501s, avg last 60 diffs: 13.009630771783682, lendiffs: 65, lenbaddies: 91
+3.5409067416126927 initial, -0.21878597099552755% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 10.15999984741211s, avg last 60 diffs: 7.600761061221098, lendiffs: 113, lenbaddies: 91
+3.924715713225 initial, -0.20153697466154252% yield on badboi Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 7.940000057220459s, avg last 60 diffs: 12.506140846601674, lendiffs: 71, lenbaddies: 91
+3.3951480829125 initial, -0.2015304776965876% yield on badboi Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.6730000972747803s, avg last 60 diffs: 12.22920548099361, lendiffs: 73, lenbaddies: 91
+8.657368949137501 initial, -0.20152735681016054% yield on badboi Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.881999969482422s, avg last 60 diffs: 12.056453332901, lendiffs: 75, lenbaddies: 91
+8.8536 initial, -0.5626637751874997% yield on badboi EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v <-> DUSTawucrTsGU8hcqRdHDCbuYhCPADMLM2VcCb8VnFnQ, time since last arb checked: 5.680999994277954s, avg last 60 diffs: 7.721316237734933, lendiffs: 117, lenbaddies: 91
+5.519401 initial, -0.2017791423380877% yield on badboi EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v <-> Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB, time since last arb checked: 3.495000123977661s, avg last 60 diffs: 7.685499999482753, lendiffs: 118, lenbaddies: 91
+2.188655 initial, -0.24480788429424027% yield on badboi EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v <-> So11111111111111111111111111111111111111112, time since last arb checked: 16.763999938964844s, avg last 60 diffs: 7.733291665712993, lendiffs: 120, lenbaddies: 91
+3.845841934610666 initial, -0.21880499438700074% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 7.730000019073486s, avg last 60 diffs: 7.709851239338394, lendiffs: 121, lenbaddies: 91
+9.439470216776852 initial, -0.2189225638848047% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.687000036239624s, avg last 60 diffs: 7.668680327837585, lendiffs: 122, lenbaddies: 91
+6.249462 initial, -0.20304147781040616% yield on badboi EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 16.343000173568726s, avg last 60 diffs: 7.641447999954224, lendiffs: 125, lenbaddies: 91
+6.2459897133258355 initial, -0.21884801639420193% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 4.758000135421753s, avg last 60 diffs: 7.5231953132897615, lendiffs: 128, lenbaddies: 91
+0.07811597084221769 initial, 0.03775406838331108% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 10.448999881744385s, avg last 60 diffs: 7.512253845655001, lendiffs: 130, lenbaddies: 91
+3.7506031959375 initial, -0.20152861033625458% yield on badboi Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 9.54699993133545s, avg last 60 diffs: 11.468813954397689, lendiffs: 86, lenbaddies: 91
+/Users/jarettdunn/newapi22/node_modules/@solana/web3.js/lib/index.cjs.js:5308
+          throw new TransactionExpiredBlockheightExceededError(rawSignature);
+                ^
+
+TransactionExpiredBlockheightExceededError: Signature 4KvX9zC9aUomzyL3SBjLE3p8tar3gy5DiQyrK3J9GLLuQD7n8Yc9y5Am6e3HDMPigNo82QmXB3V2wPnJGFtpjySY has expired: block height exceeded.
+    at Connection.confirmTransaction (/Users/jarettdunn/newapi22/node_modules/@solana/web3.js/lib/index.cjs.js:5308:17)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async Object.sendAndConfirmTransaction (/Users/jarettdunn/newapi22/node_modules/@solana/web3.js/lib/index.cjs.js:2219:101)
+    at async Token.approve (/Users/jarettdunn/newapi22/node_modules/@solana/spl-token/lib/index.cjs.js:627:5) {
+  signature: '4KvX9zC9aUomzyL3SBjLE3p8tar3gy5DiQyrK3J9GLLuQD7n8Yc9y5Am6e3HDMPigNo82QmXB3V2wPnJGFtpjySY'
+}
+1.7206706200625 initial, -0.20158519791975138% yield on badboi Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 18.342000007629395s, avg last 60 diffs: 11.367166667514377, lendiffs: 90, lenbaddies: 91
+6.263042070331364 initial, -0.21884671035101722% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 12.543999910354614s, avg last 60 diffs: 7.822443608950851, lendiffs: 133, lenbaddies: 91
+3.1501851499 initial, -0.20153033664390696% yield on badboi Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 9.339999914169312s, avg last 60 diffs: 11.36867391285689, lendiffs: 92, lenbaddies: 91
+9.763797818176975 initial, -0.2189151043041182% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 7.309000015258789s, avg last 60 diffs: 7.818611940341209, lendiffs: 134, lenbaddies: 91
+3.1165844397899387 initial, -0.2188249014536292% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.7910001277923584s, avg last 60 diffs: 7.781370371359366, lendiffs: 135, lenbaddies: 91
+9.577634348654708 initial, -0.21890975139748914% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 11.88099980354309s, avg last 60 diffs: 7.81151470541954, lendiffs: 136, lenbaddies: 91
+4.6290339835125005 initial, -0.23291684859956252% yield on badboi Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS <-> So11111111111111111111111111111111111111112, time since last arb checked: 22.96299982070923s, avg last 60 diffs: 11.458819148388315, lendiffs: 94, lenbaddies: 91
+7.336618091952484 initial, -0.21887125652090278% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 8.855000019073486s, avg last 60 diffs: 7.82011594288591, lendiffs: 138, lenbaddies: 91
+7.8600935166875 initial, -0.20151532982873865% yield on badboi Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.0920000076293945s, avg last 60 diffs: 11.370747367959273, lendiffs: 95, lenbaddies: 91
+6.3195139804250005 initial, -0.2015147421059016% yield on badboi Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 7.509000062942505s, avg last 60 diffs: 11.330520833532015, lendiffs: 96, lenbaddies: 91
+0.32846949603000003 initial, 0.0669796442771986% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 8.407000064849854s, avg last 60 diffs: 11.300381444164158, lendiffs: 97, lenbaddies: 91
+2.43014905224 initial, -0.20151732629264396% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 4.507999897003174s, avg last 60 diffs: 11.2310714283768, lendiffs: 98, lenbaddies: 91
+7.549068932498076 initial, -0.21888162807677247% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 14.056999921798706s, avg last 60 diffs: 7.8649857146399365, lendiffs: 140, lenbaddies: 91
+5.408414287875 initial, -0.23945009684323004% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> So11111111111111111111111111111111111111112, time since last arb checked: 3.2669999599456787s, avg last 60 diffs: 10.92595098065395, lendiffs: 102, lenbaddies: 91
+2.0843626660431216 initial, -0.22006509173526645% yield on badboi 9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6 <-> USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX, time since last arb checked: 12.264999866485596s, avg last 60 diffs: 7.860359154956441, lendiffs: 142, lenbaddies: 91
+9.25668398533296 initial, -0.9580066569052303% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB, time since last arb checked: 13.408999919891357s, avg last 60 diffs: 7.899160838627315, lendiffs: 143, lenbaddies: 91
+3.15233232777 initial, -0.27469511982340933% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> DUSTawucrTsGU8hcqRdHDCbuYhCPADMLM2VcCb8VnFnQ, time since last arb checked: 8.45199990272522s, avg last 60 diffs: 10.711575472129965, lendiffs: 106, lenbaddies: 91
+2.66477578887168 initial, -0.6289746159171883% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.5399999618530273s, avg last 60 diffs: 7.862689654580478, lendiffs: 145, lenbaddies: 91
+3.9483711881550003 initial, -0.24241223858875172% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> So11111111111111111111111111111111111111112, time since last arb checked: 3.8469998836517334s, avg last 60 diffs: 10.620768518359572, lendiffs: 108, lenbaddies: 91
+7.990643890716631 initial, -0.8720084300107733% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 9.888000011444092s, avg last 60 diffs: 7.876561643326119, lendiffs: 146, lenbaddies: 91
+8.36366483554041 initial, -0.8462314880383071% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.3940000534057617s, avg last 60 diffs: 7.839265305979723, lendiffs: 147, lenbaddies: 91
+3.93048050696268 initial, -0.8918357713720848% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.050999879837036s, avg last 60 diffs: 7.804617449741236, lendiffs: 149, lenbaddies: 91
+2.18076632415 initial, -0.20144999977071976% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.2239999771118164s, avg last 60 diffs: 10.4653839298657, lendiffs: 112, lenbaddies: 91
+1.9577235179249999 initial, -0.20146552891086023% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.1089999675750732s, avg last 60 diffs: 10.40028318683658, lendiffs: 113, lenbaddies: 91
+5.22521124923985 initial, -0.746042839519856% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 8.32099986076355s, avg last 60 diffs: 7.744526315676539, lendiffs: 152, lenbaddies: 91
+3.1129959510450003 initial, -0.24151213969539898% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> So11111111111111111111111111111111111111112, time since last arb checked: 3.2009999752044678s, avg last 60 diffs: 10.337131579717001, lendiffs: 114, lenbaddies: 91
+4.745149074405 initial, -0.2386731417162058% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> So11111111111111111111111111111111111111112, time since last arb checked: 2.4049999713897705s, avg last 60 diffs: 10.268156522253285, lendiffs: 115, lenbaddies: 91
+3.9944968904652898 initial, -0.8417996404987305% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 8.615999937057495s, avg last 60 diffs: 7.750222221698636, lendiffs: 153, lenbaddies: 91
+7.48237987413 initial, -0.20154720895875222% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.671999931335449s, avg last 60 diffs: 10.162428571396514, lendiffs: 119, lenbaddies: 91
+0.68679603702 initial, -0.20152248490037383% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 4.631999969482422s, avg last 60 diffs: 9.895362903994899, lendiffs: 124, lenbaddies: 91
+4.155781447260001 initial, -0.20148540440019236% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.5759999752044678s, avg last 60 diffs: 9.723055118650901, lendiffs: 127, lenbaddies: 91
+2.979751287645 initial, -0.20146681804925626% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 4.203999996185303s, avg last 60 diffs: 9.67993750050664, lendiffs: 128, lenbaddies: 91
+6.99233070780222 initial, -0.802336486267019% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 13.557000160217285s, avg last 60 diffs: 7.727944100125236, lendiffs: 161, lenbaddies: 91
+8.233519163085 initial, -0.2015733555878585% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.4630000591278076s, avg last 60 diffs: 9.574815385158246, lendiffs: 130, lenbaddies: 91
+8.245431580005 initial, -0.20157321710491116% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.009000062942505s, avg last 60 diffs: 9.524694657507743, lendiffs: 131, lenbaddies: 91
+5.085208976085 initial, -0.20127704236218014% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.555000066757202s, avg last 60 diffs: 9.331259259471187, lendiffs: 135, lenbaddies: 91
+5.876719677990001 initial, -0.20129280726635113% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.327000141143799s, avg last 60 diffs: 9.287110295365839, lendiffs: 136, lenbaddies: 91
+9.776097151425 initial, -0.20138597990640994% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 13.98799991607666s, avg last 60 diffs: 9.321423358290735, lendiffs: 137, lenbaddies: 91
+6.401228035140001 initial, -0.22871412047235085% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> So11111111111111111111111111111111111111112, time since last arb checked: 3.0149998664855957s, avg last 60 diffs: 9.275724637335625, lendiffs: 138, lenbaddies: 91
+9.7777782268122 initial, -1.7645976306504108% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> AG5j4hhrd1ReYi7d1JsZL8ZpcoHdjXvc8sdpWF74RaQh, time since last arb checked: 3.2790000438690186s, avg last 60 diffs: 7.640165680258937, lendiffs: 169, lenbaddies: 91
+9.50654640783243 initial, -0.8028544807681892% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.7339999675750732s, avg last 60 diffs: 7.564505814119827, lendiffs: 172, lenbaddies: 91
+3.179284271055 initial, -0.20124730550995507% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 25.972000122070312s, avg last 60 diffs: 9.39584172715386, lendiffs: 139, lenbaddies: 91
+0.15494242279499998 initial, -0.9048839205612613% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> 4t5wBE1Urg4wCB4jRJ7fdW2XZ3ohrDNUZhmhmNpAuqRm, time since last arb checked: 3.4769999980926514s, avg last 60 diffs: 9.344605633910273, lendiffs: 142, lenbaddies: 91
+6.965311777379999 initial, -0.23164167241439548% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> So11111111111111111111111111111111111111112, time since last arb checked: 2.244999885559082s, avg last 60 diffs: 9.29061805539661, lendiffs: 144, lenbaddies: 91
+9.938248826535 initial, -0.20137049060963141% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.5820000171661377s, avg last 60 diffs: 9.251248275822606, lendiffs: 145, lenbaddies: 91
+6.83512566218625 initial, -1.081385894086373% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 49.003000020980835s, avg last 60 diffs: 7.804034682367578, lendiffs: 173, lenbaddies: 91
+3.32094405443394 initial, -0.941563887728003% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX, time since last arb checked: 3.23799991607666s, avg last 60 diffs: 7.751897142955235, lendiffs: 175, lenbaddies: 91
+9.80248107483 initial, -0.22976619998616998% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> So11111111111111111111111111111111111111112, time since last arb checked: 20.194000005722046s, avg last 60 diffs: 9.326198630136986, lendiffs: 146, lenbaddies: 91
+5.20517850239211 initial, -0.7876416456616964% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 9.197999954223633s, avg last 60 diffs: 7.760113636201078, lendiffs: 176, lenbaddies: 91
+6.16710384108 initial, -0.2012684517701646% yield on badboi Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 4.872999906539917s, avg last 60 diffs: 9.261342282263225, lendiffs: 149, lenbaddies: 91
+0.6296082298650001 initial, -0.2033167732376162% yield on badboi USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX <-> Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS, time since last arb checked: 35.66799998283386s, avg last 60 diffs: 9.395562914033599, lendiffs: 151, lenbaddies: 91
+3.73566404093553 initial, -0.9011120766598602% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.0260000228881836s, avg last 60 diffs: 7.8496408844521035, lendiffs: 181, lenbaddies: 91
+0.024699028945 initial, -0.07675217127852685% yield on badboi USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.9649999141693115s, avg last 60 diffs: 9.34438311744046, lendiffs: 154, lenbaddies: 91
+9.803064044181001 initial, -0.20241664384288427% yield on badboi USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.0220000743865967s, avg last 60 diffs: 9.270115384688744, lendiffs: 156, lenbaddies: 91
+5.674622603198 initial, -0.20221602459576937% yield on badboi USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.062999963760376s, avg last 60 diffs: 9.195088608355462, lendiffs: 158, lenbaddies: 91
+4.862645643435 initial, -0.2035018820538581% yield on badboi USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX <-> 7kbnvuGBxxj8AG9qp8Scn56muWGaRaFqxg1FsRp3PaFT, time since last arb checked: 2.634999990463257s, avg last 60 diffs: 9.110199999809264, lendiffs: 160, lenbaddies: 91
+4.111763239804111 initial, -0.475775423569913% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> So11111111111111111111111111111111111111112, time since last arb checked: 2.2200000286102295s, avg last 60 diffs: 7.845075268899241, lendiffs: 186, lenbaddies: 91
+8.64627321277137 initial, -1.3070752454978907% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX, time since last arb checked: 3.2910001277923584s, avg last 60 diffs: 7.8207219258986695, lendiffs: 187, lenbaddies: 91
+7.60775105241459 initial, -0.7750312683912797% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 11.910999774932861s, avg last 60 diffs: 7.842478722968, lendiffs: 188, lenbaddies: 91
+9.84464520182088 initial, -0.8762677863487056% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.3940000534057617s, avg last 60 diffs: 7.813650793499416, lendiffs: 189, lenbaddies: 91
+0.88202727990333 initial, -0.3277746782828328% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 4.0329999923706055s, avg last 60 diffs: 7.746239583939314, lendiffs: 192, lenbaddies: 91
+9.567580678618 initial, -4.339864736201804% yield on badboi USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX <-> isktkk27QaTpoRUhwwS5n9YUoYf8ydCuoTz5R2tFEKu, time since last arb checked: 27.877000093460083s, avg last 60 diffs: 9.152380368460907, lendiffs: 163, lenbaddies: 91
+7.75707404923308 initial, -0.9929336479970186% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> 7kbnvuGBxxj8AG9qp8Scn56muWGaRaFqxg1FsRp3PaFT, time since last arb checked: 15.373000144958496s, avg last 60 diffs: 7.7655487182812815, lendiffs: 195, lenbaddies: 91
+2.22271624922325 initial, -0.560663012752749% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 5.490000009536743s, avg last 60 diffs: 7.753938775889727, lendiffs: 196, lenbaddies: 91
+3.6474663032781596 initial, -0.40496893353927366% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.299999952316284s, avg last 60 diffs: 7.726253807242147, lendiffs: 197, lenbaddies: 91
+3.310189700649 initial, -0.20215866999065968% yield on badboi USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.8560001850128174s, avg last 60 diffs: 9.116863096044177, lendiffs: 168, lenbaddies: 91
+5.437846167891 initial, -0.20221391299976021% yield on badboi USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 4.607999801635742s, avg last 60 diffs: 9.090183431580222, lendiffs: 169, lenbaddies: 91
+3.492585544932 initial, -0.3744014575377985% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.9179999828338623s, avg last 60 diffs: 7.703860000371933, lendiffs: 200, lenbaddies: 91
+9.569242911792001 initial, -0.20239960095623788% yield on badboi USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.61299991607666s, avg last 60 diffs: 8.987445087102108, lendiffs: 173, lenbaddies: 91
+0.9610715078844 initial, -0.3588698235662213% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.3420000076293945s, avg last 60 diffs: 7.682103448313446, lendiffs: 203, lenbaddies: 91
+3.85902183413505 initial, -0.7611590215400699% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.6369998455047607s, avg last 60 diffs: 7.64092195092178, lendiffs: 205, lenbaddies: 91
+7.716003235373069 initial, -0.7494674279704849% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.2179999351501465s, avg last 60 diffs: 7.604685990706734, lendiffs: 207, lenbaddies: 91
+6.21318018482667 initial, -0.6864661132326422% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 4.300999879837036s, avg last 60 diffs: 7.588802884404476, lendiffs: 208, lenbaddies: 91
+8.435138931706001 initial, -0.2023596641406833% yield on badboi USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 4.236000061035156s, avg last 60 diffs: 8.944567416491134, lendiffs: 178, lenbaddies: 91
+9.74013471012351 initial, -0.935722831816399% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 4.074000120162964s, avg last 60 diffs: 7.601328571637471, lendiffs: 210, lenbaddies: 91
+3.74280059064714 initial, -0.6030394230283398% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS, time since last arb checked: 3.0220000743865967s, avg last 60 diffs: 7.588108491222814, lendiffs: 212, lenbaddies: 91
+0.14094452974635 initial, -0.030745885915539617% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So, time since last arb checked: 3.998999834060669s, avg last 60 diffs: 7.571258215837076, lendiffs: 213, lenbaddies: 91
+8.735759687884 initial, -0.577176366640797% yield on badboi USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX <-> DUSTawucrTsGU8hcqRdHDCbuYhCPADMLM2VcCb8VnFnQ, time since last arb checked: 13.33299994468689s, avg last 60 diffs: 8.928568305865012, lendiffs: 183, lenbaddies: 91
+8.929844866859002 initial, -0.20236688360697475% yield on badboi USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.1050000190734863s, avg last 60 diffs: 8.89148369561071, lendiffs: 184, lenbaddies: 91
+4.0173042915120005 initial, -0.20216530465864135% yield on badboi USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.9100000858306885s, avg last 60 diffs: 8.859151351774061, lendiffs: 185, lenbaddies: 91
+0.27975871966119004 initial, -0.13216581117392323% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS, time since last arb checked: 2.8420000076293945s, avg last 60 diffs: 7.477878378318237, lendiffs: 222, lenbaddies: 91
+4.71670721623365 initial, -0.7171090676085901% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS, time since last arb checked: 2.802999973297119s, avg last 60 diffs: 7.456914798026662, lendiffs: 223, lenbaddies: 91
+1.5380226504120003 initial, -1.3793635842305085% yield on badboi USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX <-> AG5j4hhrd1ReYi7d1JsZL8ZpcoHdjXvc8sdpWF74RaQh, time since last arb checked: 2.3399999141693115s, avg last 60 diffs: 8.74020312478145, lendiffs: 192, lenbaddies: 91
+2.2789476510411597 initial, -2.054002183141612% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> 4t5wBE1Urg4wCB4jRJ7fdW2XZ3ohrDNUZhmhmNpAuqRm, time since last arb checked: 2.864999771118164s, avg last 60 diffs: 7.44443171770037, lendiffs: 227, lenbaddies: 91
+8.97261885426126 initial, -6.63397245361057% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> isktkk27QaTpoRUhwwS5n9YUoYf8ydCuoTz5R2tFEKu, time since last arb checked: 2.69100022315979s, avg last 60 diffs: 7.423583333952385, lendiffs: 228, lenbaddies: 91
+2.3799137610864 initial, -0.6474231319027468% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 4.991999864578247s, avg last 60 diffs: 7.41296506552717, lendiffs: 229, lenbaddies: 91
+1.86777431877003 initial, -0.4100765768625503% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 2.9040000438690186s, avg last 60 diffs: 7.393360869780831, lendiffs: 230, lenbaddies: 91
+7.51335490405896 initial, -1.8578040404736207% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> AG5j4hhrd1ReYi7d1JsZL8ZpcoHdjXvc8sdpWF74RaQh, time since last arb checked: 3.8420000076293945s, avg last 60 diffs: 7.365094421247556, lendiffs: 233, lenbaddies: 91
+7.52928346783635 initial, -0.914178694480472% yield on badboi 9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 3.736999988555908s, avg last 60 diffs: 7.3591191494718515, lendiffs: 235, lenbaddies: 91
+7.904398654829 initial, -0.202352571112141% yield on badboi USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX <-> EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, time since last arb checked: 28.615000009536743s, avg last 60 diffs: 8.887282051184238, lendiffs: 195, lenbaddies: 91
+2.710388923409 initial, -0.44045144340336684% yield on badboi USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX <-> DUSTawucrTsGU8hcqRdHDCbuYhCPADMLM2VcCb8VnFnQ, time since last arb checked: 3.4630000591278076s, avg last 60 diffs: 8.835203046120968, lendiffs: 197, lenbaddies: 91

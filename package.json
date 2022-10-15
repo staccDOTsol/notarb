@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "rm -rf ../node_modules/@solana/* && cp -r @solana/* ../node_modules/@solana/",
+    "start": "./blarg.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "zhengyutay",
