@@ -116,7 +116,7 @@ console.log(mints.length)
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
-      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&swapMode=ExactIn&slippage=5`
+      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}`
     )
     .json();
 
@@ -254,12 +254,12 @@ await market.loadReserves();
 market.refreshAll();
 for (var reserve of market.reserves){//["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "So11111111111111111111111111111111111111112"]){
   reserve = market.reserves[Math.floor(Math.random()* market.reserves.length)]//market.reserves.find(res => res.config.liquidityToken.mint ===ç);
-var USDC_MINT = reserve.config.liquidityToken.mint
+var USDC_MINT = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"//reserve.config.liquidityToken.mint
     if (USDC_MINT != "SoLEao8wTzSfqhuou8rcYsVoLjthVmiXuEjzdNPMnCz" ){
   try {
   
-var dec = reserve.config.liquidityToken.decimals
-let min = ( reserve.stats.borrowFeePercentage * 100)
+var dec = 6// reserve.config.liquidityToken.decimals
+let min = 0.001//( reserve.stats.borrowFeePercentage * 100)
     
     let cba = -1
     abc++
@@ -269,7 +269,7 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
       let dothethings = []
       cba++
       try {
-        const initial = Math.floor(Math.random() * ((5 / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec);
+        const initial = Math.floor(Math.random() * 30 * 10 ** dec)//Math.floor(Math.random() * ((5 / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec);
    
         // 0.1 SOL
         try {
@@ -280,6 +280,7 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
              let solToUsdc
                 try {
          usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, initial);
+         usdcToSol.data[0] = usdcToSol.data.find(res => res.marketInfos.length <= 3);
       } catch (err){
            
         //baddies.puah(USDC_MINT+SOL_MINT)
@@ -301,6 +302,8 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
           USDC_MINT,
           Math.floor(usdcToSol.data[0].outAmount * 0.998)
         );
+
+        solToUsdc.data[0] = solToUsdc.data.find(res => res.marketInfos.length <= 3);
       } catch (err){
            
         //baddies.puah(SOL_MINT + USC_MINT)
@@ -341,12 +344,12 @@ if (returns > min && gogo){
   if (true){//false){//returns >11111.000 ) {
     console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
 
-    const delegate = Keypair.generate();
+    //const delegate = Keypair.generate();
 
-    const tokenAccount = await createWSolAccount((USDC_MINT))// (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
+//    const tokenAccount = await createWSolAccount((USDC_MINT))// (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
     
-    const token = new Token(connection2, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
-      token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
+  //  const token = new Token(connection2, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
+  //    token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
 
 
  let   instructions  = [(
@@ -359,6 +362,7 @@ if (returns > min && gogo){
     SOLEND_PRODUCTION_PROGRAM_ID
   )
 )]
+instructions = []
   let signers = []
 
              // get routes based on from Token amount 10 USDC -> ? PRISM
@@ -386,7 +390,7 @@ if (returns > min && gogo){
                       })
                     );
                 }
-                      
+                      /*
                       instructions.push(
                         flashRepayReserveLiquidityInstruction(
                           initial,
@@ -399,7 +403,7 @@ if (returns > min && gogo){
                           new PublicKey(market.config.address),
                           delegate.publicKey,
                           SOLEND_PRODUCTION_PROGRAM_ID
-                        )) 
+                        ))  */
     console.log(...instructions)
   var blockhash = await connection
     .getLatestBlockhash()
@@ -629,7 +633,7 @@ console.log(err)
 }
   const transaction = new VersionedTransaction(messageV00);
   // sign your transaction with the required `Signers`
- await transaction.sign([payer, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
+ await transaction.sign([payer])//, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
  try {
 
   await sendAndConfirmTransaction(connection, transaction)

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf ../node_modules/@solana/* && cp -r @solana/* ../node_modules/@solana/",
+    "build": "rm -rf ./node_modules/@solana/buffer-layout && cp -r @solana/buffer-layout ./node_modules/@solana/buffer-layout",
     "start": "./blarg.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
