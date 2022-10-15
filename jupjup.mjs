@@ -269,7 +269,7 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
       let dothethings = []
       cba++
       try {
-        const initial = Math.floor(Math.random() * (40 / (min / 10)) * 10 ** dec + 1.02666 * 10 ** dec);
+        const initial = Math.floor(Math.random() * ((reserve.stats.assetPriceUSD /  40 )/ (min)) * 10 ** dec);
 
         // 0.1 SOL
         try {
@@ -297,13 +297,13 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
             t+=avg 
         }
         let nowavg = t / avgs.length 
-      console.log(returns.toString() + '% yield on badboi ' + USDC_MINT + ' <-> ' + SOL_MINT+', time since last arb checked: ' + diff.toString() + 's, avg last 60 diffs: ' + nowavg.toString() + ', lendiffs: ' + avgs.length.toString()+ ', lenbaddies: ' + baddies.length.toString())
+      console.log((initial / 10 ** 6 * reserve.stats.assetPriceUSD).toString() + ' initial, ' + returns.toString() + '% yield on badboi ' + USDC_MINT + ' <-> ' + SOL_MINT+', time since last arb checked: ' + diff.toString() + 's, avg last 60 diffs: ' + nowavg.toString() + ', lendiffs: ' + avgs.length.toString()+ ', lenbaddies: ' + baddies.length.toString())
 //console.log(initial / 10 ** dec)
 let gogo = true 
 for (var maybego of  dothethings){
   gogo = maybego
 }
-if (returns > min / 100 && gogo){
+if (returns > min && gogo){
   
   if (true){
   // when outAmount more than initial
