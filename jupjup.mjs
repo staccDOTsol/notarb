@@ -321,7 +321,7 @@ if (returns > min && gogo){
     const tokenAccount = await createWSolAccount((USDC_MINT))// (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
     
     const token = new Token(connection2, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
-      token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
+      token.approve(tokenAccount.publicKey, delegate.publicKey, payer, [], initial * 1.01);
 
 
  let   instructions  = [(
@@ -596,10 +596,10 @@ console.log(err)
 }
   const transaction = new VersionedTransaction(messageV00);
   // sign your transaction with the required `Signers`
- await transaction.sign([payer,payer2])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
+ await transaction.sign([payer,payer2, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
  try {
 
-  await sendAndConfirmTransaction(connection, transaction, [payer, payer2], {skipPreflight: true})
+  await sendAndConfirmTransaction(connection, transaction, [payer, payer2,delegate], {skipPreflight: true})
 
  } catch (err){
   console.log(err)
