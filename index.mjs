@@ -241,7 +241,6 @@ route = routes[0]
     var tos = {}
   var froms = {}
   if (r.type != "direct"){
-    console.log(r.providers.length)
     tos[Object.values(r.routeData)[0].to] =0
     froms[Object.values(r.routeData)[0].from] = 0
     tos[Object.values(r.routeData)[1].to] =0
@@ -261,8 +260,6 @@ else {
   route = routes[0]
   dothethings.push(true)
   }}  
-console.log(toArr)
-console.log(fromArr)
 
 if (fromArr.length > 0){
 if (Object.keys(fromArr[0]).length > 0){
