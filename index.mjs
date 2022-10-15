@@ -183,68 +183,66 @@ let dec = 6
   await prism.loadRoutes(USDC_MINT, SOL_MINT, true); 
 
 let routes = prism.getRoutes(Math.floor(initial) / 10 ** dec);
-let route 
-var m  = 0
-var dec2 = 0
-var toArr = []
-var fromArr = []
-if (true){
-let  r = routes[0]
-route = routes[0]
-    var tos = {}
-  var froms = {}
-  if (r.type != "direct"){
-    tos[Object.values(r.routeData)[0].to] =0
-    froms[Object.values(r.routeData)[0].from] = 0
-    tos[Object.values(r.routeData)[1].to] =0
-    froms[Object.values(r.routeData)[1].from] = 0
-    for (var i =  0; i < r.providers.length; i++){
-
-      tos[Object.values(r.routeData)[i].to] += Object.values(r.routeData)[i].amountWithFees
-      froms[Object.values(r.routeData)[i].from] += Object.values(r.routeData)[i].amountIn
-
-      
-    }
-    toArr.push(tos)
-    fromArr.push(froms)
-  }
- 
-else {
-  route = routes[0]
-  dothethings.push(true)
-  }}  
-
-if (fromArr.length > 0){
-if (Object.keys(fromArr[0]).length > 0){
-for (var i in Object.keys(fromArr[0])){
-  var abc2 = Object.keys(fromArr[0])[i]
-if (abc2 != "USDC"){
-var nnn = Object.values(fromArr[0])[i]
-
-for (var b in Object.keys(toArr[0])){
-  var qqq = Object.keys(toArr[0])[b]
-  if (qqq == abc2){
-    var nnn2 = Object.values(toArr[0])[b]
-
-    if(nnn2 - nnn >= 0){
-      dothethings.push(true)
-    }
-    else {
-      dothethings.push(false)
-    }
-
-  }
-}
-}
-}
-}
-}
 
 //console.log(initial / 10 ** dec)
 // 0.1 SOL
 await prism.loadRoutes( SOL_MINT, USDC_MINT ); 
 
-let routes2  = prism.getRoutes((Math.floor(routes[0].amountWithFees* 0.995 * 10 ** 6) / 10 ** 6 ) );
+let routes2 = prism.getRoutes(Math.floor(routes[0].amountWithFees * 0.999) );
+let route2 
+var m  = 0
+var dec2 = 0
+var toArr = []
+var fromArr = []
+if (true){
+let  r = routes2[0]
+ var tos = {}
+var froms = {}
+if (r.type != "direct"){
+ tos[Object.values(r.routeData)[0].to] =0
+ froms[Object.values(r.routeData)[0].from] = 0
+ tos[Object.values(r.routeData)[1].to] =0
+ froms[Object.values(r.routeData)[1].from] = 0
+ for (var i =  0; i < r.providers.length; i++){
+
+   tos[Object.values(r.routeData)[i].to] += Object.values(r.routeData)[i].amountWithFees
+   froms[Object.values(r.routeData)[i].from] += Object.values(r.routeData)[i].amountIn
+
+   
+ }
+ toArr.push(tos)
+ fromArr.push(froms)
+}
+else {
+route2 = routes2[0]
+dothethings.push(true)
+}}  
+if (fromArr.length > 0){
+if (Object.keys(fromArr[0]).length > 0){
+for (var i in Object.keys(fromArr[0])){
+var abc2 = Object.keys(fromArr[0])[i]
+if (abc2 != "USDC"){
+var nnn = Object.values(fromArr[0])[i]
+
+for (var b in Object.keys(toArr[0])){
+var qqq = Object.keys(toArr[0])[b]
+if (qqq == abc2){
+ var nnn2 = Object.values(toArr[0])[b]
+
+ if(nnn2 - nnn >= 0){
+   dothethings.push(true)
+   route2 = routes2[0]
+ }
+ else {
+   dothethings.push(false)
+ }
+
+}
+}
+}
+}
+}
+}
 let returns = ((routes2[0].amountWithFees / (initial / 10 ** dec)) - 1) * 100
 let gogo = true 
 for (var maybego of  dothethings){
