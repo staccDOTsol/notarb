@@ -199,7 +199,7 @@ let dec = 6
    route = routes[0]
        var tos = {}
      var froms = {}
-     if (r.type != "direct"){
+     try {
        tos[Object.values(r.routeData)[0].to] =0
        froms[Object.values(r.routeData)[0].from] = 0
        tos[Object.values(r.routeData)[1].to] =0
@@ -215,7 +215,7 @@ let dec = 6
        fromArr.push(froms)
      }
     
-   else {
+   catch (err) {
      route = routes[0]
      dothethings.push(true)
      }}  
