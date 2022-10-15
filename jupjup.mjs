@@ -2,7 +2,25 @@
 import dotenv from "dotenv";
 import bs58 from "bs58";
 import { borrowObligationLiquidityInstruction, flashBorrowReserveLiquidityInstruction, flashRepayReserveLiquidityInstruction, parseObligation, refreshObligationInstruction, refreshReserveInstruction, SolendAction, SolendMarket, SolendReserve, SOLEND_PRODUCTION_PROGRAM_ID } from "@solendprotocol/solend-sdk";
-let baddies = []
+let baddies = [
+    'FjAimNK5WCk8HnqdyZHbGZaQVozicxMgiaqqsTfARisD5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm',
+    'ARSNiYJxBVH5TGRC5d4hz8nLwQWRNq4JnmQUYNheKdq35oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm',
+    '98DHRi1b4Jit14ecXzLRf8DfWiNPeM9uWyTqAKYDxhJu5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm',
+    'GknNAfZpfgheLRqM3StCvvMf1htruqgsrgrMDjFoyZ8M5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm',
+    '6CmdzpTmNyKBUN1RNNwJjm1UYLcJD7Ata6zUjCSv6ouP5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm',
+    '7CnckC1pEB1H9eau6t464YhMUUJJacrrJLWZodvNbXhF5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm',
+    'EpNsdRySp4hV6j8YU46m4hgZCeEX48HBt4FJV1ePEDXF5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm',
+    'pongYbfL2m2dWhqX4543kSwRHMU9DsxyHKrgmhTwvTQ5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm',
+    '58Ur6JymiD7gHrQFqQvf9bKRf6yGVN47oGrwy8FvAdUN5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm',
+    '715F3K2Mqwscuz7jz8cEkbqV5CyDCo7Nwsc4QjoLSFYD5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm',
+    'B9TMNYo2Roc3f4kw7iPMw74eJWH8vTSTzFemBWZyeUa25oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm',
+    'H3wesw6ycAzGYZvpPHWsPUJABcaPpvGNbf51Qs7ManaH5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm',
+    '6R5fT1s5dLEAkZcCnF28Wew912aKje34Fq9cjRDqrcDY5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm',
+    '444B4d1BNR8LqKuS316yv5TpMQQLXZBpmAK1CpBEfFq25oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm',
+    'ELdU5FMU8bqZZANp6WY3eyYVAX3MocANR6RivPPwaCU55oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm',
+    '3Vtm3zxG9n5DZMaUCpeN9YPL9K767UZhrQKvzepVRqyp5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm',
+    'AyWeStsX5W31Jf868NdrD4mtTTiHsQ8tpMvyck9MJiDb5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm'
+  ]
 import {
   Connection,
   Keypair,
