@@ -352,7 +352,7 @@ if (returns > min && gogo){
   //    token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
 
 
- let   instructions  = [(
+/*  instructions  = [(
   flashBorrowReserveLiquidityInstruction(
     initial,
     new PublicKey(reserve.config.liquidityAddress),
@@ -361,8 +361,8 @@ if (returns > min && gogo){
     new PublicKey(market.config.address),
     SOLEND_PRODUCTION_PROGRAM_ID
   )
-)]
-instructions = []
+)]*/
+let instructions = []
   let signers = []
 
              // get routes based on from Token amount 10 USDC -> ? PRISM
