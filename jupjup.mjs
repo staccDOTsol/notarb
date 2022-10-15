@@ -269,7 +269,7 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
       let dothethings = []
       cba++
       try {
-        const initial = Math.floor(Math.random() * ((reserve.stats.assetPriceUSD /  40 )/ (min)) * 10 ** dec);
+        const initial = Math.floor(Math.random() * ((reserve.stats.assetPriceUSD /  5 )/ (min)) * 10 ** dec);
 
         // 0.1 SOL
         try {
@@ -354,7 +354,7 @@ instructions = []
                       })
                     );
                 }
-                      /*
+                      
                       instructions.push(
                         flashRepayReserveLiquidityInstruction(
                           initial,
@@ -367,7 +367,7 @@ instructions = []
                           new PublicKey(market.config.address),
                           delegate.publicKey,
                           SOLEND_PRODUCTION_PROGRAM_ID
-                        )) */
+                        )) 
     
   var blockhash = await connection
     .getLatestBlockhash()
