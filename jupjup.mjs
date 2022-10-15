@@ -398,7 +398,7 @@ for (var key of Object.keys(myluts)){
 for (var bca of messageV0.staticAccountKeys){
   let want = bca.toBase58()
     
-    if ( key.split(',').includes(want)){
+    if ( key.split(',').length < 50 && key.split(',').includes(want)){
       c++
       if (c > w){
         if (!winners.includes(new PublicKey(Object.values(myluts)[vbb]))){
