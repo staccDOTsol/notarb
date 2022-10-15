@@ -208,7 +208,7 @@ const createWSolAccount = async (mint) => {
     wallet.publicKey
   );
 
-  const wsolAccount = await connection.getAccountInfo(wsolAddress);
+  let wsolAccount = await connection.getAccountInfo(wsolAddress);
 
   if (!wsolAccount) {
     const transaction = new Transaction({
@@ -232,11 +232,13 @@ const createWSolAccount = async (mint) => {
       await connection.getRecentBlockhash()
     ).blockhash;
     transaction.partialSign(wallet.payer);
-    const result = await connection.sendTransaction(transaction, [
-      wallet.payer,
+    const result = await sendAndConfirmTransaction(connection, transaction, [
+      payer,
     ]);
     console.log({ result });
   }
+  await sleep(10000)
+  wsolAccount = await connection.getAccountInfo(wsolAddress);
 
   return wsolAccount;
 }
@@ -316,7 +318,7 @@ if (returns > min && gogo){
 
     const delegate = Keypair.generate();
 
-    const tokenAccount = await createWSolAccount(new PublicKey(USDC_MINT))// (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
+    const tokenAccount = await createWSolAccount((USDC_MINT))// (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
     
     const token = new Token(connection2, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
     
@@ -372,7 +374,7 @@ instructions = []
                           delegate.publicKey,
                           SOLEND_PRODUCTION_PROGRAM_ID
                         )) 
-    
+    console.log(...instructions)
   var blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
