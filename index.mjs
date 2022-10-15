@@ -383,7 +383,7 @@ if (returns > 0 && gogo){
                     instructions.push(...serializedTransaction.instructions)
                   }))
               
-                  var swapTransaction2 = await prism.generateSwapTransactions(routes[1]);        // execute swap (sign, send and confirm transaction)
+                  var swapTransaction2 = await prism.generateSwapTransactions(routes2[0]);        // execute swap (sign, send and confirm transaction)
                   //console.log(swapTransaction)
                   await Promise.all(
                     [swapTransaction2.preTransaction, swapTransaction2.mainTransaction, swapTransaction2.postTransaction]
