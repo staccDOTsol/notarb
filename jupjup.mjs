@@ -255,7 +255,7 @@ market.refreshAll();
 for (var reserve of market.reserves){//["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "So11111111111111111111111111111111111111112"]){
   //const reserve = market.reserves.find(res => res.config.liquidityToken.mint ===ç);
 var USDC_MINT = reserve.config.liquidityToken.mint
-    if (true){//!baddies.includes(USDC_MINT+USDC_MINT)){
+    if (USDC_MINT != "SoLEao8wTzSfqhuou8rcYsVoLjthVmiXuEjzdNPMnCz"){//true){//!baddies.includes(USDC_MINT+USDC_MINT)){
   try {
   
 var dec = reserve.config.liquidityToken.decimals
@@ -615,7 +615,7 @@ catch (err){
 }}catch (err){
    
     console.log(baddies)
-    baddies.push(USDC_MINT+SOL_MINT)
+    baddies.push(USDC_MINT)
 }
 }
     }
