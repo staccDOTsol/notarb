@@ -171,7 +171,7 @@ console.log('')
 
 console.log('')
 var markets = [  await SolendMarket.initialize(
-  connection2,
+  connection,
   
   "production", // optional environment argument
   
@@ -184,7 +184,7 @@ for (var amarket of [
 "C3VQi4sKNXVsG36zhUnvNasXPhzGmWWVpaeSPv5Tf2AB"]){
 await sleep(Math.random()*1000)
 let market =  await SolendMarket.initialize(
-    connection2,
+    connection,
     
     "production", // optional environment argument'
     amarket
@@ -304,7 +304,6 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
        if (usdcToSol.data[0] && !baddies.includes(SOL_MINT+USDC_MINT) ){
         try {
 
-          await sleep(Math.random()*(Math.random()*1500)+666)
          solToUsdc = await getCoinQuote(
           SOL_MINT,
           USDC_MINT,
