@@ -165,7 +165,6 @@ const getConfirmTransaction = async (txid) => {
 };
 
 // require wsol to start trading, this function create your wsol account and fund 1 SOL to it
-//await createWSolAccount();
 
 // initial 20 USDC for quote
 let initial = 20_000_000;
@@ -205,8 +204,69 @@ let market =  await SolendMarket.initialize(
 //markets.push(market)
 }
 
+
+// wsol account
+const createWSolAccount = async () => {
+  try {
+  const wsolAddress = await Token.getAssociatedTokenAddress(
+    ASSOCIATED_TOKEN_PROGRAM_ID,
+    TOKEN_PROGRAM_ID,
+    new PublicKey(splToken.NATIVE_MINT),
+    wallet.publicKey
+  );
+
+  const wsolAccount = await connection.getAccountInfo(wsolAddress);
+
+  if (!wsolAccount) {
+    const transaction = new Transaction({
+      feePayer: wallet.publicKey,
+    });
+    const instructions = [];
+
+    instructions.push(
+      await Token.createAssociatedTokenAccountInstruction(
+        ASSOCIATED_TOKEN_PROGRAM_ID,
+        TOKEN_PROGRAM_ID,
+        new PublicKey(splToken.NATIVE_MINT),
+        wsolAddress,
+        wallet.publicKey,
+        wallet.publicKey
+      )
+    );
+
+    // fund 1 sol to the account
+    instructions.push(
+      SystemProgram.transfer({
+        fromPubkey: wallet.publicKey,
+        toPubkey: wsolAddress,
+        lamports: 1_00_000_000, // 1 sol
+      })
+    );
+
+    instructions.push(
+      // This is not exposed by the types, but indeed it exists
+      Token.createSyncNativeInstruction(TOKEN_PROGRAM_ID, wsolAddress)
+    );
+
+    transaction.add(...instructions);
+    transaction.recentBlockhash = await (
+      await connection.getRecentBlockhash()
+    ).blockhash;
+    transaction.partialSign(wallet.payer);
+    const result = await connection.sendTransaction(transaction, [
+      wallet.payer,
+    ]);
+    console.log({ result });
+  }
+
+  return wsolAccount;
+}
+catch (err){
+console.log(err)
+}
+};
 while (true) {
-//  await createWSolAccount();
+ await createWSolAccount();
 
   let abc = -1
 for (var market of markets){
@@ -229,7 +289,7 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
       cba++
       try {
 
-   initial =  Math.floor(Math.random() * (500/ reserve.stats.assetPriceUSD) * 10 ** dec + 0.02666 * 10 ** dec);
+   initial =  Math.floor(Math.random() * (40/ reserve.stats.assetPriceUSD) * 10 ** dec + 1.02666 * 10 ** dec);
    //console.log(initial / 10 ** dec)
  //console.log(USDC_MINT, SOL_MINT)
    await prism.loadRoutes(USDC_MINT, SOL_MINT ); 
@@ -375,6 +435,7 @@ if (returns > min && gogo){
     SOLEND_PRODUCTION_PROGRAM_ID
   )
 )]
+instructions = []
   let signers = []
 
              // get routes based on from Token amount 10 USDC -> ? PRISM
@@ -396,7 +457,7 @@ if (returns > min && gogo){
                       .map(async (serializedTransaction) => {
                         instructions.push(...serializedTransaction.instructions)
                       }))
-                      
+                      /*
                       instructions.push(
                         flashRepayReserveLiquidityInstruction(
                           initial,
@@ -409,7 +470,7 @@ if (returns > min && gogo){
                           new PublicKey(market.config.address),
                           delegate.publicKey,
                           SOLEND_PRODUCTION_PROGRAM_ID
-                        )) 
+                        )) */
     
   var blockhash = await connection
     .getLatestBlockhash()
@@ -630,9 +691,9 @@ console.log(err)
 }
   const transaction = new VersionedTransaction(messageV00);
   // sign your transaction with the required `Signers`
- await transaction.sign([payer,payer2,delegate, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
+ await transaction.sign([payer,payer2, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
  try {
- await  token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
+// await  token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
 
 
    
