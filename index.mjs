@@ -175,7 +175,7 @@ let prism = await Prism.init({
 connection: new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr")
     // rpc connection
 });
-prism.setSlippage(1);
+prism.setSlippage(33);
 console.log('')
 console.log('')
 
