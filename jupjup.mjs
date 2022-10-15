@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 import bs58 from "bs58";
 import { borrowObligationLiquidityInstruction, flashBorrowReserveLiquidityInstruction, flashRepayReserveLiquidityInstruction, parseObligation, refreshObligationInstruction, refreshReserveInstruction, SolendAction, SolendMarket, SolendReserve, SOLEND_PRODUCTION_PROGRAM_ID } from "@solendprotocol/solend-sdk";
 let baddies = []
-let baddies2 = []
 import {
   Connection,
   Keypair,
@@ -266,7 +265,7 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
     abc++
     for (var SOL_MINT of mints){
         SOL_MINT = mints[Math.floor(Math.random() * mints.length)]
-        if (!baddies2.includes(USDC_MINT+SOL_MINT)){
+        if (!baddies.includes(SOL_MINT+USDC_MINT)){
       let dothethings = []
       cba++
       try {
@@ -274,9 +273,10 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
 
         // 0.1 SOL
         try {
+            
             if (!baddies.includes(USDC_MINT+SOL_MINT)){
         const usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, initial);
-       if (usdcToSol.data[0] && !baddies2.includes(USDC_MINT+SOL_MINT)){
+       if (usdcToSol.data[0] && !baddies.includes(SOL_MINT+USDC_MINT) ){
         try {
         const solToUsdc = await getCoinQuote(
           SOL_MINT,
@@ -297,7 +297,7 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
             t+=avg 
         }
         let nowavg = t / avgs.length 
-      console.log(returns.toString() + '% yield on badboi ' + USDC_MINT + ' <-> ' + SOL_MINT+', time since last arb checked: ' + diff.toString() + 's, avg last 60 diffs: ' + nowavg.toString() + ', lendiffs: ' + avgs.length.toString()+ ', lenbaddies: ' + baddies.length.toString()+ ', lenbaddies2: ' + baddies2.length.toString())
+      console.log(returns.toString() + '% yield on badboi ' + USDC_MINT + ' <-> ' + SOL_MINT+', time since last arb checked: ' + diff.toString() + 's, avg last 60 diffs: ' + nowavg.toString() + ', lendiffs: ' + avgs.length.toString()+ ', lenbaddies: ' + baddies.length.toString())
 //console.log(initial / 10 ** dec)
 let gogo = true 
 for (var maybego of  dothethings){
@@ -610,10 +610,12 @@ console.log(err)
 }  }
         }
 catch (err){
-
+    baddies.push(SOL_MINT+USDC_MINT)
+    console.log(baddies)
 }}catch (err){
+   
+    console.log(baddies)
     baddies.push(USDC_MINT+SOL_MINT)
-    baddies2.push(USDC_MINT+SOL_MINT)
 }
 }
     }
