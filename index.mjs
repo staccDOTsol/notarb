@@ -92,6 +92,7 @@ for (var ohsa of Object.keys(somestuff3)){
   }
 }
 console.log(mints.length)
+mints = []
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
@@ -173,7 +174,8 @@ for (var amarket of [
 let market =  await SolendMarket.initialize(
     connection2,
     
-    "production", // optional environment argument
+    "production", // optional environment argument'
+    amarket
   );
 
 
@@ -189,7 +191,25 @@ for (var market of markets){
 await market.loadReserves();
 market.refreshAll();
 for (var reserve of market.reserves){
-var  USDC_MINT=market.reserves[Math.floor(Math.random(market.reserves.length))].config.liquidityToken.mint
+  reserve = market.reserves[Math.floor(Math.random(market.reserves.length))]
+var  USDC_MINT=reserve.config.liquidityToken.mint
+if (!mints.includes(USDC_MINT)){
+mints.push(USDC_MINT)
+}
+}
+}
+for (var market of markets){
+  market = markets[Math.floor(Math.random()*markets.length)]
+await market.loadReserves();
+market.refreshAll();
+for (var reserve of market.reserves){
+  reserve = market.reserves[Math.floor(Math.random(market.reserves.length))]
+var  USDC_MINT=reserve.config.liquidityToken.mint
+if (!mints.includes(USDC_MINT)){
+mints.push(USDC_MINT)
+}
+  try {
+  
 var dec = reserve.config.liquidityToken.decimals
 let min = ( reserve.stats.borrowFeePercentage * 100)
     
@@ -203,11 +223,64 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
 
    initial =  Math.floor(Math.random() * (5/ reserve.stats.assetPriceUSD) * 10 ** dec + 0.02666 * 10 ** dec);
    //console.log(initial / 10 ** dec)
- 
-   await prism.loadRoutes(USDC_MINT, SOL_MINT, true ); 
+ console.log(USDC_MINT, SOL_MINT)
+   await prism.loadRoutes(USDC_MINT, SOL_MINT ); 
 
    let routes = prism.getRoutes(Math.floor(initial) / 10 ** dec);
-   let route = routes[0]
+   let route 
+   var m  = 0
+var dec2 = 0
+var toArr = []
+var fromArr = []
+if (true){
+let  r = routes[0]
+ var tos = {}
+var froms = {}
+if (r.type != "direct"){
+ tos[Object.values(r.routeData)[0].to] =0
+ froms[Object.values(r.routeData)[0].from] = 0
+ tos[Object.values(r.routeData)[1].to] =0
+ froms[Object.values(r.routeData)[1].from] = 0
+ for (var i =  0; i < r.providers.length; i++){
+
+   tos[Object.values(r.routeData)[i].to] += Object.values(r.routeData)[i].amountOut
+   froms[Object.values(r.routeData)[i].from] += Object.values(r.routeData)[i].amountIn
+
+   
+ }
+ toArr.push(tos)
+ fromArr.push(froms)
+}
+else {
+route = routes[0]
+dothethings.push(true)
+}}  
+if (fromArr.length > 0){
+if (Object.keys(fromArr[0]).length > 0){
+for (var i in Object.keys(fromArr[0])){
+var abc2 = Object.keys(fromArr[0])[i]
+if (abc2 != "USDC"){
+var nnn = Object.values(fromArr[0])[i]
+
+for (var b in Object.keys(toArr[0])){
+var qqq = Object.keys(toArr[0])[b]
+if (qqq == abc2){
+ var nnn2 = Object.values(toArr[0])[b]
+
+ if(nnn2 - nnn >= 0){
+   dothethings.push(true)
+   route = routes[0]
+ }
+ else {
+   dothethings.push(false)
+ }
+
+}
+}
+}
+}
+}
+}
 
 await prism.loadRoutes( SOL_MINT, USDC_MINT ); 
 
@@ -399,7 +472,10 @@ console.log(err)
 console.log(err)
 }
 }
+
+} catch (err){
+
 }
-}
+}}
 
 }
