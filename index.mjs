@@ -200,7 +200,7 @@ route = routes[0]
     froms[Object.values(r.routeData)[1].from] = 0
     for (var i =  0; i < r.providers.length; i++){
 
-      tos[Object.values(r.routeData)[i].to] += Object.values(r.routeData)[i].amountOut
+      tos[Object.values(r.routeData)[i].to] += Object.values(r.routeData)[i].amountWithFees
       froms[Object.values(r.routeData)[i].from] += Object.values(r.routeData)[i].amountIn
 
       
@@ -244,8 +244,8 @@ for (var b in Object.keys(toArr[0])){
 // 0.1 SOL
 await prism.loadRoutes( SOL_MINT, USDC_MINT, true ); 
 
-let routes2  = prism.getRoutes((Math.floor(routes[0].amountOut* 0.995 * 10 ** 6) / 10 ** 6 ) );
-let returns = ((routes2[0].amountOut / (initial / 10 ** dec)) - 1) * 100
+let routes2  = prism.getRoutes((Math.floor(routes[0].amountWithFees* 0.995 * 10 ** 6) / 10 ** 6 ) );
+let returns = ((routes2[0].amountWithFees / (initial / 10 ** dec)) - 1) * 100
 let gogo = true 
 for (var maybego of  dothethings){
   gogo = maybego
