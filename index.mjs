@@ -100,6 +100,7 @@ for (var ohsa of Object.keys(somestuff3)){
   }
 }
 console.log(mints.length)
+mints = ["MangoCzJ36AjZyKwVj3VnYU4GTonjfVEnJmvvWaxLac@"]
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
