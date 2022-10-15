@@ -374,7 +374,7 @@ if (returns > 0 && gogo){
     
              // get routes based on from Token amount 10 USDC -> ? PRISM
              try {
-              let swapTransaction = await prism.generateSwapTransactions(route);        // execute swap (sign, send and confirm transaction)
+              var swapTransaction = await prism.generateSwapTransactions(routes[0]);        // execute swap (sign, send and confirm transaction)
               //console.log(swapTransaction)
               await Promise.all(
                 [swapTransaction.preTransaction, swapTransaction.mainTransaction, swapTransaction.postTransaction]
@@ -383,42 +383,17 @@ if (returns > 0 && gogo){
                     instructions.push(...serializedTransaction.instructions)
                   }))
               
-    await Promise.all(
-      [usdcToSol.data[aa2]].map(async (route) => {
-        const { setupTransaction, swapTransaction, cleanupTransaction } =
-          await getTransaction(route);
-          
-
-
-        await Promise.all(
-          [setupTransaction, swapTransaction, cleanupTransaction]
-            .filter(Boolean)
-            .map(async (serializedTransaction) => {
-              // get transaction object from serialized transaction
-              const transaction = Transaction.from(
-                Buffer.from(serializedTransaction, "base64")
-              );
-try {
-instructions.push(...transaction.instructions)
-if (transaction.signers){
-if (transaction.signers.length > 0){
-signers.push(...transaction.signers )
-}
-}
-} catch (err){
-console.log(err)
-}  
-// perform the swap
-              // Transaction might failed or dropped
-              
-            })
-            
-        );
-      
-      })
-      
-    )
-;  var blockhash = await connection
+                  var swapTransaction = await prism.generateSwapTransactions(routes[1]);        // execute swap (sign, send and confirm transaction)
+                  //console.log(swapTransaction)
+                  await Promise.all(
+                    [swapTransaction.preTransaction, swapTransaction.mainTransaction, swapTransaction.postTransaction]
+                      .filter(Boolean)
+                      .map(async (serializedTransaction) => {
+                        instructions.push(...serializedTransaction.instructions)
+                      }))
+                  
+    
+  var blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
     
