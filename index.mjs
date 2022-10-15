@@ -36,39 +36,7 @@ process.on('SIGINT', signal => {
 console.log({ dotenv });
 dotenv.config();
 import { PromisePool }from '@supercharge/promise-pool'
-setTimeout(async function(){
-  try {
-    const connection2 = new Connection("http://69.46.29.78:8899");
-  
-  let connection = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr")
-  
-      let luts = await connection.getProgramAccounts(AddressLookupTableProgram.programId)
-      console.log(luts)
-      await PromisePool.withConcurrency(50)
-      .for(luts)
-      // @ts-ignore
-      .handleError(async (err, asset) => {
-        console.error(`\nError uploading or whatever`, err.message);
-        console.log(err);
-      })
-      // @ts-ignore
-      .process(async (lut) => {
-        let maybemine = await connection2.getAddressLookupTable(lut.pubkey)
-        if (maybemine.value?.state.authority?.toBase58()== ("5kqGoFPBGoYpFcxpa6BFRp3zfNormf52KCo5vQ8Qn5bx"))
-        {
-  
-          let temp = ""
-          for (var abc of maybemine.value.state.addresses){
-            temp+=(abc.toBase58() + ",")
-          }
-       myluts[ temp ] = lut.pubkey
-        }
-      })
-      fs.writeFileSync('./luts.json', JSON.stringify(myluts))
-    } catch (err){
-      
-    }
-})
+
 setInterval(async function(){
   try {
   const connection2 = new Connection("http://69.46.29.78:8899");
@@ -229,7 +197,7 @@ var markets = [  await SolendMarket.initialize(
   connection2,
   
   "production", // optional environment argument
-  amarket
+  
 )]
 for (var amarket of [
 "Ckya2fwCXDqTUg9fnWbajR6YLcSfQmPxxy5MyAoZXgyb",
@@ -246,7 +214,7 @@ let market =  await SolendMarket.initialize(
   );
 
 
-markets.push(market)
+//markets.push(market)
 }
 
 while (true) {
@@ -254,31 +222,13 @@ while (true) {
 
   let abc = -1
 for (var market of markets){
-  market = markets[Math.floor(Math.random()*markets.length)]
+  market = markets[0]//Math.floor(Math.random()*markets.length)]
 await market.loadReserves();
 market.refreshAll();
-for (var reserve of market.reserves){
-  reserve = market.reserves[Math.floor(Math.random(market.reserves.length))]//SoLEao8wTzSfqhuou8rcYsVoLjthVmiXuEjzdNPMnCz
-  if (reserve.config.liquidityToken.mint != "SoLEao8wTzSfqhuou8rcYsVoLjthVmiXuEjzdNPMnCz" && reserve.config.liquidityToken.mint  != "CooLwkogVDEVCrY3r1Mtcen2H7ejJiW7CSMY7gWDBFNc"){
-var  USDC_MINT=reserve.config.liquidityToken.mint
-if (!mints.includes(USDC_MINT)){
-mints.push(USDC_MINT)
-}
-  }
-}
-}
-for (var market of markets){
-  market = markets[Math.floor(Math.random()*markets.length)]
-await market.loadReserves();
-market.refreshAll();
-for (var reserve of market.reserves){
-  reserve = market.reserves[Math.floor(Math.random(market.reserves.length))]
-  if (reserve.config.liquidityToken.mint != "SoLEao8wTzSfqhuou8rcYsVoLjthVmiXuEjzdNPMnCz"&& reserve.config.liquidityToken.mint  != "CooLwkogVDEVCrY3r1Mtcen2H7ejJiW7CSMY7gWDBFNc"){
+for (var USDC_MINT of ["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "So11111111111111111111111111111111111111112"]){
+  const reserve = market.reserves.find(res => res.config.liquidityToken.mint ===USDC_MINT);
 
-var  USDC_MINT=reserve.config.liquidityToken.mint
-if (!mints.includes(USDC_MINT)){
-mints.push(USDC_MINT)
-}
+    console.log(USDC_MINT)
   try {
   
 var dec = reserve.config.liquidityToken.decimals
@@ -351,9 +301,9 @@ if (qqq == abc2){
 }
 }
 
-await prism.loadRoutes( SOL_MINT, USDC_MINT ); 
+await prism.loadRoutes( SOL_MINT, USDC_MINT, true ); 
 
-let routes2 = prism.getRoutes(Math.floor(routes[0].amountOut * 0.98) );
+let routes2 = prism.getRoutes(Math.floor(routes[0].amountWithFees) );
 let route2
 var m  = 0
 var dec2 = 0
@@ -410,7 +360,7 @@ if (qqq == abc2){
 }
 let returns = ((routes2[0].amountOut / (initial / 10 ** dec)) - 1) * 100
 //console.log(initial / 10 ** dec)
-//console.log(returns)
+console.log(returns)
 let gogo = true 
 for (var maybego of  dothethings){
   gogo = maybego
@@ -694,11 +644,8 @@ console.log(err)
   // sign your transaction with the required `Signers`
  await transaction.sign([payer,payer2,delegate, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
  try {
-  try {
  await  token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
-   } catch (err){
-  
-   }
+
 
    
   await sendAndConfirmTransaction(connection, transaction)
@@ -721,5 +668,4 @@ console.log(err)
 }
 }}
 
-}
 }
