@@ -231,7 +231,7 @@ const createWSolAccount = async (mint) => {
     transaction.partialSign(payer);
     const result = await sendAndConfirmTransaction(connection2, transaction, [
       payer,
-    ]);
+    ], {skipPreflight: false});
     console.log({ result });
   }
   wsolAccount = await connection2.getAccountInfo(wsolAddress);
