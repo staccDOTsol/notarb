@@ -254,6 +254,7 @@ if (routes2.length > 0){
 
 let route2  = routes2[0]
 
+}
 let returns = ((routes2[0].amountOut / (initial / 10 ** dec)) - 1) * 100
 let gogo = true 
 for (var maybego of  dothethings){
