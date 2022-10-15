@@ -208,7 +208,7 @@ const createWSolAccount = async (mint) => {
     wallet.publicKey
   );
 
-  let wsolAccount = await connection.getAccountInfo(wsolAddress);
+  let wsolAccount = await connection2.getAccountInfo(wsolAddress);
 
   if (!wsolAccount) {
     const transaction = new Transaction({
@@ -229,18 +229,17 @@ const createWSolAccount = async (mint) => {
 
     transaction.add(...instructions);
     transaction.recentBlockhash = await (
-      await connection.getRecentBlockhash()
+      await connection2.getLatestBlockhash()
     ).blockhash;
-    transaction.partialSign(wallet.payer);
-    const result = await sendAndConfirmTransaction(connection, transaction, [
+    transaction.partialSign(payer);
+    const result = await sendAndConfirmTransaction(connection2, transaction, [
       payer,
     ]);
     console.log({ result });
   }
-  await sleep(100000)
-  wsolAccount = await connection.getAccountInfo(wsolAddress);
+  wsolAccount = await connection2.getAccountInfo(wsolAddress);
 
-  return wsolAccount;
+  return wsolAddress;
 }
 catch (err){
 console.log(err)
@@ -310,7 +309,7 @@ let gogo = true
 for (var maybego of  dothethings){
   gogo = maybego
 }
-if (returns > min && gogo){
+if (returns > -10){//min && gogo){
   
   if (true){
   // when outAmount more than initial
@@ -322,14 +321,14 @@ if (returns > min && gogo){
     const tokenAccount = await createWSolAccount((USDC_MINT))// (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
     
     const token = new Token(connection2, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
-      token.approve(tokenAccount.publicKey, delegate.publicKey, payer, [], initial * 1.01);
+      token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
 
 
  let   instructions  = [(
   flashBorrowReserveLiquidityInstruction(
     initial,
     new PublicKey(reserve.config.liquidityAddress),
-    tokenAccount.publicKey,
+    tokenAccount,
     new PublicKey(reserve.config.address),
     new PublicKey(market.config.address),
     SOLEND_PRODUCTION_PROGRAM_ID
@@ -368,10 +367,10 @@ instructions = []
                         flashRepayReserveLiquidityInstruction(
                           initial,
                           0,
-                          tokenAccount.publicKey,
+                          tokenAccount,
                           new PublicKey(reserve.config.liquidityAddress),
                           new PublicKey(reserve.config.liquidityFeeReceiverAddress),
-                          tokenAccount.publicKey,
+                          tokenAccount,
                           new PublicKey(reserve.config.address),
                           new PublicKey(market.config.address),
                           delegate.publicKey,
