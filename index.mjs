@@ -295,7 +295,7 @@ for (var b in Object.keys(toArr[0])){
 // 0.1 SOL
 await prism.loadRoutes( SOL_MINT, USDC_MINT ); 
 
-let routes2 = prism.getRoutes(Math.floor(routes[0].amountOut) );
+let routes2 = prism.getRoutes(Math.floor(routes[0].amountOut * 0.999) );
 let route2 
 var m  = 0
 var dec2 = 0
