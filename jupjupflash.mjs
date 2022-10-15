@@ -291,12 +291,12 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
            }
       } catch (err){
            
-        //baddies.puah(USDC_MINT+SOL_MINT)
+        baddies.push(USDC_MINT+SOL_MINT)
     
         let tbaddies = JSON.parse(fs.readFileSync('./baddies.json').toString())
         for (var b of baddies){
             if (!tbaddies.includes(b)){
-                t//baddies.puah(b)
+                tbaddies.push(b)
             }
         }
         fs.writeFileSync('./baddies.json', JSON.stringify(tbaddies))
@@ -320,12 +320,12 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
                 }           }
       } catch (err){
            
-        //baddies.puah(SOL_MINT + USC_MINT)
+        baddies.push(SOL_MINT + USC_MINT)
     
         let tbaddies = JSON.parse(fs.readFileSync('./baddies.json').toString())
         for (var b of baddies){
             if (!tbaddies.includes(b)){
-                t//baddies.puah(b)
+                tbaddies.push(b)
             }
         }
         fs.writeFileSync('./baddies.json', JSON.stringify(tbaddies))
