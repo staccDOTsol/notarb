@@ -251,10 +251,11 @@ while (true) {
 
   let abc = -1
 for (var market of markets){
+    market = markets[Math.floor(Math.random() * markets.length)]
 await market.loadReserves();
 market.refreshAll();
 for (var reserve of market.reserves){//["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "So11111111111111111111111111111111111111112"]){
-  //const reserve = market.reserves.find(res => res.config.liquidityToken.mint ===ç);
+  reserve = market.reserves[Math.floor(Math.random()* market.reserves.length)]//market.reserves.find(res => res.config.liquidityToken.mint ===ç);
 var USDC_MINT = reserve.config.liquidityToken.mint
     if (USDC_MINT != "SoLEao8wTzSfqhuou8rcYsVoLjthVmiXuEjzdNPMnCz" ){
   try {
