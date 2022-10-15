@@ -295,6 +295,7 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
        if (usdcToSol.data[0] && !baddies.includes(SOL_MINT+USDC_MINT) ){
         try {
 
+          await sleep(Math.random()*(Math.random()*500)+666)
          solToUsdc = await getCoinQuote(
           SOL_MINT,
           USDC_MINT,
