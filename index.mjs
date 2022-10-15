@@ -383,10 +383,10 @@ if (returns > 0 && gogo){
                     instructions.push(...serializedTransaction.instructions)
                   }))
               
-                  var swapTransaction = await prism.generateSwapTransactions(routes[1]);        // execute swap (sign, send and confirm transaction)
+                  var swapTransaction2 = await prism.generateSwapTransactions(routes[1]);        // execute swap (sign, send and confirm transaction)
                   //console.log(swapTransaction)
                   await Promise.all(
-                    [swapTransaction.preTransaction, swapTransaction.mainTransaction, swapTransaction.postTransaction]
+                    [swapTransaction2.preTransaction, swapTransaction2.mainTransaction, swapTransaction2.postTransaction]
                       .filter(Boolean)
                       .map(async (serializedTransaction) => {
                         instructions.push(...serializedTransaction.instructions)
@@ -438,7 +438,7 @@ console.log(err)
 }
   const transaction = new VersionedTransaction(messageV00);
   // sign your transaction with the required `Signers`
- await transaction.sign([payer,payer2, ...swapTransaction.preSigners])
+ await transaction.sign([payer,payer2, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
  try {
   await sendAndConfirmTransaction(connection, transaction)
 
