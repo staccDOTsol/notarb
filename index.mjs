@@ -174,7 +174,6 @@ while (true) {
   for (var USDC_MINT of has){
     USDC_MINT = has[Math.floor(Math.random() * has.length)]
     const reserve = market.reserves.find(res => res.config.liquidityToken.mint ===USDC_MINT);
-    console.log(reserve)
     
     let cba = -1
     abc++
