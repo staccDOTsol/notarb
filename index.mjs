@@ -1,6 +1,8 @@
 
 import dotenv from "dotenv";
 import bs58 from "bs58";
+import { borrowObligationLiquidityInstruction, flashBorrowReserveLiquidityInstruction, flashRepayReserveLiquidityInstruction, parseObligation, refreshObligationInstruction, refreshReserveInstruction, SolendAction, SolendMarket, SolendReserve, SOLEND_PRODUCTION_PROGRAM_ID } from "@solendprotocol/solend-sdk";
+
 import {
   Connection,
   Keypair,
@@ -35,14 +37,25 @@ console.log({ dotenv });
 dotenv.config();
 // This is a free Solana RPC endpoint. It may have ratelimit and sometimes
 // invalid cache. I will recommend using a paid RPC endpoint.
-const connection = new Connection("http://localhost:8899", {skipPreflight: true});
+const connection = new Connection(process.env.NODE_ENV == 'production' ? 'http://localhost' : 'http://69.46.29.78' +':8899", {skipPreflight: true});
 const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true});
+const market = await SolendMarket.initialize(
+  connection2,
+  
+  "production", // optional environment argument
+ ("7RCz8wb6WXxUhAigok9ttgrVgDFFFbibcirECzWSBauM")
+);
+await market.loadReserves();
+market.refreshAll();
+console.log(market.reserves[0].config)
+const reserve = market.reserves.find(res => res.config.liquidityToken.mint ==="EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v");
+console.log(reserve)
 const wallet = new Wallet(
-  Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/ubuntu/notjaregm.json').toString()))));
+  Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync(process.env.NODE_ENV == 'production' ? '/home/ubuntu' : 'Users/jarettdunn' + '/notjaregm.json').toString()))));
   const payer = (
-    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/ubuntu/notjaregm.json').toString()))));
+    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync(process.env.NODE_ENV == 'production' ? '/home/ubuntu' : 'Users/jarettdunn' + '/notjaregm.json').toString()))));
     const payer2 = (
-      Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/ubuntu/jaregm.json').toString()))));
+      Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync(process.env.NODE_ENV == 'production' ? '/home/ubuntu' : 'Users/jarettdunn' + '/jaregm.json').toString()))));
 
 
 import fs from 'fs'
@@ -164,8 +177,16 @@ const createWSolAccount = async () => {
     const transaction = new Transaction({
       feePayer: payer2.publicKey,
     });
-    const instructions = [];
-
+    let instructions = [(
+      flashBorrowReserveLiquidityInstruction(
+        initial,
+        new PublicKey(reserve.config.liquidityAddress),
+        tokenAccount,
+        new PublicKey(reserve.config.address),
+        new PublicKey(market.config.address),
+        SOLEND_PRODUCTION_PROGRAM_ID
+      )
+    )]
     instructions.push(
       await Token.createAssociatedTokenAccountInstruction(
         ASSOCIATED_TOKEN_PROGRAM_ID,
@@ -224,7 +245,7 @@ while (true) {
       try {
 let dec = 6
 
-   initial = Math.floor(Math.random() * 63* 10 ** dec + 20.02666 * 10 ** dec);
+   initial = Math.floor(Math.random() * 1* 10 ** dec + 1.02666 * 10 ** dec);
    //console.log(initial / 10 ** dec)
   // 0.1 SOL
   await prism.loadRoutes(USDC_MINT, SOL_MINT); 
@@ -351,7 +372,8 @@ let gogo = true
 for (var maybego of  dothethings){
   gogo = maybego
 }
-if (returns > 0 && gogo){
+if (returns > 0.1 && gogo){
+  
   if (true){
   // when outAmount more than initial
   if (true){//false){//returns >11111.000 ) {
@@ -361,6 +383,11 @@ if (returns > 0 && gogo){
   let signers = []
 
     
+const delegate = Keypair.generate();
+const tokenAccount = (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
+
+const token = new Token(connection2, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
+
              // get routes based on from Token amount 10 USDC -> ? PRISM
              try {
               var swapTransaction = await prism.generateSwapTransactions(routes[0]);        // execute swap (sign, send and confirm transaction)
@@ -380,7 +407,19 @@ if (returns > 0 && gogo){
                       .map(async (serializedTransaction) => {
                         instructions.push(...serializedTransaction.instructions)
                       }))
-                  
+                      instructions.push(
+                        flashRepayReserveLiquidityInstruction(
+                          initial,
+                          0,
+                          tokenAccount,
+                          new PublicKey(reserve.config.liquidityAddress),
+                          new PublicKey(reserve.config.liquidityFeeReceiverAddress),
+                          tokenAccount,
+                          new PublicKey(reserve.config.address),
+                          new PublicKey(market.config.address),
+                          delegate.publicKey,
+                          SOLEND_PRODUCTION_PROGRAM_ID
+                        )) 
     
   var blockhash = await connection
     .getLatestBlockhash()
@@ -429,6 +468,13 @@ console.log(err)
   // sign your transaction with the required `Signers`
  await transaction.sign([payer,payer2, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
  try {
+  try {
+  await  token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
+   } catch (err){
+  
+   }
+
+   
   await sendAndConfirmTransaction(connection, transaction)
 
  } catch (err){
