@@ -79,10 +79,7 @@ const wallet = new Wallet(
   Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/Users/jarettdunn') + '/notjaregm.json').toString()))));
   const payer = (
     Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/Users/jarettdunn') + '/notjaregm.json').toString()))));
-    const payer2 = (
-      Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/Users/jarettdunn') + '/jaregm.json').toString()))));
-
-
+  
 import fs from 'fs'
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -460,7 +457,7 @@ var blockhash = await connection
 let [lookupTableInst, lookupTableAddress] =
   AddressLookupTableProgram.createLookupTable({
     authority: payer.publicKey,
-    payer: payer2.publicKey,
+    payer: payer.publicKey,
     recentSlot: slot,
   });
   let ttt = await connection
@@ -495,7 +492,7 @@ if (ss.length == 0){
   dg1 = true
 }
 const extendInstruction = AddressLookupTableProgram.extendLookupTable({
-  payer: payer2.publicKey,
+  payer: payer.publicKey,
   authority: payer.publicKey,
   lookupTable: lookupTableAddress,
   addresses: ss
@@ -516,7 +513,7 @@ if (ss.length == 0){
   dg2 = true
 }
 const extendInstruction2 = AddressLookupTableProgram.extendLookupTable({
-  payer: payer2.publicKey,
+  payer: payer.publicKey,
   authority: payer.publicKey,
   lookupTable: lookupTableAddress,
   addresses: ss
@@ -538,7 +535,7 @@ if (ss.length == 0){
   dg3 = true
 }
 const extendInstruction3 = AddressLookupTableProgram.extendLookupTable({
-  payer: payer2.publicKey,
+  payer: payer.publicKey,
   authority: payer.publicKey,
   lookupTable: lookupTableAddress,
   addresses: ss
@@ -557,7 +554,7 @@ tx2.sign(payer)
 
 if (true){//ontgo1){
 try{
- // await sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: true})
+ // await sendAndConfirmTransaction(connection, tx2,[payer, payer], {skipPreflight: true})
 } catch (err){
     console.log(err)
 }
@@ -573,7 +570,7 @@ tx2.sign(payer)
 if (!dg1){
 try {
   
-let hm = await sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: true})
+let hm = await sendAndConfirmTransaction(connection, tx2,[payer, payer], {skipPreflight: true})
 console.log(hm)
 } catch (err){
     
@@ -591,7 +588,7 @@ tx2.recentBlockhash = blockhash
 tx2.sign(payer)
 if (!dg2){
 try {
-await sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: true})
+await sendAndConfirmTransaction(connection, tx2,[payer, payer], {skipPreflight: true})
 } catch (err){
     
   console.log(err)
@@ -607,7 +604,7 @@ tx2.recentBlockhash = blockhash
 tx2.sign(payer)
 if (!dg3){
   try {
-await sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: true})
+await sendAndConfirmTransaction(connection, tx2,[payer, payer], {skipPreflight: true})
   } catch (err){
 
     console.log(err)
