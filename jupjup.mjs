@@ -273,22 +273,50 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
       cba++
       try {
         const initial = Math.floor(Math.random() * ((1 / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec);
-
+   
         // 0.1 SOL
         try {
             
             if (!baddies.includes(USDC_MINT+SOL_MINT)){
                 await sleep(Math.random()*(Math.random()*2500)+666)
-        const usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, initial);
+             let usdcToSol
+             let solToUsdc
+                try {
+         usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, initial);
+      } catch (err){
+           
+        baddies.push(USDC_MINT+SOL_MINT)
+    
+        let tbaddies = JSON.parse(fs.readFileSync('./baddies.json').toString())
+        for (var b of baddies){
+            if (!tbaddies.includes(b)){
+                tbaddies.push(b)
+            }
+        }
+        fs.writeFileSync('./baddies.json', JSON.stringify(tbaddies))
+          }
        if (usdcToSol.data[0] && !baddies.includes(SOL_MINT+USDC_MINT) ){
         try {
 
           await sleep(Math.random()*(Math.random()*2500)+666)
-        const solToUsdc = await getCoinQuote(
+         solToUsdc = await getCoinQuote(
           SOL_MINT,
           USDC_MINT,
           Math.floor(usdcToSol.data[0].outAmount * 0.998)
         );
+      } catch (err){
+           
+        baddies.push(USDC_MINT+SOL_MINT)
+    
+        let tbaddies = JSON.parse(fs.readFileSync('./baddies.json').toString())
+        for (var b of baddies){
+            if (!tbaddies.includes(b)){
+                tbaddies.push(b)
+            }
+        }
+        fs.writeFileSync('./baddies.json', JSON.stringify(tbaddies))
+          }
+          try {
         let returns = ((solToUsdc.data[0].outAmount / (initial )) - 1) * 100
         
         let now = new Date().getTime() / 1000
@@ -623,26 +651,9 @@ console.log(err)
 }  }
         }
 catch (err){
-    baddies.push(SOL_MINT+USDC_MINT)
-
-    let tbaddies = JSON.parse(fs.readFileSync('./baddies.json').toString())
-    for (var b of baddies){
-        if (!tbaddies.includes(b)){
-            tbaddies.push(b)
-        }
-    }
-    fs.writeFileSync('./baddies.json', JSON.stringify(tbaddies))
-}}catch (err){
    
-    baddies.push(USDC_MINT+SOL_MINT)
-
-    let tbaddies = JSON.parse(fs.readFileSync('./baddies.json').toString())
-    for (var b of baddies){
-        if (!tbaddies.includes(b)){
-            tbaddies.push(b)
-        }
-    }
-    fs.writeFileSync('./baddies.json', JSON.stringify(tbaddies))}
+}}catch (err){
+}
 }
     }
 } catch (err){
