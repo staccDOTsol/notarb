@@ -297,7 +297,7 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
             t+=avg 
         }
         let nowavg = t / avgs.length 
-      console.log(returns.toString() + '% yield on badboi ' + USDC_MINT + ' <-> ' + SOL_MINT+', time since last arb checked: ' + diff.toString() + 's, avg last 60 diffs: ' + nowavg.toString() + ', lendiffs: ' + avgs.length.toString()+ ', lenbaddies2: ' + baddies2.length.toString())
+      console.log(returns.toString() + '% yield on badboi ' + USDC_MINT + ' <-> ' + SOL_MINT+', time since last arb checked: ' + diff.toString() + 's, avg last 60 diffs: ' + nowavg.toString() + ', lendiffs: ' + avgs.length.toString()+ ', lenbaddies: ' + baddies.length.toString()+ ', lenbaddies2: ' + baddies2.length.toString())
 //console.log(initial / 10 ** dec)
 let gogo = true 
 for (var maybego of  dothethings){
