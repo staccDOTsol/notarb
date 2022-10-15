@@ -116,7 +116,7 @@ console.log(mints.length)
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
-      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=15`
+      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=5`
     )
     .json();
 
@@ -259,7 +259,7 @@ var USDC_MINT = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"//reserve.config.l
   try {
   
 var dec = 6// reserve.config.liquidityToken.decimals
-let min = 0.001//( reserve.stats.borrowFeePercentage * 100)
+let min = 0.01//( reserve.stats.borrowFeePercentage * 100)
     
     let cba = -1
     abc++
