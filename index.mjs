@@ -293,7 +293,7 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
 
    initial =  Math.floor(Math.random() * (5/ reserve.stats.assetPriceUSD) * 10 ** dec + 0.02666 * 10 ** dec);
    //console.log(initial / 10 ** dec)
- console.log(USDC_MINT, SOL_MINT)
+ //console.log(USDC_MINT, SOL_MINT)
    await prism.loadRoutes(USDC_MINT, SOL_MINT ); 
 
    let routes = prism.getRoutes(Math.floor(initial) / 10 ** dec);
@@ -409,8 +409,8 @@ if (qqq == abc2){
 }
 }
 let returns = ((routes2[0].amountOut / (initial / 10 ** dec)) - 1) * 100
-console.log(initial / 10 ** dec)
-console.log(returns)
+//console.log(initial / 10 ** dec)
+//console.log(returns)
 let gogo = true 
 for (var maybego of  dothethings){
   gogo = maybego
@@ -503,10 +503,10 @@ for (var bca of messageV0.staticAccountKeys){
     }
 }
 }
-console.log(w)
-console.log(messageV0.staticAccountKeys.length)
+//console.log(w)
+//console.log(messageV0.staticAccountKeys.length)
 let goaccs = [(await connection.getAddressLookupTable(new PublicKey(winner))).value]
-console.log( goaccs[0].state.addresses.length - 1)
+//console.log( goaccs[0].state.addresses.length - 1)
 if (messageV0.staticAccountKeys.length >  goaccs[0].state.addresses - 1){
   const slot = await connection.getSlot();
 
@@ -550,7 +550,7 @@ if (!goaccs[0].state.addresses.includes(bca)){
 
 }
 
-console.log(ss.length)
+//console.log(ss.length)
 if (ss.length == 0){
   dg1 = true
 }
@@ -571,7 +571,7 @@ if (aaa < messageV0.staticAccountKeys.length / 3 * 2  && (aaa >= messageV0.stati
   }
 }
 }
-console.log(ss.length)
+//console.log(ss.length)
 if (ss.length == 0){
   dg2 = true
 }
@@ -593,7 +593,7 @@ if (aaa >= messageV0.staticAccountKeys.length / 3 * 2   ){
   }
 }
 }
-console.log(ss.length)
+//console.log(ss.length)
 if (ss.length == 0){
   dg3 = true
 }
@@ -608,7 +608,7 @@ let ix2 =  [lookupTableInst,extendInstruction, extendInstruction2, extendInstruc
 
 let tx2 = new Transaction()
 tx2.add(ix2[0])
-console.log(1)
+//console.log(1)
 blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
@@ -624,7 +624,7 @@ try{
 }
  tx2 = new Transaction()
 tx2.add(ix2[1])
-console.log(1)
+//console.log(1)
 blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
@@ -643,7 +643,7 @@ console.log(hm)
 tx2 = new Transaction()
 
 tx2.add(ix2[2])
-console.log(1)
+//console.log(1)
 blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
@@ -659,7 +659,7 @@ await sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight:
 }
 tx2 = new Transaction()
 tx2.add(ix2[3])
-console.log(1)
+//console.log(1)
 blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
@@ -681,7 +681,7 @@ blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
 let messageV00 
-console.log(goaccs)
+//console.log(goaccs)
 try { messageV00 =  new TransactionMessage({
   payerKey: payer2.publicKey,
   recentBlockhash: blockhash,
