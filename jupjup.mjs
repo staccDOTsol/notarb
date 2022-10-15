@@ -287,7 +287,7 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
         const solToUsdc = await getCoinQuote(
           SOL_MINT,
           USDC_MINT,
-          usdcToSol.data[0].outAmount
+          Math.floor(usdcToSol.data[0].outAmount * 0.998)
         );
         let returns = ((solToUsdc.data[0].outAmount / (initial )) - 1) * 100
         
@@ -389,29 +389,35 @@ console.log(blockhash)
   }).compileToV0Message();
 let w = -1
 let c = -1
-let winner = ""
+let winners = []
 let vbb = -1
 for (var key of Object.keys(myluts)){
   vbb++
+  
    c = -1
 for (var bca of messageV0.staticAccountKeys){
   let want = bca.toBase58()
     
-    if (key.split(',').includes(want)){
+    if ( key.split(',').includes(want)){
       c++
       if (c > w){
-        winner = Object.values(myluts)[vbb] 
-        if ((await connection.getAddressLookupTable(new PublicKey(winner))).value.state.addresses < 100){
-
-          w = c 
+        if (!winners.includes(new PublicKey(Object.values(myluts)[vbb]))){
+        winners.push(new PublicKey(Object.values(myluts)[vbb]))
         }
+          w = c 
+        
       }  
     }
 }
 }
+
 console.log(w)
 console.log(messageV0.staticAccountKeys.length)
-let goaccs = [(await connection.getAddressLookupTable(new PublicKey(winner))).value]
+let goaccs = []
+for (var winner of winners){
+goaccs.push((await connection.getAddressLookupTable((winner))).value)
+
+}
 console.log( goaccs[0].state.addresses.length )
 if (messageV0.staticAccountKeys.length >  goaccs[0].state.addresses - 1){
   const slot = await connection.getSlot();
@@ -589,7 +595,7 @@ blockhash = await connection
 let messageV00 
 //console.log(goaccs)
 try { messageV00 =  new TransactionMessage({
-  payerKey: payer2.publicKey,
+  payerKey: payer.publicKey,
   recentBlockhash: blockhash,
   instructions,
 }).compileToV0Message(goaccs);
@@ -598,7 +604,7 @@ console.log(err)
 }
   const transaction = new VersionedTransaction(messageV00);
   // sign your transaction with the required `Signers`
- await transaction.sign([payer,payer2, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
+ await transaction.sign([payer, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
  try {
 
   await sendAndConfirmTransaction(connection, transaction)
