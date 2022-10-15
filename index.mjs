@@ -175,8 +175,7 @@ let prism = await Prism.init({
 connection: new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr")
     // rpc connection
 });
-prism.setSlippage(99);
-
+prism.setSlippage(1);
 console.log('')
 console.log('')
 
@@ -414,7 +413,7 @@ let gogo = true
 for (var maybego of  dothethings){
   gogo = maybego
 }
-if (returns > 0.001 && gogo){
+if (returns > 0.1 && gogo){
   
   if (true){
   // when outAmount more than initial
