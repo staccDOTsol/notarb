@@ -735,6 +735,11 @@
     jsbi "^4.3.0"
     typedoc-plugin-cname "^1.0.1"
 
+"@supercharge/promise-pool@^2.3.2":
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/@supercharge/promise-pool/-/promise-pool-2.3.2.tgz#6366894a7e7bc699bb65e58d8c828113729cf481"
+  integrity sha512-f5+C7zv+QQivcUO1FH5lXi7GcuJ3CFuJF3Eg06iArhUs5ma0szCLEQwIY4+VQyh7m/RLVZdzvr4E4ZDnLe9MNg==
+
 "@symmetry-hq/liquidity-sdk@^0.0.17":
   version "0.0.17"
   resolved "https://registry.yarnpkg.com/@symmetry-hq/liquidity-sdk/-/liquidity-sdk-0.0.17.tgz#a4f0662ac886e15bf74f53a10b17b9ff1a82df51"

@@ -39,8 +39,9 @@ import { PromisePool }from '@supercharge/promise-pool'
 
 setInterval(async function(){
   try {
-  const connection = new Connection("http://69.46.29.78:8899");
-
+    let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://69.46.29.78' : 'http://69.46.29.78') +":8899", {skipPreflight: true});
+    const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true});
+    connection = connection2
 
     let luts = await connection.getProgramAccounts(AddressLookupTableProgram.programId)
    // console.log(luts)
@@ -73,8 +74,7 @@ setInterval(async function(){
 // invalid cache. I will recommend using a paid RPC endpoint.
 let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://69.46.29.78' : 'http://69.46.29.78') +":8899", {skipPreflight: true});
 const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true});
-
-
+connection = connection2
 const wallet = new Wallet(
   Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/Users/jarettdunn') + '/notjaregm.json').toString()))));
   const payer = (
@@ -272,7 +272,7 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
       let dothethings = []
       cba++
       try {
-        const initial = Math.floor(Math.random() * ((5 / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec);
+        const initial = Math.floor(Math.random() * ((1 / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec);
 
         // 0.1 SOL
         try {
@@ -334,12 +334,11 @@ if (returns > min && gogo){
     SOLEND_PRODUCTION_PROGRAM_ID
   )
 )]
-instructions = []
   let signers = []
 
              // get routes based on from Token amount 10 USDC -> ? PRISM
              try {
-                if (solToUsdc.data[0].outAmount > initial) {
+                if (true) {
                     await Promise.all(
                       [usdcToSol.data[0], solToUsdc.data[0]].map(async (route) => {
                         const { setupTransaction, swapTransaction, cleanupTransaction } =
@@ -381,7 +380,7 @@ instructions = []
     .getLatestBlockhash()
     .then((res) => res.blockhash);
     
-
+console.log(blockhash)
           // create v0 compatible message
   const messageV0 = new TransactionMessage({
     payerKey: payer2.publicKey,
@@ -407,10 +406,10 @@ for (var bca of messageV0.staticAccountKeys){
     }
 }
 }
-//console.log(w)
-//console.log(messageV0.staticAccountKeys.length)
+console.log(w)
+console.log(messageV0.staticAccountKeys.length)
 let goaccs = [(await connection.getAddressLookupTable(new PublicKey(winner))).value]
-//console.log( goaccs[0].state.addresses.length - 1)
+console.log( goaccs[0].state.addresses.length )
 if (messageV0.staticAccountKeys.length >  goaccs[0].state.addresses - 1){
   const slot = await connection.getSlot();
 
