@@ -413,7 +413,7 @@ let gogo = true
 for (var maybego of  dothethings){
   gogo = maybego
 }
-if (returns > min && gogo){
+if (returns > 0 && gogo){
   
   if (true){
   // when outAmount more than initial
