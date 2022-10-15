@@ -171,7 +171,7 @@ const market = await SolendMarket.initialize(
 await market.loadReserves();
 market.refreshAll();
 for (var reserve of market.reserves){
-var  USDC_MINT=(reserve.config.liquidityToken.mint)
+var  USDC_MINT=(market.reserves[Math.floor(Math.random(market.reserves.length)]).config.liquidityToken.mint
 var dec = reserve.config.liquidityToken.decimals
 let min = ( reserve.stats.borrowFeePercentage * 100)
     
