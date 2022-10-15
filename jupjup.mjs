@@ -237,7 +237,7 @@ const createWSolAccount = async (mint) => {
     ]);
     console.log({ result });
   }
-  await sleep(10000)
+  await sleep(100000)
   wsolAccount = await connection.getAccountInfo(wsolAddress);
 
   return wsolAccount;
