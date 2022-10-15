@@ -35,14 +35,14 @@ console.log({ dotenv });
 dotenv.config();
 // This is a free Solana RPC endpoint. It may have ratelimit and sometimes
 // invalid cache. I will recommend using a paid RPC endpoint.
-const connection = new Connection("http://localhost:8899", {skipPreflight: true});
+const connection = new Connection("http://69.46.29.78:8899", {skipPreflight: true});
 const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true});
 const wallet = new Wallet(
-  Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/ubuntu/notjaregm.json').toString()))));
+  Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/Users/jarettdunn/notjaregm.json').toString()))));
   const payer = (
-    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/ubuntu/notjaregm.json').toString()))));
+    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/Users/jarettdunn/notjaregm.json').toString()))));
     const payer2 = (
-      Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/ubuntu/jaregm.json').toString()))));
+      Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/Users/jarettdunn/jaregm.json').toString()))));
 
 
 import fs from 'fs'
@@ -52,6 +52,7 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 let myluts = JSON.parse(fs.readFileSync("./luts.json").toString())
 
 const somestuff2 = JSON.parse(fs.readFileSync("./hahapairs.json").toString())
+const somestuff3= JSON.parse(fs.readFileSync("./stuff.json").toString())
 
 const has = [
     //"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
@@ -63,19 +64,22 @@ const has = [
 ]
 
 var mints = [   
- "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"]
- // "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB", 
- // "USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX",
- // "Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS",
-  //"7kbnvuGBxxj8AG9qp8Scn56muWGaRaFqxg1FsRp3PaFT",]
-
- mints = [   //"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+ "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+  "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB", 
   "USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX",
   "Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS",
   "7kbnvuGBxxj8AG9qp8Scn56muWGaRaFqxg1FsRp3PaFT"]
 for (var add of somestuff2.data){
 mints.push(add.token)
 
+}
+for (var ohsa of Object.keys(somestuff3)){
+  let twotoks = ohsa.split(' <-> ')
+  for (var atok of twotoks){
+    if (!mints.includes(atok)){
+      mints.push(atok)
+    }
+  }
 }
 console.log(mints.length)
 const getCoinQuote = (inputMint, outputMint, amount) =>
@@ -139,18 +143,6 @@ let prism = await Prism.init({
 connection: new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr")
     // rpc connection
 });
-for (var USDC_MINT of has){
- // abc++
-  for (var SOL_MINT of mints){
-    SOL_MINT = mints[Math.floor(Math.random() * mints.length)]
-        // load routes for tokens, tokenSymbol | tokenMint (base58 string)
-    try 
-   { 
-   } catch (err){
-
-   }
-  }
-}
 console.log('')
 console.log('')
 
@@ -226,41 +218,154 @@ while (true) {
     let cba = -1
     abc++
     for (var SOL_MINT of mints){
+      let dothethings = []
+      SOL_MINT = mints[Math.floor(Math.random() * mints.length)]
       cba++
       console.log(USDC_MINT+ " <-> " + SOL_MINT)
       try {
 let dec = 6
 
-   initial = Math.floor(Math.random() * 80* 10 ** dec + 20.02666 * 10 ** dec);
+   initial = Math.floor(Math.random() * 63* 10 ** dec + 20.02666 * 10 ** dec);
    //console.log(initial / 10 ** dec)
   // 0.1 SOL
-  await prism.loadRoutes(USDC_MINT, SOL_MINT, true); 
+  await prism.loadRoutes(USDC_MINT, SOL_MINT); 
 
 let routes = prism.getRoutes(Math.floor(initial) / 10 ** dec);
 let route 
 var m  = 0
-for (var r of routes.reverse()){
+var dec2 = 0
+var toArr = []
+var fromArr = []
+if (true){
+let  r = routes[0]
+route = routes[0]
+    var tos = {}
+  var froms = {}
   if (r.type != "direct"){
-  //  console.log(r)
-  }
-//  console.log(r.providers.length)
-  if (r.amountWithFees > m ){
-      
-      m = r.amountOut
-      route = r 
-    }
-}
-  let aa2 = Math.floor(Math.random()*0.5) 
-  let aa1 = Math.floor(Math.random()*0.5)
-const usdcToSol = await getCoinQuote( SOL_MINT, USDC_MINT, Math.floor(route.amountOut * 1 * 10 ** route.routeData.toCoin.decimals)); // goddamn slippage
-console.log(usdcToSol.data[aa2])
-console.log(usdcToSol.data[aa2].outAmount)   
-console.log(route.amountOut)
-var returns = ((((usdcToSol.data[aa2].outAmount * 1.0 )/ (initial  ))- 1))
-console.log(returns)
+    console.log(r.providers.length)
+    tos[Object.values(r.routeData)[0].to] =0
+    froms[Object.values(r.routeData)[0].from] = 0
+    tos[Object.values(r.routeData)[1].to] =0
+    froms[Object.values(r.routeData)[1].from] = 0
+    for (var i =  0; i < r.providers.length; i++){
 
+      tos[Object.values(r.routeData)[i].to] += Object.values(r.routeData)[i].amountOut
+      froms[Object.values(r.routeData)[i].from] += Object.values(r.routeData)[i].amountIn
+
+      
+    }
+    toArr.push(tos)
+    fromArr.push(froms)
+  }
+ 
+else {
+  route = routes[0]
+  dothethings.push(true)
+  }}  
+console.log(toArr)
+console.log(fromArr)
+
+if (fromArr.length > 0){
+if (Object.keys(fromArr[0]).length > 0){
+for (var i in Object.keys(fromArr[0])){
+  var abc2 = Object.keys(fromArr[0])[i]
+if (abc2 != "USDC"){
+var nnn = Object.values(fromArr[0])[i]
+
+for (var b in Object.keys(toArr[0])){
+  var qqq = Object.keys(toArr[0])[b]
+  if (qqq == abc2){
+    var nnn2 = Object.values(toArr[0])[b]
+
+    if(nnn2 - nnn >= 0){
+      dothethings.push(true)
+    }
+    else {
+      dothethings.push(false)
+    }
+
+  }
+}
+}
+}
+}
+}
+
+//console.log(initial / 10 ** dec)
+// 0.1 SOL
+await prism.loadRoutes( SOL_MINT, USDC_MINT ); 
+
+let routes2 = prism.getRoutes(Math.floor(routes[0].amountOut) );
+let route2 
+var m  = 0
+var dec2 = 0
+var toArr = []
+var fromArr = []
+if (true){
+let  r = routes2[0]
+ var tos = {}
+var froms = {}
+if (r.type != "direct"){
+ console.log(r.providers.length)
+ tos[Object.values(r.routeData)[0].to] =0
+ froms[Object.values(r.routeData)[0].from] = 0
+ tos[Object.values(r.routeData)[1].to] =0
+ froms[Object.values(r.routeData)[1].from] = 0
+ for (var i =  0; i < r.providers.length; i++){
+
+   tos[Object.values(r.routeData)[i].to] += Object.values(r.routeData)[i].amountOut
+   froms[Object.values(r.routeData)[i].from] += Object.values(r.routeData)[i].amountIn
+
+   
+ }
+ toArr.push(tos)
+ fromArr.push(froms)
+}
+else {
+route2 = routes2[0]
+dothethings.push(true)
+}}  
+console.log(toArr)
+console.log(fromArr)
+if (fromArr.length > 0){
+if (Object.keys(fromArr[0]).length > 0){
+for (var i in Object.keys(fromArr[0])){
+var abc2 = Object.keys(fromArr[0])[i]
+if (abc2 != "USDC"){
+var nnn = Object.values(fromArr[0])[i]
+
+for (var b in Object.keys(toArr[0])){
+var qqq = Object.keys(toArr[0])[b]
+if (qqq == abc2){
+ var nnn2 = Object.values(toArr[0])[b]
+
+ if(nnn2 - nnn >= 0){
+   dothethings.push(true)
+   route2 = routes2[0]
+ }
+ else {
+   dothethings.push(false)
+ }
+
+}
+}
+}
+}
+}
+}
+console.log(routes2[0].amountOut)
+console.log(initial)
+let returns = ((routes2[0].amountOut / (initial / 10 ** dec)) - 1) * 100
+console.log(returns)
+let gogo = true 
+for (var maybego of  dothethings){
+  gogo = maybego
+}
+console.log(dothethings)
+if (returns > 0 && gogo){
+  if (true){
   // when outAmount more than initial
-  if (returns >.000 ) {
+  if (true){//false){//returns >11111.000 ) {
     console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
 
  let   instructions = []
@@ -369,7 +474,7 @@ console.log(err)
 console.log(err)
 }
 }
-} catch (err){
+}}} catch (err){
   
 console.log(err)
 }
