@@ -231,7 +231,6 @@ catch (err){
 }
 };
 while (true) {
-  await sleep(Math.random() * 5000)
 //  await createWSolAccount();
 
   let abc = -1
@@ -382,12 +381,12 @@ if (returns > 0.1 && gogo){
  let   instructions = []
   let signers = []
 
-    
+    /*
 const delegate = Keypair.generate();
 const tokenAccount = (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
 
 const token = new Token(connection2, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
-
+*/
              // get routes based on from Token amount 10 USDC -> ? PRISM
              try {
               var swapTransaction = await prism.generateSwapTransactions(routes[0]);        // execute swap (sign, send and confirm transaction)
@@ -407,6 +406,7 @@ const token = new Token(connection2, new PublicKey(reserve.config.liquidityToken
                       .map(async (serializedTransaction) => {
                         instructions.push(...serializedTransaction.instructions)
                       }))
+                      /*
                       instructions.push(
                         flashRepayReserveLiquidityInstruction(
                           initial,
@@ -419,7 +419,7 @@ const token = new Token(connection2, new PublicKey(reserve.config.liquidityToken
                           new PublicKey(market.config.address),
                           delegate.publicKey,
                           SOLEND_PRODUCTION_PROGRAM_ID
-                        )) 
+                        )) */
     
   var blockhash = await connection
     .getLatestBlockhash()
@@ -469,7 +469,7 @@ console.log(err)
  await transaction.sign([payer,payer2, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
  try {
   try {
-  await  token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
+ // await  token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
    } catch (err){
   
    }
