@@ -257,7 +257,7 @@ if (true){
 let  r = routes2[0]
  var tos = {}
 var froms = {}
-if (r.type != "direct"){
+try {
  tos[Object.values(r.routeData)[0].to] =0
  froms[Object.values(r.routeData)[0].from] = 0
  tos[Object.values(r.routeData)[1].to] =0
@@ -272,7 +272,7 @@ if (r.type != "direct"){
  toArr.push(tos)
  fromArr.push(froms)
 }
-else {
+catch (err) {
 route2 = routes2[0]
 dothethings.push(true)
 }}  
