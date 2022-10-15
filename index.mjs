@@ -244,7 +244,7 @@ for (var b in Object.keys(toArr[0])){
 // 0.1 SOL
 await prism.loadRoutes( SOL_MINT, USDC_MINT, true ); 
 
-let routes2  = prism.getRoutes((Math.floor(routes[0].amountWithFees* 0.995 * 10 ** 6) / 10 ** 6 ) );
+let routes2  = prism.getRoutes((Math.floor(routes[0].amountOut* 0.995 * 10 ** 6) / 10 ** 6 ) );
 let returns = ((routes2[0].amountOut / (initial / 10 ** dec)) - 1) * 100
 let gogo = true 
 for (var maybego of  dothethings){
