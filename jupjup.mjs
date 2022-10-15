@@ -256,7 +256,7 @@ market.refreshAll();
 for (var reserve of market.reserves){//["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "So11111111111111111111111111111111111111112"]){
   //const reserve = market.reserves.find(res => res.config.liquidityToken.mint ===ç);
 var USDC_MINT = reserve.config.liquidityToken.mint
-    if (!baddies.includes(USDC_MINT)){
+    if (!baddies.includes(USDC_MINT+USDC_MINT)){
   try {
   
 var dec = reserve.config.liquidityToken.decimals
@@ -274,7 +274,7 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
 
         // 0.1 SOL
         try {
-            if (!baddies.includes(USDC_MINT)){
+            if (!baddies.includes(USDC_MINT+SOL_MINT)){
         const usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, initial);
        if (usdcToSol.data[0] && !baddies2.includes(USDC_MINT+SOL_MINT)){
         try {
@@ -610,9 +610,9 @@ console.log(err)
 }  }
         }
 catch (err){
-    baddies.push(USDC_MINT)
 
 }}catch (err){
+    baddies.push(USDC_MINT+SOL_MINT)
     baddies2.push(USDC_MINT+SOL_MINT)
 }
 }
