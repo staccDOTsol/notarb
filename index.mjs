@@ -39,6 +39,7 @@ dotenv.config();
 // invalid cache. I will recommend using a paid RPC endpoint.
 const connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost' : 'http://69.46.29.78') +":8899", {skipPreflight: true});
 const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true});
+/*
 const market = await SolendMarket.initialize(
   connection2,
   
@@ -50,6 +51,7 @@ market.refreshAll();
 console.log(market.reserves[0].config)
 const reserve = market.reserves.find(res => res.config.liquidityToken.mint ==="EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v");
 console.log(reserve)
+*/
 const wallet = new Wallet(
   Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/Users/jarettdunn') + '/notjaregm.json').toString()))));
   const payer = (
@@ -150,6 +152,7 @@ const getConfirmTransaction = async (txid) => {
 let initial = 20_000_000;
 import { Prism } from "@prism-hq/prism-ag";
 let prism = await Prism.init({
+  slippage: 9999,
     // user executing swap
     user: payer,               // optional (if you don't provide upon init, then you'll need to call prism.setSigner() after user connects the wallet)
 connection: new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr")
@@ -160,75 +163,6 @@ console.log('')
 
 console.log('')
 
-// wsol account
-const createWSolAccount = async () => {
-  try {
-  const wsolAddress = await Token.getAssociatedTokenAddress(
-    ASSOCIATED_TOKEN_PROGRAM_ID,
-    TOKEN_PROGRAM_ID,
-    new PublicKey(SOL_MINT),
-    wallet.publicKey
-  );
-
-  const wsolAccount = await connection.getAccountInfo(wsolAddress);
-
-  if (!wsolAccount) {
-    const transaction = new Transaction({
-      feePayer: payer2.publicKey,
-    });
-    let instructions = [(
-      flashBorrowReserveLiquidityInstruction(
-        initial,
-        new PublicKey(reserve.config.liquidityAddress),
-        tokenAccount,
-        new PublicKey(reserve.config.address),
-        new PublicKey(market.config.address),
-        SOLEND_PRODUCTION_PROGRAM_ID
-      )
-    )]
-    instructions.push(
-      await Token.createAssociatedTokenAccountInstruction(
-        ASSOCIATED_TOKEN_PROGRAM_ID,
-        TOKEN_PROGRAM_ID,
-        new PublicKey(SOL_MINT),
-        wsolAddress,
-        wallet.publicKey,
-        wallet.publicKey
-      )
-    );
-
-    // fund 1 sol to the account
-    instructions.push(
-      SystemProgram.transfer({
-        fromPubkey: wallet.publicKey,
-        toPubkey: wsolAddress,
-        lamports: 1_00_000_000, // 1 sol
-      })
-    );
-
-    instructions.push(
-      // This is not exposed by the types, but indeed it exists
-      Token.createSyncNativeInstruction(TOKEN_PROGRAM_ID, wsolAddress)
-    );
-
-    transaction.add(...instructions);
-    transaction.recentBlockhash = await (
-      await connection.getRecentBlockhash()
-    ).blockhash;
-    transaction.partialSign(wallet.payer);
-    transaction.partialSign(payer2);
-    const result = await connection.sendTransaction(transaction, [
-      wallet.payer,payer2
-    ]);
-    console.log({ result });
-  }
-
-  return wsolAccount;
-}
-catch (err){
-
-}
-};
 while (true) {
 //  await createWSolAccount();
 
