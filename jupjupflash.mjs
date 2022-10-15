@@ -283,12 +283,12 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
          usdcToSol.data[0] = usdcToSol.data.find(res => res.marketInfos.length <= 2);
          for (var mi of usdcToSol.data[0].marketInfos){
             try {
-            createWSolAccount(mi.outputMint)
-            } catch (err)
-            {
-                
-            }
-           }
+                if(!(await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(mi.outputMint)})).value[0].pubkey ) {
+                  createWSolAccount(mi.outputMint)}
+                  } catch (err)
+                  {
+                      
+                  }         }
       } catch (err){
            
         baddies.push(USDC_MINT+SOL_MINT)
@@ -313,11 +313,12 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
         solToUsdc.data[0] = solToUsdc.data.find(res => res.marketInfos.length <= 2);
         for (var mi of solToUsdc.data[0].marketInfos){
             try {
-                createWSolAccount(mi.outputMint)
-                } catch (err)
-                {
-                    
-                }           }
+                if(!(await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(mi.outputMint)})).value[0].pubkey ) {
+                  createWSolAccount(mi.outputMint)}
+                  } catch (err)
+                  {
+                      
+                  }         }
       } catch (err){
            
         baddies.push(SOL_MINT + USC_MINT)
@@ -359,8 +360,10 @@ if (returns > min && gogo){
     console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
 
     const delegate = Keypair.generate();
-
-    const tokenAccount = await createWSolAccount((USDC_MINT))// (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
+  
+    let tokenAccount = await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)}).value[0].pubkey
+    if (!tokenAccount){
+        tokenAccount = await createWSolAccount((USDC_MINT))}// (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
     
     const token = new Token(connection2, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
       token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
