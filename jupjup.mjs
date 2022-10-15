@@ -321,7 +321,9 @@ if (returns > min && gogo){
     const tokenAccount = await createWSolAccount((USDC_MINT))// (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
     
     const token = new Token(connection2, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
-    
+      token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
+
+
  let   instructions  = [(
   flashBorrowReserveLiquidityInstruction(
     initial,
@@ -596,10 +598,7 @@ console.log(err)
   // sign your transaction with the required `Signers`
  await transaction.sign([payer,payer2])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
  try {
-// await  token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
 
-
-   
   await sendAndConfirmTransaction(connection, transaction, [payer, payer2], {skipPreflight: true})
 
  } catch (err){
