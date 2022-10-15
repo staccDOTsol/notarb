@@ -185,7 +185,7 @@ while (true) {
       try {
 let dec = 6
 
-   initial = Math.floor(Math.random() * (Math.random() * 8)* 10 ** dec + 1.02666 * 10 ** dec);
+   initial =  Math.floor(Math.random() * 5* 10 ** dec + 2.02666 * 10 ** dec);
    //console.log(initial / 10 ** dec)
  
    await prism.loadRoutes(USDC_MINT, SOL_MINT); 
