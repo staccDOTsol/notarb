@@ -41,7 +41,7 @@ import { sleep } from "../../utils";
 // @ts-ignore
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 setTimeout(async function(){
-    let connection = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr")
+    var connection =  new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr")
     let kp = Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/Users/jarettdunn/notjaregm.json').toString())))
     let wallet = new NodeWallet(kp)
 
@@ -53,15 +53,16 @@ setTimeout(async function(){
     );
     const aggs = [
       // jjfi jfi
-      new PublicKey("BwMPjhes2abu8Z9i3PSYiSuHAcqGnJrEPpSd5R9eENHZ"),
+      new PublicKey("BwMPjhes2abu8Z9i3PSYiSuHAcqGnJrEPpSd5R9eENHZ")/*,
       // usdc jfi
       new PublicKey("Egb1jei2YjgK4KELocwiqpsV2GeVpFmbZzmpCqGBYJ37"),
       new PublicKey("5MU8rNKRx779PGdv9XD6PHt3HubDQdWEzE9h3XFNGcaU")]//,
- //     new PublicKey("BptKRUwgbpdknMPjbu3RuVo11UN9BsfkKvPi6WbEsiiU")]
-      const pools = [new PublicKey("EYh4771fqdF57MmC6UzjA6B41ttsZvSfhn4a4eNv959B"),
+    //     new PublicKey("BptKRUwgbpdknMPjbu3RuVo11UN9BsfkKvPi6WbEsiiU")*/]
+ 
+      const pools = [new PublicKey("HQcY5n2zP6rW74fyFEhWeBd3LnJpBcZechkvJpmdb8cx"),/*new PublicKey("EYh4771fqdF57MmC6UzjA6B41ttsZvSfhn4a4eNv959B"),
       new PublicKey("53izNbSmy63u7XqoyAVQEvRyuhYcMNphTtZEqxdgcxdF"),
       new PublicKey("GE3FFK5V76w7X1KyYMyP8cHQykkuav2tTBXjn9xiwcpq")]
-//       new PublicKey("6mPWsaeCR4hEJGk9Kk6rDGGBSaTpMY3R5EA5gVwQ8zeX")]
+    //       new PublicKey("6mPWsaeCR4hEJGk9Kk6rDGGBSaTpMY3R5EA5gVwQ8zeX")*/]
       let acc = -1
   
 // anchor is cool

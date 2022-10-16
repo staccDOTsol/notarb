@@ -55,7 +55,7 @@ class Prism {
                 },
                 slippage: params.slippage ? params.slippage : 0.5
             };
-            let connection = params.connection ?
+            var connection =  params.connection ?
                 params.connection :
                 new web3_js_1.Connection(types_1.ENDPOINT);
             let user = params.user;

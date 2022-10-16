@@ -39,9 +39,13 @@ import { PromisePool }from '@supercharge/promise-pool'
 
 setInterval(async function(){
   try {
-    let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost' : 'http://localhost') +":8899", {skipPreflight: false});
-    const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true});
-    //connection = connection2
+    let  connections = [ new  Connection("https://indulgent-cold-dawn.solana-mainnet.quiknode.pro", {skipPreflight: true}), 
+     new Connection("https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4", {skipPreflight: true}),
+    new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true}),
+    new Connection("https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ", {skipPreflight: true})]
+
+  var connection =  connections[Math.floor(Math.random()* connections.length)]
+    //connection = connection
 
     let luts = await connection.getProgramAccounts(AddressLookupTableProgram.programId)
    // console.log(luts)
@@ -54,7 +58,7 @@ setInterval(async function(){
     })
     // @ts-ignore
     .process(async (lut) => {
-      let maybemine = await connection2.getAddressLookupTable(lut.pubkey)
+      let maybemine = await connection.getAddressLookupTable(lut.pubkey)
       if (maybemine.value?.state.authority?.toBase58()== ("5kqGoFPBGoYpFcxpa6BFRp3zfNormf52KCo5vQ8Qn5bx"))
       {
 
@@ -72,9 +76,11 @@ setInterval(async function(){
 }, 5 *  60000)
 // This is a free Solana RPC endpoint. It may have ratelimit and sometimes
 // invalid cache. I will recommend using a paid RPC endpoint.
-let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost' : 'http://localhost') +":8899", {skipPreflight: false});
-const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true});
-//connection = connection2
+    let  connections = [ new  Connection("https://indulgent-cold-dawn.solana-mainnet.quiknode.pro", {skipPreflight: true}), 
+    new Connection("https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4", {skipPreflight: true}),
+   new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true}),
+   new Connection("https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ", {skipPreflight: true})]
+//connection = connection
 const wallet = new Wallet(
   Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/Users/jarettdunn') + '/notjaregm.json').toString()))));
   const payer = (
@@ -170,6 +176,8 @@ console.log('')
 console.log('')
 
 console.log('')
+
+var connection = connections[Math.floor(Math.random()* connections.length)]
 var markets = [  await SolendMarket.initialize(
   connection,
   
@@ -182,6 +190,8 @@ for (var amarket of [
 
 "7tiNvRHSjYDfc6usrWnSNPyuN68xQfKs1ZG2oqtR5F46",
 "C3VQi4sKNXVsG36zhUnvNasXPhzGmWWVpaeSPv5Tf2AB"]){
+
+  var connection = connections[Math.floor(Math.random()* connections.length)]
 await sleep(Math.random()*1000)
 let market =  await SolendMarket.initialize(
     connection,
@@ -197,6 +207,7 @@ markets.push(market)
 
 // wsol account
 const createWSolAccount = async (mint) => {
+  var connection =  connections[Math.floor(Math.random()* connections.length)]
   try {
   const wsolAddress = await Token.getAssociatedTokenAddress(
     ASSOCIATED_TOKEN_PROGRAM_ID,
@@ -205,7 +216,7 @@ const createWSolAccount = async (mint) => {
     wallet.publicKey
   );
 
-  let wsolAccount = await connection2.getAccountInfo(wsolAddress);
+  let wsolAccount = await connection.getAccountInfo(wsolAddress);
 
   if (!wsolAccount) {
     const transaction = new Transaction({
@@ -226,15 +237,15 @@ const createWSolAccount = async (mint) => {
 
     transaction.add(...instructions);
     transaction.recentBlockhash = await (
-      await connection2.getLatestBlockhash()
+      await connection.getLatestBlockhash()
     ).blockhash;
     transaction.partialSign(payer);
-    const result = await sendAndConfirmTransaction(connection2, transaction, [
+    const result = await sendAndConfirmTransaction(connection, transaction, [
       payer,
     ], {skipPreflight:false});
     console.log({ result });
   }
-  wsolAccount = await connection2.getAccountInfo(wsolAddress);
+  wsolAccount = await connection.getAccountInfo(wsolAddress);
 
   return wsolAddress;
 }
@@ -249,6 +260,8 @@ while (true) {
 
   let abc = -1
 for (var market of markets){
+
+  var connection = connections[Math.floor(Math.random()* connections.length)]
     market = markets[Math.floor(Math.random() * markets.length)]
 await market.loadReserves();
 market.refreshAll();
@@ -265,6 +278,8 @@ let min = 0.04//( reserve.stats.borrowFeePercentage * 100)
     abc++
     for (var SOL_MINT of mints){
         SOL_MINT = mints[Math.floor(Math.random() * mints.length)]
+
+  var connection =  connections[Math.floor(Math.random()* connections.length)]
         if (!baddies.includes(SOL_MINT+USDC_MINT) &&  !baddies.includes(USDC_MINT+SOL_MINT)){
       let dothethings = []
       cba++
@@ -283,7 +298,7 @@ let min = 0.04//( reserve.stats.borrowFeePercentage * 100)
          usdcToSol.data[0] = usdcToSol.data.find(res => res.marketInfos.length <= 3);
          for (var mi of usdcToSol.data[0].marketInfos){
           try {
-            if(!(await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(mi.outputMint)})).value[0].pubkey ) {
+            if(!(await connection.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(mi.outputMint)})).value[0].pubkey ) {
               createWSolAccount(mi.outputMint)}
               } catch (err)
               {
@@ -314,7 +329,7 @@ let min = 0.04//( reserve.stats.borrowFeePercentage * 100)
         solToUsdc.data[0] = solToUsdc.data.find(res => res.marketInfos.length <= 3);
           for (var mi of solToUsdc.data[0].marketInfos){
             try {
-              if(!(await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(mi.outputMint)})).value[0].pubkey ) {
+              if(!(await connection.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(mi.outputMint)})).value[0].pubkey ) {
                 createWSolAccount(mi.outputMint)}
                 } catch (err)
                 {
@@ -362,9 +377,9 @@ if (returns > min && gogo){
 
     //const delegate = Keypair.generate();
 
-//    const tokenAccount = await createWSolAccount((USDC_MINT))// (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
+//    const tokenAccount = await createWSolAccount((USDC_MINT))// (await connection.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
     
-  //  const token = new Token(connection2, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
+  //  const token = new Token(connection, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
   //    token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
 
 

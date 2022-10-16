@@ -25,7 +25,7 @@ yarn add @solana/web3.js @project-serum/serum
 import { Account, Connection, PublicKey } from '@solana/web3.js';
 import { Market } from '@project-serum/serum';
 
-let connection = new Connection('https://testnet.solana.com');
+var connection =  new Connection('https://testnet.solana.com');
 let marketAddress = new PublicKey('...');
 let programAddress = new PublicKey("...");
 let market = await Market.load(connection, marketAddress, {}, programAddress);
