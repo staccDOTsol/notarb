@@ -584,7 +584,7 @@ tx2.sign(payer)
 
 if (true){//ontgo1){
 try{
- // await sendAndConfirmTransaction(connection, tx2,[payer, payer], {skipPreflight: true})
+  await sendAndConfirmTransaction(connection, tx2,[payer, payer], {skipPreflight: true})
 } catch (err){
     console.log(err)
 }
