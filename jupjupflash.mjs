@@ -84,7 +84,6 @@ const wallet = new Wallet(
   
 import fs from 'fs'
 import { createTransferInstruction } from "@solana/spl-token";
-import { token } from "@project-serum/anchor/dist/cjs/utils";
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 
@@ -357,7 +356,7 @@ let gogo = true
 for (var maybego of  dothethings){
   gogo = maybego
 }
-if (returns > -.15 && gogo){
+if (returns > -5.15 && gogo){
   
   if (true){
   // when outAmount more than initial
@@ -411,7 +410,7 @@ let  instructions  = [(
                       })
                     );
                 }
-                instructions.push(Token.createApproveInstruction(TOKEN_PROGRAM_ID, tokenAccount, delegate.publicKey, payer.publicKey,[], initial))
+                instructions.push(Token.createApproveInstruction(tokenAccount, delegate.publicKey, payer.publicKey, initial))
                  // (connection, payer, tokenAccount, delegate.publicKey, payer, Math.floor(initial*1.1))
                       instructions.push(
                         flashRepayReserveLiquidityInstruction(
