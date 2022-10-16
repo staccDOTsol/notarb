@@ -51,7 +51,7 @@ const payer = (
 let initial = 3  * 10 ** 6;
 const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true});
 
-let connection = new Connection("http://69.46.29.78:8899", {skipPreflight: false});
+let connection = new Connection("http://localhost:8899", {skipPreflight: false});
 const market = await SolendMarket.initialize(
   connection,
   "production", // optional environment argument

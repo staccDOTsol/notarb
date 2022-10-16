@@ -55,7 +55,7 @@ console.log({ dotenv: dotenv_1["default"] });
 dotenv_1["default"].config();
 // This is a free Solana RPC endpoint. It may have ratelimit and sometimes
 // invalid cache. I will recommend using a paid RPC endpoint.
-var connection = new web3_js_1.Connection("http://69.46.29.78:8899", { skipPreflight: true });
+var connection = new web3_js_1.Connection("http://localhost:8899", { skipPreflight: true });
 var wallet = new anchor_1.Wallet(web3_js_1.Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs_1["default"].readFileSync('/Users/jarettdunn/jaregm.json').toString()))));
 var payer = (web3_js_1.Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs_1["default"].readFileSync('/Users/jarettdunn/jaregm.json').toString()))));
 var solend_sdk_1 = require("@solendprotocol/solend-sdk");
