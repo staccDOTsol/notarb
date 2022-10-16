@@ -41,7 +41,7 @@ import { PromisePool }from '@supercharge/promise-pool'
 setInterval(async function(){
   try {
     let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost' : 'http://localhost') +":8899", {skipPreflight: false});
-    const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ", {skipPreflight: true});
+    const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true});
    connection = connection2
 
     let luts = await connection.getProgramAccounts(AddressLookupTableProgram.programId)
@@ -74,7 +74,7 @@ setInterval(async function(){
 // This is a free Solana RPC endpoint. It may have ratelimit and sometimes
 // invalid cache. I will recommend using a paid RPC endpoint.
 let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost' : 'http://localhost') +":8899", {skipPreflight: false});
-const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ", {skipPreflight: true});
+const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true});
 connection = connection2
 
 const wallet = new Wallet(
@@ -261,7 +261,7 @@ var USDC_MINT = reserve.config.liquidityToken.mint
   try {
   
 var dec =  reserve.config.liquidityToken.decimals
-let min = -1//( reserve.stats.borrowFeePercentage * 100)
+let min = -0.01//( reserve.stats.borrowFeePercentage * 100)
     
     let cba = -1
     abc++
@@ -365,8 +365,8 @@ if (returns > min && gogo){
     const delegate = Keypair.generate();
   let tokenAccount
     try {
-     tokenAccount = await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)}).value[0].pubkey
-    } catch (err){
+      tokenAccount = (await connection.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey
+        } catch (err){
      tokenAccount = await createWSolAccount((USDC_MINT))}// (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
      let myshit = (await connection.getTokenAccountBalance(tokenAccount)).value.amount
 

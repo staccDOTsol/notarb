@@ -39,9 +39,8 @@ import { PromisePool }from '@supercharge/promise-pool'
 
 setInterval(async function(){
   try {
-    let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost' : 'http://localhost') +":8899", {skipPreflight: false});
-    const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ", {skipPreflight: true});
-   connection = connection2
+    const connection = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true});
+   connection = connection
 
     let luts = await connection.getProgramAccounts(AddressLookupTableProgram.programId)
    // console.log(luts)
@@ -54,7 +53,7 @@ setInterval(async function(){
     })
     // @ts-ignore
     .process(async (lut) => {
-      let maybemine = await connection2.getAddressLookupTable(lut.pubkey)
+      let maybemine = await connection.getAddressLookupTable(lut.pubkey)
       if (maybemine.value?.state.authority?.toBase58()== ("5kqGoFPBGoYpFcxpa6BFRp3zfNormf52KCo5vQ8Qn5bx"))
       {
 
@@ -72,9 +71,7 @@ setInterval(async function(){
 }, 5 *  60000)
 // This is a free Solana RPC endpoint. It may have ratelimit and sometimes
 // invalid cache. I will recommend using a paid RPC endpoint.
-let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost' : 'http://localhost') +":8899", {skipPreflight: false});
-const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ", {skipPreflight: true});
-connection = connection2
+const connection = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true});
 
 const wallet = new Wallet(
   Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/Users/jarettdunn') + '/notjaregm.json').toString()))));
@@ -127,7 +124,7 @@ const getTransaction = (route) => {
     .post("https://quote-api.jup.ag/v1/swap", {
       json: {
         route: route,
-        userPublicKey: wallet.publicKey.toString(),
+        userPublicKey: payer.publicKey.toString(),
         // to make sure it doesnt close the sol account
         wrapUnwrapSOL: false,
       },
@@ -204,14 +201,14 @@ const createWSolAccount = async (mint) => {
     ASSOCIATED_TOKEN_PROGRAM_ID,
     TOKEN_PROGRAM_ID,
     new PublicKey(mint),
-    wallet.publicKey
+    payer.publicKey
   );
 
-  let wsolAccount = await connection2.getAccountInfo(wsolAddress);
+  let wsolAccount = await connection.getAccountInfo(wsolAddress);
 
   if (!wsolAccount) {
     const transaction = new Transaction({
-      feePayer: wallet.publicKey,
+      feePayer: payer.publicKey,
     });
     const instructions = [];
 
@@ -221,22 +218,22 @@ const createWSolAccount = async (mint) => {
         TOKEN_PROGRAM_ID,
         new PublicKey(mint),
         wsolAddress,
-        wallet.publicKey,
-        wallet.publicKey
+        payer.publicKey,
+        payer.publicKey
       )
     );
 
     transaction.add(...instructions);
     transaction.recentBlockhash = await (
-      await connection2.getLatestBlockhash()
+      await connection.getLatestBlockhash()
     ).blockhash;
     transaction.partialSign(payer);
-    const result = await sendAndConfirmTransaction(connection2, transaction, [
+    const result = await sendAndConfirmTransaction(connection, transaction, [
       payer,
     ], {skipPreflight:false});
     console.log({ result });
   }
-  wsolAccount = await connection2.getAccountInfo(wsolAddress);
+  wsolAccount = await connection.getAccountInfo(wsolAddress);
 
   return wsolAddress;
 }
@@ -261,7 +258,7 @@ var USDC_MINT = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"//reserve.config.l
   try {
   
 var dec = 6// reserve.config.liquidityToken.decimals
-let min = -1//( reserve.stats.borrowFeePercentage * 100)
+let min = ( reserve.stats.borrowFeePercentage * 100)
     
     let cba = -1
     abc++
@@ -285,7 +282,7 @@ let min = -1//( reserve.stats.borrowFeePercentage * 100)
          usdcToSol.data[0] = usdcToSol.data.find(res => res.marketInfos.length <= 3);
          for (var mi of usdcToSol.data[0].marketInfos){
           try {
-            if(!(await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(mi.outputMint)})).value[0].pubkey ) {
+            if(!(await connection.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(mi.outputMint)})).value[0].pubkey ) {
               createWSolAccount(mi.outputMint)}
               } catch (err)
               {
@@ -316,7 +313,7 @@ let min = -1//( reserve.stats.borrowFeePercentage * 100)
         solToUsdc.data[0] = solToUsdc.data.find(res => res.marketInfos.length <= 3);
           for (var mi of solToUsdc.data[0].marketInfos){
             try {
-              if(!(await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(mi.outputMint)})).value[0].pubkey ) {
+              if(!(await connection.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(mi.outputMint)})).value[0].pubkey ) {
                 createWSolAccount(mi.outputMint)}
                 } catch (err)
                 {
@@ -365,12 +362,13 @@ if (returns > min && gogo){
     //const delegate = Keypair.generate();
     let tokenAccount
     try {
-     tokenAccount = await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)}).value[0].pubkey
+     tokenAccount = (await connection.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey
     } catch (err){
-     tokenAccount = await createWSolAccount((USDC_MINT))}// (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
+      console.log(err)
+     tokenAccount = await createWSolAccount((USDC_MINT))}// (await connection.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
     let myshit = (await connection.getTokenAccountBalance(tokenAccount)).value.amount
 
-  //  const token = new Token(connection2, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
+  //  const token = new Token(connection, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
   //    token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
 
 
