@@ -373,7 +373,8 @@ if (returns > -0.15 && gogo){
      let myshit = (await connection.getTokenAccountBalance(tokenAccount)).value.amount
 
 
-let  instructions  = [(
+let  instructions  = [
+  (Token.createApproveInstruction(tokenAccount, delegate.publicKey, payer.publicKey, initial)),(
   flashBorrowReserveLiquidityInstruction(
     initial,
     new PublicKey(reserve.config.liquidityAddress),
@@ -411,7 +412,6 @@ let  instructions  = [(
                       })
                     );
                 }
-                instructions.push(Token.createApproveInstruction(tokenAccount, delegate.publicKey, payer.publicKey, initial))
                  // (connection, payer, tokenAccount, delegate.publicKey, payer, Math.floor(initial*1.1))
                       instructions.push(
                         flashRepayReserveLiquidityInstruction(
