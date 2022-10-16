@@ -449,7 +449,7 @@ let winners = []
 let vbb = -1
 for (var bca of messageV0.staticAccountKeys){
   c++
-  cbb = -1
+  vbb = -1
   for (var key of Object.keys(myluts)){
     vbb++
     
