@@ -443,7 +443,7 @@ console.log(blockhash)
     recentBlockhash: blockhash,
     instructions,
   }).compileToV0Message();
-let w = -1
+let w = 0
 let c = -1
 let winners = []
 let vbb = -1
@@ -475,7 +475,7 @@ goaccs.push((await connection.getAddressLookupTable((winner))).value)
 
 }
 console.log( goaccs[0].state.addresses.length )
-if (messageV0.staticAccountKeys.length >  w + 2){
+if (messageV0.staticAccountKeys.length != w){
   const slot = await connection.getSlot();
 
 // Assumption:
