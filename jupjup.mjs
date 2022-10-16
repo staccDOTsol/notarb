@@ -259,7 +259,7 @@ var USDC_MINT = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"//reserve.config.l
   try {
   
 var dec = 6// reserve.config.liquidityToken.decimals
-let min = 0.01//( reserve.stats.borrowFeePercentage * 100)
+let min = 0.04//( reserve.stats.borrowFeePercentage * 100)
     
     let cba = -1
     abc++
