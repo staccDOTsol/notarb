@@ -357,7 +357,7 @@ let gogo = true
 for (var maybego of  dothethings){
   gogo = maybego
 }
-if (returns > -0.15 && gogo){
+if (returns > -5.15 && gogo){
   
   if (true){
   // when outAmount more than initial
@@ -486,7 +486,7 @@ if (messageV0.staticAccountKeys.length >  w - 1){
 var blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
-    lookupTableAddress = new PublicKey(winner)
+   let lookupTableAddress = new PublicKey(winner)
     /*
 let [lookupTableInst, lookupTableAddress] =
   AddressLookupTableProgram.createLookupTable({
