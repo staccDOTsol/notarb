@@ -83,6 +83,7 @@ const wallet = new Wallet(
     Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/Users/jarettdunn') + '/notjaregm.json').toString()))));
   
 import fs from 'fs'
+import { createTransferInstruction } from "@solana/spl-token";
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 
@@ -261,7 +262,7 @@ var USDC_MINT = reserve.config.liquidityToken.mint
   try {
   
 var dec =  reserve.config.liquidityToken.decimals
-let min = -0.01//( reserve.stats.borrowFeePercentage * 100)
+let min = ( reserve.stats.borrowFeePercentage * 100)
     
     let cba = -1
     abc++
@@ -355,7 +356,7 @@ let gogo = true
 for (var maybego of  dothethings){
   gogo = maybego
 }
-if (returns > min && gogo){
+if (returns > -.15 && gogo){
   
   if (true){
   // when outAmount more than initial
@@ -369,9 +370,6 @@ if (returns > min && gogo){
         } catch (err){
      tokenAccount = await createWSolAccount((USDC_MINT))}// (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
      let myshit = (await connection.getTokenAccountBalance(tokenAccount)).value.amount
-
-    const token = new Token(connection2, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
-      token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
 
 
 let  instructions  = [(
@@ -412,6 +410,7 @@ let  instructions  = [(
                       })
                     );
                 }
+                 Token.approve(connection, payer, tokenAccount, delegate.publicKey, payer, Math.floor(initial*1.1))
                       instructions.push(
                         flashRepayReserveLiquidityInstruction(
                           initial,
