@@ -475,7 +475,7 @@ goaccs.push((await connection.getAddressLookupTable((winner))).value)
 
 }
 console.log( goaccs[0].state.addresses.length )
-if (messageV0.staticAccountKeys.length >  w - 1){
+if (messageV0.staticAccountKeys.length >  w + 2){
   const slot = await connection.getSlot();
 
 // Assumption:
