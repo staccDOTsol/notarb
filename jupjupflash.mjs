@@ -282,7 +282,7 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
              let solToUsdc
                 try {
          usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, initial);
-         usdcToSol.data[0] = usdcToSol.data.find(res => res.marketInfos.length <= 2);
+         usdcToSol.data[0] = usdcToSol.data.find(res => res.marketInfos.length <= 50);
          for (var mi of usdcToSol.data[0].marketInfos){
             try {
                 if(!(await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(mi.outputMint)})).value[0].pubkey ) {
@@ -311,7 +311,7 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
           Math.floor(usdcToSol.data[0].outAmount * 0.997)
         );
 
-        solToUsdc.data[0] = solToUsdc.data.find(res => res.marketInfos.length <= 2);
+        solToUsdc.data[0] = solToUsdc.data.find(res => res.marketInfos.length <= 50);
         for (var mi of solToUsdc.data[0].marketInfos){
             try {
                 if(!(await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(mi.outputMint)})).value[0].pubkey ) {
