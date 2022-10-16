@@ -19,10 +19,11 @@ import { Wallet } from "@project-serum/anchor";
 import promiseRetry from "promise-retry";
 import {
   ASSOCIATED_TOKEN_PROGRAM_ID,
-  Token,
   TOKEN_PROGRAM_ID,
  
 } from "@solana/spl-token";
+
+import * as Token from "@solana/spl-token";
 import * as splToken from '@solana/spl-token'
 process.on('SIGTERM', signal => {
   console.log(`Process ${process.pid} received a SIGTERM signal`)
