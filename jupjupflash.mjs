@@ -41,7 +41,7 @@ import { PromisePool }from '@supercharge/promise-pool'
 setInterval(async function(){
   try {
     let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost' : 'http://localhost') +":8899", {skipPreflight: false});
-    const connection2 = new Connection("http://localhost:8899", {skipPreflight: true});
+    const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true});
    connection = connection2
 
     let luts = await connection.getProgramAccounts(AddressLookupTableProgram.programId)
@@ -74,7 +74,7 @@ setInterval(async function(){
 // This is a free Solana RPC endpoint. It may have ratelimit and sometimes
 // invalid cache. I will recommend using a paid RPC endpoint.
 let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost' : 'http://localhost') +":8899", {skipPreflight: false});
-const connection2 = new Connection("http://localhost:8899", {skipPreflight: true});
+const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true});
 connection = connection2
 
 const wallet = new Wallet(
@@ -84,6 +84,7 @@ const wallet = new Wallet(
   
 import fs from 'fs'
 import { createTransferInstruction } from "@solana/spl-token";
+import { token } from "@project-serum/anchor/dist/cjs/utils";
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 
@@ -410,7 +411,8 @@ let  instructions  = [(
                       })
                     );
                 }
-                 Token.approve(connection, payer, tokenAccount, delegate.publicKey, payer, Math.floor(initial*1.1))
+                instructions.push(Token.createApproveInstruction(TOKEN_PROGRAM_ID, tokenAccount, delegate.publicKey, payer.publicKey,[], initial))
+                 // (connection, payer, tokenAccount, delegate.publicKey, payer, Math.floor(initial*1.1))
                       instructions.push(
                         flashRepayReserveLiquidityInstruction(
                           initial,
