@@ -416,7 +416,7 @@ let  instructions  = [
                       instructions.push(
                         flashRepayReserveLiquidityInstruction(
                           initial,
-                          0,
+                          1,
                           tokenAccount,
                           new PublicKey(reserve.config.liquidityAddress),
                           new PublicKey(reserve.config.liquidityFeeReceiverAddress),
