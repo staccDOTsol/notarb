@@ -214,9 +214,7 @@ const createWSolAccount = async (mint) => {
   let wsolAccount = await connection2.getAccountInfo(wsolAddress);
 
   if (!wsolAccount) {
-    const transaction = new Transaction({
-      feePayer: wallet.publicKey,
-    });
+    const transaction = new Transaction();
     const instructions = [];
 
     instructions.push(
@@ -234,10 +232,8 @@ const createWSolAccount = async (mint) => {
     transaction.recentBlockhash = await (
       await connection2.getLatestBlockhash()
     ).blockhash;
-    transaction.partialSign(payer);
-    const result = await sendAndConfirmTransaction(connection2, transaction, [
-      payer,
-    ], {skipPreflight: false});
+    transaction.sign(payer);
+    const result = await sendAndConfirmTransaction(connection2, transaction,);
     console.log({ result });
   }
   wsolAccount = await connection2.getAccountInfo(wsolAddress);
