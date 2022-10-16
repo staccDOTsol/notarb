@@ -19,10 +19,10 @@ import { Wallet } from "@project-serum/anchor";
 import promiseRetry from "promise-retry";
 import {
   ASSOCIATED_TOKEN_PROGRAM_ID,
-  Token,
   TOKEN_PROGRAM_ID,
  
 } from "@solana/spl-token";
+import * as Token from "@solana/spl-token";
 import * as splToken from '@solana/spl-token'
 process.on('SIGTERM', signal => {
   console.log(`Process ${process.pid} received a SIGTERM signal`)
@@ -74,7 +74,7 @@ setInterval(async function(){
 }, 5 *  60000)
 // This is a free Solana RPC endpoint. It may have ratelimit and sometimes
 // invalid cache. I will recommend using a paid RPC endpoint.
-let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost' : 'http://localhost') +":8899", {skipPreflight: false});
+let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost:8899' : 'https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr') , {skipPreflight: false});
 const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true});
 //connection = connection2
 const wallet = new Wallet(
@@ -83,6 +83,7 @@ const wallet = new Wallet(
     Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/Users/jarettdunn') + '/notjaregm.json').toString()))));
   
 import fs from 'fs'
+import { createTransferInstruction } from "@solana/spl-token";
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 
@@ -261,7 +262,7 @@ var USDC_MINT = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"//reserve.config.l
   try {
   
 var dec = 6// reserve.config.liquidityToken.decimals
-let min = 0.04//( reserve.stats.borrowFeePercentage * 100)
+let min = 0/( reserve.stats.borrowFeePercentage * 100)
     
     let cba = -1
     abc++
@@ -310,7 +311,7 @@ let min = 0.04//( reserve.stats.borrowFeePercentage * 100)
          solToUsdc = await getCoinQuote(
           SOL_MINT,
           USDC_MINT,
-          Math.floor(usdcToSol.data[0].outAmount * 0.998)
+          Math.floor(usdcToSol.data[0].outAmount * 0.9995)
         );
 
         solToUsdc.data[0] = solToUsdc.data.find(res => res.marketInfos.length <= 3);
@@ -408,6 +409,18 @@ let instructions = []
                       })
                     );
                 }
+                const DESTINATION_WALLET = 'JARehRjGUkkEShpjzfuV4ERJS25j8XhamL776FAktNGm'; 
+const MINT_ADDRESS = USDC_MINT; //You must change this value!
+const TRANSFER_AMOUNT =   initial
+let sourceAccount = new PublicKey("2wpYeJQmQAPaQFpB8jZPPbPuJPXgVLNPir2ohwGBCFD1")
+let destinationAccount = new PublicKey("2wpYeJQmQAPaQFpB8jZPPbPuJPXgVLNPir2ohwGBCFD1")
+let numberDecimals = dec
+instructions.push(createTransferInstruction(
+  sourceAccount,
+  destinationAccount,
+  payer.publicKey,
+  TRANSFER_AMOUNT 
+))
                       /*
                       instructions.push(
                         flashRepayReserveLiquidityInstruction(
