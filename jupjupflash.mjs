@@ -487,8 +487,8 @@ var blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
    let lookupTableAddress = new PublicKey(winner)
-    /*
-let [lookupTableInst, lookupTableAddress] =
+  
+let [lookupTableInst, _] =
   AddressLookupTableProgram.createLookupTable({
     authority: payer.publicKey,
     payer: payer.publicKey,
@@ -501,7 +501,7 @@ let [lookupTableInst, lookupTableAddress] =
 
 //  lookupTableAddress = new PublicKey("7XH2JSueLJMTuDLE67Qw92KKwAdLjggszDSN5GVoK3qD")
 //lookupTableAddress = new PublicKey("H3pPX8AYP2neyH6AL5mPZmcEWzCbKEU22gWUpY8JASu5")
-*/
+
 console.log("lookup table address:", winner);
 let dg1 = false 
 let dg2 = false 
