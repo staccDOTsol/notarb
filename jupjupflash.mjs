@@ -581,7 +581,7 @@ const extendInstruction3 = AddressLookupTableProgram.extendLookupTable({
 });
 let ix2 =  [lookupTableInst,extendInstruction, extendInstruction2, extendInstruction3]
 if (!dontgo1){
-let tx2 = new Transaction()
+var tx2 = new Transaction()
 tx2.add(ix2[0])
 //console.log(1)
 blockhash = await connection
@@ -598,7 +598,7 @@ try{
 }
 }
 }
- tx2 = new Transaction()
+var tx2 = new Transaction()
 tx2.add(ix2[1])
 //console.log(1)
 blockhash = await connection
