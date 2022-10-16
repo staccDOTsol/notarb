@@ -482,9 +482,9 @@ if (messageV0.staticAccountKeys.length >  w - 1){
 var blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
-   let lookupTableAddress = new PublicKey(winner)
+   //let lookupTableAddress = new PublicKey(winner)
   
-let [lookupTableInst, _] =
+let [lookupTableInst, lookupTableAddress] =
   AddressLookupTableProgram.createLookupTable({
     authority: payer.publicKey,
     payer: payer.publicKey,
