@@ -717,10 +717,9 @@ while (true) {
                                   if (true) {
                                     //ontgo1){
                                     try {
-                                      await sendAndConfirmTransaction(
-                                        connection,
+                                      await connection.sendTransaction(
                                         tx2,
-                                        [payer, payer],
+                                        [payer],
                                         { skipPreflight: true }
                                       );
                                     } catch (err) {
@@ -737,10 +736,9 @@ while (true) {
                                   tx2.sign(payer);
                                   if (!dg1) {
                                     try {
-                                      let hm = await sendAndConfirmTransaction(
-                                        connection,
+                                      let hm = connection.sendTransaction(
                                         tx2,
-                                        [payer, payer],
+                                        [payer],
                                         { skipPreflight: true }
                                       );
                                       console.log(hm);
@@ -759,10 +757,9 @@ while (true) {
                                   tx2.sign(payer);
                                   if (!dg2) {
                                     try {
-                                      await sendAndConfirmTransaction(
-                                        connection,
+                                      await connection.sendTransaction(
                                         tx2,
-                                        [payer, payer],
+                                        [payer],
                                         { skipPreflight: true }
                                       );
                                     } catch (err) {
@@ -779,10 +776,9 @@ while (true) {
                                   tx2.sign(payer);
                                   if (!dg3) {
                                     try {
-                                      await sendAndConfirmTransaction(
-                                        connection,
+                                      await connection.sendTransaction(
                                         tx2,
-                                        [payer, payer],
+                                        [payer],
                                         { skipPreflight: true }
                                       );
                                     } catch (err) {
