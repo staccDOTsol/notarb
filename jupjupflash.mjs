@@ -256,7 +256,32 @@ let prev = new Date().getTime() / 1000
 let avgs = []
 while (true) {
  //await createWSolAccount();
-
+ var connection = connections[Math.floor(Math.random()* connections.length)]
+ var markets = [  await SolendMarket.initialize(
+   connection,
+   
+   "production", // optional environment argumentmin 
+   
+ )]
+ for (var amarket of [
+ "Ckya2fwCXDqTUg9fnWbajR6YLcSfQmPxxy5MyAoZXgyb",
+ "GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q",
+ 
+ "7tiNvRHSjYDfc6usrWnSNPyuN68xQfKs1ZG2oqtR5F46",
+ "C3VQi4sKNXVsG36zhUnvNasXPhzGmWWVpaeSPv5Tf2AB"]){
+ 
+   var connection = connections[Math.floor(Math.random()* connections.length)]
+ await sleep(Math.random()*1000)
+ let market =  await SolendMarket.initialize(
+     connection,
+     
+     "production", // optional environment argument'
+     amarket
+   );
+ 
+ 
+ markets.push(market)
+ }
   let abc = -1
 for (var market of markets){
 
