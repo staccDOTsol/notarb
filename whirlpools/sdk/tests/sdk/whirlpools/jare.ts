@@ -41,7 +41,7 @@ import { sleep } from "../../utils";
 // @ts-ignore
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 setTimeout(async function(){
-    var connection =  new Connection("http://localhost:8899")
+    var connection =  new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr")
     let kp = Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/Users/jarettdunn/notjaregm.json').toString())))
     let wallet = new NodeWallet(kp)
 
