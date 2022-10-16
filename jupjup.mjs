@@ -118,7 +118,7 @@ console.log(mints.length)
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
-      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=5`
+      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=90`
     )
     .json();
 
@@ -310,7 +310,7 @@ let min = 0/( reserve.stats.borrowFeePercentage * 100)
          solToUsdc = await getCoinQuote(
           SOL_MINT,
           USDC_MINT,
-          Math.floor(usdcToSol.data[0].outAmount * 0.9995)
+          Math.floor(usdcToSol.data[0].outAmount * 0.997)
         );
 
         solToUsdc.data[0] = solToUsdc.data.find(res => res.marketInfos.length <= 3);

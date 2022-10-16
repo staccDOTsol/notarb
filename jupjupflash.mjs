@@ -310,7 +310,7 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
          solToUsdc = await getCoinQuote(
           SOL_MINT,
           USDC_MINT,
-          Math.floor(usdcToSol.data[0].outAmount * 0.998)
+          Math.floor(usdcToSol.data[0].outAmount * 0.997)
         );
 
         solToUsdc.data[0] = solToUsdc.data.find(res => res.marketInfos.length <= 2);
@@ -424,7 +424,7 @@ let  instructions  = [(
                           new PublicKey(market.config.address),
                           delegate.publicKey,
                           SOLEND_PRODUCTION_PROGRAM_ID
-                        ))  
+                        ))   
 
 instructions.push(createTransferInstruction(
   tokenAccount,
