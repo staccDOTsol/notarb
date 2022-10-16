@@ -83,7 +83,6 @@ const wallet = new Wallet(
   
 import fs from 'fs'
 import { createTransferInstruction } from "@solana/spl-token";
-import { token } from "@project-serum/anchor/dist/cjs/utils";
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 
