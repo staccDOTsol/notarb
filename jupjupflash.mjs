@@ -346,7 +346,7 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
             t+=avg 
         }
         let nowavg = t / avgs.length 
-   if ( new Date().getTime() % 100 <= 10 )   console.log((initial / 10 ** dec * reserve.stats.assetPriceUSD).toString() + ' initial, ' + returns.toString() + '% yield on badboi ' + USDC_MINT + ' <-> ' + SOL_MINT+', time since last arb checked: ' + diff.toString() + 's, avg last 60 diffs: ' + nowavg.toString() + ', lendiffs: ' + avgs.length.toString()+ ', lenbaddies: ' + baddies.length.toString())
+   if ( new Date().getTime() % 100 <= 33 )   console.log((initial / 10 ** dec * reserve.stats.assetPriceUSD).toString() + ' initial, ' + returns.toString() + '% yield on badboi ' + USDC_MINT + ' <-> ' + SOL_MINT+', time since last arb checked: ' + diff.toString() + 's, avg last 60 diffs: ' + nowavg.toString() + ', lendiffs: ' + avgs.length.toString()+ ', lenbaddies: ' + baddies.length.toString())
 //console.log(initial / 10 ** dec)
 let gogo = true 
 for (var maybego of  dothethings){
