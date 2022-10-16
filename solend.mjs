@@ -49,7 +49,7 @@ const payer = (
     Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/Users/jarettdunn/notjaregm.json').toString()))));
 // 1. Initalize market with parameters and metadata
 let initial = 3  * 10 ** 6;
-const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: true});
+const connection2 = new Connection("http://localhost:8899", {skipPreflight: true});
 
 var connection =  new Connection("http://localhost:8899", {skipPreflight: false});
 const market = await SolendMarket.initialize(
