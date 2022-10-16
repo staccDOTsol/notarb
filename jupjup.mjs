@@ -83,6 +83,7 @@ const wallet = new Wallet(
   
 import fs from 'fs'
 import { createTransferInstruction } from "@solana/spl-token";
+import { token } from "@project-serum/anchor/dist/cjs/utils";
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 
@@ -363,9 +364,13 @@ if (returns > min && gogo){
     console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
 
     //const delegate = Keypair.generate();
+    let tokenAccount
+    try {
+     tokenAccount = await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)}).value[0].pubkey
+    } catch (err){
+     tokenAccount = await createWSolAccount((USDC_MINT))}// (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
+    let myshit = (await connection.getTokenAccountBalance(tokenAccount)).value.amount
 
-//    const tokenAccount = await createWSolAccount((USDC_MINT))// (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
-    
   //  const token = new Token(connection2, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
   //    token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
 
@@ -408,17 +413,12 @@ let instructions = []
                       })
                     );
                 }
-                const DESTINATION_WALLET = 'JARehRjGUkkEShpjzfuV4ERJS25j8XhamL776FAktNGm'; 
-const MINT_ADDRESS = USDC_MINT; //You must change this value!
-const TRANSFER_AMOUNT =   initial
-let sourceAccount = new PublicKey("2wpYeJQmQAPaQFpB8jZPPbPuJPXgVLNPir2ohwGBCFD1")
-let destinationAccount = new PublicKey("2wpYeJQmQAPaQFpB8jZPPbPuJPXgVLNPir2ohwGBCFD1")
-let numberDecimals = dec
+        
 instructions.push(createTransferInstruction(
-  sourceAccount,
-  destinationAccount,
+  tokenAccount,
+  tokenAccount,
   payer.publicKey,
-  TRANSFER_AMOUNT 
+  myshit 
 ))
                       /*
                       instructions.push(

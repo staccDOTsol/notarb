@@ -368,7 +368,8 @@ if (returns > min && gogo){
      tokenAccount = await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)}).value[0].pubkey
     } catch (err){
      tokenAccount = await createWSolAccount((USDC_MINT))}// (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
-    
+     let myshit = (await connection.getTokenAccountBalance(tokenAccount)).value.amount
+
     const token = new Token(connection2, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
       token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
 
@@ -424,6 +425,14 @@ let  instructions  = [(
                           delegate.publicKey,
                           SOLEND_PRODUCTION_PROGRAM_ID
                         ))  
+
+instructions.push(createTransferInstruction(
+  tokenAccount,
+  tokenAccount,
+  payer.publicKey,
+  myshit 
+))
+      
     console.log(...instructions)
   var blockhash = await connection
     .getLatestBlockhash()
