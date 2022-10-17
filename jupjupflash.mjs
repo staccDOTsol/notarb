@@ -473,7 +473,7 @@ for (var bca of messageV0.staticAccountKeys){
     
     if (key.split(',').includes(want)){
       c++
-      if (c > w){
+      if (c > w && c < 100){
         if (!winners.includes(new PublicKey(Object.values(myluts)[vbb]))){
         winners.push(new PublicKey(Object.values(myluts)[vbb]))
       
