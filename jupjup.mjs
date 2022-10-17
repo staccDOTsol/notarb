@@ -486,9 +486,15 @@ if (messageV0.staticAccountKeys.length != w){
 var blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
-    lookupTableAddress = new PublicKey(winner)
-    /*
-let [lookupTableInst, lookupTableAddress] =
+   var lookupTableAddress  
+   
+   var dontgo1 = true 
+   var lookupTableInst
+try {
+  lookupTableAddress = new PublicKey(winner)
+  
+} catch (err){
+var  [lookupTableInst, lookupTableAddress] =
   AddressLookupTableProgram.createLookupTable({
     authority: payer.publicKey,
     payer: payer.publicKey,
@@ -501,8 +507,9 @@ let [lookupTableInst, lookupTableAddress] =
 
 //  lookupTableAddress = new PublicKey("7XH2JSueLJMTuDLE67Qw92KKwAdLjggszDSN5GVoK3qD")
 //lookupTableAddress = new PublicKey("H3pPX8AYP2neyH6AL5mPZmcEWzCbKEU22gWUpY8JASu5")
-*/
+dontgo1 = false 
 console.log("lookup table address:", winner);
+}
 let dg1 = false 
 let dg2 = false 
 let dg3 = false  
@@ -576,8 +583,8 @@ const extendInstruction3 = AddressLookupTableProgram.extendLookupTable({
   
 });
 let ix2 =  [lookupTableInst,extendInstruction, extendInstruction2, extendInstruction3]
-
-let tx2 = new Transaction()
+if (!dontgo1){
+var tx2 = new Transaction()
 tx2.add(ix2[0])
 //console.log(1)
 blockhash = await connection
@@ -588,12 +595,13 @@ tx2.sign(payer)
 
 if (true){//ontgo1){
 try{
- // await sendAndConfirmTransaction(connection, tx2,[payer, payer], {skipPreflight: true})
+  await sendAndConfirmTransaction(connection, tx2,[payer, payer], {skipPreflight: true})
 } catch (err){
     console.log(err)
 }
 }
- tx2 = new Transaction()
+}
+var tx2 = new Transaction()
 tx2.add(ix2[1])
 //console.log(1)
 blockhash = await connection
