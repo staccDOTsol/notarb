@@ -491,7 +491,7 @@ var blockhash = await connection
    var dontgo1 = true 
    var lookupTableInst
 try {
-  lookupTableAddress = new PublicKey(winner)
+   lookupTableAddress = winners[Math.floor(Math.random() * winners.length)]
   
 } catch (err){
 var  [lookupTableInst, lookupTableAddress] =

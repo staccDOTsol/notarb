@@ -463,6 +463,7 @@ console.log(blockhash)
 let w = 0
 let c = -1
 let winners = []
+let winner 
 let vbb = -1
 for (var bca of messageV0.staticAccountKeys){
   c++
@@ -476,6 +477,7 @@ for (var bca of messageV0.staticAccountKeys){
       if (c > w){
         if (!winners.includes(new PublicKey(Object.values(myluts)[vbb]))){
         winners.push(new PublicKey(Object.values(myluts)[vbb]))
+      
         }
           w = c 
         
@@ -505,9 +507,9 @@ var blockhash = await connection
    var dontgo1 = true 
    var lookupTableInst
 try {
-  lookupTableAddress = new PublicKey(winner)
-  
-} catch (err){
+    lookupTableAddress = winners[Math.floor(Math.random() * winners.length)]
+   
+} catch (err){ 
 var  [lookupTableInst, lookupTableAddress] =
   AddressLookupTableProgram.createLookupTable({
     authority: payer.publicKey,
@@ -518,9 +520,9 @@ var  [lookupTableInst, lookupTableAddress] =
   .getAddressLookupTable(lookupTableAddress)
   .then((res) => res.value);
   console.log(ttt)
+  
 
 //  lookupTableAddress = new PublicKey("7XH2JSueLJMTuDLE67Qw92KKwAdLjggszDSN5GVoK3qD")
-//lookupTableAddress = new PublicKey("H3pPX8AYP2neyH6AL5mPZmcEWzCbKEU22gWUpY8JASu5")
 dontgo1 = false 
 console.log("lookup table address:", winner);
 }
