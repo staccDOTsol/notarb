@@ -251,7 +251,7 @@ const createWSolAccount = async (mint) => {
       await connection2.getLatestBlockhash()
     ).blockhash;
     transaction.sign(payer);
-    const result = await sendAndConfirmTransaction(connection, transaction);
+    const result = await connection.sendAndConfirmTransaction(connection, transaction)
     console.log({ result });
   }
   wsolAccount = await connection2.getAccountInfo(wsolAddress);
@@ -279,7 +279,7 @@ try {
   createWSolAccount(USDC_MINT)
 }
  catch (err){
-  
+
  }
     if (USDC_MINT != "So11111111111111111111111111111111111111112" ){
   try {
