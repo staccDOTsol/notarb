@@ -250,7 +250,7 @@ let prev = new Date().getTime() / 1000
 let avgs = []
 console.log(prev)
 const jupiter = await Jupiter.load({
-  connection2,
+  connection: connection2,
   cluster: 'mainnet-beta',
   user: payer,
 });
