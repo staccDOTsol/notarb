@@ -49,7 +49,7 @@ const payer = (
     Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/Users/jarettdunn/notjaregm.json').toString()))));
 // 1. Initalize market with parameters and metadata
 let initial = 3  * 10 ** 6;
-const connection2 = new Connection("http://localhost:8899", {skipPreflight: true});
+const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: false});
 
 var connection =  new Connection("http://localhost:8899", {skipPreflight: false});
 const market = await SolendMarket.initialize(
@@ -269,7 +269,7 @@ if (!true){
   tx2.sign(payer)
   try {
     
-  let hm = await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: true})
+  let hm = await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
   console.log(hm)
   } catch (err){
       console.log(err)
@@ -288,7 +288,7 @@ tx2.sign(payer)
 if (false){
 try {
   
-let hm = await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: true})
+let hm = await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 console.log(hm)
 } catch (err){
     console.log(err)
@@ -307,7 +307,7 @@ tx2.sign(payer)
 if (false){
 try {
   
-let hm = await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: true})
+let hm = await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 console.log(hm)
 } catch (err){
     console.log(err)

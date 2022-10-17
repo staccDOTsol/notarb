@@ -38,7 +38,7 @@ dotenv.config();
 // This is a free Solana RPC endpoint. It may have ratelimit and sometimes
 // invalid cache. I will recommend using a paid RPC endpoint.
 const connection = new Connection("http://localhost:8899", {skipPreflight: false});
-const connection2 = new Connection("http://localhost:8899", {skipPreflight: true});
+const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: false});
 const wallet = new Wallet(
   Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/Users/jarettdunn/notjaregm.json').toString()))));
   const payer = (
@@ -127,7 +127,7 @@ let prism = await Prism.init({
     // user executing swap
     slippage:5,
     user: payer,               // optional (if you don't provide upon init, then you'll need to call prism.setSigner() after user connects the wallet)
-connection: new Connection("http://localhost:8899")
+connection: new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr")
     // rpc connection
 });
 for (var USDC_MINT of has){
@@ -581,7 +581,7 @@ tx2.sign(payer)
 
 if (!dontgo1){
 try{
-  await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: true})
+  await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 } catch (err){
     
 }
@@ -597,7 +597,7 @@ tx2.sign(payer)
 if (!dg1){
 try {
   
-let hm = await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: true})
+let hm = await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 console.log(hm)
 } catch (err){
     
@@ -614,7 +614,7 @@ tx2.recentBlockhash = blockhash
 tx2.sign(payer)
 if (!dg2){
 try {
-await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: true})
+await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 } catch (err){
     
 }
@@ -629,7 +629,7 @@ tx2.recentBlockhash = blockhash
 tx2.sign(payer)
 if (!dg3){
   try {
-await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: true})
+await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
   } catch (err){
 
   }

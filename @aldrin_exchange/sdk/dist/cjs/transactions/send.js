@@ -62,7 +62,7 @@ function sendTransaction(_a) {
                     transactionFromWallet = _c.sent();
                     rawTransaction = transactionFromWallet.serialize();
                     return [4 /*yield*/, connection.sendRawTransaction(rawTransaction, {
-                            skipPreflight: true,
+                            skipPreflight: false,
                         })];
                 case 3:
                     txid = _c.sent();

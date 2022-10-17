@@ -86,7 +86,7 @@ const createAccounts = () => __awaiter(void 0, void 0, void 0, function* () {
             .add(depositUsdcIx);
         // hang until it's done
         let done = false;
-        const sig = yield connection.sendTransaction(createAccountTx, [payer, keypair], { skipPreflight: true });
+        const sig = yield connection.sendTransaction(createAccountTx, [payer, keypair], { skipPreflight: false });
         connection.onSignature(sig, (res) => {
             done = true;
             if (res.err) {

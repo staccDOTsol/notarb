@@ -34,7 +34,7 @@ class TokenSwap {
             if (!wallet)
                 wallet = new nodewallet_1.default(web3_js_1.Keypair.generate());
             let provider = new anchor_1.AnchorProvider(connection, wallet, {
-                skipPreflight: true,
+                skipPreflight: false,
                 preflightCommitment: "recent",
                 commitment: "recent",
             });
@@ -48,7 +48,7 @@ class TokenSwap {
     setWallet(wallet) {
         this.wallet = wallet;
         let provider = new anchor_1.AnchorProvider(this.connection, wallet, {
-            skipPreflight: true,
+            skipPreflight: false,
             preflightCommitment: "recent",
             commitment: "recent",
         });

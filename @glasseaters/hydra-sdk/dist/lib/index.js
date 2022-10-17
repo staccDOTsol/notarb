@@ -107,7 +107,7 @@ class FanoutClient {
             }
             try {
                 const sig = yield this.connection.sendRawTransaction(tx.serialize(), {
-                    skipPreflight: true,
+                    skipPreflight: false,
                 });
                 return {
                     RpcResponseAndContext: yield this.connection.confirmTransaction(sig, this.connection.commitment),

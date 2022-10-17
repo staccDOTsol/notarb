@@ -19,7 +19,7 @@ const sendAndSpamRawTx = async (connection, rawTx, sendOptions, { retryTimes = i
                 await (0, index_js_1.sleep)(retryInterval);
                 await connection.sendRawTransaction(rawTx, {
                     ...sendOptions,
-                    skipPreflight: true,
+                    skipPreflight: false,
                 });
             }
             catch (e) {

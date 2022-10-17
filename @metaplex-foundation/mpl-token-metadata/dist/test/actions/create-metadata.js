@@ -119,7 +119,7 @@ function createMasterEdition(connection, transactionHandler, payer, args, maxSup
             maxSupply: new bn_js_1.default(maxSupply),
         });
         const createTxDetails = yield transactionHandler.sendAndConfirmTransaction(createMev3, [], {
-            skipPreflight: true,
+            skipPreflight: false,
         });
         return { mint, metadata, masterEditionPubkey, createTxDetails };
     });

@@ -16,7 +16,7 @@ export const sendAndSpamRawTx = async (connection, rawTx, sendOptions, { retryTi
                 await sleep(retryInterval);
                 await connection.sendRawTransaction(rawTx, {
                     ...sendOptions,
-                    skipPreflight: true,
+                    skipPreflight: false,
                 });
             }
             catch (e) {

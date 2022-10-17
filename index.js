@@ -55,7 +55,7 @@ console.log({ dotenv: dotenv_1["default"] });
 dotenv_1["default"].config();
 // This is a free Solana RPC endpoint. It may have ratelimit and sometimes
 // invalid cache. I will recommend using a paid RPC endpoint.
-var connection = new web3_js_1.Connection("http://localhost:8899", { skipPreflight: true });
+var connection = new web3_js_1.Connection("http://localhost:8899", { skipPreflight: false });
 var wallet = new anchor_1.Wallet(web3_js_1.Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs_1["default"].readFileSync('/Users/jarettdunn/jaregm.json').toString()))));
 var payer = (web3_js_1.Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs_1["default"].readFileSync('/Users/jarettdunn/jaregm.json').toString()))));
 var solend_sdk_1 = require("@solendprotocol/solend-sdk");
@@ -408,7 +408,7 @@ setTimeout(function () {
                                     _k.label = 15;
                                 case 15:
                                     _k.trys.push([15, 17, , 18]);
-                                    return [4 /*yield*/, (0, web3_js_1.sendAndConfirmTransaction)(connection, tx2, [payer], { skipPreflight: true })];
+                                    return [4 /*yield*/, (0, web3_js_1.sendAndConfirmTransaction)(connection, tx2, [payer], { skipPreflight: false })];
                                 case 16:
                                     _k.sent();
                                     return [3 /*break*/, 18];
@@ -430,7 +430,7 @@ setTimeout(function () {
                                     _k.label = 20;
                                 case 20:
                                     _k.trys.push([20, 22, , 23]);
-                                    return [4 /*yield*/, (0, web3_js_1.sendAndConfirmTransaction)(connection, tx2, [payer], { skipPreflight: true })];
+                                    return [4 /*yield*/, (0, web3_js_1.sendAndConfirmTransaction)(connection, tx2, [payer], { skipPreflight: false })];
                                 case 21:
                                     _k.sent();
                                     return [3 /*break*/, 23];
@@ -452,7 +452,7 @@ setTimeout(function () {
                                     _k.label = 25;
                                 case 25:
                                     _k.trys.push([25, 27, , 28]);
-                                    return [4 /*yield*/, (0, web3_js_1.sendAndConfirmTransaction)(connection, tx2, [payer], { skipPreflight: true })];
+                                    return [4 /*yield*/, (0, web3_js_1.sendAndConfirmTransaction)(connection, tx2, [payer], { skipPreflight: false })];
                                 case 26:
                                     _k.sent();
                                     return [3 /*break*/, 28];
@@ -474,7 +474,7 @@ setTimeout(function () {
                                     _k.label = 30;
                                 case 30:
                                     _k.trys.push([30, 32, , 33]);
-                                    return [4 /*yield*/, (0, web3_js_1.sendAndConfirmTransaction)(connection, tx2, [payer], { skipPreflight: true })];
+                                    return [4 /*yield*/, (0, web3_js_1.sendAndConfirmTransaction)(connection, tx2, [payer], { skipPreflight: false })];
                                 case 31:
                                     _k.sent();
                                     return [3 /*break*/, 33];

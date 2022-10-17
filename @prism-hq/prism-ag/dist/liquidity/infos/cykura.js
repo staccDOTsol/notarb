@@ -53,7 +53,7 @@ function loadCykura(liquidity, connection) {
         if (liquidity.length == 0)
             return {};
         let provider = new anchor.AnchorProvider(connection, new nodewallet_1.default(web3_js_1.Keypair.generate()), {
-            skipPreflight: true,
+            skipPreflight: false,
             preflightCommitment: "recent",
             commitment: "recent",
         });

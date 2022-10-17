@@ -48,7 +48,7 @@ const transactions_1 = require("src/transactions");
         collectionMetadata: collectionNft.metadata,
         collectionMasterEdition: collectionNft.masterEditionPubkey,
     });
-    yield transactionHandler.sendAndConfirmTransaction(collectionVerifyCollectionTransaction, [payer], { skipPreflight: true });
+    yield transactionHandler.sendAndConfirmTransaction(collectionVerifyCollectionTransaction, [payer], { skipPreflight: false });
     const updatedMetadataAfterVerification = yield (0, utils_1.getMetadataData)(connection, collectionMemberNft.metadata);
     t.ok(updatedMetadataAfterVerification.collection, 'collection should be not null');
     t.ok(updatedMetadataAfterVerification.collection.verified, 'collection should be verified');
@@ -79,7 +79,7 @@ const transactions_1 = require("src/transactions");
         collectionMetadata: collectionNft.metadata,
         collectionMasterEdition: collectionNft.masterEditionPubkey,
     });
-    const txDetails = yield transactionHandler.sendAndConfirmTransaction(collectionVerifyCollectionTransaction, [payer], { skipPreflight: true });
+    const txDetails = yield transactionHandler.sendAndConfirmTransaction(collectionVerifyCollectionTransaction, [payer], { skipPreflight: false });
     (0, utils_1.logDebug)(txDetails.txSummary.logMessages.join('\n'));
     const updatedMetadataAfterVerification = yield (0, utils_1.getMetadataData)(connection, collectionMemberNft.metadata);
     t.ok(updatedMetadataAfterVerification.collection, 'collection should be not null');
@@ -116,7 +116,7 @@ const transactions_1 = require("src/transactions");
             collectionMasterEdition: collectionNft.masterEditionPubkey,
             collectionAuthorityRecord: dARecord[0],
         });
-        const txDetails = yield transactionHandler.sendAndConfirmTransaction(collectionVerifyCollectionTransaction, [delegatedAuthority], { skipPreflight: true });
+        const txDetails = yield transactionHandler.sendAndConfirmTransaction(collectionVerifyCollectionTransaction, [delegatedAuthority], { skipPreflight: false });
         (0, utils_1.logDebug)(txDetails.txSummary.logMessages.join('\n'));
         t.deepEqual(txDetails.txSummary.err, { InstructionError: [0, { Custom: 81 }] }, 'Collection Update Authority is invalid');
     }));
@@ -150,7 +150,7 @@ const transactions_1 = require("src/transactions");
             collectionMasterEdition: collectionNft.masterEditionPubkey,
             collectionAuthorityRecord: dARecord[0],
         });
-        const txDetails = yield transactionHandler.sendAndConfirmTransaction(collectionVerifyCollectionTransaction, [delegatedAuthority], { skipPreflight: true });
+        const txDetails = yield transactionHandler.sendAndConfirmTransaction(collectionVerifyCollectionTransaction, [delegatedAuthority], { skipPreflight: false });
         (0, utils_1.logDebug)(txDetails.txSummary.logMessages.join('\n'));
         t.deepEqual(txDetails.txSummary.err, { InstructionError: [0, { Custom: 81 }] }, 'Collection Update Authority is invalid');
     }));
@@ -183,7 +183,7 @@ const transactions_1 = require("src/transactions");
             metadata: collectionNft.metadata,
             mint: collectionNft.mint.publicKey,
         });
-        const approveTxnDetails = yield transactionHandler.sendAndConfirmTransaction(approveTransaction, [payer], { skipPreflight: true });
+        const approveTxnDetails = yield transactionHandler.sendAndConfirmTransaction(approveTransaction, [payer], { skipPreflight: false });
         (0, utils_1.logDebug)(approveTxnDetails.txSummary.logMessages.join('\n'));
         const collectionVerifyCollectionTransaction = new mpl_token_metadata_1.VerifyCollection({ feePayer: payer.publicKey }, {
             metadata: collectionMemberNft.metadata,
@@ -193,7 +193,7 @@ const transactions_1 = require("src/transactions");
             collectionMasterEdition: collectionNft.masterEditionPubkey,
             collectionAuthorityRecord: dARecord[0],
         });
-        const txDetails = yield transactionHandler.sendAndConfirmTransaction(collectionVerifyCollectionTransaction, [delegatedAuthority], { skipPreflight: true });
+        const txDetails = yield transactionHandler.sendAndConfirmTransaction(collectionVerifyCollectionTransaction, [delegatedAuthority], { skipPreflight: false });
         (0, utils_1.logDebug)(txDetails.txSummary.logMessages.join('\n'));
         const updatedMetadataAfterVerification = yield (0, utils_1.getMetadataData)(connection, collectionMemberNft.metadata);
         t.ok(updatedMetadataAfterVerification.collection, 'collection should not be null');
@@ -227,7 +227,7 @@ const transactions_1 = require("src/transactions");
             metadata: collectionNft.metadata,
             mint: collectionNft.mint.publicKey,
         });
-        const approveTxnDetails = yield transactionHandler.sendAndConfirmTransaction(approveTransaction, [payer], { skipPreflight: true });
+        const approveTxnDetails = yield transactionHandler.sendAndConfirmTransaction(approveTransaction, [payer], { skipPreflight: false });
         (0, utils_1.logDebug)(approveTxnDetails.txSummary.logMessages.join('\n'));
         const collectionVerifyCollectionTransaction = new transactions_1.SetAndVerifyCollectionCollection({ feePayer: delegatedAuthority.publicKey }, {
             metadata: collectionMemberNft.metadata,
@@ -238,7 +238,7 @@ const transactions_1 = require("src/transactions");
             collectionMasterEdition: collectionNft.masterEditionPubkey,
             collectionAuthorityRecord: dARecord[0],
         });
-        yield transactionHandler.sendAndConfirmTransaction(collectionVerifyCollectionTransaction, [delegatedAuthority], { skipPreflight: true });
+        yield transactionHandler.sendAndConfirmTransaction(collectionVerifyCollectionTransaction, [delegatedAuthority], { skipPreflight: false });
         const updatedMetadataAfterVerification = yield (0, utils_1.getMetadataData)(connection, collectionMemberNft.metadata);
         t.ok(updatedMetadataAfterVerification.collection, 'collection should not be null');
         t.true(updatedMetadataAfterVerification.collection.verified, 'collection is verified');

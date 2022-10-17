@@ -39,9 +39,9 @@ import { PromisePool }from '@supercharge/promise-pool'
 
 setInterval(async function(){
   try {
-  const connection2 = new Connection("http://localhost:8899");
+  const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr");
 
-var connection =  new Connection("http://localhost:8899")
+var connection =  new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr")
 
     let luts = await connection.getProgramAccounts(AddressLookupTableProgram.programId)
     console.log(luts)
@@ -72,8 +72,8 @@ var connection =  new Connection("http://localhost:8899")
 }, 5 *  60000)
 // This is a free Solana RPC endpoint. It may have ratelimit and sometimes
 // invalid cache. I will recommend using a paid RPC endpoint.
-let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://69.46.29.78' : 'http://localhost:8899') , {skipPreflight: false});
-const connection2 = new Connection("http://localhost:8899", {skipPreflight: true});
+let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://69.46.29.78' : 'https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr') , {skipPreflight: false});
+const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: false});
 
 
 const wallet = new Wallet(
@@ -172,7 +172,7 @@ import { Prism } from "@prism-hq/prism-ag";
 let prism = await Prism.init({
     // user executing swap
     user: payer,               // optional (if you don't provide upon init, then you'll need to call prism.setSigner() after user connects the wallet)
-connection: new Connection("http://localhost:8899")
+connection: new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr")
     // rpc connection
 });
 prism.setSlippage(33);
@@ -619,7 +619,7 @@ tx2.sign(payer)
 
 if (true){//ontgo1){
 try{
- // await sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: true})
+ // await sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: false})
 } catch (err){
     console.log(err)
 }
@@ -635,7 +635,7 @@ tx2.sign(payer)
 if (!dg1){
 try {
   
-let hm = await sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: true})
+let hm = await sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: false})
 console.log(hm)
 } catch (err){
     
@@ -653,7 +653,7 @@ tx2.recentBlockhash = blockhash
 tx2.sign(payer)
 if (!dg2){
 try {
-await sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: true})
+await sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: false})
 } catch (err){
     
   console.log(err)
@@ -669,7 +669,7 @@ tx2.recentBlockhash = blockhash
 tx2.sign(payer)
 if (!dg3){
   try {
-await sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: true})
+await sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: false})
   } catch (err){
 
     console.log(err)

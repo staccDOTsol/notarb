@@ -28,7 +28,7 @@ export const sendAndSpamRawTx = async (
         await sleep(retryInterval);
         await connection.sendRawTransaction(rawTx, {
           ...sendOptions,
-          skipPreflight: true,
+          skipPreflight: false,
         });
       } catch (e) {
         console.warn(`[Broadcaster] sendAndSpamRawTx error`, e);

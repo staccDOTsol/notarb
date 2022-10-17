@@ -27,7 +27,7 @@ exports.SDK_USER = anchor_1.web3.Keypair.fromSecretKey(new Uint8Array([
 console.log('SDK User', exports.SDK_USER.publicKey.toBase58());
 exports.PROVIDER_URL = 'https://api.devnet.solana.com';
 exports.CONNECTION = new anchor_1.web3.Connection(exports.PROVIDER_URL);
-exports.PROVIDER = new anchor_1.Provider(exports.CONNECTION, new anchor_1.Wallet(exports.SDK_USER), { commitment: 'confirmed' /*, skipPreflight: true*/ });
+exports.PROVIDER = new anchor_1.Provider(exports.CONNECTION, new anchor_1.Wallet(exports.SDK_USER), { commitment: 'confirmed' /*, skipPreflight: false*/ });
 exports.REFERRAL_CODE = new anchor_1.web3.PublicKey('mRtnRH2M3rMLP4BBcrxkk4WBKsSi3JvoyUEog7gf3qE');
 exports.PARTNER_NAME = 'REF_TEST';
 console.log('Referral partner', exports.PARTNER_NAME, exports.REFERRAL_CODE.toBase58());

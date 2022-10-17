@@ -35,7 +35,7 @@ function loadMarinade(liquidity, connection) {
         let msolLegInfo = yield connection.getAccountInfo(new web3_js_1.PublicKey(exports.LIQ_POOL_MSOL_LEG));
         let liqPoolMsolLegAmount = (_a = (0, sdk_1.deserializeAccount)(msolLegInfo === null || msolLegInfo === void 0 ? void 0 : msolLegInfo.data)) === null || _a === void 0 ? void 0 : _a.amount;
         let provider = new anchor_1.AnchorProvider(connection, new nodewallet_1.default(web3_js_1.Keypair.generate()), {
-            skipPreflight: true,
+            skipPreflight: false,
             preflightCommitment: "recent",
             commitment: "recent",
         });

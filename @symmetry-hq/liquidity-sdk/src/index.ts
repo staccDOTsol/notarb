@@ -43,7 +43,7 @@ export class TokenSwap {
             connection,
             wallet,
             {
-                skipPreflight: true,
+                skipPreflight: false,
                 preflightCommitment: "recent",
                 commitment: "recent",
             }
@@ -77,7 +77,7 @@ export class TokenSwap {
             this.connection,
             wallet,
             {
-                skipPreflight: true,
+                skipPreflight: false,
                 preflightCommitment: "recent",
                 commitment: "recent",
             }

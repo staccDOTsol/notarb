@@ -181,7 +181,7 @@ class MangoClient {
             }
             else {
                 txid = yield this.connection.sendRawTransaction(rawTransaction, {
-                    skipPreflight: true,
+                    skipPreflight: false,
                 });
                 if (this.postSendTxCallback) {
                     try {
@@ -203,7 +203,7 @@ class MangoClient {
                         yield (0, utils_1.sleep)(retrySleep);
                         // console.log(new Date().toUTCString(), ' sending tx ', txid);
                         this.connection.sendRawTransaction(rawTransaction, {
-                            skipPreflight: true,
+                            skipPreflight: false,
                         });
                         if (retryAttempts <= maxRetries) {
                             retryAttempts = retryAttempts++;
@@ -279,7 +279,7 @@ class MangoClient {
             }
             else {
                 txid = yield this.connection.sendRawTransaction(rawTransaction, {
-                    skipPreflight: true,
+                    skipPreflight: false,
                 });
                 if (this.postSendTxCallback) {
                     try {
@@ -296,7 +296,7 @@ class MangoClient {
                     while (!done && (0, exports.getUnixTs)() - startTime < timeout) {
                         yield (0, utils_1.sleep)(2000);
                         this.connection.sendRawTransaction(rawTransaction, {
-                            skipPreflight: true,
+                            skipPreflight: false,
                         });
                     }
                 }))();

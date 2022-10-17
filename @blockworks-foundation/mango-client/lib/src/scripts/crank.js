@@ -74,7 +74,7 @@ function run() {
         const mangoGroup = yield client.getMangoGroup(mangoGroupKey);
         const spotMarkets = yield Promise.all(groupIds.spotMarkets.map((m) => {
             return serum_1.Market.load(connection, m.publicKey, {
-                skipPreflight: true,
+                skipPreflight: false,
                 commitment: 'processed',
             }, mangoGroup.dexProgramId);
         }));
