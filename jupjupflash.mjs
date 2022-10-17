@@ -508,7 +508,7 @@ var blockhash = await connection
    var dontgo1 = true 
    var lookupTableInst
 try {
-    lookupTableAddress = winners[Math.floor(Math.random() * winners.length)]
+    lookupTableAddress = winners[winners.length]
    
 } catch (err){ 
 var  [lookupTableInst, lookupTableAddress] =
