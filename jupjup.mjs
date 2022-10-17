@@ -474,8 +474,10 @@ console.log(w)
 console.log(messageV0.staticAccountKeys.length)
 let goaccs = []
 for (var winner of winners){
-goaccs.push((await connection.getAddressLookupTable((winner))).value)
-
+  let test = ((await connection.getAddressLookupTable((winner))).value)
+  if (test.state.addresses.length < 120){
+    goaccs.push(test)
+  }
 }
 console.log( goaccs[0].state.addresses.length )
 if (messageV0.staticAccountKeys.length >= w + 3){
