@@ -1,8 +1,6 @@
 
 import dotenv from "dotenv";
 import bs58 from "bs58";
-import { Jupiter, TOKEN_LIST_URL } from "@jup-ag/core";
-
 import { borrowObligationLiquidityInstruction, flashBorrowReserveLiquidityInstruction, flashRepayReserveLiquidityInstruction, parseObligation, refreshObligationInstruction, refreshReserveInstruction, SolendAction, SolendMarket, SolendReserve, SOLEND_PRODUCTION_PROGRAM_ID } from "@solendprotocol/solend-sdk";
 let baddies = JSON.parse(fs.readFileSync('./baddies.json').toString())
 import {
@@ -110,7 +108,7 @@ var mints = [
 
 for (var add of arg.data){
   for (var tok of add.tokens){
-  //mints.push(tok.address)
+  mints.push(tok.address)
   }
   
   }
@@ -120,7 +118,7 @@ console.log(mints.length)
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
-      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=90`
+      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=5&swapMode=ExactIn`
     )
     .json();
 
@@ -186,7 +184,7 @@ for (var amarket of [
 
 "7tiNvRHSjYDfc6usrWnSNPyuN68xQfKs1ZG2oqtR5F46",
 "C3VQi4sKNXVsG36zhUnvNasXPhzGmWWVpaeSPv5Tf2AB"]){
-//await sleep(Math.random()*1000)
+await sleep(Math.random()*1000)
 let market =  await SolendMarket.initialize(
     connection,
     
@@ -195,7 +193,7 @@ let market =  await SolendMarket.initialize(
   );
 
 
-//markets.push(market)
+markets.push(market)
 }
 
 
@@ -248,13 +246,6 @@ console.log(err)
 };
 let prev = new Date().getTime() / 1000 
 let avgs = []
-console.log(prev)
-const jupiter = await Jupiter.load({
-  connection: connection2,
-  cluster: 'mainnet-beta',
-  user: payer,
-});
-console.log(1)
 while (true) {
  //await createWSolAccount();
 
@@ -296,18 +287,8 @@ let min = -0.0001//.9 * ( reserve.stats.borrowFeePercentage * 100)
              let usdcToSol
              let solToUsdc
                 try {
-         usdcToSol = await jupiter.computeRoutes({
-          inputMint: new PublicKey(USDC_MINT),
-          outputMint: new PublicKey(SOL_MINT),
-          amount: initial, // raw input amount of tokens
-          slippageBps: 50,
-          forceFetch: true,
-          swapMode: "ExactIn"
-      })
-//      usdcToSol.data = usdcToSol.routesInfos
- //     usdcToSol.data[0] = usdcToSol.data.find(res => res.marketInfos.length <= 30);
- usdcToSol.data = usdcToSol.routesInfos[0]
-      
+         usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, initial);
+         usdcToSol.data[0] = usdcToSol.data.find(res => res.marketInfos.length <= 3);
          for (var mi of usdcToSol.data[0].marketInfos){
           try {
             if(!(await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(mi.outputMint)})).value[0].pubkey ) {
@@ -317,7 +298,7 @@ let min = -0.0001//.9 * ( reserve.stats.borrowFeePercentage * 100)
                   
               }         }
       } catch (err){
-           console.log(err)
+           
         //baddies.puah(USDC_MINT+SOL_MINT)
     
         let tbaddies = JSON.parse(fs.readFileSync('./baddies.json').toString())
@@ -330,18 +311,15 @@ let min = -0.0001//.9 * ( reserve.stats.borrowFeePercentage * 100)
           }
        if (usdcToSol.data[0] && !baddies.includes(SOL_MINT+USDC_MINT) ){
         try {
-         solToUsdc = await jupiter.computeRoutes({
-          inputMint: new PublicKey(USDC_MINT),
-          outputMint: new PublicKey(SOL_MINT),
-          amount: usdcToSol.data[0].amount, // raw input amount of tokens
-          slippageBps: 50,
-          forceFetch: true,
-          swapMode: "ExactIn"
-      })
-//      usdcToSol.data = usdcToSol.routesInfos
- //     usdcToSol.data[0] = usdcToSol.data.find(res => res.marketInfos.length <= 30);
- solToUsdc.data = solToUsdc.routesInfos[0]
-      
+
+          ////await sleep(Math.random()*(Math.random()*1500)+666)
+         solToUsdc = await getCoinQuote(
+          SOL_MINT,
+          USDC_MINT,
+          Math.floor(usdcToSol.data[0].outAmount * 0.997)
+        );
+
+        solToUsdc.data[0] = solToUsdc.data.find(res => res.marketInfos.length <= 3);
           for (var mi of solToUsdc.data[0].marketInfos){
             try {
               if(!(await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(mi.outputMint)})).value[0].pubkey ) {
@@ -414,25 +392,28 @@ let instructions = []
              // get routes based on from Token amount 10 USDC -> ? PRISM
              try {
                 if (true) {
-                  if (usdcToSol.routesInfos[0]){
-                    const { transactions } = await jupiter.exchange({
-                      routeInfo: usdcToSol.routesInfos[0],
-                    });
-                    for (var txx of transactions){
-                    instructions.push(...txx.instructions)
-                    }
- 
-                  }
-                  if (solToUsdc.routesInfos[0]){
-                    const { transactions } = await jupiter.exchange({
-                      routeInfo: solToUsdc.routesInfos[0],
-                    });
-                    for (var txx of transactions){
-                    instructions.push(...txx.instructions)
-                    }
- 
-                  }
-                                  }
+                    await Promise.all(
+                      [usdcToSol.data[0], solToUsdc.data[0]].map(async (route) => {
+                        const { setupTransaction, swapTransaction, cleanupTransaction } =
+                          await getTransaction(route);
+                
+                        await Promise.all(
+                          [setupTransaction, swapTransaction, cleanupTransaction]
+                            .filter(Boolean)
+                            .map(async (serializedTransaction) => {
+                              // get transaction object from serialized transaction
+                              const transaction = Transaction.from(
+                                Buffer.from(serializedTransaction, "base64")
+                              );
+                              instructions.push(...transaction.instructions)
+                              // perform the swap
+                              // Transaction might failed or dropped
+                             
+                            })
+                        );
+                      })
+                    );
+                }
         
 instructions.push(createTransferInstruction(
   tokenAccount,
