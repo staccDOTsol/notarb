@@ -85,6 +85,7 @@ const wallet = new Wallet(
 import fs from 'fs'
 import { createTransferInstruction } from "@solana/spl-token";
 import { createAssociatedTokenAccountInstruction } from "@solana/spl-token";
+import { createTokenAccountInstructions } from "@blockworks-foundation/mango-client";
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 
@@ -234,24 +235,19 @@ const createWSolAccount = async (mint) => {
   if (!wsolAccount) {
     const transaction = new Transaction();
     const instructions = [];
-
+const ha = Keypair.generate()
     instructions.push(
-      await createAssociatedTokenAccountInstruction(
-        ASSOCIATED_TOKEN_PROGRAM_ID,
-        TOKEN_PROGRAM_ID,
-        new PublicKey(mint),
-        wsolAddress,
-        wallet.publicKey,
-        wallet.publicKey
+     ...( await createTokenAccountInstructions(connection,payer.publicKey,
+      ha.publicKey,
+        new PublicKey(mint),payer.publicKey
       )
-    );
+    ));
 
     transaction.add(...instructions);
     transaction.recentBlockhash = await (
       await connection2.getLatestBlockhash()
     ).blockhash;
-    transaction.sign(payer);
-    const result = await connection.sendTransaction( transaction)
+    const result = await connection.sendTransaction( transaction, [payer, ha])
     console.log({ result });
   }
   wsolAccount = await connection2.getAccountInfo(wsolAddress);
