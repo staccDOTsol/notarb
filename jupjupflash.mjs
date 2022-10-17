@@ -251,7 +251,7 @@ const createWSolAccount = async (mint) => {
       await connection2.getLatestBlockhash()
     ).blockhash;
     transaction.sign(payer);
-    const result = await sendAndConfirmTransaction(connection2, transaction);
+    const result = await sendAndConfirmTransaction(connection, transaction);
     console.log({ result });
   }
   wsolAccount = await connection2.getAccountInfo(wsolAddress);
@@ -304,7 +304,7 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
          for (var mi of usdcToSol.data[0].marketInfos){
             try {
                 if(!(await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(mi.outputMint)})).value[0].pubkey ) {
-                  createWSolAccount(mi.outputMint)}
+                  await createWSolAccount(mi.outputMint)}
                   } catch (err)
                   {
                       
@@ -333,7 +333,7 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
         for (var mi of solToUsdc.data[0].marketInfos){
             try {
                 if(!(await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(mi.outputMint)})).value[0].pubkey ) {
-                  createWSolAccount(mi.outputMint)}
+                  await createWSolAccount(mi.outputMint)}
                   } catch (err)
                   {
                       
