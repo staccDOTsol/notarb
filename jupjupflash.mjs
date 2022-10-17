@@ -140,7 +140,7 @@ const getTransaction = (route) => {
 const getConfirmTransaction = async (txid) => {
   const res = await promiseRetry(
     async (retry, attempt) => {
-      let txResult = await connection.getTransaction(txid, {
+      let txResult = await connection2.getTransaction(txid, {
         commitment: "confirmed",
       });
 
@@ -376,10 +376,10 @@ if (returns > -0.15 && gogo){
     const delegate = Keypair.generate();
   let tokenAccount
     try {
-      tokenAccount = (await connection.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey
+      tokenAccount = (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey
         } catch (err){
      tokenAccount = await createWSolAccount((USDC_MINT))}// (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
-     let myshit = (await connection.getTokenAccountBalance(tokenAccount)).value.amount
+     let myshit = (await connection2.getTokenAccountBalance(tokenAccount)).value.amount
 
 
 let  instructions  = [
