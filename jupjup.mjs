@@ -266,7 +266,7 @@ let min = -0.01//.9 * ( reserve.stats.borrowFeePercentage * 100)
     let cba = -1
     abc++
     for (var SOL_MINT of mints){
-        SOL_MINT = mints[Math.floor(Math.random() * mints.length)]
+        //SOL_MINT = mints[Math.floor(Math.random() * mints.length)]
         if (!baddies.includes(SOL_MINT+USDC_MINT) &&  !baddies.includes(USDC_MINT+SOL_MINT)){
       let dothethings = []
       cba++
