@@ -271,7 +271,13 @@ let min = -0.0001//.9 * ( reserve.stats.borrowFeePercentage * 100)
       let dothethings = []
       cba++
       try {
-        const initial = Math.random() < 0.5 ? Math.floor(Math.random() * 59 * 10 ** dec) : Math.floor(Math.random() * (Math.random() * 10) * 10 ** dec) //Math.floor(Math.random() * ((5 / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec);
+        let tokenAccount
+    try {
+     tokenAccount = (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey
+    } catch (err){
+      console.log(err)
+     tokenAccount = await createWSolAccount((USDC_MINT))}
+        const initial = Math.random() < 0.5 ? Math.floor(Math.random() *  (await connection.getTokenAccountBalance(tokenAccount)).value.uiAmount * 10 ** dec) : Math.floor(Math.random() * (Math.random() * 10) * 10 ** dec) //Math.floor(Math.random() * ((5 / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec);
    
         // 0.1 SOL
         try {
@@ -363,12 +369,7 @@ if (returns > min && gogo){
     console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
 
     //const delegate = Keypair.generate();
-    let tokenAccount
-    try {
-     tokenAccount = (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey
-    } catch (err){
-      console.log(err)
-     tokenAccount = await createWSolAccount((USDC_MINT))}// (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
+    // (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
     let myshit = (await connection.getTokenAccountBalance(tokenAccount)).value.amount
 
   //  const token = new Token(connection, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
