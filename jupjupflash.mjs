@@ -184,7 +184,7 @@ let configs = [{"name":"main","isPrimary":true,"description":"","creator":"5pHk2
 for (var amarket of configs){
   if (!amarket.hidden && !amarket.isPermissionless){
 try {
-await sleep(Math.random()*200)
+//await sleep(Math.random()*200)
 let market =  await SolendMarket.initialize(
     connection,
     
@@ -193,7 +193,7 @@ let market =  await SolendMarket.initialize(
   );
 
 
-markets.push(market)
+//markets.push(market)
 console.log(markets.length)
 } catch (err){
 
