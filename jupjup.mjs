@@ -1,6 +1,8 @@
 
 import dotenv from "dotenv";
 import bs58 from "bs58";
+import { Jupiter, TOKEN_LIST_URL } from "@jup-ag/core";
+
 import { borrowObligationLiquidityInstruction, flashBorrowReserveLiquidityInstruction, flashRepayReserveLiquidityInstruction, parseObligation, refreshObligationInstruction, refreshReserveInstruction, SolendAction, SolendMarket, SolendReserve, SOLEND_PRODUCTION_PROGRAM_ID } from "@solendprotocol/solend-sdk";
 let baddies = JSON.parse(fs.readFileSync('./baddies.json').toString())
 import {
@@ -41,7 +43,7 @@ setInterval(async function(){
   try {
     let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost' : 'http://localhost') +":8899", {skipPreflight: false});
     const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: false});
-   //connection = connection2
+   connection = connection2
 
     let luts = await connection.getProgramAccounts(AddressLookupTableProgram.programId)
    // console.log(luts)
@@ -74,7 +76,7 @@ setInterval(async function(){
 // invalid cache. I will recommend using a paid RPC endpoint.
     let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost' : 'http://localhost') +":8899", {skipPreflight: false});
     const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: false});
-   //connection = connection2
+   connection = connection2
 
 const wallet = new Wallet(
   Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/Users/jarettdunn') + '/notjaregm.json').toString()))));
@@ -108,7 +110,7 @@ var mints = [
 
 for (var add of arg.data){
   for (var tok of add.tokens){
-  mints.push(tok.address)
+  //mints.push(tok.address)
   }
   
   }
@@ -184,7 +186,7 @@ for (var amarket of [
 
 "7tiNvRHSjYDfc6usrWnSNPyuN68xQfKs1ZG2oqtR5F46",
 "C3VQi4sKNXVsG36zhUnvNasXPhzGmWWVpaeSPv5Tf2AB"]){
-await sleep(Math.random()*1000)
+//await sleep(Math.random()*1000)
 let market =  await SolendMarket.initialize(
     connection,
     
@@ -193,7 +195,7 @@ let market =  await SolendMarket.initialize(
   );
 
 
-markets.push(market)
+//markets.push(market)
 }
 
 
@@ -246,6 +248,13 @@ console.log(err)
 };
 let prev = new Date().getTime() / 1000 
 let avgs = []
+console.log(prev)
+const jupiter = await Jupiter.load({
+  connection,
+  cluster: 'mainnet-beta',
+  user: payer,
+});
+console.log(1)
 while (true) {
  //await createWSolAccount();
 
@@ -283,12 +292,22 @@ let min = -0.0001//.9 * ( reserve.stats.borrowFeePercentage * 100)
         try {
             
             if (!baddies.includes(USDC_MINT+SOL_MINT)){
-                await sleep(Math.random()*(Math.random()*500)+666)
+                //await sleep(Math.random()*(Math.random()*500)+666)
              let usdcToSol
              let solToUsdc
                 try {
-         usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, initial);
-         usdcToSol.data[0] = usdcToSol.data.find(res => res.marketInfos.length <= 3);
+         usdcToSol = await jupiter.computeRoutes({
+          inputMint: new PublicKey(USDC_MINT),
+          outputMint: new PublicKey(SOL_MINT),
+          amount: initial, // raw input amount of tokens
+          slippageBps: 50,
+          forceFetch: true,
+          swapMode: "ExactIn"
+      })
+//      usdcToSol.data = usdcToSol.routesInfos
+ //     usdcToSol.data[0] = usdcToSol.data.find(res => res.marketInfos.length <= 30);
+ usdcToSol.data = usdcToSol.routesInfos[0]
+      
          for (var mi of usdcToSol.data[0].marketInfos){
           try {
             if(!(await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(mi.outputMint)})).value[0].pubkey ) {
@@ -298,7 +317,7 @@ let min = -0.0001//.9 * ( reserve.stats.borrowFeePercentage * 100)
                   
               }         }
       } catch (err){
-           
+           console.log(err)
         //baddies.puah(USDC_MINT+SOL_MINT)
     
         let tbaddies = JSON.parse(fs.readFileSync('./baddies.json').toString())
@@ -311,15 +330,18 @@ let min = -0.0001//.9 * ( reserve.stats.borrowFeePercentage * 100)
           }
        if (usdcToSol.data[0] && !baddies.includes(SOL_MINT+USDC_MINT) ){
         try {
-
-          ////await sleep(Math.random()*(Math.random()*1500)+666)
-         solToUsdc = await getCoinQuote(
-          SOL_MINT,
-          USDC_MINT,
-          Math.floor(usdcToSol.data[0].outAmount * 0.997)
-        );
-
-        solToUsdc.data[0] = solToUsdc.data.find(res => res.marketInfos.length <= 3);
+         solToUsdc = await jupiter.computeRoutes({
+          inputMint: new PublicKey(USDC_MINT),
+          outputMint: new PublicKey(SOL_MINT),
+          amount: usdcToSol.data[0].amount, // raw input amount of tokens
+          slippageBps: 50,
+          forceFetch: true,
+          swapMode: "ExactIn"
+      })
+//      usdcToSol.data = usdcToSol.routesInfos
+ //     usdcToSol.data[0] = usdcToSol.data.find(res => res.marketInfos.length <= 30);
+ solToUsdc.data = solToUsdc.routesInfos[0]
+      
           for (var mi of solToUsdc.data[0].marketInfos){
             try {
               if(!(await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(mi.outputMint)})).value[0].pubkey ) {
@@ -392,28 +414,25 @@ let instructions = []
              // get routes based on from Token amount 10 USDC -> ? PRISM
              try {
                 if (true) {
-                    await Promise.all(
-                      [usdcToSol.data[0], solToUsdc.data[0]].map(async (route) => {
-                        const { setupTransaction, swapTransaction, cleanupTransaction } =
-                          await getTransaction(route);
-                
-                        await Promise.all(
-                          [setupTransaction, swapTransaction, cleanupTransaction]
-                            .filter(Boolean)
-                            .map(async (serializedTransaction) => {
-                              // get transaction object from serialized transaction
-                              const transaction = Transaction.from(
-                                Buffer.from(serializedTransaction, "base64")
-                              );
-                              instructions.push(...transaction.instructions)
-                              // perform the swap
-                              // Transaction might failed or dropped
-                             
-                            })
-                        );
-                      })
-                    );
-                }
+                  if (usdcToSol.routesInfos[0]){
+                    const { transactions } = await jupiter.exchange({
+                      routeInfo: usdcToSol.routesInfos[0],
+                    });
+                    for (var txx of transactions){
+                    instructions.push(...txx.instructions)
+                    }
+ 
+                  }
+                  if (solToUsdc.routesInfos[0]){
+                    const { transactions } = await jupiter.exchange({
+                      routeInfo: solToUsdc.routesInfos[0],
+                    });
+                    for (var txx of transactions){
+                    instructions.push(...txx.instructions)
+                    }
+ 
+                  }
+                                  }
         
 instructions.push(createTransferInstruction(
   tokenAccount,
