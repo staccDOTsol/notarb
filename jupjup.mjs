@@ -450,16 +450,15 @@ let w = -1
 let c = -1
 let winners = []
 let vbb = -1
+for (var key of Object.keys(myluts)){
+  vbb++
+  
+   c = -1
 for (var bca of messageV0.staticAccountKeys){
-  c = - 1 
-    vbb = -1
-    for (var key of Object.keys(myluts)){
-      vbb++
-      
-    let want = bca.toBase58()
-      
-      if (key.split(',').includes(want)){
-        c++
+  let want = bca.toBase58()
+    
+    if (key.split(',').includes(want)){
+      c++
       if (c > w){
         if (!winners.includes(new PublicKey(Object.values(myluts)[vbb]))){
         winners.push(new PublicKey(Object.values(myluts)[vbb]))
