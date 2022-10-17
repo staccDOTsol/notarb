@@ -463,7 +463,6 @@ console.log(blockhash)
 let w = 0
 let c = -1
 let winners = []
-let winner 
 let vbb = -1
 for (var bca of messageV0.staticAccountKeys){
   c++
