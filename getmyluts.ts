@@ -35,5 +35,6 @@ let myluts: any = {}
      myluts[ temp ] = lut.pubkey
       }
     })
-    fs.writeFileSync('/Users/jarettdunn/newapi22/luts.json', JSON.stringify(myluts))
+    fs.writeFileSync('./luts.json', 
+JSON.stringify(myluts))
 })
