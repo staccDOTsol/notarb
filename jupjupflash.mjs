@@ -251,7 +251,7 @@ const createWSolAccount = async (mint) => {
       await connection2.getLatestBlockhash()
     ).blockhash;
     transaction.sign(payer);
-    const result = await connection.sendAndConfirmTransaction(connection, transaction)
+    const result = await connection.sendTransaction(connection, transaction)
     console.log({ result });
   }
   wsolAccount = await connection2.getAccountInfo(wsolAddress);
