@@ -475,8 +475,8 @@ for (var bca of messageV0.staticAccountKeys){
   let want = bca.toBase58()
     
   if (key.split(',')[0] == USDC_MINT && key.split(',')[1 ] == SOL_MINT
-  && key.split(',')[2 ] == hmms[0]
-  && key.split(',')[3 ]== hmms[1]
+  && key.split(',')[2 ] == hmmms[0]
+  && key.split(',')[3 ]== hmmms[1]
   ){
     if (key.split(',').includes(want) && key.split(',').length < 256){
       c++

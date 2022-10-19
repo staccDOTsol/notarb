@@ -430,7 +430,9 @@ for (var key of Object.keys(myluts)){
    c = -1
 for (var bca of messageV0.staticAccountKeys){
   let want = bca.toBase58()
-    if (key.split(',')[0] == USDC_MINT && key.split(',')[1 ] == SOL_MINT){
+  if (key.split(',')[0] == USDC_MINT && key.split(',')[1 ] == SOL_MINT
+  && key.split(',')[2 ] == hmmms[0]
+  && key.split(',')[3 ]== hmmms[1]){
     if (key.split(',').includes(want) && key.split(',').length < 250){
       c++
       if (c > w){
