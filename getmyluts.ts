@@ -5,7 +5,7 @@ import fs from 'fs'
 setTimeout(async function(){
   let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost' : 'http://localhost') +":8899");
   const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr");
-  //connection = connection2
+ // connection = connection2
     var payer = (
     Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/home/ubuntu') + '/notjaregm.json').toString()))));
   
@@ -30,7 +30,7 @@ while (true){
     // @ts-ignore
     .process(async (lut: any) => {
       let maybemine = await connection2.getAddressLookupTable(lut.pubkey)
-      if (maybemine.value?.state.authority?.toBase58()== (payer.publicKey.toBase58())//} &&         (maybemine.value?.state.deactivationSlot == 18446744073709551615n)
+      if (maybemine.value?.state.authority?.toBase58()== (payer.publicKey.toBase58()) &&         (maybemine.value?.state.deactivationSlot == 18446744073709551615n)
 )
       {
 
@@ -38,7 +38,7 @@ while (true){
 var blockhash = await connection2
 .getLatestBlockhash()
 .then((res) => res.blockhash);
-
+/*
 let lookupTableInst0 =
   await AddressLookupTableProgram.deactivateLookupTable({lookupTable:
     lut.pubkey,
@@ -85,7 +85,7 @@ try{
     
 console.log(err)
 }
-
+*/
         let temp = ""
         for (var abc of maybemine.value.state.addresses){
           temp+=(abc.toBase58() + ",")

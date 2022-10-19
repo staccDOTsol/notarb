@@ -93,7 +93,7 @@ console.log(mints.length)
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
-      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&995&swapMode=ExactIn`
+      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=995&swapMode=ExactIn`
     )
     .json();
 
@@ -551,7 +551,14 @@ console.log("lookup table address:", winner);
 let dg1 = false 
 let dg2 = false 
 let dg3 = false  
-let ss = [new PublicKey(USDC_MINT), new PublicKey(SOL_MINT)]
+let hmmms = []
+for (var blarg of usdcToSol.data[0].marketInfos){
+  hmmms.push(new PublicKey(blarg.id))
+}
+for (var blarg of solToUsdc.data[0].marketInfos){
+  hmmms.push(new PublicKey(blarg.id))
+}
+let ss = [new PublicKey(USDC_MINT), new PublicKey(SOL_MINT), ...hmmms]
 let aaa = 0
 let somestuff = {} 
 let test = ((await connection.getAddressLookupTable((winner ? winner : lookupTableAddress))).value)
