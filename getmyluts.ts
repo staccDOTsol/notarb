@@ -5,7 +5,7 @@ import fs from 'fs'
 setTimeout(async function(){
   const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr");
   var payer = (
-    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/Users/jarettdunn') + '/notjaregm.json').toString()))));
+    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/home/ubuntu') + '/notjaregm.json').toString()))));
   
       var connection =  new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr")
 const configOrCommitment: GetProgramAccountsConfig = {
@@ -37,18 +37,23 @@ while (true){
 var blockhash = await connection
 .getLatestBlockhash()
 .then((res) => res.blockhash);
-
+/*
 let lookupTableInst0 =
   await AddressLookupTableProgram.deactivateLookupTable({lookupTable:
+    /** Address lookup table account to close. 
     lut.pubkey,
+    /** Account which is the current authority.
     authority:
     payer.publicKey,}
 );
 let lookupTableInst =
   await AddressLookupTableProgram.closeLookupTable({lookupTable:
+    /** Address lookup table account to close. 
     lut.pubkey,
+    /** Account which is the current authority. 
     authority:
     payer.publicKey,
+    /** Recipient of closed account lamports.
     recipient:
     payer.publicKey}
 );
@@ -84,7 +89,7 @@ try{
     
 console.log(err)
 }
- 
+ */
 
         let temp = ""
         for (var abc of maybemine.value.state.addresses){

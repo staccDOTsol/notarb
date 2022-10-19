@@ -425,8 +425,8 @@ for (var key of Object.keys(myluts)){
    c = -1
 for (var bca of messageV0.staticAccountKeys){
   let want = bca.toBase58()
-    
-    if (key.split(',').includes(want) && key.split(',').length < 100){
+    if (key.split(',')[0] == USDC_MINT && key.split(',')[1 ] == SOL_MINT){
+    if (key.split(',').includes(want) && key.split(',').length < 250){
       c++
       if (c > w){
         if (!winners.includes(new PublicKey(Object.values(myluts)[vbb]))){
@@ -436,6 +436,7 @@ for (var bca of messageV0.staticAccountKeys){
         
       }  
     }
+  }
 }
 }
 
@@ -483,7 +484,7 @@ console.log("lookup table address:", winner);
 let dg1 = false 
 let dg2 = false 
 let dg3 = false  
-let ss = []
+let ss = [new PublicKey(USDC_MINT), new PublicKey(SOL_MINT)]
 let aaa = 0
 let somestuff = {} 
 for (var bca of messageV0.staticAccountKeys){
