@@ -514,7 +514,7 @@ console.log("lookup table address:", lookupTableAddress.toBase58());
    }
 try {
   let test = ((await connection.getAddressLookupTable((winner))).value)
-   ttt = test
+var ttt =test
   if (test.state.addresses.length < 256&& test.state.owner == payer.publicKey){
     goaccs.push(test)
   }
@@ -538,7 +538,7 @@ console.log("lookup table address:", lookupTableAddress.toBase58());
     payer: payer.publicKey,
     recentSlot: slot,
   });
-   ttt = await connection
+var ttt =await connection
   .getAddressLookupTable(lookupTableAddress)
   .then((res) => res.value);
   console.log(ttt)
