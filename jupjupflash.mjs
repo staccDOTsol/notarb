@@ -478,6 +478,7 @@ for (var winner of winners){
     goaccs.push(test)
   }
 }
+var lookupTableInst
 if (messageV0.staticAccountKeys.length > w  ){
   const slot = await connection.getSlot();
 
@@ -489,10 +490,9 @@ var blockhash = await connection
    var lookupTableAddress  
    
    var dontgo1 = true 
-   var lookupTableInst
     if (winner == undefined){
   
-    var  [lookupTableInst, lookupTableAddress] =
+      [lookupTableInst, lookupTableAddress] =
   AddressLookupTableProgram.createLookupTable({
     authority: payer.publicKey,
     payer: payer.publicKey,
@@ -525,7 +525,7 @@ dontgo1 = false
 console.log("lookup table address:", lookupTableAddress.toBase58());
   }
 } catch (err){
-var  [lookupTableInst, lookupTableAddress] =
+  [lookupTableInst, lookupTableAddress] =
   AddressLookupTableProgram.createLookupTable({
     authority: payer.publicKey,
     payer: payer.publicKey,
@@ -647,8 +647,26 @@ try {
 let hm = await sendAndConfirmTransaction(connection, tx2,[payer, payer], {skipPreflight: false})
 console.log(hm)
 } catch (err){
+  const slot = await connection.getSlot();
+
+  // Assumption:
+  // `payer` is a valid `Keypair` with enough SOL to pay for the execution
+  var blockhash = await connection
+      .getLatestBlockhash()
+      .then((res) => res.blockhash);
+     var lookupTableAddress  
+     
+     var dontgo1 = true 
+      if (winner == undefined){
+    
+        [lookupTableInst, lookupTableAddress] =
+    AddressLookupTableProgram.createLookupTable({
+      authority: payer.publicKey,
+      payer: payer.publicKey,
+      recentSlot: slot,
+    });
   var tx2 = new Transaction()
-  tx2.add(ix2[0])
+  tx2.add(lookupTableInst)
   //console.log(1)
   blockhash = await connection
       .getLatestBlockhash()
