@@ -273,8 +273,6 @@ let min = ( reserve.stats.borrowFeePercentage )
 
                            let usdcToSol
              let solToUsdc
-             console.log(initial)
-             console.log(Math.floor(initial * 0.998))
                 try {
          usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, Math.floor(initial * 0.998));
          usdcToSol.data[0] = usdcToSol.data.find(res => res.marketInfos.length <= 50);
