@@ -494,7 +494,13 @@ var blockhash = await connection
    var lookupTableInst
 try {
   lookupTableAddress = new PublicKey(winners[winners.length-1])
-   
+  let test = ((await connection.getAddressLookupTable((winner))).value)
+  if (test.state.addresses.length < 256&& test.state.owner == payer.publicKey){
+    goaccs.push(test)
+  }
+   lookupTableAddress = new PublicKey(winner)
+  
+
 } catch (err){ 
 var  [lookupTableInst, lookupTableAddress] =
   AddressLookupTableProgram.createLookupTable({
