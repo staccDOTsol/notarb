@@ -249,7 +249,7 @@ for (var reserve of market.reserves){//["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwy
 var USDC_MINT = reserve.config.liquidityToken.mint
 
 
-    if (USDC_MINT != "So11111111111111111111111111111111111111112" ){
+    if (USDC_MINT != "So11111111111111111111111111111111111111112" && has.includes(USDC_MINT) ){
   
 var dec =  reserve.config.liquidityToken.decimals
 let min = ( reserve.stats.borrowFeePercentage * 100)
