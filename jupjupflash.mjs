@@ -446,6 +446,24 @@ console.log(blockhash)
 let w = 0
 let c = -1
 let winners = []
+
+let hmmms = []
+for (var blarg of usdcToSol.data[0].marketInfos){
+  try {
+  hmmms.push((blarg.id))
+  }
+  catch (err){
+
+  }
+}
+for (var blarg of solToUsdc.data[0].marketInfos){
+  try {
+  hmmms.push((blarg.id))
+  }
+  catch (err){
+    
+  }
+}
 let vbb = -1
 for (var key of Object.keys(myluts)){
   vbb++
@@ -454,7 +472,10 @@ for (var key of Object.keys(myluts)){
 for (var bca of messageV0.staticAccountKeys){
   let want = bca.toBase58()
     
-  if (key.split(',')[0] == USDC_MINT && key.split(',')[1 ] == SOL_MINT){
+  if (key.split(',')[0] == USDC_MINT && key.split(',')[1 ] == SOL_MINT
+  && key.split(',')[2 ] == hmms[0]
+  && key.split(',')[3 ]== hmms[1]
+  ){
     if (key.split(',').includes(want) && key.split(',').length < 256){
       c++
       if (c > w){
