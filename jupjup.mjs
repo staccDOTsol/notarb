@@ -655,10 +655,11 @@ await sendAndConfirmTransaction(connection, tx2,[payer, payer], {skipPreflight: 
     console.log(err)
   }
 }
- goaccs = [(await connection.getAddressLookupTable(lookupTableAddress)).value]
 
 }
 await sleep(50000)
+goaccs = [(await connection.getAddressLookupTable(lookupTableAddress)).value]
+
 blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
