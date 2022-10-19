@@ -252,7 +252,7 @@ var USDC_MINT = reserve.config.liquidityToken.mint
     if (USDC_MINT != "So11111111111111111111111111111111111111112" && has.includes(USDC_MINT) ){
   
 var dec =  reserve.config.liquidityToken.decimals
-let min = ( reserve.stats.borrowFeePercentage * 100)
+let min = ( reserve.stats.borrowFeePercentage )
     let cba = -1
     abc++
 
@@ -344,7 +344,7 @@ let gogo = true
 for (var maybego of  dothethings){
   gogo = maybego
 }
-if (returns > min / 2  && gogo){
+if (returns > min  && gogo){
   
   if (true){
   // when outAmount more than initial
