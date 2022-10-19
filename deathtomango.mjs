@@ -381,7 +381,7 @@ instructions.push(                  await  makeDepositInstruction(
                     myMangoAccountPubKey,
                     vault,
                     tokenAccount2.publicKey,
-                    Number(((await connection.getTokenAccountBalance(tokenAccount2)).value.amount))
+                    Number(((await connection.getTokenAccountBalance(tokenAccount2)).value[0].amount))
                   )
 )/*            this.programId,
             mangoGroup.publicKey,
@@ -416,7 +416,7 @@ console.log(rootBank)
                 tokenAccount2,
                 mangoGroup.signerKey,
                 myMangoAccount.spotOpenOrders,
-                Number(((await connection.getTokenAccountBalance(tokenAccount2)).value.amount) * 0.555 * 33),
+                Number(((await connection.getTokenAccountBalance(tokenAccount2)).value[0].amount) * 0.555 * 33),
            
                 true
               ))
