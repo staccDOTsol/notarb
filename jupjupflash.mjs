@@ -657,8 +657,6 @@ console.log(hm)
      var lookupTableAddress  
      
      var dontgo1 = true 
-      if (winner == undefined){
-    
         [lookupTableInst, lookupTableAddress] =
     AddressLookupTableProgram.createLookupTable({
       authority: payer.publicKey,
