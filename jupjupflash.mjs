@@ -263,8 +263,8 @@ let min = ( reserve.stats.borrowFeePercentage )
       cba++
       try {
         const initial = rando(true, false) ? 
-        Math.floor( rando(0, 1, "float") * ((( rando(0, 1, "float") * 30) / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec) 
-        : Math.floor( rando(0, 1, "float") * (((10 * ( rando(0, 1, "float") )) / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec);
+        Math.floor( rando(0, 1, "float") * ((( rando(0, 1, "float") * 5) / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec) 
+        : Math.floor( rando(0, 1, "float") * (((0.5 * ( rando(0, 1, "float") )) / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec);
    
         // 0.1 SOL
         try {
