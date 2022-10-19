@@ -478,7 +478,7 @@ var ttt
 
 let goaccs = []
 for (var winner of winners){
-  let test = ((await connection.getAddressLookupTable((winner))).value)
+  let test = ((await connection.getAddressLookupTable((winner ? winner : lookupTableAddress))).value)
   ttt = test
   if (test.state.addresses.length < 256&& test.state.owner == payer.publicKey){
     goaccs.push(test)
@@ -513,7 +513,7 @@ console.log("lookup table address:", lookupTableAddress.toBase58());
 
    }
 try {
-  let test = ((await connection.getAddressLookupTable((winner))).value)
+  let test = ((await connection.getAddressLookupTable((winner ? winner : lookupTableAddress))).value)
 var ttt =test
   if (test.state.addresses.length < 256&& test.state.owner == payer.publicKey){
     goaccs.push(test)
@@ -554,7 +554,7 @@ let dg3 = false
 let ss = [new PublicKey(USDC_MINT), new PublicKey(SOL_MINT)]
 let aaa = 0
 let somestuff = {} 
-let test = ((await connection.getAddressLookupTable((winner))).value)
+let test = ((await connection.getAddressLookupTable((winner ? winner : lookupTableAddress))).value)
 var ttt  = test
 for (var bca of messageV0.staticAccountKeys){
   aaa++
