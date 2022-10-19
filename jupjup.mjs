@@ -338,7 +338,7 @@ if (returns > min && gogo){
 
     //const delegate = Keypair.generate();
     // (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
-    let myshit = (await connection.getTokenAccountBalance(tokenAccount2)).value[0].amount
+    let myshit = (await connection.getTokenAccountBalance(tokenAccount2)).value.amount
 
   //  const token = new Token(connection, new PublicKey(reserve.config.liquidityToken.mint), TOKEN_PROGRAM_ID, payer);
   //    token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
@@ -386,7 +386,7 @@ let instructions = []
 
                 //const delegate = Keypair.generate();
                 // (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
-                let myshit = (await connection2.getTokenAccountBalance(tokenAccount2)).value[0].amount
+                let myshit = (await connection2.getTokenAccountBalance(tokenAccount2)).value.amount
             
 instructions.push(createTransferInstruction(
   tokenAccount,
