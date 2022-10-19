@@ -471,7 +471,7 @@ for (var winner of winners){
 let test = ((await connection.getAddressLookupTable((winner))).value)
 
 try {
-if (test.state.addresses.length < 256){
+if (test.state.addresses.length < 256 && test.state.owner == payer.publicKey){
   goaccs.push(test)
 }
 } catch (err){
@@ -551,7 +551,6 @@ if (aaa > messageV0.staticAccountKeys.length / 3 * 2 ){
   }
 }
 }
-//console.log(ss.length)
 if (ss.length == 0){
   dg2 = true
 }
