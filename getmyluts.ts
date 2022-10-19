@@ -20,7 +20,7 @@ while (true){
 
     let luts = await connection.getProgramAccounts(AddressLookupTableProgram.programId)
     console.log(luts)
-    await PromisePool.withConcurrency(25)
+    await PromisePool.withConcurrency(250)
     .for(luts)
     // @ts-ignore
     .handleError(async (err, asset) => {
@@ -30,8 +30,10 @@ while (true){
     // @ts-ignore
     .process(async (lut: any) => {
       let maybemine = await connection2.getAddressLookupTable(lut.pubkey)
-      if (maybemine.value?.state.authority?.toBase58()== (payer.publicKey.toBase58()))
+      if (maybemine.value?.state.authority?.toBase58()== (payer.publicKey.toBase58()) &&         (maybemine.value?.state.deactivationSlot == 18446744073709551615n)
+)
       {
+
         // `payer` is a valid `Keypair` with enough SOL to pay for the execution
 var blockhash = await connection
 .getLatestBlockhash()
@@ -95,6 +97,10 @@ console.log(err)
           temp+=(abc.toBase58() + ",")
         }
      myluts[ temp ] = lut.pubkey
+      }
+      else {
+        // @ts-ignore
+
       }
     })
     fs.writeFileSync('./luts.json', 
