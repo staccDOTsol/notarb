@@ -174,7 +174,7 @@ for (var amarket of configs){
 try {
 await sleep( rando(0, 1, "float")*1)
 let market =  await SolendMarket.initialize(
-    connection,
+    connection2,
     
     "production", // optional environment argument'
     amarket.address
