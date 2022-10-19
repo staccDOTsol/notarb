@@ -238,6 +238,11 @@ for (var market of markets){
     market = markets[Math.floor( rando(0, 1, "float") * markets.length)]
 await market.loadReserves();
 market.refreshAll();
+
+for (var SOL_MINT of mints){
+  let jares = []
+
+    SOL_MINT = mints[Math.floor( rando(0, 1, "float") * mints.length)]
 for (var reserve of market.reserves){//["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "So11111111111111111111111111111111111111112"]){
  reserve = market.reserves[Math.floor( rando(0, 1, "float")* market.reserves.length)]//market.reserves.find(res => res.config.liquidityToken.mint ===ç);
 var USDC_MINT = reserve.config.liquidityToken.mint
@@ -250,10 +255,6 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
     console.log(min)
     let cba = -1
     abc++
-    for (var SOL_MINT of mints){
-      let jares = []
-
-        SOL_MINT = mints[Math.floor( rando(0, 1, "float") * mints.length)]
         if (!baddies.includes(SOL_MINT+USDC_MINT) &&  !baddies.includes(USDC_MINT+SOL_MINT)){
       let dothethings = []
       cba++
