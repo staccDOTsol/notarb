@@ -83,7 +83,7 @@ var mints = [
 
 for (var add of arg.data){
   for (var tok of add.tokens){
-  mints.push(tok.address)
+  //mints.push(tok.address)
   }
   
   }
