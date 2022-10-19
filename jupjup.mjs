@@ -515,17 +515,40 @@ console.log("lookup table address:", winner);
 let dg1 = false 
 let dg2 = false 
 let dg3 = false  
-let ss = [new PublicKey(USDC_MINT), new PublicKey(SOL_MINT)]
+let hmmms = []
+for (var blarg of usdcToSol.data[0].marketInfos){
+  try {
+  hmmms.push(new PublicKey(blarg.id))
+  }
+  catch (err){
+
+  }
+}
+for (var blarg of solToUsdc.data[0].marketInfos){
+  try {
+  hmmms.push(new PublicKey(blarg.id))
+  }
+  catch (err){
+    
+  }
+}
+let ss = [new PublicKey(USDC_MINT), new PublicKey(SOL_MINT), ...hmmms]
 let aaa = 0
 let somestuff = {} 
+let test = ((await connection.getAddressLookupTable((winner ? winner : lookupTableAddress))).value)
+var ttt  = test
 for (var bca of messageV0.staticAccountKeys){
   aaa++
 if (aaa < messageV0.staticAccountKeys.length / 3 * 2  && (aaa >= messageV0.staticAccountKeys.length / 3  )){
-
-if (true){
+if (ttt){
+if (!ttt.state.addresses.includes(bca)){
   ss.push(bca)  
 }
 
+}
+else {
+  ss.push(bca)
+}
 
   }
 
@@ -547,9 +570,15 @@ aaa = 0
 for (var bca of messageV0.staticAccountKeys){
   aaa++
 if (aaa > messageV0.staticAccountKeys.length / 3 * 2 ){
-  if (true){
-    ss.push(bca)  
-  }
+  if (ttt){
+    if (!ttt.state.addresses.includes(bca)){
+      ss.push(bca)  
+    }
+    
+    }
+    else {
+      ss.push(bca)
+    }
 }
 }
 //console.log(ss.length)
@@ -569,9 +598,15 @@ aaa = 0
 for (var bca of messageV0.staticAccountKeys){
   aaa++
 if (aaa <= messageV0.staticAccountKeys.length / 3    ){
-  if (true){
-    ss.push(bca)  
-  }
+  if (ttt){
+    if (!ttt.state.addresses.includes(bca)){
+      ss.push(bca)  
+    }
+    
+    }
+    else {
+      ss.push(bca)
+    }
 }
 }
 //console.log(ss.length)
@@ -588,7 +623,15 @@ const extendInstruction = AddressLookupTableProgram.extendLookupTable({
 let ix2 =  [lookupTableInst,extendInstruction, extendInstruction2, extendInstruction3]
 if (!dontgo1){
 var tx2 = new Transaction()
-tx2.add(ix2[0])
+var slot = await connection2.getSlot();
+
+var   [lookupTableInst, lookupTableAddress] =
+AddressLookupTableProgram.createLookupTable({
+ authority: payer.publicKey,
+ payer: payer.publicKey,
+ recentSlot: slot,
+});
+tx2.add(lookupTableInst)
 //console.log(1)
 blockhash = await connection
     .getLatestBlockhash()
@@ -596,9 +639,9 @@ blockhash = await connection
 tx2.recentBlockhash = blockhash
 tx2.sign(payer)
 
-if (true){//ontgo1){
+if (!dontgo1){
 try{
-  await sendAndConfirmTransaction(connection, tx2,[payer, payer], {skipPreflight: false})
+  await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 } catch (err){
     console.log(err)
 }
@@ -615,11 +658,26 @@ tx2.sign(payer)
 if (!dg1){
 try {
   
-let hm = await sendAndConfirmTransaction(connection, tx2,[payer, payer], {skipPreflight: false})
+let hm = await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 console.log(hm)
 } catch (err){
+  var slot = await connection2.getSlot();
+
+  // Assumption:
+  // `payer` is a valid `Keypair` with enough SOL to pay for the execution
+  var blockhash = await connection
+      .getLatestBlockhash()
+      .then((res) => res.blockhash);
+     var lookupTableAddress  
+     
+     var   [lookupTableInst, lookupTableAddress] =
+    AddressLookupTableProgram.createLookupTable({
+      authority: payer.publicKey,
+      payer: payer.publicKey,
+      recentSlot: slot,
+    });
   var tx2 = new Transaction()
-  tx2.add(ix2[0])
+  tx2.add(lookupTableInst)
   //console.log(1)
   blockhash = await connection
       .getLatestBlockhash()
@@ -627,13 +685,28 @@ console.log(hm)
   tx2.recentBlockhash = blockhash
   tx2.sign(payer)
   
-  if (true){//ontgo1){
   try{
-    await sendAndConfirmTransaction(connection, tx2,[payer, payer], {skipPreflight: false})
+    await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
+    var tx2 = new Transaction()
+tx2.add(ix2[1])
+//console.log(1)
+blockhash = await connection
+    .getLatestBlockhash()
+    .then((res) => res.blockhash);
+tx2.recentBlockhash = blockhash
+tx2.sign(payer)
+try {
+  
+let hm = await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
+console.log(hm)
+
+} catch( err ){
+  console.log(err)
+}
   } catch (err){
       console.log(err)
   }
-  }
+  
   console.log(err)
 }
 }
@@ -648,7 +721,7 @@ tx2.recentBlockhash = blockhash
 tx2.sign(payer)
 if (!dg2){
 try {
-await sendAndConfirmTransaction(connection, tx2,[payer, payer], {skipPreflight: false})
+await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 } catch (err){
     
   console.log(err)
@@ -664,7 +737,7 @@ tx2.recentBlockhash = blockhash
 tx2.sign(payer)
 if (!dg3){
   try {
-await sendAndConfirmTransaction(connection, tx2,[payer, payer], {skipPreflight: false})
+await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
   } catch (err){
 
     console.log(err)
