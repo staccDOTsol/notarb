@@ -35,7 +35,7 @@ while (true){
       {
 
         // `payer` is a valid `Keypair` with enough SOL to pay for the execution
-var blockhash = await connection
+var blockhash = await connection2
 .getLatestBlockhash()
 .then((res) => res.blockhash);
 
@@ -57,7 +57,7 @@ let lookupTableInst =
 let tx2 = new Transaction()
 tx2.add(lookupTableInst0)
 console.log(1)
-blockhash = await connection
+blockhash = await connection2
     .getLatestBlockhash()
     .then((res) => res.blockhash);
 tx2.recentBlockhash = blockhash
