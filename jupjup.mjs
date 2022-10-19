@@ -424,6 +424,23 @@ let w = -1
 let c = -1
 let winners = []
 let vbb = -1
+let hmmms = []
+for (var blarg of usdcToSol.data[0].marketInfos){
+  try {
+  hmmms.push(new PublicKey(blarg.id))
+  }
+  catch (err){
+
+  }
+}
+for (var blarg of solToUsdc.data[0].marketInfos){
+  try {
+  hmmms.push(new PublicKey(blarg.id))
+  }
+  catch (err){
+    
+  }
+}
 for (var key of Object.keys(myluts)){
   vbb++
   
