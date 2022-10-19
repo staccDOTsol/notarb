@@ -248,14 +248,16 @@ for (var reserve of market.reserves){//["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwy
  reserve = market.reserves[Math.floor( rando(0, 1, "float")* market.reserves.length)]//market.reserves.find(res => res.config.liquidityToken.mint ===ç);
 var USDC_MINT = reserve.config.liquidityToken.mint
 
+
     if (USDC_MINT != "So11111111111111111111111111111111111111112" ){
   
 var dec =  reserve.config.liquidityToken.decimals
 let min = ( reserve.stats.borrowFeePercentage * 100)
     let cba = -1
     abc++
-        if (!baddies.includes(SOL_MINT+USDC_MINT) &&  !baddies.includes(USDC_MINT+SOL_MINT) && min < 1){
     console.log(min)
+
+        if (!baddies.includes(SOL_MINT+USDC_MINT) &&  !baddies.includes(USDC_MINT+SOL_MINT) && min < 1){
       let dothethings = []
       cba++
       try {
