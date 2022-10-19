@@ -181,7 +181,7 @@ let market =  await SolendMarket.initialize(
   );
 
 
-//markets.push(market)
+markets.push(market)
 console.log(markets.length)
 } catch (err){
 
