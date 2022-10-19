@@ -244,11 +244,11 @@ for (var SOL_MINT of mints){
 
     SOL_MINT = mints[Math.floor( rando(0, 1, "float") * mints.length)]
 for (var reserve of market.reserves){//["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "So11111111111111111111111111111111111111112"]){
+  try {
  reserve = market.reserves[Math.floor( rando(0, 1, "float")* market.reserves.length)]//market.reserves.find(res => res.config.liquidityToken.mint ===ç);
 var USDC_MINT = reserve.config.liquidityToken.mint
 
     if (USDC_MINT != "So11111111111111111111111111111111111111112" ){
-  try {
   
 var dec =  reserve.config.liquidityToken.decimals
 let min = ( reserve.stats.borrowFeePercentage * 100)
