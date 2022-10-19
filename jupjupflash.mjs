@@ -474,9 +474,12 @@ console.log(w)
 console.log(messageV0.staticAccountKeys.length)
 console.log(jjs.length)
 console.log(jjs.length)
+let ttt 
+
 let goaccs = []
 for (var winner of winners){
   let test = ((await connection.getAddressLookupTable((winner))).value)
+  ttt = test
   if (test.state.addresses.length < 256&& test.state.owner == payer.publicKey){
     goaccs.push(test)
   }
@@ -511,6 +514,7 @@ console.log("lookup table address:", lookupTableAddress.toBase58());
    }
 try {
   let test = ((await connection.getAddressLookupTable((winner))).value)
+   ttt = test
   if (test.state.addresses.length < 256&& test.state.owner == payer.publicKey){
     goaccs.push(test)
   }
@@ -534,7 +538,7 @@ console.log("lookup table address:", lookupTableAddress.toBase58());
     payer: payer.publicKey,
     recentSlot: slot,
   });
-  let ttt = await connection
+   ttt = await connection
   .getAddressLookupTable(lookupTableAddress)
   .then((res) => res.value);
   console.log(ttt)
@@ -553,11 +557,15 @@ let somestuff = {}
 for (var bca of messageV0.staticAccountKeys){
   aaa++
 if (aaa < messageV0.staticAccountKeys.length / 3 * 2  && (aaa >= messageV0.staticAccountKeys.length / 3  )){
-
+if (ttt){
 if (!ttt.state.addresses.includes(bca)){
   ss.push(bca)  
 }
 
+}
+else {
+  ss.push(bca)
+}
 
   }
 
@@ -579,9 +587,15 @@ aaa = 0
 for (var bca of messageV0.staticAccountKeys){
   aaa++
 if (aaa > messageV0.staticAccountKeys.length / 3 * 2 ){
-  if (!ttt.state.addresses.includes(bca)){
-    ss.push(bca)  
-  }
+  if (ttt){
+    if (!ttt.state.addresses.includes(bca)){
+      ss.push(bca)  
+    }
+    
+    }
+    else {
+      ss.push(bca)
+    }
 }
 }
 //console.log(ss.length)
@@ -601,9 +615,15 @@ aaa = 0
 for (var bca of messageV0.staticAccountKeys){
   aaa++
 if (aaa <= messageV0.staticAccountKeys.length / 3    ){
-  if (!ttt.state.addresses.includes(bca)){
-    ss.push(bca)  
-  }
+  if (ttt){
+    if (!ttt.state.addresses.includes(bca)){
+      ss.push(bca)  
+    }
+    
+    }
+    else {
+      ss.push(bca)
+    }
 }
 }
 //console.log(ss.length)
