@@ -19,7 +19,7 @@ const configOrCommitment: GetProgramAccountsConfig = {
 let myluts: any = {}
 while (true){
 
-    let luts = await connection.getProgramAccounts(AddressLookupTableProgram.programId)
+    let luts = await connection2.getProgramAccounts(AddressLookupTableProgram.programId)
     await PromisePool.withConcurrency(250)
     .for(luts)
     // @ts-ignore
