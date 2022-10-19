@@ -478,7 +478,7 @@ if (test.state.addresses.length < 256){
   gogogo = true 
 }
 }
-if (messageV0.staticAccountKeys.length > w && w > 1){
+if (messageV0.staticAccountKeys.length > w ){
   const slot = await connection.getSlot();
 
 // Assumption:
