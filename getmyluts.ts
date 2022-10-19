@@ -102,6 +102,7 @@ console.log(err)
 
       }
     })
+    console.log(myluts.length)
     fs.writeFileSync('./luts.json', 
 JSON.stringify(myluts))
   }
