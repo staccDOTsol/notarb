@@ -7,8 +7,6 @@ setTimeout(async function(){
   var payer = (
     Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/Users/jarettdunn') + '/notjaregm.json').toString()))));
   
-    var payer2 = (
-        Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/Users/jarettdunn') + '/jaregm.json').toString()))));
       var connection =  new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr")
 const configOrCommitment: GetProgramAccountsConfig = {
     commitment: 'confirmed',
@@ -19,7 +17,6 @@ const configOrCommitment: GetProgramAccountsConfig = {
 
 let myluts: any = {}
 while (true){
-  Math.random() > 0.5 ? payer = payer2 : payer = payer
 
     let luts = await connection.getProgramAccounts(AddressLookupTableProgram.programId)
     console.log(luts)
