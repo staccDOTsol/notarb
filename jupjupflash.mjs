@@ -254,7 +254,7 @@ var dec =  reserve.config.liquidityToken.decimals
 let min = ( reserve.stats.borrowFeePercentage * 100)
     let cba = -1
     abc++
-        if (!baddies.includes(SOL_MINT+USDC_MINT) &&  !baddies.includes(USDC_MINT+SOL_MINT) && min < 0.1){
+        if (!baddies.includes(SOL_MINT+USDC_MINT) &&  !baddies.includes(USDC_MINT+SOL_MINT) && min < 1){
     console.log(min)
       let dothethings = []
       cba++
@@ -671,7 +671,7 @@ try {  tx2.add(ix2[0])
   }
   }
  } catch (err){
-  
+
  }
   console.log(err)
 }
