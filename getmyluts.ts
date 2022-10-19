@@ -30,7 +30,7 @@ while (true){
     // @ts-ignore
     .process(async (lut: any) => {
       let maybemine = await connection2.getAddressLookupTable(lut.pubkey)
-      if (maybemine.value?.state.authority?.toBase58()== (payer.publicKey.toBase58())){//} &&         (maybemine.value?.state.deactivationSlot == 18446744073709551615n)
+      if (maybemine.value?.state.authority?.toBase58()== (payer.publicKey.toBase58())//} &&         (maybemine.value?.state.deactivationSlot == 18446744073709551615n)
 )
       {
 
