@@ -244,7 +244,7 @@ let min = -0.0001//.9 * ( reserve.stats.borrowFeePercentage * 100)
     } catch (err){
       console.log(err)
      tokenAccount = await createWSolAccount((USDC_MINT))}
-        const initial = Math.random() < 0.5 ? Math.floor(Math.random() *  (await connection.getTokenAccountBalance(tokenAccount)).value.uiAmount * 10 ** dec) : Math.floor(Math.random() * (Math.random() * 10) * 10 ** dec) //Math.floor(Math.random() * ((5 / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec);
+        const initial = Math.random() < 0.5 ? Math.floor(Math.random() *  (await connection.getTokenAccountBalance(tokenAccount)).value.uiAmount * 10 ** dec) : Math.floor(10 * (Math.random() * 10) * 10 ** dec) //Math.floor(Math.random() * ((5 / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec);
    
         // 0.1 SOL
         try {

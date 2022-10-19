@@ -255,7 +255,7 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
       let dothethings = []
       cba++
       try {
-        const initial = Math.random() < 0.5 ? Math.floor(Math.random() * (((Math.random() * 50) / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec) : Math.floor(Math.random() * (((Math.random() * (Math.random() * 10)) / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec);
+        const initial = Math.random() < 0.5 ? Math.floor(Math.random() * (((Math.random() * 50) / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec) : Math.floor(Math.random() * (((10 * (Math.random() )) / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec);
    
         // 0.1 SOL
         try {
