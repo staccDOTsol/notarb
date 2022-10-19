@@ -543,7 +543,7 @@ let somestuff = {}
 for (var bca of messageV0.staticAccountKeys){
   aaa++
 if (aaa < messageV0.staticAccountKeys.length / 3 * 2  && (aaa >= messageV0.staticAccountKeys.length / 3  )){
-if (!goaccs[0].state.addresses.includes(bca)){
+if (true){
   ss.push(bca)  
 }
 
@@ -568,7 +568,7 @@ aaa = 0
 for (var bca of messageV0.staticAccountKeys){
   aaa++
 if (aaa < messageV0.staticAccountKeys.length / 3 * 2  && (aaa >= messageV0.staticAccountKeys.length / 3  )){
-  if (!goaccs[0].state.addresses.includes(bca)){
+  if (true){
     ss.push(bca)  
   }
 }
@@ -590,7 +590,7 @@ aaa = 0
 for (var bca of messageV0.staticAccountKeys){
   aaa++
 if (aaa >= messageV0.staticAccountKeys.length / 3 * 2   ){
-  if (!goaccs[0].state.addresses.includes(bca)){
+  if (true){
     ss.push(bca)  
   }
 }
