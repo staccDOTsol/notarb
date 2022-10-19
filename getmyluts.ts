@@ -63,7 +63,7 @@ tx2.recentBlockhash = blockhash
 tx2.sign(payer)
 
 try{
-   sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
+  await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 } catch (err){
     
 console.log(err)
@@ -79,7 +79,7 @@ tx2.recentBlockhash = blockhash
 tx2.sign(payer)
 
 try{
-   sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
+  await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 } catch (err){
     
 console.log(err)
