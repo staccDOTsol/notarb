@@ -382,7 +382,12 @@ let instructions = []
                       })
                     );
                 }
-        
+                let tokenAccount2 = (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey
+
+                //const delegate = Keypair.generate();
+                // (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
+                let myshit = (await connection2.getTokenAccountBalance(tokenAccount2)).value.amount
+            
 instructions.push(createTransferInstruction(
   tokenAccount,
   tokenAccount,
