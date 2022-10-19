@@ -461,6 +461,22 @@ var blockhash = await connection
    
    var dontgo1 = true 
    var lookupTableInst
+    if (winner == undefined){
+  
+    var  [lookupTableInst, lookupTableAddress] =
+  AddressLookupTableProgram.createLookupTable({
+    authority: payer.publicKey,
+    payer: payer.publicKey,
+    recentSlot: slot,
+  });
+  
+
+//  lookupTableAddress = new PublicKey("7XH2JSueLJMTuDLE67Qw92KKwAdLjggszDSN5GVoK3qD")
+dontgo1 = false 
+console.log("lookup table address:", lookupTableAddress.toBase58());
+
+
+   }
 try {
   let test = ((await connection.getAddressLookupTable((winner))).value)
   if (test.state.addresses.length < 256&& test.state.owner == payer.publicKey){
@@ -475,15 +491,9 @@ try {
     payer: payer.publicKey,
     recentSlot: slot,
   });
-  let ttt = await connection
-  .getAddressLookupTable(lookupTableAddress)
-  .then((res) => res.value);
-  console.log(ttt)
-  
-
 //  lookupTableAddress = new PublicKey("7XH2JSueLJMTuDLE67Qw92KKwAdLjggszDSN5GVoK3qD")
 dontgo1 = false 
-console.log("lookup table address:", winner);
+console.log("lookup table address:", lookupTableAddress.toBase58());
   }
 } catch (err){
 var  [lookupTableInst, lookupTableAddress] =
