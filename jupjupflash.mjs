@@ -348,7 +348,7 @@ if (returns > min  && gogo){
   
   if (true){
   // when outAmount more than initial
-  if (!dfalse){//returns >11111.000 ) {
+  if (!false){//returns >11111.000 ) {
     console.log(USDC_MINT+ " <-> " + SOL_MINT + "@ " + (initial / 10 ** dec).toString() + ": " + (Math.round(returns * 10000) / 10000) + '%')
 
     const delegate = Keypair.generate();
