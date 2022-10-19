@@ -256,7 +256,7 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
     let cba = -1
     abc++
 
-        if (min < 1){//!baddies.includes(SOL_MINT+USDC_MINT) &&  !baddies.includes(USDC_MINT+SOL_MINT) && min < 1){
+        if (!baddies.includes(SOL_MINT+USDC_MINT) &&  !baddies.includes(USDC_MINT+SOL_MINT) && min < 1){
           console.log(min)
 
       let dothethings = []
