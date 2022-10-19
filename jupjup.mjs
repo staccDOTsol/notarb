@@ -450,7 +450,7 @@ for (var winner of winners){
   }
 }
 if (messageV0.staticAccountKeys.length > w  ){
-  var slot = await connection.getSlot();
+  var slot = await connection2.getSlot();
 
 // Assumption:
 // `payer` is a valid `Keypair` with enough SOL to pay for the execution
