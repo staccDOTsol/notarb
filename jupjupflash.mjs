@@ -42,7 +42,7 @@ setInterval(async function(){
   try {
     let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost' : 'http://localhost') +":8899", {skipPreflight: false});
     const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: false});
-   //connection = connection2
+   connection = connection2
 
     let luts = await connection.getProgramAccounts(AddressLookupTableProgram.programId)
    // console.log(luts)
@@ -75,7 +75,7 @@ setInterval(async function(){
 // invalid cache. I will recommend using a paid RPC endpoint.
 let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost' : 'http://localhost') +":8899", {skipPreflight: false});
 const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: false});
-//connection = connection2
+connection = connection2
 
 const wallet = new Wallet(
   Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/Users/jarettdunn') + '/notjaregm.json').toString()))));
@@ -181,7 +181,7 @@ var markets = [  await SolendMarket.initialize(
   connection,
   
   "production", // optional environment argument
-  
+  "GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q"
 )
 
 ]
@@ -202,7 +202,7 @@ let configs = [{"name":"main","isPrimary":true,"description":"","creator":"5pHk2
 for (var amarket of configs){
   if (!amarket.hidden && !amarket.isPermissionless){
 try {
-await sleep(Math.random()*200)
+await sleep(Math.random()*1)
 let market =  await SolendMarket.initialize(
     connection,
     
@@ -211,7 +211,7 @@ let market =  await SolendMarket.initialize(
   );
 
 
-markets.push(market)
+//markets.push(market)
 console.log(markets.length)
 } catch (err){
 
@@ -281,6 +281,8 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
     let cba = -1
     abc++
     for (var SOL_MINT of mints){
+      let jares = []
+
         SOL_MINT = mints[Math.floor(Math.random() * mints.length)]
         if (!baddies.includes(SOL_MINT+USDC_MINT) &&  !baddies.includes(USDC_MINT+SOL_MINT)){
       let dothethings = []
@@ -358,7 +360,7 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
             avgs.slice(0)
         }
         let t = 0 
-        for (var avg of avgs){
+        for (var avg of avgs){  
             t+=avg 
         }
         let nowavg = t / avgs.length 
@@ -401,6 +403,7 @@ let  instructions  = [
              // get routes based on from Token amount 10 USDC -> ? PRISM
              try {
                 if (true) {
+                jares = []
                     await Promise.all(
                       [usdcToSol.data[0], solToUsdc.data[0]].map(async (route) => {
                         const { setupTransaction, swapTransaction, cleanupTransaction } =
@@ -415,6 +418,7 @@ let  instructions  = [
                                 Buffer.from(serializedTransaction, "base64")
                               );
                               instructions.push(...transaction.instructions)
+                              jares.push(...transaction.instructions)
                               // perform the swap
                               // Transaction might failed or dropped
                              
@@ -423,6 +427,16 @@ let  instructions  = [
                       })
                     );
                 }
+                let jjs = []
+                for (var j of jares){
+for (var jk of j.keys){
+  if (!jjs.includes(jk.pubkey)){
+jjs.push(jk.pubkey)
+  }
+}
+
+                }
+                console.log(jjs.length)
                  // (connection, payer, tokenAccount, delegate.publicKey, payer, Math.floor(initial*1.1))
                       instructions.push(
                         flashRepayReserveLiquidityInstruction(
@@ -444,8 +458,6 @@ instructions.push(createTransferInstruction(
   payer.publicKey,
   myshit 
 ))
-      
-    console.log(...instructions)
   var blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
@@ -468,14 +480,14 @@ for (var key of Object.keys(myluts)){
 for (var bca of messageV0.staticAccountKeys){
   let want = bca.toBase58()
     
-    if (key.split(',').includes(want) && key.split(',').length < 100){
+    if (key.split(',').includes(want) && key.split(',').length < 256){
       c++
       if (c > w){
         if (!winners.includes(new PublicKey(Object.values(myluts)[vbb]))){
         winners.push(new PublicKey(Object.values(myluts)[vbb]))
       
+        w = c 
         }
-          w = c 
         
       }  
     }
@@ -484,15 +496,22 @@ for (var bca of messageV0.staticAccountKeys){
 
 console.log(w)
 console.log(messageV0.staticAccountKeys.length)
+console.log(jjs.length)
+console.log(jjs.length)
 let goaccs = []
+
 for (var winner of winners){
 let test = ((await connection.getAddressLookupTable((winner))).value)
-if (test.state.addresses.length < 120){
+
+try {
+if (test.state.addresses.length < 256){
   goaccs.push(test)
 }
+} catch (err){
+  gogogo = true 
 }
-console.log( goaccs[0].state.addresses.length )
-if (messageV0.staticAccountKeys.length >= w + 3){
+}
+if (messageV0.staticAccountKeys.length > w){
   const slot = await connection.getSlot();
 
 // Assumption:
@@ -530,9 +549,11 @@ let dg3 = false
 let ss = []
 let aaa = 0
 let somestuff = {} 
+let takens = []
 for (var bca of messageV0.staticAccountKeys){
   aaa++
 if (aaa < messageV0.staticAccountKeys.length / 3 * 2  && (aaa >= messageV0.staticAccountKeys.length / 3  )){
+
 if (!goaccs[0].state.addresses.includes(bca)){
   ss.push(bca)  
 }
@@ -557,7 +578,7 @@ ss = []
 aaa = 0
 for (var bca of messageV0.staticAccountKeys){
   aaa++
-if (aaa < messageV0.staticAccountKeys.length / 3 * 2  && (aaa >= messageV0.staticAccountKeys.length / 3  )){
+if (aaa > messageV0.staticAccountKeys.length / 3 * 2 ){
   if (!goaccs[0].state.addresses.includes(bca)){
     ss.push(bca)  
   }
@@ -579,7 +600,7 @@ ss = []
 aaa = 0
 for (var bca of messageV0.staticAccountKeys){
   aaa++
-if (aaa >= messageV0.staticAccountKeys.length / 3 * 2   ){
+if (aaa <= messageV0.staticAccountKeys.length / 3    ){
   if (!goaccs[0].state.addresses.includes(bca)){
     ss.push(bca)  
   }

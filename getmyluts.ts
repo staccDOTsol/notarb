@@ -1,10 +1,13 @@
-import { AddressLookupTableProgram, Connection, GetProgramAccountsConfig, PublicKey } from "@solana/web3.js"
+import { AddressLookupTableProgram, Connection, GetProgramAccountsConfig, Keypair, PublicKey, sendAndConfirmTransaction, Transaction } from "@solana/web3.js"
 const PromisePool = require("@supercharge/promise-pool").default;
 
 import fs from 'fs'
 setTimeout(async function(){
   const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr");
-
+  let payer = (
+    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/Users/jarettdunn/notjaregm.json').toString()))));
+    const payer2 = (
+      Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/Users/jarettdunn') + '/jaregm.json').toString()))));
 var connection =  new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr")
 const configOrCommitment: GetProgramAccountsConfig = {
     commitment: 'confirmed',
@@ -12,10 +15,14 @@ const configOrCommitment: GetProgramAccountsConfig = {
      
     ],
   };
+
 let myluts: any = {}
+while (true){
+  Math.random() > 0.5 ? payer = payer2 : payer = payer
+
     let luts = await connection.getProgramAccounts(AddressLookupTableProgram.programId)
     console.log(luts)
-    await PromisePool.withConcurrency(50)
+    await PromisePool.withConcurrency(25)
     .for(luts)
     // @ts-ignore
     .handleError(async (err, asset) => {
@@ -25,8 +32,65 @@ let myluts: any = {}
     // @ts-ignore
     .process(async (lut: any) => {
       let maybemine = await connection2.getAddressLookupTable(lut.pubkey)
-      if (maybemine.value?.state.authority?.toBase58()== ("5kqGoFPBGoYpFcxpa6BFRp3zfNormf52KCo5vQ8Qn5bx"))
+      if (maybemine.value?.state.authority?.toBase58()== (payer.publicKey.toBase58()))
       {
+        // `payer` is a valid `Keypair` with enough SOL to pay for the execution
+var blockhash = await connection
+.getLatestBlockhash()
+.then((res) => res.blockhash);
+/*
+let lookupTableInst0 =
+  await AddressLookupTableProgram.deactivateLookupTable({lookupTable:
+    /** Address lookup table account to close. 
+    lut.pubkey,
+    /** Account which is the current authority.
+    authority:
+    payer.publicKey,}
+);
+let lookupTableInst =
+  await AddressLookupTableProgram.closeLookupTable({lookupTable:
+    /** Address lookup table account to close. 
+    lut.pubkey,
+    /** Account which is the current authority. 
+    authority:
+    payer.publicKey,
+    /** Recipient of closed account lamports.
+    recipient:
+    payer.publicKey}
+);
+
+let tx2 = new Transaction()
+tx2.add(lookupTableInst0)
+console.log(1)
+blockhash = await connection
+    .getLatestBlockhash()
+    .then((res) => res.blockhash);
+tx2.recentBlockhash = blockhash
+tx2.sign(payer)
+
+try{
+  await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
+} catch (err){
+    
+console.log(err)
+}
+
+ tx2 = new Transaction()
+tx2.add(lookupTableInst)
+console.log(1)
+blockhash = await connection
+    .getLatestBlockhash()
+    .then((res) => res.blockhash);
+tx2.recentBlockhash = blockhash
+tx2.sign(payer)
+
+try{
+  await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
+} catch (err){
+    
+console.log(err)
+}
+ */
 
         let temp = ""
         for (var abc of maybemine.value.state.addresses){
@@ -37,4 +101,5 @@ let myluts: any = {}
     })
     fs.writeFileSync('./luts.json', 
 JSON.stringify(myluts))
+  }
 })
