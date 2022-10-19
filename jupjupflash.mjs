@@ -631,7 +631,6 @@ blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
 tx2.recentBlockhash = blockhash
-tx2.sign(payer)
 
 if (true){//ontgo1){
 try{
@@ -648,9 +647,9 @@ blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
 tx2.recentBlockhash = blockhash
-tx2.sign(payer)
 if (!dg1){
 try {
+  tx2.sign(payer)
   
 let hm = await sendAndConfirmTransaction(connection, tx2,[payer, payer], {skipPreflight: false})
 console.log(hm)
@@ -682,7 +681,6 @@ blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
 tx2.recentBlockhash = blockhash
-tx2.sign(payer)
 if (!dg2){
 try {
 await sendAndConfirmTransaction(connection, tx2,[payer, payer], {skipPreflight: false})
@@ -698,7 +696,6 @@ blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
 tx2.recentBlockhash = blockhash
-tx2.sign(payer)
 if (!dg3){
   try {
 await sendAndConfirmTransaction(connection, tx2,[payer, payer], {skipPreflight: false})
