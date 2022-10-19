@@ -701,7 +701,6 @@ console.log(hm)
       .then((res) => res.blockhash);
      var lookupTableAddress  
      
-     var dontgo1 = true 
      var   [lookupTableInst, lookupTableAddress] =
     AddressLookupTableProgram.createLookupTable({
       authority: payer.publicKey,
@@ -779,7 +778,7 @@ await sendAndConfirmTransaction(connection, tx2,[payer, payer], {skipPreflight: 
 }
 await sleep(50000)
 if (goaccs.length == 0 ){
-goaccs = [(await connection.getAddressLookupTable(lookupTableAddress.toBase58())).value]
+goaccs = [(await connection.getAddressLookupTable(lookupTableAddress)).value]
 }
 blockhash = await connection
     .getLatestBlockhash()
