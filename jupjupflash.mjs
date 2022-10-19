@@ -555,7 +555,7 @@ let ss = [new PublicKey(USDC_MINT), new PublicKey(SOL_MINT)]
 let aaa = 0
 let somestuff = {} 
 let test = ((await connection.getAddressLookupTable((winner))).value)
-ttt = test
+let ttt = test
 for (var bca of messageV0.staticAccountKeys){
   aaa++
 if (aaa < messageV0.staticAccountKeys.length / 3 * 2  && (aaa >= messageV0.staticAccountKeys.length / 3  )){
