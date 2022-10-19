@@ -19,7 +19,6 @@ let myluts: any = {}
 while (true){
 
     let luts = await connection.getProgramAccounts(AddressLookupTableProgram.programId)
-    console.log(luts)
     await PromisePool.withConcurrency(250)
     .for(luts)
     // @ts-ignore
