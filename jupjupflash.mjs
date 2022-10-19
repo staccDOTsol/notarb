@@ -491,7 +491,7 @@ var blockhash = await connection
    var dontgo1 = true 
    var lookupTableInst
 try {
-    lookupTableAddress = winners[winners.length-1]
+  lookupTableAddress = new PublicKey(winners[winners.length-1])
    
 } catch (err){ 
 var  [lookupTableInst, lookupTableAddress] =
@@ -534,7 +534,7 @@ if (true){
 if (ss.length == 0){
   dg1 = true
 }
-const extendInstruction = AddressLookupTableProgram.extendLookupTable({
+const extendInstruction2 = AddressLookupTableProgram.extendLookupTable({
   payer: payer.publicKey,
   authority: payer.publicKey,
   lookupTable: lookupTableAddress,
@@ -555,7 +555,7 @@ if (aaa > messageV0.staticAccountKeys.length / 3 * 2 ){
 if (ss.length == 0){
   dg2 = true
 }
-const extendInstruction2 = AddressLookupTableProgram.extendLookupTable({
+const extendInstruction3 = AddressLookupTableProgram.extendLookupTable({
   payer: payer.publicKey,
   authority: payer.publicKey,
   lookupTable: lookupTableAddress,
@@ -577,7 +577,7 @@ if (aaa <= messageV0.staticAccountKeys.length / 3    ){
 if (ss.length == 0){
   dg3 = true
 }
-const extendInstruction3 = AddressLookupTableProgram.extendLookupTable({
+const extendInstruction = AddressLookupTableProgram.extendLookupTable({
   payer: payer.publicKey,
   authority: payer.publicKey,
   lookupTable: lookupTableAddress,
