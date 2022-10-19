@@ -558,10 +558,20 @@ let dg2 = false
 let dg3 = false  
 let hmmms = []
 for (var blarg of usdcToSol.data[0].marketInfos){
+  try {
   hmmms.push(new PublicKey(blarg.id))
+  }
+  catch (err){
+
+  }
 }
 for (var blarg of solToUsdc.data[0].marketInfos){
+  try {
   hmmms.push(new PublicKey(blarg.id))
+  }
+  catch (err){
+    
+  }
 }
 let ss = [new PublicKey(USDC_MINT), new PublicKey(SOL_MINT), ...hmmms]
 let aaa = 0
