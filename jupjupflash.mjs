@@ -344,7 +344,7 @@ let gogo = true
 for (var maybego of  dothethings){
   gogo = maybego
 }
-if (returns > min / 10  && gogo){
+if (returns > min / 2  && gogo){
   
   if (true){
   // when outAmount more than initial
@@ -485,7 +485,7 @@ for (var winner of winners){
     goaccs.push(test)
   }
 } catch (err){
-  
+
 }
 }
 var lookupTableInst
