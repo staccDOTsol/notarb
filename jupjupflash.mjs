@@ -148,7 +148,7 @@ var markets = [  await SolendMarket.initialize(
   connection,
   
   "production", // optional environment argument
-  "GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q"
+  "C3VQi4sKNXVsG36zhUnvNasXPhzGmWWVpaeSPv5Tf2AB"
 )
 
 ]
@@ -237,7 +237,7 @@ await market.loadReserves();
 market.refreshAll();
 for (var reserve of market.reserves){//["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "So11111111111111111111111111111111111111112"]){
  // reserve = market.reserves[Math.floor(Math.random()* market.reserves.length)]//market.reserves.find(res => res.config.liquidityToken.mint ===ç);
-var USDC_MINT = reserve.config.liquidityToken.mint
+var USDC_MINT = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"//reserve.config.liquidityToken.mint
 
     if (USDC_MINT != "So11111111111111111111111111111111111111112" ){
   try {
