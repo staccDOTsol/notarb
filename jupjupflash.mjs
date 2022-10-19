@@ -672,13 +672,28 @@ console.log(hm)
   tx2.recentBlockhash = blockhash
   tx2.sign(payer)
   
-  if (true){//ontgo1){
   try{
     await sendAndConfirmTransaction(connection, tx2,[payer, payer], {skipPreflight: false})
+    var tx2 = new Transaction()
+tx2.add(ix2[1])
+//console.log(1)
+blockhash = await connection
+    .getLatestBlockhash()
+    .then((res) => res.blockhash);
+tx2.recentBlockhash = blockhash
+tx2.sign(payer)
+try {
+  
+let hm = await sendAndConfirmTransaction(connection, tx2,[payer, payer], {skipPreflight: false})
+console.log(hm)
+
+} catch( err ){
+  console.log(err)
+}
   } catch (err){
       console.log(err)
   }
-  }
+  
   console.log(err)
 }
 }
