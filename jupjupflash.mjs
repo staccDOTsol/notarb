@@ -480,9 +480,13 @@ let goaccs = []
 for (var winner of winners){
   let test = ((await connection.getAddressLookupTable((winner ? winner : lookupTableAddress))).value)
   ttt = test
+  try {
   if (test.state.addresses.length < 256&& test.state.owner == payer.publicKey){
     goaccs.push(test)
   }
+} catch (err){
+  
+}
 }
 var lookupTableInst
 if (messageV0.staticAccountKeys.length > w  ){
