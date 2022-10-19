@@ -148,7 +148,7 @@ var markets = [  await SolendMarket.initialize(
   connection,
   
   "production", // optional environment argument
-  "C3VQi4sKNXVsG36zhUnvNasXPhzGmWWVpaeSPv5Tf2AB"
+  "7gZNNa7Nq6RtsorUB3G4561iTW34kR1tKGpsPn8uFZEn"
 )
 
 ]
@@ -237,7 +237,7 @@ await market.loadReserves();
 market.refreshAll();
 for (var reserve of market.reserves){//["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "So11111111111111111111111111111111111111112"]){
  // reserve = market.reserves[Math.floor(Math.random()* market.reserves.length)]//market.reserves.find(res => res.config.liquidityToken.mint ===ç);
-var USDC_MINT = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"//reserve.config.liquidityToken.mint
+var USDC_MINT = reserve.config.liquidityToken.mint
 
     if (USDC_MINT != "So11111111111111111111111111111111111111112" ){
   try {
@@ -255,7 +255,7 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
       let dothethings = []
       cba++
       try {
-        const initial = Math.random() < 0.5 ? Math.floor(Math.random() * (((Math.random() * 50) / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec) : Math.floor(Math.random() * (((10 * (Math.random() )) / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec);
+        const initial = Math.random() < 0.5 ? Math.floor(Math.random() * (((Math.random() * 30) / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec) : Math.floor(Math.random() * (((10 * (Math.random() )) / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec);
    
         // 0.1 SOL
         try {
