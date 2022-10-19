@@ -174,7 +174,7 @@ for (var amarket of configs){
 try {
 await sleep( rando(0, 1, "float")*1)
 let market =  await SolendMarket.initialize(
-    connection2,
+    connection,
     
     "production", // optional environment argument'
     amarket.address
@@ -262,7 +262,9 @@ let min = ( reserve.stats.borrowFeePercentage )
       let dothethings = []
       cba++
       try {
-        const initial = rando(true, false) ? Math.floor( rando(0, 1, "float") * ((( rando(0, 1, "float") * 30) / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec) : Math.floor( rando(0, 1, "float") * (((10 * ( rando(0, 1, "float") )) / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec);
+        const initial = rando(true, false) ? 
+        Math.floor( rando(0, 1, "float") * ((( rando(0, 1, "float") * 30) / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec) 
+        : Math.floor( rando(0, 1, "float") * (((10 * ( rando(0, 1, "float") )) / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec);
    
         // 0.1 SOL
         try {
@@ -271,6 +273,8 @@ let min = ( reserve.stats.borrowFeePercentage )
 
                            let usdcToSol
              let solToUsdc
+             console.log(initial)
+             console.log(Math.floor(initial * 0.998))
                 try {
          usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, Math.floor(initial * 0.998));
          usdcToSol.data[0] = usdcToSol.data.find(res => res.marketInfos.length <= 50);
