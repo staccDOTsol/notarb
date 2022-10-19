@@ -495,7 +495,7 @@ var blockhash = await connection
    var dontgo1 = true 
     if (winner == undefined){
   
-      [lookupTableInst, lookupTableAddress] =
+   var   [lookupTableInst, lookupTableAddress] =
   AddressLookupTableProgram.createLookupTable({
     authority: payer.publicKey,
     payer: payer.publicKey,
@@ -528,7 +528,7 @@ dontgo1 = false
 console.log("lookup table address:", lookupTableAddress.toBase58());
   }
 } catch (err){
-  [lookupTableInst, lookupTableAddress] =
+ var [lookupTableInst, lookupTableAddress] =
   AddressLookupTableProgram.createLookupTable({
     authority: payer.publicKey,
     payer: payer.publicKey,
@@ -660,7 +660,7 @@ console.log(hm)
      var lookupTableAddress  
      
      var dontgo1 = true 
-        [lookupTableInst, lookupTableAddress] =
+     var   [lookupTableInst, lookupTableAddress] =
     AddressLookupTableProgram.createLookupTable({
       authority: payer.publicKey,
       payer: payer.publicKey,
