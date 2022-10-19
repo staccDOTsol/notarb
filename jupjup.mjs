@@ -481,7 +481,7 @@ for (var winner of winners){
     goaccs.push(test)
   }
 }
-if (messageV0.staticAccountKeys.length >= w ){
+if (messageV0.staticAccountKeys.length > w  && w > 1){
   const slot = await connection.getSlot();
 
 // Assumption:
