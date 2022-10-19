@@ -651,7 +651,22 @@ try {
 let hm = await sendAndConfirmTransaction(connection, tx2,[payer, payer], {skipPreflight: false})
 console.log(hm)
 } catch (err){
-    
+  var tx2 = new Transaction()
+  tx2.add(ix2[0])
+  //console.log(1)
+  blockhash = await connection
+      .getLatestBlockhash()
+      .then((res) => res.blockhash);
+  tx2.recentBlockhash = blockhash
+  tx2.sign(payer)
+  
+  if (true){//ontgo1){
+  try{
+    await sendAndConfirmTransaction(connection, tx2,[payer, payer], {skipPreflight: false})
+  } catch (err){
+      console.log(err)
+  }
+  }
   console.log(err)
 }
 }
