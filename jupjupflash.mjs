@@ -104,7 +104,7 @@ var skippy  = new Connection(
 );
 process.env.SEARCHER
   ? (connection2 = new Connection(
-      "http://69.46.29.78:8899"
+      "https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr"
     ))
   : (connection2 = connection2);
 
