@@ -12,7 +12,9 @@ import {
   TransactionMessage,
   VersionedTransaction,
   sendAndConfirmTransaction,
-  AddressLookupTableProgram
+  AddressLookupTableProgram,
+  ComputeBudgetProgram,
+  ComputeBudgetInstruction
 } from "@solana/web3.js";
 import got from "got";
 import { Wallet } from "@project-serum/anchor";
@@ -356,7 +358,17 @@ if (returns > min && gogo){
     SOLEND_PRODUCTION_PROGRAM_ID
   )
 )]*/
-let instructions = []
+const params = {
+  units: 15000,
+  additionalFee: 1,
+};
+const ix = ComputeBudgetProgram.requestUnits(params);
+const decodedParams = ComputeBudgetInstruction.decodeRequestUnits(ix);
+expect(params).to.eql(decodedParams);
+expect(ComputeBudgetInstruction.decodeInstructionType(ix)).to.eq(
+  'RequestUnits',
+);
+let instructions = [ix]
   let signers = []
 
              // get routes based on from Token amount 10 USDC -> ? PRISM
