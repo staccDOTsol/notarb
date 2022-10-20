@@ -5432,7 +5432,10 @@ async function something(SOL_MINT, market, myluts){
                           );
 
                           const delegate = Keypair.generate();
-                          let tokenAccount = await Token.getAssociatedTokenAddress(
+                          let tokenAccount = await createWSolAccount(
+                              USDC_MINT
+                            );
+                            tokenAccount =   await Token.getAssociatedTokenAddress(
                               ASSOCIATED_TOKEN_PROGRAM_ID,
                               TOKEN_PROGRAM_ID,
                               new PublicKey(USDC_MINT),
