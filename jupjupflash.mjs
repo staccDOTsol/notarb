@@ -86,7 +86,7 @@ var mints = [
 for (var add of arg.data){
   for (var tok of add.tokens){
     if (!mints.includes(tok.address)){
-  mints.push(tok.address)
+ // mints.push(tok.address)
     }
   }
   
@@ -151,7 +151,7 @@ console.log('')
 console.log('')
 
 console.log('')//cool
-var markets = [ /*await SolendMarket.initialize(
+var markets = [ await SolendMarket.initialize(
   connection,
   
   "production", // optional environment argument
@@ -161,7 +161,7 @@ var markets = [ /*await SolendMarket.initialize(
   
   "production", // optional environment argument
   "Ckya2fwCXDqTUg9fnWbajR6YLcSfQmPxxy5MyAoZXgyb"//"GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q"
-),*/await SolendMarket.initialize(
+),await SolendMarket.initialize(
   connection,
   
   "production", // optional environment argument
@@ -297,7 +297,6 @@ let min = ( reserve.stats.flashLoanFeePercentage )
                       
                   }         }
       } catch (err){
-           
         baddies.push(USDC_MINT+SOL_MINT)
     
         let tbaddies =[]// JSON.parse(fs.readFileSync('./baddies.json').toString())
@@ -352,7 +351,7 @@ let min = ( reserve.stats.flashLoanFeePercentage )
             t+=avg 
         }
         let nowavg = t / avgs.length 
-   if ( returns > -19.1 )   console.log((initial / 10 ** dec * reserve.stats.assetPriceUSD).toString() + ' initial, ' + returns.toString() + '% yield on badboi ' + USDC_MINT + ' <-> ' + SOL_MINT)
+   if ( returns > -0.1 )   console.log((initial / 10 ** dec * reserve.stats.assetPriceUSD).toString() + ' initial, ' + returns.toString() + '% yield on badboi ' + USDC_MINT + ' <-> ' + SOL_MINT)
 //console.log(initial / 10 ** dec)
 let gogo = true 
 for (var maybego of  dothethings){
