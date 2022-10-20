@@ -151,7 +151,7 @@ console.log('')
 console.log('')
 
 console.log('')//cool
-var markets = [ await SolendMarket.initialize(
+var markets = [ /*await SolendMarket.initialize(
   connection,
   
   "production", // optional environment argument
@@ -161,7 +161,7 @@ var markets = [ await SolendMarket.initialize(
   
   "production", // optional environment argument
   "Ckya2fwCXDqTUg9fnWbajR6YLcSfQmPxxy5MyAoZXgyb"//"GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q"
-),await SolendMarket.initialize(
+),*/await SolendMarket.initialize(
   connection,
   
   "production", // optional environment argument
