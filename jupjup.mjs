@@ -1,6 +1,8 @@
 
 import dotenv from "dotenv";
 import bs58 from "bs58";
+import {rando, randoSequence} from '@nastyox/rando.js';
+
 import { borrowObligationLiquidityInstruction, flashBorrowReserveLiquidityInstruction, flashRepayReserveLiquidityInstruction, parseObligation, refreshObligationInstruction, refreshReserveInstruction, SolendAction, SolendMarket, SolendReserve, SOLEND_PRODUCTION_PROGRAM_ID } from "@solendprotocol/solend-sdk";
 let baddies = JSON.parse(fs.readFileSync('./baddies.json').toString())
 import {
