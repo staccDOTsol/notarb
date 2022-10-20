@@ -6402,6 +6402,7 @@ async function something(SOL_MINT, market, myluts){
       }
     } catch (err) {}
   }
+  return
 }
 
 while (true) {
