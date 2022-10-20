@@ -58,7 +58,6 @@ let lookupTableInst =
 
 let tx2 = new Transaction()
 tx2.add(lookupTableInst0)
-console.log(1)
 blockhash = await connection2
     .getLatestBlockhash()
     .then((res) => res.blockhash);
