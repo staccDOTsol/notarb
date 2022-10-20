@@ -48,7 +48,7 @@ import { PromisePool }from '@supercharge/promise-pool'
 // invalid cache. I will recommend using a paid RPC endpoint.
 let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost:8899' : 'https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4'), {skipPreflight: false});
 var connection2= new Connection("https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4", {skipPreflight: false});
-//process.env.SEARCHER ? connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr") : connection2 = connection2
+process.env.SEARCHER ? connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr") : connection2 = connection2
 
 process.env.SEARCHER ? connection = connection2 : connection = connection
 
@@ -466,9 +466,9 @@ for (var key of Object.keys(myluts)){
    c = -1
 for (var bca of messageV0.staticAccountKeys){
   let want = bca.toBase58()
-  if (key.split(',')[0] == USDC_MINT && key.split(',')[1 ] == SOL_MINT
-  && key.split(',')[2 ] == hmmms[0]
-  && key.split(',')[3 ]== hmmms[1]){
+  if (key.split(',')[1] == USDC_MINT && key.split(',')[2 ] == SOL_MINT
+  && key.split(',')[3 ] == hmmms[0]
+  && key.split(',')[4 ]== hmmms[1]){
     if (key.split(',').includes(want) && key.split(',').length < 250){
       c++
       if (c > w){
