@@ -6413,6 +6413,7 @@ async function something(SOL_MINT, market, myluts){
                             );
                             // sign your transaction with the required `Signers`
                             console.log(123);
+                            console.log(transaction)
                             await transaction.sign([payer, delegate]); //, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
                             try {
                               setTimeout(async function(){
