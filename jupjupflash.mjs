@@ -525,6 +525,7 @@ if (winners.length > 0){
   
 }
 var lookupTableInst
+
 if (messageV0.staticAccountKeys.length > w + 1  ){
   var slot = (await connection2.getLatestBlockhashAndContext()).context.slot;
 
@@ -533,19 +534,18 @@ if (messageV0.staticAccountKeys.length > w + 1  ){
 var blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
-   var lookupTableAddress  
    
    var dontgo1 = true 
    if (w == -1){
+   
     var slot = (await connection2.getLatestBlockhashAndContext()).context.slot;
 
-   var   [lookupTableInst, lookupTableAddress] =
-  AddressLookupTableProgram.createLookupTable({
-    authority: payer.publicKey,
-    payer: payer.publicKey,
-    recentSlot: slot,
-  });
-  
+    var   [lookupTableInst, lookupTableAddress] =
+   AddressLookupTableProgram.createLookupTable({
+     authority: payer.publicKey,
+     payer: payer.publicKey,
+     recentSlot: slot,
+   });
 
 //  lookupTableAddress = new PublicKey("7XH2JSueLJMTuDLE67Qw92KKwAdLjggszDSN5GVoK3qD")
 dontgo1 = false 
@@ -738,14 +738,7 @@ sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
   var blockhash = await connection
       .getLatestBlockhash()
       .then((res) => res.blockhash);
-     var lookupTableAddress  
      
-     var   [lookupTableInst, lookupTableAddress] =
-    AddressLookupTableProgram.createLookupTable({
-      authority: payer.publicKey,
-      payer: payer.publicKey,
-      recentSlot: slot,
-    });
   var tx2 = new Transaction()
   tx2.add(lookupTableInst)
   //console.log(1)
