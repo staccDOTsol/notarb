@@ -5252,7 +5252,7 @@ async function something(SOL_MINT, market, myluts){
                   );
                 }
                 if (
-                  usdcToSol.data[0] &&
+                  usdcToSol &&
                   !baddies.includes(SOL_MINT + USDC_MINT)
                 ) {
                   try {
