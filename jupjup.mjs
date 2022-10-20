@@ -809,9 +809,13 @@ console.log(err)
   // sign your transaction with the required `Signers`
  await transaction.sign([payer])//, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
  try {
-
-  await sendAndConfirmTransaction(connection, transaction)
-
+  sendAndConfirmTransaction(connection, transaction)
+  sendAndConfirmTransaction(connection, transaction)
+  sendAndConfirmTransaction(connection, transaction)
+  sendAndConfirmTransaction(connection, transaction)
+  sendAndConfirmTransaction(connection, transaction)
+  sendAndConfirmTransaction(connection, transaction)
+  sendAndConfirmTransaction(connection, transaction)
  } catch (err){
   console.log(err)
  }
