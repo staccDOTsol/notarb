@@ -261,7 +261,7 @@ if (true){//["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "So1111111111111111
 var reserve = market.reserves[ rando(0, market.reserves.length)]//market.reserves.find(res => res.config.liquidityToken.mint ===ç);
 var USDC_MINT = reserve.config.liquidityToken.mint
 //console.log(USDC_MINT)
-    if (true){//has.includes(USDC_MINT) ){
+    if (USDC_MINT != "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"){//has.includes(USDC_MINT) ){
   
 var dec =  reserve.config.liquidityToken.decimals
 let min = ( reserve.stats.flashLoanFeePercentage )
