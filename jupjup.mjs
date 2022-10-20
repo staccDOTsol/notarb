@@ -489,7 +489,7 @@ for (var winner of winners){
     goaccs.push(test)
   }
 }
-if (messageV0.staticAccountKeys.length > w  ){
+if (messageV0.staticAccountKeys.length > w + 1  ){
   var slot = (await connection2.getLatestBlockhashAndContext()).context.slot;
 
 // Assumption:
