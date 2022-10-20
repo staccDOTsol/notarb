@@ -5992,7 +5992,7 @@ async function something(SOL_MINT, market, myluts){
                               if (!dontgo1) {
                               }
                               var tx2 = new Transaction();
-                              ///tx2.add(ix2[1])
+                              tx2.add(ix2[3])
                               //console.log(1)
                               blockhash = await connection
                                 .getLatestBlockhash()
@@ -6001,7 +6001,7 @@ async function something(SOL_MINT, market, myluts){
                               tx2.sign(payer);
                               if (!dg1) {
                                 try {
-                                  //sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
+                                  sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
                                   //console.log(hm)
                                 } catch (err) {
                                   var slot = (
