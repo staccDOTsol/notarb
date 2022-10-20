@@ -6096,6 +6096,7 @@ async function something(SOL_MINT, market, myluts){
                               }
                               tx2 = new Transaction();
 
+                              if (!dg2) {
                               tx2.add(ix2[2]);
                               //console.log(1)
                               blockhash = await connection
@@ -6103,7 +6104,6 @@ async function something(SOL_MINT, market, myluts){
                                 .then((res) => res.blockhash);
                               tx2.recentBlockhash = blockhash;
                               tx2.sign(payer);
-                              if (!dg2) {
                                 try {
                                   connection.sendTransaction(
                                     tx2,
@@ -6233,6 +6233,7 @@ async function something(SOL_MINT, market, myluts){
                                   }
                                 }
                               }
+                              if (!dg3) {
                               tx2 = new Transaction();
                               tx2.add(ix2[3]);
                               //console.log(1)
@@ -6241,7 +6242,6 @@ async function something(SOL_MINT, market, myluts){
                                 .then((res) => res.blockhash);
                               tx2.recentBlockhash = blockhash;
                               tx2.sign(payer);
-                              if (!dg3) {
                                 try {
                                   await connection.sendTransaction(
                                     tx2,
