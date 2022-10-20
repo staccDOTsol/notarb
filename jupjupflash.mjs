@@ -553,6 +553,7 @@ dontgo1 = false
 var tx2 = new Transaction()
 
 tx2.add(lookupTableInst)
+tx2.add(extendInstruction)
 //console.log(1)
 blockhash = await connection
     .getLatestBlockhash()
@@ -711,7 +712,7 @@ tx2.sign(payer)
 if (!dg1){
 try {
   
-sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
+//sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 //console.log(hm)
 } catch (err){
   var slot = (await connection2.getLatestBlockhashAndContext()).context.slot;
@@ -724,6 +725,7 @@ sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
      
   var tx2 = new Transaction()
   tx2.add(lookupTableInst)
+  tx2.add(extendInstruction)
   //console.log(1)
   blockhash = await connection
       .getLatestBlockhash()
