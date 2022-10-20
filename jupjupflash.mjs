@@ -367,11 +367,7 @@ if (returns > min   && true){
       additionalFee: 1,
     };
     const ix = ComputeBudgetProgram.requestUnits(params);
-    const decodedParams = ComputeBudgetInstruction.decodeRequestUnits(ix);
-    expect(params).to.eql(decodedParams);
-    expect(ComputeBudgetInstruction.decodeInstructionType(ix)).to.eq(
-      'RequestUnits',
-    );
+
 let  instructions  = [ix,
   (Token.createApproveInstruction(tokenAccount, delegate.publicKey, payer.publicKey, initial)),(
   flashBorrowReserveLiquidityInstruction(

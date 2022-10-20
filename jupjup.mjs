@@ -363,11 +363,7 @@ const params = {
   additionalFee: 1,
 };
 const ix = ComputeBudgetProgram.requestUnits(params);
-const decodedParams = ComputeBudgetInstruction.decodeRequestUnits(ix);
-expect(params).to.eql(decodedParams);
-expect(ComputeBudgetInstruction.decodeInstructionType(ix)).to.eq(
-  'RequestUnits',
-);
+
 let instructions = [ix]
   let signers = []
 
