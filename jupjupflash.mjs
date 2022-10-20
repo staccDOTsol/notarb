@@ -46,12 +46,12 @@ import { PromisePool } from "@supercharge/promise-pool";
 // invalid cache. I will recommend using a paid RPC endpoint.
 let connection = new Connection(
   process.env.NODE_ENV == "production"
-    ? "https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4"
-    : "https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4",
+    ? "https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ"
+    : "https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ",
   { commitment: "singleGossip" }
 );
 var connection2 = new Connection(
-  "https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4",
+  "https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ",
   { commitment: "singleGossip" }
 );
 process.env.SEARCHER
@@ -68,8 +68,8 @@ const wallet = new Wallet(
         fs
           .readFileSync(
             (process.env.NODE_ENV == "production"
-              ? "/home/ubuntu"
-              : "/home/ubuntu") + "/notjaregm.json"
+              ? "/Users/jarettdunn"
+              : "/Users/jarettdunn") + "/notjaregm.json"
           )
           .toString()
       )
@@ -82,8 +82,8 @@ const payer = Keypair.fromSecretKey(
       fs
         .readFileSync(
           (process.env.NODE_ENV == "production"
-            ? "/home/ubuntu"
-            : "/home/ubuntu") + "/notjaregm.json"
+            ? "/Users/jarettdunn"
+            : "/Users/jarettdunn") + "/notjaregm.json"
         )
         .toString()
     )
@@ -5179,9 +5179,9 @@ const createWSolAccount = async (mint) => {
 let prev = new Date().getTime() / 1000;
 let avgs = [];
 while (true) {
+
   myluts = JSON.parse(fs.readFileSync("./luts.json").toString());
   //await createWSolAccount();
-
   let abc = -1;
   for (var market of markets) {
     market = markets[Math.floor(rando(0, 1, "float") * markets.length)];
@@ -5205,13 +5205,11 @@ while (true) {
             let min = reserve.stats.flashLoanFeePercentage;
             let cba = -1;
             abc++;
-
             if (
               !baddies.includes(SOL_MINT + USDC_MINT) &&
               !baddies.includes(USDC_MINT + SOL_MINT) &&
               min < 1991
             ) {
-              //  console.log(min)
 
               let dothethings = [];
               cba++;
@@ -5313,7 +5311,7 @@ while (true) {
                           t += avg;
                         }
                         let nowavg = t / avgs.length;
-                        if (returns > -0.1)
+                        if (returns > -1111.1)
                           console.log(
                             (
                               (initial / 10 ** dec) *
@@ -6367,8 +6365,8 @@ while (true) {
                                   .getLatestBlockhash()
                                   .then((res) => res.blockhash);
                                 let messageV00;
-                                console.log(instructions)
-                                console.log(goaccs)
+                                console.log(instructions.length)
+                                //console.log(goaccs)
                                 try {
                                   messageV00 = new TransactionMessage({
                                     payerKey: payer.publicKey,
