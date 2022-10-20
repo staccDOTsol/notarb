@@ -41,7 +41,12 @@ import * as splToken from "@solana/spl-token";
 console.log({ dotenv });
 dotenv.config();
 import { PromisePool } from "@supercharge/promise-pool";
-
+process.on('uncaughtException', err => {
+  console.log(`Uncaught Exception: ${err.message}`)
+})
+process.on('unhandledRejection', (reason, promise) => {
+  console.log('Unhandled rejection at ', promise, `reason: ${err.message}`)
+})
 // This is a free Solana RPC endpoint. It may have ratelimit and sometimes
 // invalid cache. I will recommend using a paid RPC endpoint.
 let connection = new Connection(
