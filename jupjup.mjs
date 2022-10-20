@@ -483,7 +483,7 @@ for (var bca of messageV0.staticAccountKeys){
 console.log(w)
 console.log(messageV0.staticAccountKeys.length)
 let goaccs = []
-for (var winner of winners){
+for (var winner of [winners[0]]){
   let test = ((await connection.getAddressLookupTable((winner))).value)
   if (test.state.addresses.length < 256&& test.state.owner == payer.publicKey){
     goaccs.push(test)
