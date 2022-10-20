@@ -6397,7 +6397,7 @@ async function something(SOL_MINT, market, myluts){
           } catch (err) {console.log(err)}
         }
       }
-    } catch (err) {return}
+    } catch (err) {console.log(err)}
   }
   return
 }
