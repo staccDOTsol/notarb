@@ -6188,7 +6188,6 @@ async function something(SOL_MINT, market, myluts){
                                       console.log(err);
                                     }
                                   }
-                                  console.log(err);
                                 }
                               }
                               tx2 = new Transaction();
@@ -6328,7 +6327,6 @@ async function something(SOL_MINT, market, myluts){
                                       console.log(err);
                                     }
                                   }
-                                  console.log(err);
                                 }
                               }
                             }
