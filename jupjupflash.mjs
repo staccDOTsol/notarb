@@ -6406,14 +6406,24 @@ async function something(SOL_MINT, market, myluts){
 
 while (true) {
 
-  myluts = JSON.parse(fs.readFileSync("./luts.json").toString());
-  //await createWSolAccount();
-  for (var market of markets) {
-    market = markets[Math.floor(rando(0, 1, "float") * markets.length)];
+
+  await PromisePool.withConcurrency(markets.length)
+  .for(markets)
+  // @ts-ignore
+  .handleError(async (err, asset) => {
+    console.error(`\nError uploading or whatever`, err.message);
+    console.log(err);
+  })
+  // @ts-ignore
+  .process(async (market) => {
+    myluts = JSON.parse(fs.readFileSync("./luts.json").toString());
+    //await createWSolAccount();
+  
+        market = markets[Math.floor(rando(0, 1, "float") * markets.length)];
     await market.loadReserves();
     market.refreshAll();
 
-    await PromisePool.withConcurrency(25)
+    await PromisePool.withConcurrency(5)
     .for(mints)
     // @ts-ignore
     .handleError(async (err, asset) => {
@@ -6424,5 +6434,5 @@ while (true) {
     .process(async (SOL_MINT) => {
      await something(SOL_MINT, market, myluts)
     })
-  }
+  })
 }
