@@ -32,14 +32,14 @@ const getTransaction = (route) => {
 const getCoinQuote2 = (inputMint, outputMint, amount) =>
   got
     .get(
-      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=0.99&SwapMode=ExactIn&onlyDirectRoutes=true`
+      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=0.99&onlyDirectRoutes=true`
     )
     .json();
 
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
-      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=0.99&SwapMode=ExactIn&onlyDirectRoutes=true`
+      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=0.99&onlyDirectRoutes=true`
     )
     .json();
 
