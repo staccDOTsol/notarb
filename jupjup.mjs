@@ -676,7 +676,7 @@ tx2.sign(payer)
 
 if (!dontgo1){
 try{
-  sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
+await  sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 } catch (err){
     console.log(err)
 }
