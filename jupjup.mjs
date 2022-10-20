@@ -43,15 +43,19 @@ import { PromisePool }from '@supercharge/promise-pool'
 
 // This is a free Solana RPC endpoint. It may have ratelimit and sometimes
 // invalid cache. I will recommend using a paid RPC endpoint.
-    let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost' : 'http://localhost') +":8899", {skipPreflight: false});
-    var connection2= new Connection("https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4", {skipPreflight: false});
+   
+// This is a free Solana RPC endpoint. It may have ratelimit and sometimes
+// invalid cache. I will recommend using a paid RPC endpoint.
+let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost:8899' : 'https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4'), {skipPreflight: false});
+var connection2= new Connection("https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4", {skipPreflight: false});
 
-    process.env.SEARCHER ? connection = connection2 : connection = connection
-    
+process.env.SEARCHER ? connection = connection2 : connection = connection
+
 const wallet = new Wallet(
-  Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/home/ubuntu') + '/notjaregm.json').toString()))));
+  Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/Users/jarettdunn') + '/notjaregm.json').toString()))));
   const payer = (
-    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/home/ubuntu') + '/notjaregm.json').toString()))));
+    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/Users/jarettdunn') + '/notjaregm.json').toString()))));
+  
   
 import fs from 'fs'
 import { createTransferInstruction } from "@solana/spl-token";
@@ -81,8 +85,9 @@ var mints = [
 
 for (var add of arg.data){
   for (var tok of add.tokens){
-  mints.push(tok.address)
-  }
+    if (!mints.includes(tok.address)){
+      mints.push(tok.address)
+        }    }
   
   }
 console.log(mints.length)
@@ -329,7 +334,7 @@ let min = -0.0001//.9 * ( reserve.stats.borrowFeePercentage * 100)
             t+=avg 
         }
         let nowavg = t / avgs.length 
-   if ( new Date().getTime() % 100 <= 10 )   console.log((initial / 10 ** dec * reserve.stats.assetPriceUSD).toString() + ' initial, ' + returns.toString() + '% yield on badboi ' + USDC_MINT + ' <-> ' + SOL_MINT)
+   if ( returns > -0.1 )   console.log((initial / 10 ** dec * reserve.stats.assetPriceUSD).toString() + ' initial, ' + returns.toString() + '% yield on badboi ' + USDC_MINT + ' <-> ' + SOL_MINT)
 //console.log(initial / 10 ** dec)
 let gogo = true 
 for (var maybego of  dothethings){

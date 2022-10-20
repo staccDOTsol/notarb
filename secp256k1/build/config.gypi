@@ -365,7 +365,7 @@
     "v8_use_siphash": 1,
     "want_separate_host_toolset": 0,
     "xcode_version": "12.0",
-    "nodedir": "/home/ubuntu/Library/Caches/node-gyp/16.17.1",
+    "nodedir": "/Users/jarettdunn/Library/Caches/node-gyp/16.17.1",
     "standalone_static_library": 1,
     "version_git_tag": "true",
     "init_license": "MIT",

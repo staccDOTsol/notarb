@@ -49,13 +49,13 @@ CFLAGS_OBJC_Debug :=
 CFLAGS_OBJCC_Debug :=
 
 INCS_Debug := \
-	-I/home/ubuntu/Library/Caches/node-gyp/16.17.1/include/node \
-	-I/home/ubuntu/Library/Caches/node-gyp/16.17.1/src \
-	-I/home/ubuntu/Library/Caches/node-gyp/16.17.1/deps/openssl/config \
-	-I/home/ubuntu/Library/Caches/node-gyp/16.17.1/deps/openssl/openssl/include \
-	-I/home/ubuntu/Library/Caches/node-gyp/16.17.1/deps/uv/include \
-	-I/home/ubuntu/Library/Caches/node-gyp/16.17.1/deps/zlib \
-	-I/home/ubuntu/Library/Caches/node-gyp/16.17.1/deps/v8/include
+	-I/Users/jarettdunn/Library/Caches/node-gyp/16.17.1/include/node \
+	-I/Users/jarettdunn/Library/Caches/node-gyp/16.17.1/src \
+	-I/Users/jarettdunn/Library/Caches/node-gyp/16.17.1/deps/openssl/config \
+	-I/Users/jarettdunn/Library/Caches/node-gyp/16.17.1/deps/openssl/openssl/include \
+	-I/Users/jarettdunn/Library/Caches/node-gyp/16.17.1/deps/uv/include \
+	-I/Users/jarettdunn/Library/Caches/node-gyp/16.17.1/deps/zlib \
+	-I/Users/jarettdunn/Library/Caches/node-gyp/16.17.1/deps/v8/include
 
 DEFS_Release := \
 	'-DNODE_GYP_MODULE_NAME=keccak' \
@@ -101,13 +101,13 @@ CFLAGS_OBJC_Release :=
 CFLAGS_OBJCC_Release :=
 
 INCS_Release := \
-	-I/home/ubuntu/Library/Caches/node-gyp/16.17.1/include/node \
-	-I/home/ubuntu/Library/Caches/node-gyp/16.17.1/src \
-	-I/home/ubuntu/Library/Caches/node-gyp/16.17.1/deps/openssl/config \
-	-I/home/ubuntu/Library/Caches/node-gyp/16.17.1/deps/openssl/openssl/include \
-	-I/home/ubuntu/Library/Caches/node-gyp/16.17.1/deps/uv/include \
-	-I/home/ubuntu/Library/Caches/node-gyp/16.17.1/deps/zlib \
-	-I/home/ubuntu/Library/Caches/node-gyp/16.17.1/deps/v8/include
+	-I/Users/jarettdunn/Library/Caches/node-gyp/16.17.1/include/node \
+	-I/Users/jarettdunn/Library/Caches/node-gyp/16.17.1/src \
+	-I/Users/jarettdunn/Library/Caches/node-gyp/16.17.1/deps/openssl/config \
+	-I/Users/jarettdunn/Library/Caches/node-gyp/16.17.1/deps/openssl/openssl/include \
+	-I/Users/jarettdunn/Library/Caches/node-gyp/16.17.1/deps/uv/include \
+	-I/Users/jarettdunn/Library/Caches/node-gyp/16.17.1/deps/zlib \
+	-I/Users/jarettdunn/Library/Caches/node-gyp/16.17.1/deps/v8/include
 
 OBJS := \
 	$(obj).target/$(TARGET)/src/libkeccak-64/KeccakSpongeWidth1600.o \

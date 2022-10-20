@@ -50,9 +50,9 @@ var connection2= new Connection("https://solana-mainnet.g.alchemy.com/v2/IWB_lF5
 process.env.SEARCHER ? connection = connection2 : connection = connection
 
 const wallet = new Wallet(
-  Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/home/ubuntu') + '/notjaregm.json').toString()))));
+  Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/Users/jarettdunn') + '/notjaregm.json').toString()))));
   const payer = (
-    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/home/ubuntu') + '/notjaregm.json').toString()))));
+    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/Users/jarettdunn') + '/notjaregm.json').toString()))));
   
 import fs from 'fs'
 import { createTransferInstruction } from "@solana/spl-token";
@@ -85,7 +85,9 @@ var mints = [
 
 for (var add of arg.data){
   for (var tok of add.tokens){
+    if (!mints.includes(tok.address)){
   mints.push(tok.address)
+    }
   }
   
   }
@@ -154,6 +156,10 @@ var markets = [  await SolendMarket.initialize(
   
   "production", // optional environment argument
   "GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q"
+),await SolendMarket.initialize(
+  connection,
+  
+  "production", // optional environment argument
 )
 
 ]
@@ -244,10 +250,11 @@ market.refreshAll();
 for (var SOL_MINT of mints){
   let jares = []
 
-    SOL_MINT = mints[Math.floor( rando(0, 1, "float") * mints.length)]
-for (var reserve of market.reserves){//["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "So11111111111111111111111111111111111111112"]){
+    SOL_MINT = mints[ rando(0, mints.length)]
+    console.log(baddies.length)
+if (true){//["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "So11111111111111111111111111111111111111112"]){
   try {
- reserve = market.reserves[Math.floor( rando(0, 1, "float")* market.reserves.length)]//market.reserves.find(res => res.config.liquidityToken.mint ===ç);
+var reserve = market.reserves[ rando(0, market.reserves.length)]//market.reserves.find(res => res.config.liquidityToken.mint ===ç);
 var USDC_MINT = reserve.config.liquidityToken.mint
 //console.log(USDC_MINT)
     if (true){//has.includes(USDC_MINT) ){
@@ -257,20 +264,20 @@ let min = ( reserve.stats.flashLoanFeePercentage )
     let cba = -1
     abc++
 
-        if (true){//!baddies.includes(SOL_MINT+USDC_MINT) &&  !baddies.includes(USDC_MINT+SOL_MINT) && min < 1991){
+        if (!baddies.includes(SOL_MINT+USDC_MINT) &&  !baddies.includes(USDC_MINT+SOL_MINT) && min < 1991){
         //  console.log(min)
 
       let dothethings = []
       cba++
       try {
         const initial = rando(true, false) ? 
-        Math.floor( rando(0, 1, "float") * ((( rando(0, 1, "float") * 5) / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec) 
-        : Math.floor( rando(0, 1, "float") * (((500 * ( rando(0, 1, "float") )) / reserve.stats.assetPriceUSD )) * 10 ** dec);
+        Math.floor( ((rando(0,  5, "float") / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec) 
+        : Math.floor( ((rando(0, 500, "float") / reserve.stats.assetPriceUSD )) * 10 ** dec);
    
         // 0.1 SOL
         try {
             
-            if (true){//!baddies.includes(USDC_MINT+SOL_MINT)){
+            if (!baddies.includes(USDC_MINT+SOL_MINT)){
 
                            let usdcToSol
              let solToUsdc
@@ -297,7 +304,7 @@ let min = ( reserve.stats.flashLoanFeePercentage )
         }
         fs.writeFileSync('./baddies.json', JSON.stringify(tbaddies))
           }
-       if (usdcToSol.data[0]){//} && !baddies.includes(SOL_MINT+USDC_MINT) ){
+       if (usdcToSol.data[0] && !baddies.includes(SOL_MINT+USDC_MINT) ){
         try {
          solToUsdc = await getCoinQuote(
           SOL_MINT,
@@ -341,7 +348,7 @@ let min = ( reserve.stats.flashLoanFeePercentage )
             t+=avg 
         }
         let nowavg = t / avgs.length 
-   if ( new Date().getTime() % 100 <= 10 )   console.log((initial / 10 ** dec * reserve.stats.assetPriceUSD).toString() + ' initial, ' + returns.toString() + '% yield on badboi ' + USDC_MINT + ' <-> ' + SOL_MINT)
+   if ( returns > -0.1 )   console.log((initial / 10 ** dec * reserve.stats.assetPriceUSD).toString() + ' initial, ' + returns.toString() + '% yield on badboi ' + USDC_MINT + ' <-> ' + SOL_MINT)
 //console.log(initial / 10 ** dec)
 let gogo = true 
 for (var maybego of  dothethings){

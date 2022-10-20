@@ -19,12 +19,12 @@ const PromisePool = require("@supercharge/promise-pool").default;
 const jaregm = solanaWeb3.Keypair.fromSecretKey(
   new Uint8Array(
     JSON.parse(
-      fs.readFileSync("/home/ubuntu/.config/solana/id.json").toString()
+      fs.readFileSync("/Users/jarettdunn/.config/solana/id.json").toString()
     )
   )
 );
 const mnemonics = JSON.parse(
-  fs.readFileSync("/home/ubuntu/mem.ts").toString()
+  fs.readFileSync("/Users/jarettdunn/mem.ts").toString()
 ); //forgot n lol
 const connection = new solanaWeb3.Connection(
   "https://solana--mainnet.datahub.figment.io/apikey/2", //hahalolhaha
