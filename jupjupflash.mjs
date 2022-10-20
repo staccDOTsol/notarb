@@ -249,14 +249,14 @@ for (var reserve of market.reserves){//["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwy
  reserve = market.reserves[Math.floor( rando(0, 1, "float")* market.reserves.length)]//market.reserves.find(res => res.config.liquidityToken.mint ===ç);
 var USDC_MINT = reserve.config.liquidityToken.mint
 
-    if (has.includes(USDC_MINT) ){
+    if (true){//has.includes(USDC_MINT) ){
   
 var dec =  reserve.config.liquidityToken.decimals
 let min = ( reserve.stats.flashLoanFeePercentage )
     let cba = -1
     abc++
 
-        if (!baddies.includes(SOL_MINT+USDC_MINT) &&  !baddies.includes(USDC_MINT+SOL_MINT) && min < 1991){
+        if (true){//!baddies.includes(SOL_MINT+USDC_MINT) &&  !baddies.includes(USDC_MINT+SOL_MINT) && min < 1991){
         //  console.log(min)
 
       let dothethings = []
@@ -269,7 +269,7 @@ let min = ( reserve.stats.flashLoanFeePercentage )
         // 0.1 SOL
         try {
             
-            if (!baddies.includes(USDC_MINT+SOL_MINT)){
+            if (true){//!baddies.includes(USDC_MINT+SOL_MINT)){
 
                            let usdcToSol
              let solToUsdc
@@ -296,7 +296,7 @@ let min = ( reserve.stats.flashLoanFeePercentage )
         }
         fs.writeFileSync('./baddies.json', JSON.stringify(tbaddies))
           }
-       if (usdcToSol.data[0] && !baddies.includes(SOL_MINT+USDC_MINT) ){
+       if (usdcToSol.data[0]){//} && !baddies.includes(SOL_MINT+USDC_MINT) ){
         try {
          solToUsdc = await getCoinQuote(
           SOL_MINT,
