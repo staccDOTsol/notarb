@@ -6411,7 +6411,8 @@ async function something(SOL_MINT, market, myluts){
                             await transaction.sign([payer, delegate]); //, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
                             try {
                               setTimeout(async function(){
-                              sendAndConfirmTransaction(connection, transaction, {skipPreflight:true});
+                             let hm = await  sendAndConfirmTransaction(connection, transaction, {skipPreflight:true});
+                            console.log(hm)
                             })
                             } catch (err) {
                               console.log(err)
