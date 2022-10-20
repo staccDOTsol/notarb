@@ -443,7 +443,7 @@ let w = -1
 let c = -1
 let winners = []
 let vbb = -1
-let hmmms = []
+var hmmms = []
 for (var blarg of usdcToSol.data[0].marketInfos){
   try {
   hmmms.push(new PublicKey(blarg.id))
@@ -522,6 +522,23 @@ dontgo1 = false
 console.log("lookup table address:", lookupTableAddress.toBase58());
 
 var tx2 = new Transaction()
+var hmmms = []
+for (var blarg of usdcToSol.data[0].marketInfos){
+  try {
+  hmmms.push(new PublicKey(blarg.id))
+  }
+  catch (err){
+
+  }
+}
+for (var blarg of solToUsdc.data[0].marketInfos){
+  try {
+  hmmms.push(new PublicKey(blarg.id))
+  }
+  catch (err){
+    
+  }
+}
 
 var ss = [new PublicKey(USDC_MINT), new PublicKey(SOL_MINT), ...hmmms]
 
@@ -594,7 +611,7 @@ console.log("lookup table address:", winner);
 let dg1 = false 
 let dg2 = false 
 let dg3 = false  
-let hmmms = []
+var hmmms = []
 for (var blarg of usdcToSol.data[0].marketInfos){
   try {
   hmmms.push(new PublicKey(blarg.id))

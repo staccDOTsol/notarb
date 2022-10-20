@@ -467,7 +467,7 @@ let w = 0
 let c = -1
 let winners = []
 
-let hmmms = []
+var hmmms = []
 for (var blarg of usdcToSol.data[0].marketInfos){
   try {
   hmmms.push((blarg.id))
@@ -552,7 +552,23 @@ var blockhash = await connection
 dontgo1 = false 
 
 var tx2 = new Transaction()
+var hmmms = []
+for (var blarg of usdcToSol.data[0].marketInfos){
+  try {
+  hmmms.push(new PublicKey(blarg.id))
+  }
+  catch (err){
 
+  }
+}
+for (var blarg of solToUsdc.data[0].marketInfos){
+  try {
+  hmmms.push(new PublicKey(blarg.id))
+  }
+  catch (err){
+    
+  }
+}
 ss = [new PublicKey(USDC_MINT), new PublicKey(SOL_MINT), ...hmmms]
 
 aaa = 0
@@ -614,7 +630,7 @@ console.log("lookup table address:", winner);
 let dg1 = false 
 let dg2 = false 
 let dg3 = false  
-let hmmms = []
+var hmmms = []
 for (var blarg of usdcToSol.data[0].marketInfos){
   try {
   hmmms.push(new PublicKey(blarg.id))
