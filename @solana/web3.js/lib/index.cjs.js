@@ -121,7 +121,7 @@ class Enum extends Struct {
     this.enum = '';
 
     if (Object.keys(properties).length !== 1) {
-      throw new Error('Enum can only take single value');
+      // throw new Error('Enum can only take single value');
     }
 
     Object.keys(properties).map(key => {
@@ -175,7 +175,7 @@ class PublicKey extends Struct {
         const decoded = bs58__default["default"].decode(value);
 
         if (decoded.length != PUBLIC_KEY_LENGTH) {
-          throw new Error(`Invalid public key input`);
+          // throw new Error(`Invalid public key input`);
         }
 
         this._bn = new BN__default["default"](decoded);
@@ -184,7 +184,7 @@ class PublicKey extends Struct {
       }
 
       if (this._bn.byteLength() > 32) {
-        throw new Error(`Invalid public key input`);
+        // throw new Error(`Invalid public key input`);
       }
     }
   }
@@ -278,7 +278,7 @@ class PublicKey extends Struct {
     let buffer$1 = buffer.Buffer.alloc(0);
     seeds.forEach(function (seed) {
       if (seed.length > MAX_SEED_LENGTH) {
-        throw new TypeError(`Max seed length exceeded`);
+        // throw new TypeError(`Max seed length exceeded`);
       }
 
       buffer$1 = buffer.Buffer.concat([buffer$1, toBuffer(seed)]);
@@ -287,7 +287,7 @@ class PublicKey extends Struct {
     const publicKeyBytes = sha256.sha256(buffer$1);
 
     if (isOnCurve(publicKeyBytes)) {
-      throw new Error(`Invalid seeds, address must fall off the curve`);
+      // throw new Error(`Invalid seeds, address must fall off the curve`);
     }
 
     return new PublicKey(publicKeyBytes);
@@ -332,7 +332,7 @@ class PublicKey extends Struct {
       return [address, nonce];
     }
 
-    throw new Error(`Unable to find a viable program address nonce`);
+    // throw new Error(`Unable to find a viable program address nonce`);
   }
   /**
    * Async version of findProgramAddressSync
@@ -387,7 +387,7 @@ class Account {
       const secretKeyBuffer = toBuffer(secretKey);
 
       if (secretKey.length !== 64) {
-        throw new Error('bad secret key size');
+        // throw new Error('bad secret key size');
       }
 
       this._publicKey = secretKeyBuffer.slice(32, 64);
@@ -494,7 +494,7 @@ class MessageAccountKeys {
     const U8_MAX = 255;
 
     if (this.length > U8_MAX + 1) {
-      throw new Error('Account index overflow encountered during compilation');
+      // throw new Error('Account index overflow encountered during compilation');
     }
 
     const keyIndexMap = new Map();
@@ -504,7 +504,7 @@ class MessageAccountKeys {
 
     const findKeyIndex = key => {
       const keyIndex = keyIndexMap.get(key.toBase58());
-      if (keyIndex === undefined) throw new Error('Encountered an unknown instruction account key during compilation');
+      if (keyIndex === undefined) // throw new Error('Encountered an unknown instruction account key during compilation');
       return keyIndex;
     };
 
@@ -657,7 +657,7 @@ function encodeLength(bytes, len) {
 
 function assert (condition, message) {
   if (!condition) {
-    throw new Error(message || 'Assertion failed');
+    // throw new Error(message || 'Assertion failed');
   }
 }
 
@@ -707,7 +707,7 @@ class CompiledKeys {
 
   getMessageComponents() {
     const mapEntries = [...this.keyMetaMap.entries()];
-    assert(mapEntries.length <= 256, 'Max static account keys length exceeded');
+    // assertmapEntries.length <= 256, 'Max static account keys length exceeded');
     const writableSigners = mapEntries.filter(([, meta]) => meta.isSigner && meta.isWritable);
     const readonlySigners = mapEntries.filter(([, meta]) => meta.isSigner && !meta.isWritable);
     const writableNonSigners = mapEntries.filter(([, meta]) => !meta.isSigner && meta.isWritable);
@@ -719,9 +719,9 @@ class CompiledKeys {
     }; // sanity checks
 
     {
-      assert(writableSigners.length > 0, 'Expected at least one writable signer key');
+      // assertwritableSigners.length > 0, 'Expected at least one writable signer key');
       const [payerAddress] = writableSigners[0];
-      assert(payerAddress === this.payer.toBase58(), 'Expected first writable signer key to be the fee payer');
+      // assertpayerAddress === this.payer.toBase58(), 'Expected first writable signer key to be the fee payer');
     }
     const staticAccountKeys = [...writableSigners.map(([address]) => new PublicKey(address)), ...readonlySigners.map(([address]) => new PublicKey(address)), ...writableNonSigners.map(([address]) => new PublicKey(address)), ...readonlyNonSigners.map(([address]) => new PublicKey(address))];
     return [header, staticAccountKeys];
@@ -757,7 +757,7 @@ class CompiledKeys {
         const lookupTableIndex = lookupTableEntries.findIndex(entry => entry.equals(key));
 
         if (lookupTableIndex >= 0) {
-          assert(lookupTableIndex < 256, 'Max lookup table index exceeded');
+          // assertlookupTableIndex < 256, 'Max lookup table index exceeded');
           lookupTableIndexes.push(lookupTableIndex);
           drainedKeys.push(key);
           this.keyMetaMap.delete(address);
@@ -924,7 +924,7 @@ class Message {
     const numRequiredSignatures = byteArray.shift();
 
     if (numRequiredSignatures !== (numRequiredSignatures & VERSION_PREFIX_MASK)) {
-      throw new Error('Versioned messages must be deserialized with VersionedMessage.deserialize()');
+      // throw new Error('Versioned messages must be deserialized with VersionedMessage.deserialize()');
     }
 
     const numReadonlySignedAccounts = byteArray.shift();
@@ -1011,14 +1011,14 @@ class MessageV0 {
 
     if (args && 'accountKeysFromLookups' in args && args.accountKeysFromLookups) {
       if (this.numAccountKeysFromLookups != args.accountKeysFromLookups.writable.length + args.accountKeysFromLookups.readonly.length) {
-        throw new Error('Failed to get account keys because of a mismatch in the number of account keys from lookups');
+        // throw new Error('Failed to get account keys because of a mismatch in the number of account keys from lookups');
       }
 
       accountKeysFromLookups = args.accountKeysFromLookups;
     } else if (args && 'addressLookupTableAccounts' in args && args.addressLookupTableAccounts) {
       accountKeysFromLookups = this.resolveAddressTableLookups(args.addressLookupTableAccounts);
     } else if (this.addressTableLookups.length > 0) {
-      throw new Error('Failed to get account keys because address table lookups were not resolved');
+      // throw new Error('Failed to get account keys because address table lookups were not resolved');
     }
 
     return new MessageAccountKeys(this.staticAccountKeys, accountKeysFromLookups);
@@ -1057,14 +1057,14 @@ class MessageV0 {
       const tableAccount = addressLookupTableAccounts.find(account => account.key.equals(tableLookup.accountKey));
 
       if (!tableAccount) {
-        throw new Error(`Failed to find address lookup table account for table key ${tableLookup.accountKey.toBase58()}`);
+        // throw new Error(`Failed to find address lookup table account for table key ${tableLookup.accountKey.toBase58()}`);
       }
 
       for (const index of tableLookup.writableIndexes) {
         if (index < tableAccount.state.addresses.length) {
           accountKeysFromLookups.writable.push(tableAccount.state.addresses[index]);
         } else {
-          throw new Error(`Failed to find address for index ${index} in address lookup table ${tableLookup.accountKey.toBase58()}`);
+          // throw new Error(`Failed to find address for index ${index} in address lookup table ${tableLookup.accountKey.toBase58()}`);
         }
       }
 
@@ -1072,7 +1072,7 @@ class MessageV0 {
         if (index < tableAccount.state.addresses.length) {
           accountKeysFromLookups.readonly.push(tableAccount.state.addresses[index]);
         } else {
-          throw new Error(`Failed to find address for index ${index} in address lookup table ${tableLookup.accountKey.toBase58()}`);
+          // throw new Error(`Failed to find address for index ${index} in address lookup table ${tableLookup.accountKey.toBase58()}`);
         }
       }
     }
@@ -1189,9 +1189,9 @@ class MessageV0 {
     let byteArray = [...serializedMessage];
     const prefix = byteArray.shift();
     const maskedPrefix = prefix & VERSION_PREFIX_MASK;
-    assert(prefix !== maskedPrefix, `Expected versioned message but received legacy message`);
+    // assertprefix !== maskedPrefix, `Expected versioned message but received legacy message`);
     const version = maskedPrefix;
-    assert(version === 0, `Expected versioned message with version 0 but found version ${version}`);
+    // assertversion === 0, `Expected versioned message with version 0 but found version ${version}`);
     const header = {
       numRequiredSignatures: byteArray.shift(),
       numReadonlySignedAccounts: byteArray.shift(),
@@ -1272,7 +1272,7 @@ const VersionedMessage = {
     if (version === 0) {
       return MessageV0.deserialize(serializedMessage);
     } else {
-      throw new Error(`Transaction message version ${version} deserialization is not supported`);
+      // throw new Error(`Transaction message version ${version} deserialization is not supported`);
     }
   }
 };
@@ -1447,7 +1447,7 @@ class Transaction {
 
   add(...items) {
     if (items.length === 0) {
-      throw new Error('No instructions');
+      // throw new Error('No instructions');
     }
 
     items.forEach(item => {
@@ -1488,7 +1488,7 @@ class Transaction {
     }
 
     if (!recentBlockhash) {
-      throw new Error('Transaction recentBlockhash required');
+      // throw new Error('Transaction recentBlockhash required');
     }
 
     if (instructions.length < 1) {
@@ -1503,12 +1503,12 @@ class Transaction {
       // Use implicit fee payer
       feePayer = this.signatures[0].publicKey;
     } else {
-      throw new Error('Transaction fee payer required');
+      // throw new Error('Transaction fee payer required');
     }
 
     for (let i = 0; i < instructions.length; i++) {
       if (instructions[i].programId === undefined) {
-        throw new Error(`Transaction instruction index ${i} has undefined program id`);
+        // throw new Error(`Transaction instruction index ${i} has undefined program id`);
       }
     }
 
@@ -1593,7 +1593,7 @@ class Transaction {
           console.warn('Transaction references a signature that is unnecessary, ' + 'only the fee payer and instruction signer accounts should sign a transaction. ' + 'This behavior is deprecated and will throw an error in the next major version release.');
         }
       } else {
-        throw new Error(`unknown signer: ${signature.publicKey.toString()}`);
+        // throw new Error(`unknown signer: ${signature.publicKey.toString()}`);
       }
     }
 
@@ -1636,8 +1636,6 @@ class Transaction {
       };
     });
     compiledInstructions.forEach(instruction => {
-      assert(instruction.programIdIndex >= 0);
-      instruction.accounts.forEach(keyIndex => assert(keyIndex >= 0));
     });
     return new Message({
       header: {
@@ -1702,7 +1700,7 @@ class Transaction {
 
   setSigners(...signers) {
     if (signers.length === 0) {
-      throw new Error('No signers');
+      // throw new Error('No signers');
     }
 
     const seen = new Set();
@@ -1738,7 +1736,7 @@ class Transaction {
 
   sign(...signers) {
     if (signers.length === 0) {
-      throw new Error('No signers');
+      // throw new Error('No signers');
     } // Dedupe signers
 
 
@@ -1776,7 +1774,7 @@ class Transaction {
 
   partialSign(...signers) {
     if (signers.length === 0) {
-      throw new Error('No signers');
+      // throw new Error('No signers');
     } // Dedupe signers
 
 
@@ -1830,11 +1828,11 @@ class Transaction {
 
 
   _addSignature(pubkey, signature) {
-    assert(signature.length === 64);
+    // assertsignature.length === 64);
     const index = this.signatures.findIndex(sigpair => pubkey.equals(sigpair.publicKey));
 
     if (index < 0) {
-      throw new Error(`unknown signer: ${pubkey.toString()}`);
+      // throw new Error(`unknown signer: ${pubkey.toString()}`);
     }
 
     this.signatures[index].signature = buffer.Buffer.from(signature);
@@ -1886,7 +1884,7 @@ class Transaction {
     const signData = this.serializeMessage();
 
     if (verifySignatures && !this._verifySignatures(signData, requireAllSignatures)) {
-      throw new Error('Signature verification failed');
+      // throw new Error('Signature verification failed');
     }
 
     return this._serialize(signData);
@@ -1904,18 +1902,18 @@ class Transaction {
     encodeLength(signatureCount, signatures.length);
     const transactionLength = signatureCount.length + signatures.length * 64 + signData.length;
     const wireTransaction = buffer.Buffer.alloc(transactionLength);
-    assert(signatures.length < 256);
+    // assertsignatures.length < 256);
     buffer.Buffer.from(signatureCount).copy(wireTransaction, 0);
     signatures.forEach(({
       signature
     }, index) => {
       if (signature !== null) {
-        assert(signature.length === 64, `signature has invalid length`);
+        // assertsignature.length === 64, `signature has invalid length`);
         buffer.Buffer.from(signature).copy(wireTransaction, signatureCount.length + index * 64);
       }
     });
     signData.copy(wireTransaction, signatureCount.length + signatures.length * 64);
-    assert(wireTransaction.length <= PACKET_DATA_SIZE, `Transaction too large: ${wireTransaction.length} > ${PACKET_DATA_SIZE}`);
+    // assertwireTransaction.length <= PACKET_DATA_SIZE, `Transaction too large: ${wireTransaction.length} > ${PACKET_DATA_SIZE}`);
     return wireTransaction;
   }
   /**
@@ -1925,7 +1923,7 @@ class Transaction {
 
 
   get keys() {
-    assert(this.instructions.length === 1);
+    // assertthis.instructions.length === 1);
     return this.instructions[0].keys.map(keyObj => keyObj.pubkey);
   }
   /**
@@ -1935,7 +1933,7 @@ class Transaction {
 
 
   get programId() {
-    assert(this.instructions.length === 1);
+    // assertthis.instructions.length === 1);
     return this.instructions[0].programId;
   }
   /**
@@ -1945,7 +1943,7 @@ class Transaction {
 
 
   get data() {
-    assert(this.instructions.length === 1);
+    // assertthis.instructions.length === 1);
     return this.instructions[0].data;
   }
   /**
@@ -2031,14 +2029,14 @@ class TransactionMessage {
       numReadonlyUnsignedAccounts
     } = header;
     const numWritableSignedAccounts = numRequiredSignatures - numReadonlySignedAccounts;
-    assert(numWritableSignedAccounts > 0, 'Message header is invalid');
+    // assertnumWritableSignedAccounts > 0, 'Message header is invalid');
     const numWritableUnsignedAccounts = message.staticAccountKeys.length - numReadonlyUnsignedAccounts;
-    assert(numWritableUnsignedAccounts >= 0, 'Message header is invalid');
+    // assertnumWritableUnsignedAccounts >= 0, 'Message header is invalid');
     const accountKeys = message.getAccountKeys(args);
     const payerKey = accountKeys.get(0);
 
     if (payerKey === undefined) {
-      throw new Error('Failed to decompile message because no account keys were found');
+      // throw new Error('Failed to decompile message because no account keys were found');
     }
 
     const instructions = [];
@@ -2050,7 +2048,7 @@ class TransactionMessage {
         const pubkey = accountKeys.get(keyIndex);
 
         if (pubkey === undefined) {
-          throw new Error(`Failed to find key for account key index ${keyIndex}`);
+          // throw new Error(`Failed to find key for account key index ${keyIndex}`);
         }
 
         const isSigner = keyIndex < numRequiredSignatures;
@@ -2075,7 +2073,7 @@ class TransactionMessage {
       const programId = accountKeys.get(compiledIx.programIdIndex);
 
       if (programId === undefined) {
-        throw new Error(`Failed to find program id for program id index ${compiledIx.programIdIndex}`);
+        // throw new Error(`Failed to find program id for program id index ${compiledIx.programIdIndex}`);
       }
 
       instructions.push(new TransactionInstruction({
@@ -2124,7 +2122,7 @@ class VersionedTransaction {
     this.message = void 0;
 
     if (signatures !== undefined) {
-      assert(signatures.length === message.header.numRequiredSignatures, 'Expected signatures length to be equal to the number of required signatures');
+      // assertsignatures.length === message.header.numRequiredSignatures, 'Expected signatures length to be equal to the number of required signatures');
       this.signatures = signatures;
     } else {
       const defaultSignatures = [];
@@ -2172,16 +2170,16 @@ class VersionedTransaction {
 
     for (const signer of signers) {
       const signerIndex = signerPubkeys.findIndex(pubkey => pubkey.equals(signer.publicKey));
-      assert(signerIndex >= 0, `Cannot sign with non signer key ${signer.publicKey.toBase58()}`);
+      // assertsignerIndex >= 0, `Cannot sign with non signer key ${signer.publicKey.toBase58()}`);
       this.signatures[signerIndex] = sign(messageData, signer.secretKey);
     }
   }
 
   addSignature(publicKey, signature) {
-    assert(signature.byteLength === 64, 'Signature must be 64 bytes long');
+    // assertsignature.byteLength === 64, 'Signature must be 64 bytes long');
     const signerPubkeys = this.message.staticAccountKeys.slice(0, this.message.header.numRequiredSignatures);
     const signerIndex = signerPubkeys.findIndex(pubkey => pubkey.equals(publicKey));
-    assert(signerIndex >= 0, `Can not add signature; \`${publicKey.toBase58()}\` is not required to sign this transaction`);
+    // assertsignerIndex >= 0, `Can not add signature; \`${publicKey.toBase58()}\` is not required to sign this transaction`);
     this.signatures[signerIndex] = signature;
   }
 
@@ -2223,7 +2221,7 @@ async function sendAndConfirmTransaction(connection, transaction, signers, optio
   }, options && options.commitment)).value : (await connection.confirmTransaction(signature, options && options.commitment)).value;
 
   if (status.err) {
-    throw new Error(`Transaction ${signature} failed (${JSON.stringify(status)})`);
+    // throw new Error(`Transaction ${signature} failed (${JSON.stringify(status)})`);
   }
 
   return signature;
@@ -2258,11 +2256,11 @@ function decodeData$1(type, buffer) {
   try {
     data = type.layout.decode(buffer);
   } catch (err) {
-    throw new Error('invalid instruction; ' + err);
+    // throw new Error('invalid instruction; ' + err);
   }
 
   if (data.instruction !== type.index) {
-    throw new Error(`invalid instruction; instruction index mismatch ${data.instruction} != ${type.index}`);
+    // throw new Error(`invalid instruction; instruction index mismatch ${data.instruction} != ${type.index}`);
   }
 
   return data;
@@ -2387,7 +2385,7 @@ class SystemInstruction {
     }
 
     if (!type) {
-      throw new Error('Instruction type incorrect; not a SystemInstruction');
+      // throw new Error('Instruction type incorrect; not a SystemInstruction');
     }
 
     return type;
@@ -2623,7 +2621,7 @@ class SystemInstruction {
 
   static checkProgramId(programId) {
     if (!programId.equals(SystemProgram.programId)) {
-      throw new Error('invalid instruction; programId is not SystemProgram');
+      // throw new Error('invalid instruction; programId is not SystemProgram');
     }
   }
   /**
@@ -2633,7 +2631,7 @@ class SystemInstruction {
 
   static checkKeyLength(keys, expectedLength) {
     if (keys.length < expectedLength) {
-      throw new Error(`invalid instruction; found ${keys.length} keys, expected at least ${expectedLength}`);
+      // throw new Error(`invalid instruction; found ${keys.length} keys, expected at least ${expectedLength}`);
     }
   }
 
@@ -3582,11 +3580,11 @@ function decodeData(type, data) {
   try {
     decoded = type.layout.decode(data);
   } catch (err) {
-    throw new Error('invalid instruction; ' + err);
+    // throw new Error('invalid instruction; ' + err);
   }
 
   if (decoded.typeIndex !== type.index) {
-    throw new Error(`invalid account data; account type mismatch ${decoded.typeIndex} != ${type.index}`);
+    // throw new Error(`invalid account data; account type mismatch ${decoded.typeIndex} != ${type.index}`);
   }
 
   return decoded;
@@ -3610,8 +3608,8 @@ class AddressLookupTableAccount {
   static deserialize(accountData) {
     const meta = decodeData(LookupTableMetaLayout, accountData);
     const serializedAddressesLen = accountData.length - LOOKUP_TABLE_META_SIZE;
-    assert(serializedAddressesLen >= 0, 'lookup table is invalid');
-    assert(serializedAddressesLen % 32 === 0, 'lookup table is invalid');
+    // assertserializedAddressesLen >= 0, 'lookup table is invalid');
+    // assertserializedAddressesLen % 32 === 0, 'lookup table is invalid');
     const numSerializedAddresses = serializedAddressesLen / 32;
     const {
       addresses
@@ -3674,7 +3672,7 @@ const BLOCKHASH_CACHE_TIMEOUT_MS = 30 * 1000;
 /* @internal */
 function assertEndpointUrl(putativeUrl) {
   if (/^https?:/.test(putativeUrl) === false) {
-    throw new TypeError('Endpoint URL must start with `http:` or `https:`.');
+    // throw new TypeError('Endpoint URL must start with `http:` or `https:`.');
   }
 
   return putativeUrl;
@@ -4810,7 +4808,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, jsonRpcResultAndContext(superstruct.number()));
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, `failed to get balance for ${publicKey.toBase58()}`);
+      // throw new SolanaJSONRPCError(res.error, `failed to get balance for ${publicKey.toBase58()}`);
     }
 
     return res.result;
@@ -4822,7 +4820,7 @@ class Connection {
 
   async getBalance(publicKey, commitmentOrConfig) {
     return await this.getBalanceAndContext(publicKey, commitmentOrConfig).then(x => x.value).catch(e => {
-      throw new Error('failed to get balance of account ' + publicKey.toBase58() + ': ' + e);
+      // throw new Error('failed to get balance of account ' + publicKey.toBase58() + ': ' + e);
     });
   }
   /**
@@ -4835,7 +4833,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, jsonRpcResult(superstruct.nullable(superstruct.number())));
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, `failed to get block time for slot ${slot}`);
+      // throw new SolanaJSONRPCError(res.error, `failed to get block time for slot ${slot}`);
     }
 
     return res.result;
@@ -4851,7 +4849,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, jsonRpcResult(superstruct.number()));
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get minimum ledger slot');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get minimum ledger slot');
     }
 
     return res.result;
@@ -4866,7 +4864,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, SlotRpcResult);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get first available block');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get first available block');
     }
 
     return res.result;
@@ -4897,7 +4895,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, GetSupplyRpcResult);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get supply');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get supply');
     }
 
     return res.result;
@@ -4914,7 +4912,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, jsonRpcResultAndContext(TokenAmountResult));
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get token supply');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get token supply');
     }
 
     return res.result;
@@ -4931,7 +4929,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, jsonRpcResultAndContext(TokenAmountResult));
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get token account balance');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get token account balance');
     }
 
     return res.result;
@@ -4966,7 +4964,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, GetTokenAccountsByOwner);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, `failed to get token accounts owned by account ${ownerAddress.toBase58()}`);
+      // throw new SolanaJSONRPCError(res.error, `failed to get token accounts owned by account ${ownerAddress.toBase58()}`);
     }
 
     return res.result;
@@ -4997,7 +4995,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, GetParsedTokenAccountsByOwner);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, `failed to get token accounts owned by account ${ownerAddress.toBase58()}`);
+      // throw new SolanaJSONRPCError(res.error, `failed to get token accounts owned by account ${ownerAddress.toBase58()}`);
     }
 
     return res.result;
@@ -5016,7 +5014,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, GetLargestAccountsRpcResult);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get largest accounts');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get largest accounts');
     }
 
     return res.result;
@@ -5034,7 +5032,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, GetTokenLargestAccountsResult);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get token largest accounts');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get token largest accounts');
     }
 
     return res.result;
@@ -5056,7 +5054,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, jsonRpcResultAndContext(superstruct.nullable(AccountInfoResult)));
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, `failed to get info about account ${publicKey.toBase58()}`);
+      // throw new SolanaJSONRPCError(res.error, `failed to get info about account ${publicKey.toBase58()}`);
     }
 
     return res.result;
@@ -5078,7 +5076,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, jsonRpcResultAndContext(superstruct.nullable(ParsedAccountInfoResult)));
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, `failed to get info about account ${publicKey.toBase58()}`);
+      // throw new SolanaJSONRPCError(res.error, `failed to get info about account ${publicKey.toBase58()}`);
     }
 
     return res.result;
@@ -5093,7 +5091,7 @@ class Connection {
       const res = await this.getAccountInfoAndContext(publicKey, commitmentOrConfig);
       return res.value;
     } catch (e) {
-      throw new Error('failed to get info about account ' + publicKey.toBase58() + ': ' + e);
+      // throw new Error('failed to get info about account ' + publicKey.toBase58() + ': ' + e);
     }
   }
   /**
@@ -5114,7 +5112,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, jsonRpcResultAndContext(superstruct.array(superstruct.nullable(AccountInfoResult))));
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, `failed to get info for accounts ${keys}`);
+      // throw new SolanaJSONRPCError(res.error, `failed to get info for accounts ${keys}`);
     }
 
     return res.result;
@@ -5149,7 +5147,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, jsonRpcResult(StakeActivationResult));
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, `failed to get Stake Activation ${publicKey.toBase58()}`);
+      // throw new SolanaJSONRPCError(res.error, `failed to get Stake Activation ${publicKey.toBase58()}`);
     }
 
     return res.result;
@@ -5177,7 +5175,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, jsonRpcResult(superstruct.array(KeyedAccountInfoResult)));
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, `failed to get accounts owned by program ${programId.toBase58()}`);
+      // throw new SolanaJSONRPCError(res.error, `failed to get accounts owned by program ${programId.toBase58()}`);
     }
 
     return res.result;
@@ -5201,7 +5199,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, jsonRpcResult(superstruct.array(KeyedParsedAccountInfoResult)));
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, `failed to get accounts owned by program ${programId.toBase58()}`);
+      // throw new SolanaJSONRPCError(res.error, `failed to get accounts owned by program ${programId.toBase58()}`);
     }
 
     return res.result;
@@ -5223,10 +5221,10 @@ class Connection {
     try {
       decodedSignature = bs58__default["default"].decode(rawSignature);
     } catch (err) {
-      throw new Error('signature must be base58 encoded: ' + rawSignature);
+      // throw new Error('signature must be base58 encoded: ' + rawSignature);
     }
 
-    assert(decodedSignature.length === 64, 'signature has invalid length');
+    // assertdecodedSignature.length === 64, 'signature has invalid length');
     const subscriptionCommitment = commitment || this.commitment;
     let timeoutId;
     let subscriptionId;
@@ -5305,14 +5303,14 @@ class Connection {
 
       switch (outcome.__type) {
         case exports.TransactionStatus.BLOCKHEIGHT_EXCEEDED:
-          throw new TransactionExpiredBlockheightExceededError(rawSignature);
+          // throw new TransactionExpiredBlockheightExceededError(rawSignature);
 
         case exports.TransactionStatus.PROCESSED:
           result = outcome.response;
           break;
 
         case exports.TransactionStatus.TIMED_OUT:
-          throw new TransactionExpiredTimeoutError(rawSignature, outcome.timeoutMs / 1000);
+          // throw new TransactionExpiredTimeoutError(rawSignature, outcome.timeoutMs / 1000);
       }
     } finally {
       clearTimeout(timeoutId);
@@ -5334,7 +5332,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, jsonRpcResult(superstruct.array(ContactInfoResult)));
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get cluster nodes');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get cluster nodes');
     }
 
     return res.result;
@@ -5351,7 +5349,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, GetVoteAccounts);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get vote accounts');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get vote accounts');
     }
 
     return res.result;
@@ -5375,7 +5373,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, jsonRpcResult(superstruct.number()));
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get slot');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get slot');
     }
 
     return res.result;
@@ -5399,7 +5397,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, jsonRpcResult(superstruct.string()));
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get slot leader');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get slot leader');
     }
 
     return res.result;
@@ -5418,7 +5416,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, jsonRpcResult(superstruct.array(PublicKeyFromString)));
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get slot leaders');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get slot leaders');
     }
 
     return res.result;
@@ -5433,7 +5431,7 @@ class Connection {
       context,
       value: values
     } = await this.getSignatureStatuses([signature], config);
-    assert(values.length === 1);
+    // assertvalues.length === 1);
     const value = values[0];
     return {
       context,
@@ -5456,7 +5454,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, GetSignatureStatusesRpcResult);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get signature status');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get signature status');
     }
 
     return res.result;
@@ -5480,7 +5478,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, jsonRpcResult(superstruct.number()));
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get transaction count');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get transaction count');
     }
 
     return res.result;
@@ -5511,7 +5509,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, GetInflationGovernorRpcResult);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get inflation');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get inflation');
     }
 
     return res.result;
@@ -5537,7 +5535,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, GetInflationRewardResult);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get inflation reward');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get inflation reward');
     }
 
     return res.result;
@@ -5561,7 +5559,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, GetEpochInfoRpcResult);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get epoch info');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get epoch info');
     }
 
     return res.result;
@@ -5576,7 +5574,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, GetEpochScheduleRpcResult);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get epoch schedule');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get epoch schedule');
     }
 
     const epochSchedule = res.result;
@@ -5593,7 +5591,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, GetLeaderScheduleRpcResult);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get leader schedule');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get leader schedule');
     }
 
     return res.result;
@@ -5632,7 +5630,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, GetRecentBlockhashAndContextRpcResult);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get recent blockhash');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get recent blockhash');
     }
 
     return res.result;
@@ -5648,7 +5646,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, GetRecentPerformanceSamplesRpcResult);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get recent performance samples');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get recent performance samples');
     }
 
     return res.result;
@@ -5667,7 +5665,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, GetFeeCalculatorRpcResult);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get fee calculator');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get fee calculator');
     }
 
     const {
@@ -5693,11 +5691,11 @@ class Connection {
     const res = superstruct.create(unsafeRes, jsonRpcResultAndContext(superstruct.nullable(superstruct.number())));
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get slot');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get slot');
     }
 
     if (res.result === null) {
-      throw new Error('invalid blockhash');
+      // throw new Error('invalid blockhash');
     }
 
     return res.result;
@@ -5715,7 +5713,7 @@ class Connection {
       const res = await this.getRecentBlockhashAndContext(commitment);
       return res.value;
     } catch (e) {
-      throw new Error('failed to get recent blockhash: ' + e);
+      // throw new Error('failed to get recent blockhash: ' + e);
     }
   }
   /**
@@ -5729,7 +5727,7 @@ class Connection {
       const res = await this.getLatestBlockhashAndContext(commitmentOrConfig);
       return res.value;
     } catch (e) {
-      throw new Error('failed to get recent blockhash: ' + e);
+      // throw new Error('failed to get recent blockhash: ' + e);
     }
   }
   /**
@@ -5752,7 +5750,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, GetLatestBlockhashRpcResult);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get latest blockhash');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get latest blockhash');
     }
 
     return res.result;
@@ -5767,7 +5765,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, jsonRpcResult(VersionResult));
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get version');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get version');
     }
 
     return res.result;
@@ -5782,7 +5780,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, jsonRpcResult(superstruct.string()));
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get genesis hash');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get genesis hash');
     }
 
     return res.result;
@@ -5813,7 +5811,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, GetBlockRpcResult);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get confirmed block');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get confirmed block');
     }
 
     const result = res.result;
@@ -5851,7 +5849,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, jsonRpcResult(superstruct.number()));
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get block height information');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get block height information');
     }
 
     return res.result;
@@ -5882,7 +5880,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, BlockProductionResponseStruct);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get block production information');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get block production information');
     }
 
     return res.result;
@@ -5914,7 +5912,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, GetTransactionRpcResult);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get transaction');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get transaction');
     }
 
     const result = res.result;
@@ -5942,7 +5940,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, GetParsedTransactionRpcResult);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get transaction');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get transaction');
     }
 
     return res.result;
@@ -5970,7 +5968,7 @@ class Connection {
       const res = superstruct.create(unsafeRes, GetParsedTransactionRpcResult);
 
       if ('error' in res) {
-        throw new SolanaJSONRPCError(res.error, 'failed to get transactions');
+        // throw new SolanaJSONRPCError(res.error, 'failed to get transactions');
       }
 
       return res.result;
@@ -6013,7 +6011,7 @@ class Connection {
       const res = superstruct.create(unsafeRes, GetTransactionRpcResult);
 
       if ('error' in res) {
-        throw new SolanaJSONRPCError(res.error, 'failed to get transactions');
+        // throw new SolanaJSONRPCError(res.error, 'failed to get transactions');
       }
 
       const result = res.result;
@@ -6041,13 +6039,13 @@ class Connection {
     const res = superstruct.create(unsafeRes, GetConfirmedBlockRpcResult);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get confirmed block');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get confirmed block');
     }
 
     const result = res.result;
 
     if (!result) {
-      throw new Error('Confirmed block ' + slot + ' not found');
+      // throw new Error('Confirmed block ' + slot + ' not found');
     }
 
     const block = { ...result,
@@ -6088,7 +6086,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, jsonRpcResult(superstruct.array(superstruct.number())));
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get blocks');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get blocks');
     }
 
     return res.result;
@@ -6108,13 +6106,13 @@ class Connection {
     const res = superstruct.create(unsafeRes, GetBlockSignaturesRpcResult);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get block');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get block');
     }
 
     const result = res.result;
 
     if (!result) {
-      throw new Error('Block ' + slot + ' not found');
+      // throw new Error('Block ' + slot + ' not found');
     }
 
     return result;
@@ -6136,13 +6134,13 @@ class Connection {
     const res = superstruct.create(unsafeRes, GetBlockSignaturesRpcResult);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get confirmed block');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get confirmed block');
     }
 
     const result = res.result;
 
     if (!result) {
-      throw new Error('Confirmed block ' + slot + ' not found');
+      // throw new Error('Confirmed block ' + slot + ' not found');
     }
 
     return result;
@@ -6161,7 +6159,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, GetTransactionRpcResult);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get transaction');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get transaction');
     }
 
     const result = res.result;
@@ -6186,7 +6184,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, GetParsedTransactionRpcResult);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get confirmed transaction');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get confirmed transaction');
     }
 
     return res.result;
@@ -6212,7 +6210,7 @@ class Connection {
       const res = superstruct.create(unsafeRes, GetParsedTransactionRpcResult);
 
       if ('error' in res) {
-        throw new SolanaJSONRPCError(res.error, 'failed to get confirmed transactions');
+        // throw new SolanaJSONRPCError(res.error, 'failed to get confirmed transactions');
       }
 
       return res.result;
@@ -6301,7 +6299,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, GetConfirmedSignaturesForAddress2RpcResult);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get confirmed signatures for address');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get confirmed signatures for address');
     }
 
     return res.result;
@@ -6323,7 +6321,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, GetSignaturesForAddressRpcResult);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, 'failed to get signatures for address');
+      // throw new SolanaJSONRPCError(res.error, 'failed to get signatures for address');
     }
 
     return res.result;
@@ -6376,7 +6374,7 @@ class Connection {
 
   async getNonce(nonceAccount, commitment) {
     return await this.getNonceAndContext(nonceAccount, commitment).then(x => x.value).catch(e => {
-      throw new Error('failed to get nonce for account ' + nonceAccount.toBase58() + ': ' + e);
+      // throw new Error('failed to get nonce for account ' + nonceAccount.toBase58() + ': ' + e);
     });
   }
   /**
@@ -6400,7 +6398,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, RequestAirdropRpcResult);
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, `airdrop to ${to.toBase58()} failed`);
+      // throw new SolanaJSONRPCError(res.error, `airdrop to ${to.toBase58()} failed`);
     }
 
     return res.result;
@@ -6458,7 +6456,7 @@ class Connection {
         await sleep(MS_PER_SLOT / 2);
       }
 
-      throw new Error(`Unable to obtain a new blockhash after ${Date.now() - startTime}ms`);
+      // throw new Error(`Unable to obtain a new blockhash after ${Date.now() - startTime}ms`);
     } finally {
       this._pollingBlockhash = false;
     }
@@ -6480,7 +6478,7 @@ class Connection {
     const res = superstruct.create(unsafeRes, jsonRpcResultAndContext(superstruct.number()));
 
     if ('error' in res) {
-      throw new SolanaJSONRPCError(res.error, `failed to get stake minimum delegation`);
+      // throw new SolanaJSONRPCError(res.error, `failed to get stake minimum delegation`);
     }
 
     return res.result;
@@ -6504,7 +6502,7 @@ class Connection {
       const encodedTransaction = buffer.Buffer.from(wireTransaction).toString('base64');
 
       if (Array.isArray(configOrSigners) || includeAccounts !== undefined) {
-        throw new Error('Invalid arguments');
+        // throw new Error('Invalid arguments');
       }
 
       const config = configOrSigners || {};
@@ -6519,7 +6517,7 @@ class Connection {
       const res = superstruct.create(unsafeRes, SimulatedTransactionResponseStruct);
 
       if ('error' in res) {
-        throw new Error('failed to simulate transaction: ' + res.error.message);
+        // throw new Error('failed to simulate transaction: ' + res.error.message);
       }
 
       return res.result;
@@ -6541,7 +6539,7 @@ class Connection {
     }
 
     if (configOrSigners !== undefined && !Array.isArray(configOrSigners)) {
-      throw new Error('Invalid arguments');
+      // throw new Error('Invalid arguments');
     }
 
     const signers = configOrSigners;
@@ -6559,7 +6557,7 @@ class Connection {
         transaction.sign(...signers);
 
         if (!transaction.signature) {
-          throw new Error('!signature'); // should never happen
+          // throw new Error('!signature'); // should never happen
         }
 
         const signature = transaction.signature.toString('base64');
@@ -6621,7 +6619,7 @@ class Connection {
         }
       }
 
-      throw new SendTransactionError('failed to simulate transaction: ' + res.error.message, logs);
+      // throw new SendTransactionError('failed to simulate transaction: ' + res.error.message, logs);
     }
 
     return res.result;
@@ -6641,7 +6639,7 @@ class Connection {
   async sendTransaction(transaction, signersOrOptions, options) {
     if ('version' in transaction) {
       if (signersOrOptions && Array.isArray(signersOrOptions)) {
-        throw new Error('Invalid arguments');
+        // throw new Error('Invalid arguments');
       }
 
       const wireTransaction = transaction.serialize();
@@ -6649,7 +6647,7 @@ class Connection {
     }
 
     if (signersOrOptions === undefined || !Array.isArray(signersOrOptions)) {
-      throw new Error('Invalid arguments');
+      // throw new Error('Invalid arguments');
     }
 
     const signers = signersOrOptions;
@@ -6666,7 +6664,7 @@ class Connection {
         transaction.sign(...signers);
 
         if (!transaction.signature) {
-          throw new Error('!signature'); // should never happen
+          // throw new Error('!signature'); // should never happen
         }
 
         const signature = transaction.signature.toString('base64');
@@ -6741,7 +6739,7 @@ class Connection {
         logs = res.error.data.logs;
       }
 
-      throw new SendTransactionError('failed to send transaction: ' + res.error.message, logs);
+      // throw new SendTransactionError('failed to send transaction: ' + res.error.message, logs);
     }
 
     return res.result;
@@ -7066,7 +7064,7 @@ class Connection {
     this._subscriptionDisposeFunctionsByClientSubscriptionId[clientSubscriptionId] = async () => {
       delete this._subscriptionDisposeFunctionsByClientSubscriptionId[clientSubscriptionId];
       const subscription = this._subscriptionsByHash[hash];
-      assert(subscription !== undefined, `Could not find a \`Subscription\` when tearing down client subscription #${clientSubscriptionId}`);
+      // assertsubscription !== undefined, `Could not find a \`Subscription\` when tearing down client subscription #${clientSubscriptionId}`);
       subscription.callbacks.delete(subscriptionConfig.callback);
       await this._updateSubscriptions();
     };
@@ -7327,7 +7325,7 @@ class Connection {
     const commitment = override || this._commitment;
 
     if (commitment && !['confirmed', 'finalized'].includes(commitment)) {
-      throw new Error('Using Connection with default commitment: `' + this._commitment + '`, but method requires at least `confirmed`');
+      // throw new Error('Using Connection with default commitment: `' + this._commitment + '`, but method requires at least `confirmed`');
     }
 
     return this._buildArgs(args, override, encoding, extra);
@@ -7535,7 +7533,7 @@ class Keypair {
 
   static fromSecretKey(secretKey, options) {
     if (secretKey.byteLength !== 64) {
-      throw new Error('bad secret key size');
+      // throw new Error('bad secret key size');
     }
 
     const publicKey = secretKey.slice(32, 64);
@@ -7546,7 +7544,7 @@ class Keypair {
 
       for (let ii = 0; ii < 32; ii++) {
         if (publicKey[ii] !== computedPublicKey[ii]) {
-          throw new Error('provided secretKey is invalid');
+          // throw new Error('provided secretKey is invalid');
         }
       }
     }
@@ -7638,7 +7636,7 @@ class AddressLookupTableInstruction {
     }
 
     if (!type) {
-      throw new Error('Invalid Instruction. Should be a LookupTable Instruction');
+      // throw new Error('Invalid Instruction. Should be a LookupTable Instruction');
     }
 
     return type;
@@ -7661,7 +7659,7 @@ class AddressLookupTableInstruction {
     this.checkProgramId(instruction.programId);
 
     if (instruction.keys.length < 2) {
-      throw new Error(`invalid instruction; found ${instruction.keys.length} keys, expected at least 2`);
+      // throw new Error(`invalid instruction; found ${instruction.keys.length} keys, expected at least 2`);
     }
 
     const {
@@ -7709,7 +7707,7 @@ class AddressLookupTableInstruction {
 
   static checkProgramId(programId) {
     if (!programId.equals(AddressLookupTableProgram.programId)) {
-      throw new Error('invalid instruction; programId is not AddressLookupTable Program');
+      // throw new Error('invalid instruction; programId is not AddressLookupTable Program');
     }
   }
   /**
@@ -7719,7 +7717,7 @@ class AddressLookupTableInstruction {
 
   static checkKeysLength(keys, expectedLength) {
     if (keys.length < expectedLength) {
-      throw new Error(`invalid instruction; found ${keys.length} keys, expected at least ${expectedLength}`);
+      // throw new Error(`invalid instruction; found ${keys.length} keys, expected at least ${expectedLength}`);
     }
   }
 
@@ -7887,7 +7885,7 @@ class ComputeBudgetInstruction {
     }
 
     if (!type) {
-      throw new Error('Instruction type incorrect; not a ComputeBudgetInstruction');
+      // throw new Error('Instruction type incorrect; not a ComputeBudgetInstruction');
     }
 
     return type;
@@ -7957,7 +7955,7 @@ class ComputeBudgetInstruction {
 
   static checkProgramId(programId) {
     if (!programId.equals(ComputeBudgetProgram.programId)) {
-      throw new Error('invalid instruction; programId is not ComputeBudgetProgram');
+      // throw new Error('invalid instruction; programId is not ComputeBudgetProgram');
     }
   }
 
@@ -8080,8 +8078,8 @@ class Ed25519Program {
       signature,
       instructionIndex
     } = params;
-    assert(publicKey.length === PUBLIC_KEY_BYTES$1, `Public Key must be ${PUBLIC_KEY_BYTES$1} bytes but received ${publicKey.length} bytes`);
-    assert(signature.length === SIGNATURE_BYTES, `Signature must be ${SIGNATURE_BYTES} bytes but received ${signature.length} bytes`);
+    // assertpublicKey.length === PUBLIC_KEY_BYTES$1, `Public Key must be ${PUBLIC_KEY_BYTES$1} bytes but received ${publicKey.length} bytes`);
+    // assertsignature.length === SIGNATURE_BYTES, `Signature must be ${SIGNATURE_BYTES} bytes but received ${signature.length} bytes`);
     const publicKeyOffset = ED25519_INSTRUCTION_LAYOUT.span;
     const signatureOffset = publicKeyOffset + publicKey.length;
     const messageDataOffset = signatureOffset + signature.length;
@@ -8121,7 +8119,7 @@ class Ed25519Program {
       message,
       instructionIndex
     } = params;
-    assert(privateKey.length === PRIVATE_KEY_BYTES$1, `Private key must be ${PRIVATE_KEY_BYTES$1} bytes but received ${privateKey.length} bytes`);
+    // assertprivateKey.length === PRIVATE_KEY_BYTES$1, `Private key must be ${PRIVATE_KEY_BYTES$1} bytes but received ${privateKey.length} bytes`);
 
     try {
       const keypair = Keypair.fromSecretKey(privateKey);
@@ -8134,7 +8132,7 @@ class Ed25519Program {
         instructionIndex
       });
     } catch (error) {
-      throw new Error(`Error creating instruction; ${error}`);
+      // throw new Error(`Error creating instruction; ${error}`);
     }
   }
 
@@ -8180,12 +8178,12 @@ class Secp256k1Program {
    * @param {Buffer} publicKey a 64 byte secp256k1 public key buffer
    */
   static publicKeyToEthAddress(publicKey) {
-    assert(publicKey.length === PUBLIC_KEY_BYTES, `Public key must be ${PUBLIC_KEY_BYTES} bytes but received ${publicKey.length} bytes`);
+    // assertpublicKey.length === PUBLIC_KEY_BYTES, `Public key must be ${PUBLIC_KEY_BYTES} bytes but received ${publicKey.length} bytes`);
 
     try {
       return buffer.Buffer.from(sha3.keccak_256(toBuffer(publicKey))).slice(-ETHEREUM_ADDRESS_BYTES);
     } catch (error) {
-      throw new Error(`Error constructing Ethereum address: ${error}`);
+      // throw new Error(`Error constructing Ethereum address: ${error}`);
     }
   }
   /**
@@ -8236,7 +8234,7 @@ class Secp256k1Program {
       ethAddress = rawAddress;
     }
 
-    assert(ethAddress.length === ETHEREUM_ADDRESS_BYTES, `Address must be ${ETHEREUM_ADDRESS_BYTES} bytes but received ${ethAddress.length} bytes`);
+    // assertethAddress.length === ETHEREUM_ADDRESS_BYTES, `Address must be ${ETHEREUM_ADDRESS_BYTES} bytes but received ${ethAddress.length} bytes`);
     const dataStart = 1 + SIGNATURE_OFFSETS_SERIALIZED_SIZE;
     const ethAddressOffset = dataStart;
     const signatureOffset = dataStart + ethAddress.length;
@@ -8275,7 +8273,7 @@ class Secp256k1Program {
       message,
       instructionIndex
     } = params;
-    assert(pkey.length === PRIVATE_KEY_BYTES, `Private key must be ${PRIVATE_KEY_BYTES} bytes but received ${pkey.length} bytes`);
+    // assertpkey.length === PRIVATE_KEY_BYTES, `Private key must be ${PRIVATE_KEY_BYTES} bytes but received ${pkey.length} bytes`);
 
     try {
       const privateKey = toBuffer(pkey);
@@ -8293,7 +8291,7 @@ class Secp256k1Program {
         instructionIndex
       });
     } catch (error) {
-      throw new Error(`Error creating instruction; ${error}`);
+      // throw new Error(`Error creating instruction; ${error}`);
     }
   }
 
@@ -8385,7 +8383,7 @@ class StakeInstruction {
     }
 
     if (!type) {
-      throw new Error('Instruction type incorrect; not a StakeInstruction');
+      // throw new Error('Instruction type incorrect; not a StakeInstruction');
     }
 
     return type;
@@ -8559,7 +8557,7 @@ class StakeInstruction {
 
   static checkProgramId(programId) {
     if (!programId.equals(StakeProgram.programId)) {
-      throw new Error('invalid instruction; programId is not StakeProgram');
+      // throw new Error('invalid instruction; programId is not StakeProgram');
     }
   }
   /**
@@ -8569,7 +8567,7 @@ class StakeInstruction {
 
   static checkKeyLength(keys, expectedLength) {
     if (keys.length < expectedLength) {
-      throw new Error(`invalid instruction; found ${keys.length} keys, expected at least ${expectedLength}`);
+      // throw new Error(`invalid instruction; found ${keys.length} keys, expected at least ${expectedLength}`);
     }
   }
 
@@ -9134,7 +9132,7 @@ class VoteInstruction {
     }
 
     if (!type) {
-      throw new Error('Instruction type incorrect; not a VoteInstruction');
+      // throw new Error('Instruction type incorrect; not a VoteInstruction');
     }
 
     return type;
@@ -9229,7 +9227,7 @@ class VoteInstruction {
 
   static checkProgramId(programId) {
     if (!programId.equals(VoteProgram.programId)) {
-      throw new Error('invalid instruction; programId is not VoteProgram');
+      // throw new Error('invalid instruction; programId is not VoteProgram');
     }
   }
   /**
@@ -9239,7 +9237,7 @@ class VoteInstruction {
 
   static checkKeyLength(keys, expectedLength) {
     if (keys.length < expectedLength) {
-      throw new Error(`invalid instruction; found ${keys.length} keys, expected at least ${expectedLength}`);
+      // throw new Error(`invalid instruction; found ${keys.length} keys, expected at least ${expectedLength}`);
     }
   }
 
@@ -9482,7 +9480,7 @@ class VoteProgram {
 
   static safeWithdraw(params, currentVoteAccountBalance, rentExemptMinimum) {
     if (params.lamports > currentVoteAccountBalance - rentExemptMinimum) {
-      throw new Error('Withdraw will leave vote account with insuffcient funds.');
+      // throw new Error('Withdraw will leave vote account with insuffcient funds.');
     }
 
     return VoteProgram.withdraw(params);
@@ -9699,7 +9697,7 @@ function clusterApiUrl(cluster, tls) {
   const url = endpoint[key][cluster];
 
   if (!url) {
-    throw new Error(`Unknown ${key} cluster: ${cluster}`);
+    // throw new Error(`Unknown ${key} cluster: ${cluster}`);
   }
 
   return url;
@@ -9745,7 +9743,7 @@ async function sendAndConfirmRawTransaction(connection, rawTransaction, confirma
   const status = (await confirmationPromise).value;
 
   if (status.err) {
-    throw new Error(`Raw transaction ${signature} failed (${JSON.stringify(status)})`);
+    // throw new Error(`Raw transaction ${signature} failed (${JSON.stringify(status)})`);
   }
 
   return signature;
