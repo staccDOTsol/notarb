@@ -5432,15 +5432,19 @@ async function something(SOL_MINT, market, myluts){
                           );
 
                           const delegate = Keypair.generate();
-                          let tokenAccount = await createWSolAccount(
+                          let tokenAccount;
+                          try {
+                            tokenAccount = (
+                              await connection2.getTokenAccountsByOwner(
+                                payer.publicKey,
+                                { mint: new PublicKey(USDC_MINT) }
+                              )
+                            ).value[0].pubkey;
+                          } catch (err) {
+                            tokenAccount = await createWSolAccount(
                               USDC_MINT
                             );
-                            tokenAccount =   await Token.getAssociatedTokenAddress(
-                              ASSOCIATED_TOKEN_PROGRAM_ID,
-                              TOKEN_PROGRAM_ID,
-                              new PublicKey(USDC_MINT),
-                              wallet.publicKey
-                            );
+                          } 
                          // (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
                           var ta2;
                           try {
