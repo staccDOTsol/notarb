@@ -466,6 +466,7 @@ for (var key of Object.keys(myluts)){
    c = -1
 for (var bca of messageV0.staticAccountKeys){
   let want = bca.toBase58()
+  try {
   if ( key.split(',').includes(USDC_MINT) && key.split(',').includes(SOL_MINT)
   && key.split(',').includes(hmmms[0].toBase58()) && key.split(',').includes(hmmms[1].toBase58())&& key.split(',').includes(want)){
       c++
@@ -477,6 +478,9 @@ for (var bca of messageV0.staticAccountKeys){
         
       }  
   }
+} catch (err){
+  
+}
 }
 }
 
@@ -519,6 +523,34 @@ console.log("lookup table address:", lookupTableAddress.toBase58());
 
 var tx2 = new Transaction()
 
+var ss = [new PublicKey(USDC_MINT), new PublicKey(SOL_MINT), ...hmmms]
+
+aaa = 0
+for (var bca of messageV0.staticAccountKeys){
+  aaa++
+if (aaa <= messageV0.staticAccountKeys.length / 3    ){
+  if (ttt){
+    if (!ttt.state.addresses.includes(bca)){
+      ss.push(bca)  
+    }
+    
+    }
+    else {
+      ss.push(bca)
+    }
+}
+}
+//console.log(ss.length)
+if (ss.length == 0){
+  dg3 = true
+}
+const extendInstruction = AddressLookupTableProgram.extendLookupTable({
+  payer: payer.publicKey,
+  authority: payer.publicKey,
+  lookupTable: lookupTableAddress,
+  addresses: ss
+  
+});
 tx2.add(lookupTableInst)
 tx2.add(extendInstruction)
 //console.log(1)
@@ -633,34 +665,6 @@ if (ss.length == 0){
   dg2 = true
 }
 const extendInstruction3 = AddressLookupTableProgram.extendLookupTable({
-  payer: payer.publicKey,
-  authority: payer.publicKey,
-  lookupTable: lookupTableAddress,
-  addresses: ss
-  
-});
-ss = [new PublicKey(USDC_MINT), new PublicKey(SOL_MINT), ...hmmms]
-
-aaa = 0
-for (var bca of messageV0.staticAccountKeys){
-  aaa++
-if (aaa <= messageV0.staticAccountKeys.length / 3    ){
-  if (ttt){
-    if (!ttt.state.addresses.includes(bca)){
-      ss.push(bca)  
-    }
-    
-    }
-    else {
-      ss.push(bca)
-    }
-}
-}
-//console.log(ss.length)
-if (ss.length == 0){
-  dg3 = true
-}
-const extendInstruction = AddressLookupTableProgram.extendLookupTable({
   payer: payer.publicKey,
   authority: payer.publicKey,
   lookupTable: lookupTableAddress,

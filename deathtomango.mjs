@@ -488,7 +488,7 @@ console.log(err)
     .getLatestBlockhash()
     .then((res) => res.blockhash);
 let aaa = 0
-let ss = []
+var ss = []
 let dg1 = false 
 let dg2 = false 
 let dg3 = false 

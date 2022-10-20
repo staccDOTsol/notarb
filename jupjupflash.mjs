@@ -50,9 +50,9 @@ var connection2= new Connection("https://solana-mainnet.g.alchemy.com/v2/IWB_lF5
 
 process.env.SEARCHER ? connection = connection2 : connection = connection
 const wallet = new Wallet(
-  Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/home/ubuntu') + '/notjaregm.json').toString()))));
+  Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/Users/jarettdunn') + '/notjaregm.json').toString()))));
   const payer = (
-    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/home/ubuntu') + '/notjaregm.json').toString()))));
+    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/Users/jarettdunn') + '/notjaregm.json').toString()))));
   
 import fs from 'fs'
 import { createTransferInstruction } from "@solana/spl-token";
@@ -358,7 +358,7 @@ let gogo = true
 for (var maybego of  dothethings){
   gogo = maybego
 }
-if (returns > min && true){
+if (returns > min  && true){
   
   if (true){
   // when outAmount more than initial
@@ -491,7 +491,7 @@ for (var key of Object.keys(myluts)){
    c = -1
 for (var bca of messageV0.staticAccountKeys){
   let want = bca.toBase58()
-    
+    try {
   if ( key.split(',').includes(USDC_MINT) && key.split(',').includes(SOL_MINT)
   && key.split(',').includes(hmmms[0].toBase58()) && key.split(',').includes(hmmms[1].toBase58())&& key.split(',').includes(want)
   ){
@@ -505,6 +505,7 @@ for (var bca of messageV0.staticAccountKeys){
         
     }
   }
+} catch (err){}
 }
 }
 
@@ -552,6 +553,27 @@ dontgo1 = false
 
 var tx2 = new Transaction()
 
+ss = [new PublicKey(USDC_MINT), new PublicKey(SOL_MINT), ...hmmms]
+
+aaa = 0
+for (var bca of messageV0.staticAccountKeys){
+  aaa++
+if (aaa <= messageV0.staticAccountKeys.length / 3    ){
+  if (ttt){
+    if (!ttt.state.addresses.includes(bca)){
+      ss.push(bca)  
+    }
+    
+    }
+    else {
+      ss.push(bca)
+    }
+}
+}
+//console.log(ss.length)
+if (ss.length == 0){
+  dg3 = true
+}
 tx2.add(lookupTableInst)
 tx2.add(extendInstruction)
 //console.log(1)
@@ -609,7 +631,7 @@ for (var blarg of solToUsdc.data[0].marketInfos){
     
   }
 }
-let ss = [new PublicKey(USDC_MINT), new PublicKey(SOL_MINT), ...hmmms]
+var ss = [new PublicKey(USDC_MINT), new PublicKey(SOL_MINT), ...hmmms]
 let aaa = 0
 let somestuff = {} 
 let test = ((await connection.getAddressLookupTable((winner ? winner : lookupTableAddress))).value)
@@ -669,7 +691,7 @@ const extendInstruction3 = AddressLookupTableProgram.extendLookupTable({
   addresses: ss
   
 });
-ss = [new PublicKey(USDC_MINT), new PublicKey(SOL_MINT), ...hmmms]
+var ss = [new PublicKey(USDC_MINT), new PublicKey(SOL_MINT), ...hmmms]
 
 aaa = 0
 for (var bca of messageV0.staticAccountKeys){

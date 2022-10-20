@@ -537,7 +537,7 @@ console.log("lookup table address:", winner);
 let dg1 = false 
 let dg2 = false 
 let dg3 = false  
-let ss = []
+var ss = []
 let aaa = 0
 let somestuff = {} 
 for (var bca of messageV0.staticAccountKeys){
