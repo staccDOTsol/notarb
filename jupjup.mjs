@@ -267,7 +267,7 @@ let min = -0.0001//.9 * ( reserve.stats.borrowFeePercentage * 100)
              let usdcToSol
              let solToUsdc
                 try {
-         usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, initial);
+         usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, Math.floor(initial * 1.002));
          usdcToSol.data[0] = usdcToSol.data.find(res => res.marketInfos.length <= 3);
          for (var mi of usdcToSol.data[0].marketInfos){
           try {
@@ -296,7 +296,7 @@ let min = -0.0001//.9 * ( reserve.stats.borrowFeePercentage * 100)
          solToUsdc = await getCoinQuote(
           SOL_MINT,
           USDC_MINT,
-          Math.floor(usdcToSol.data[0].outAmount * 0.996)
+          Math.floor(usdcToSol.data[0].outAmount)
         );
 
         solToUsdc.data[0] = solToUsdc.data.find(res => res.marketInfos.length <= 3);

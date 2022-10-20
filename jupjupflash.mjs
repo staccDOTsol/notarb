@@ -150,12 +150,17 @@ let initial = 20_000_000;
 console.log('')
 console.log('')
 
-console.log('')
-var markets = [  await SolendMarket.initialize(
+console.log('')//cool
+var markets = [ await SolendMarket.initialize(
   connection,
   
   "production", // optional environment argument
-  "GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q"
+  "GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q"//"GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q"
+), await SolendMarket.initialize(
+  connection,
+  
+  "production", // optional environment argument
+  "Ckya2fwCXDqTUg9fnWbajR6YLcSfQmPxxy5MyAoZXgyb"//"GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q"
 ),await SolendMarket.initialize(
   connection,
   
@@ -281,7 +286,7 @@ let min = ( reserve.stats.flashLoanFeePercentage )
                            let usdcToSol
              let solToUsdc
                 try {
-         usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, Math.floor(initial * 0.995));
+         usdcToSol = await getCoinQuote(USDC_MINT, SOL_MINT, Math.floor(Math.floor(initial * 1.002) ));
          usdcToSol.data[0] = usdcToSol.data.find(res => res.marketInfos.length <= 50);
          for (var mi of usdcToSol.data[0].marketInfos){
             try {
@@ -308,7 +313,7 @@ let min = ( reserve.stats.flashLoanFeePercentage )
          solToUsdc = await getCoinQuote(
           SOL_MINT,
           USDC_MINT,
-          Math.floor(usdcToSol.data[0].outAmount * 0.996)
+          Math.floor(usdcToSol.data[0].outAmount )
         );
 
         solToUsdc.data[0] = solToUsdc.data.find(res => res.marketInfos.length <= 50);
@@ -376,9 +381,9 @@ if (returns > min && true){
     const ix = ComputeBudgetProgram.requestUnits(params);
 
 let  instructions  = [ix,
-  (Token.createApproveInstruction(tokenAccount, delegate.publicKey, payer.publicKey, initial)),(
+  (Token.createApproveInstruction(tokenAccount, delegate.publicKey, payer.publicKey, Math.floor(initial * 1.002))),(
   flashBorrowReserveLiquidityInstruction(
-    initial,
+    Math.floor(initial * 1.002),
     new PublicKey(reserve.config.liquidityAddress),
     tokenAccount,
     new PublicKey(reserve.config.address),
@@ -429,7 +434,7 @@ jjs.push(jk.pubkey)
                  // (connection, payer, tokenAccount, delegate.publicKey, payer, Math.floor(initial*1.1))
                       instructions.push(
                         flashRepayReserveLiquidityInstruction(
-                          initial,
+                          Math.floor(initial * 1.002),
                           2,
                           tokenAccount,
                           new PublicKey(reserve.config.liquidityAddress),
@@ -815,7 +820,7 @@ await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 }
 
 }
-await sleep(50000)
+//await sleep(50000)
 if (goaccs.length == 0 ){
 goaccs = [(await connection.getAddressLookupTable(lookupTableAddress)).value]
 }
