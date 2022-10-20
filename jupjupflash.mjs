@@ -44,7 +44,7 @@ import { PromisePool } from "@supercharge/promise-pool";
 process.on('uncaughtException', err => {
 
 
-  await PromisePool.withConcurrency(1)
+   PromisePool.withConcurrency(1)
   .for(markets)
   // @ts-ignore
   .process(async (market) => {
@@ -66,7 +66,7 @@ process.on('uncaughtException', err => {
 process.on('unhandledRejection', (reason, promise) => {
 
 
-  await PromisePool.withConcurrency(1)
+   PromisePool.withConcurrency(1)
   .for(markets)
   // @ts-ignore
   .process(async (market) => {
