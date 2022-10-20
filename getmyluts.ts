@@ -10,7 +10,7 @@ var connection2= new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWI
 process.env.SEARCHER ? connection = connection2 : connection = connection
 
   const payer = (
-    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/home/ubuntu') + '/notjaregm.json').toString()))));
+    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/Users/jarettdunn') + '/notjaregm.json').toString()))));
 const configOrCommitment: GetProgramAccountsConfig = {
     commitment: 'confirmed',
     filters: [
@@ -40,7 +40,7 @@ while (true){
 var blockhash = await connection2
 .getLatestBlockhash()
 .then((res) => res.blockhash);
-/*
+
 let lookupTableInst0 =
   await AddressLookupTableProgram.deactivateLookupTable({lookupTable:
     lut.pubkey,
@@ -66,7 +66,7 @@ tx2.recentBlockhash = blockhash
 tx2.sign(payer)
 
 try{
-  await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
+  //await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 } catch (err){
     
 console.log(err)
@@ -87,7 +87,7 @@ try{
     
 console.log(err)
 }
-*/
+
         let temp = ""
         for (var abc of maybemine.value.state.addresses){
           temp+=(abc.toBase58() + ",")

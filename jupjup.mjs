@@ -487,7 +487,7 @@ for (var winner of winners){
   }
 }
 if (messageV0.staticAccountKeys.length > w  ){
-  var slot = await connection2.getSlot();
+  var slot = (await connection2.getLatestBlockhashAndContext()).context.slot;
 
 // Assumption:
 // `payer` is a valid `Keypair` with enough SOL to pay for the execution
@@ -660,14 +660,7 @@ const extendInstruction = AddressLookupTableProgram.extendLookupTable({
 let ix2 =  [lookupTableInst,extendInstruction, extendInstruction2, extendInstruction3]
 if (!dontgo1){
 var tx2 = new Transaction()
-var slot = await connection2.getSlot();
 
-var   [lookupTableInst, lookupTableAddress] =
-AddressLookupTableProgram.createLookupTable({
- authority: payer.publicKey,
- payer: payer.publicKey,
- recentSlot: slot,
-});
 tx2.add(lookupTableInst)
 //console.log(1)
 blockhash = await connection
@@ -698,7 +691,7 @@ try {
 let hm = await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 console.log(hm)
 } catch (err){
-  var slot = await connection2.getSlot();
+  var slot = (await connection2.getLatestBlockhashAndContext()).context.slot;
 
   // Assumption:
   // `payer` is a valid `Keypair` with enough SOL to pay for the execution
