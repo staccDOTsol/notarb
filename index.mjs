@@ -39,9 +39,9 @@ import { PromisePool }from '@supercharge/promise-pool'
 
 setInterval(async function(){
   try {
-  var connection2= new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr");
+  var connection2= new Connection("https://indulgent-cold-dawn.solana-mainnet.quiknode.pro/");
 
-var connection =  new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr")
+var connection =  new Connection("https://indulgent-cold-dawn.solana-mainnet.quiknode.pro/")
 
     let luts = await connection.getProgramAccounts(AddressLookupTableProgram.programId)
     console.log(luts)
@@ -72,8 +72,8 @@ var connection =  new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbW
 }, 5 *  60000)
 // This is a free Solana RPC endpoint. It may have ratelimit and sometimes
 // invalid cache. I will recommend using a paid RPC endpoint.
-let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://69.46.29.78' : 'https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr') , {skipPreflight: false});
-var connection2= new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: false});
+let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://69.46.29.78' : 'https://indulgent-cold-dawn.solana-mainnet.quiknode.pro/') , {skipPreflight: false});
+var connection2= new Connection("https://indulgent-cold-dawn.solana-mainnet.quiknode.pro/", {skipPreflight: false});
 
 
 const wallet = new Wallet(
@@ -172,7 +172,7 @@ import { Prism } from "@prism-hq/prism-ag";
 let prism = await Prism.init({
     // user executing swap
     user: payer,               // optional (if you don't provide upon init, then you'll need to call prism.setSigner() after user connects the wallet)
-connection: new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr")
+connection: new Connection("https://indulgent-cold-dawn.solana-mainnet.quiknode.pro/")
     // rpc connection
 });
 prism.setSlippage(33);

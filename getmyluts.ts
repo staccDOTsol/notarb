@@ -4,8 +4,8 @@ const PromisePool = require("@supercharge/promise-pool").default;
 import fs from 'fs'
 setTimeout(async function(){
 // invalid cache. I will recommend using a paid RPC endpoint.
-let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost:8899' : 'https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr'));
-var connection2= new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr");
+let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost:8899' : 'https://indulgent-cold-dawn.solana-mainnet.quiknode.pro/'));
+var connection2= new Connection("https://indulgent-cold-dawn.solana-mainnet.quiknode.pro/");
 
 process.env.SEARCHER ? connection = connection2 : connection = connection
 
@@ -66,7 +66,7 @@ tx2.recentBlockhash = blockhash
 tx2.sign(payer)
 
 try{
-  //await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
+  await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 } catch (err){
     
 console.log(err)
@@ -82,7 +82,7 @@ tx2.recentBlockhash = blockhash
 tx2.sign(payer)
 
 try{
-  //await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
+  await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 } catch (err){
     
 console.log(err)
