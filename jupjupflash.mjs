@@ -364,7 +364,7 @@ if (returns > min && true){
 
 
      const params = {
-      units: 301517+101517,
+      units: 301517+101517+101517,
       additionalFee: 1,
     };
     const ix = ComputeBudgetProgram.requestUnits(params);
