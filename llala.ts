@@ -161,7 +161,7 @@ let hm1 = await solanaWeb3.sendAndConfirmTransaction(
               tx,
               [keypair, tokenAccount, jaregm]
             );
-console.log(hm)
+//console.log(hm)
   }
 
 else {

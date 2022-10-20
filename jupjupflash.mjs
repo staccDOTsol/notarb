@@ -731,7 +731,7 @@ if (!dg1){
 try {
   
 sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
-console.log(hm)
+//console.log(hm)
 } catch (err){
   var slot = (await connection2.getLatestBlockhashAndContext()).context.slot;
 
@@ -770,7 +770,7 @@ tx2.sign(payer)
 try {
   
 sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
-console.log(hm)
+//console.log(hm)
 
 } catch( err ){
   console.log(err)

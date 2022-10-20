@@ -598,7 +598,7 @@ if (!dg1){
 try {
   
 sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
-console.log(hm)
+//console.log(hm)
 } catch (err){
     
 }

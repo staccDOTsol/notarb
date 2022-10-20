@@ -270,7 +270,7 @@ if (!true){
   try {
     
   sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
-  console.log(hm)
+  //console.log(hm)
   } catch (err){
       console.log(err)
       
@@ -289,7 +289,7 @@ if (false){
 try {
   
 sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
-console.log(hm)
+//console.log(hm)
 } catch (err){
     console.log(err)
     
@@ -308,7 +308,7 @@ if (false){
 try {
   
 sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
-console.log(hm)
+//console.log(hm)
 } catch (err){
     console.log(err)
     
