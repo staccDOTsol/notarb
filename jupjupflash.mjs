@@ -496,7 +496,6 @@ for (var bca of messageV0.staticAccountKeys){
   && key.split(',')[3 ] == hmmms[0]
   && key.split(',')[4 ]== hmmms[1]
   ){
-    if (key.split(',').includes(want) && key.split(',').length < 256){
       c++
       if (c > w){
         if (!winners.includes(new PublicKey(Object.values(myluts)[vbb]))){
@@ -505,7 +504,6 @@ for (var bca of messageV0.staticAccountKeys){
         w = c 
         }
         
-      }  
     }
   }
 }
@@ -647,7 +645,7 @@ const extendInstruction2 = AddressLookupTableProgram.extendLookupTable({
   addresses: ss
   
 });
-ss = []
+ss = [new PublicKey(USDC_MINT), new PublicKey(SOL_MINT), ...hmmms]
 aaa = 0
 for (var bca of messageV0.staticAccountKeys){
   aaa++
@@ -674,7 +672,7 @@ const extendInstruction3 = AddressLookupTableProgram.extendLookupTable({
   addresses: ss
   
 });
-ss = []
+ss = [new PublicKey(USDC_MINT), new PublicKey(SOL_MINT), ...hmmms]
 
 aaa = 0
 for (var bca of messageV0.staticAccountKeys){
