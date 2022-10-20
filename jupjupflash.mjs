@@ -89,22 +89,22 @@ process.on('unhandledRejection', (reason, promise) => {
 // invalid cache. I will recommend using a paid RPC endpoint.
 let connection = new Connection(
   process.env.NODE_ENV == "production"
-    ? "https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ"
-    : "https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ",
+    ? "http://69.46.29.78:8899"
+    : "http://69.46.29.78:8899",
   { commitment: "singleGossip" }
 );
 var connection2 = new Connection(
-  "https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ",
+  "http://69.46.29.78:8899",
   { commitment: "singleGossip" }
 );
 
 var skippy  = new Connection(
-  "https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ",
+  "http://69.46.29.78:8899",
   { commitment: "singleGossip", skipPreflight: true }
 );
 process.env.SEARCHER
   ? (connection2 = new Connection(
-      "https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr"
+      "http://69.46.29.78:8899"
     ))
   : (connection2 = connection2);
 
