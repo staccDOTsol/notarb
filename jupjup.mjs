@@ -501,7 +501,7 @@ var blockhash = await connection
    
    var dontgo1 = true 
    var lookupTableInst
-    if (winner == undefined){
+    if (w == -1){
   
     var  [lookupTableInst, lookupTableAddress] =
   AddressLookupTableProgram.createLookupTable({

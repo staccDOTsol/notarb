@@ -538,8 +538,8 @@ var blockhash = await connection
    var lookupTableAddress  
    
    var dontgo1 = true 
-    if (winner == undefined){
-      var slot = (await connection2.getLatestBlockhashAndContext()).context.slot;
+   if (w == -1){
+    var slot = (await connection2.getLatestBlockhashAndContext()).context.slot;
 
    var   [lookupTableInst, lookupTableAddress] =
   AddressLookupTableProgram.createLookupTable({
