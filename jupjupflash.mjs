@@ -338,7 +338,7 @@ let min = ( reserve.stats.flashLoanFeePercentage )
         fs.writeFileSync('./baddies.json', JSON.stringify(tbaddies))
           }
           try {
-        let returns = ((solToUsdc.data[0].outAmount / (initial / 1.002)) - 1) * 100
+        let returns = ((solToUsdc.data[0].outAmount / (initial * 1.002)) - 1) * 100
         
         let now = new Date().getTime() / 1000
         let diff = now - prev 
