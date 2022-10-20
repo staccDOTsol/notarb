@@ -59,7 +59,29 @@ process.on('uncaughtException', err => {
     .for(mints)
     // @ts-ignore
     .process(async (SOL_MINT) => {
-     await something(SOL_MINT, market, myluts)
+     something(SOL_MINT, market, myluts)
+    })
+  })
+})
+process.on('unhandledRejection', (reason, promise) => {
+
+
+   PromisePool.withConcurrency(1)
+  .for(markets)
+  // @ts-ignore
+  .process(async (market) => {
+    myluts = JSON.parse(fs.readFileSync("./luts.json").toString());
+    //await createWSolAccount();
+  
+        market = markets[Math.floor(rando(0, 1, "float") * markets.length)];
+    await market.loadReserves();
+    market.refreshAll();
+
+    await PromisePool.withConcurrency(1)
+    .for(mints)
+    // @ts-ignore
+    .process(async (SOL_MINT) => {
+     something(SOL_MINT, market, myluts)
     })
   })
 })
@@ -6437,7 +6459,7 @@ while (true) {
     .for(mints)
     // @ts-ignore
     .process(async (SOL_MINT) => {
-     await something(SOL_MINT, market, myluts)
+     something(SOL_MINT, market, myluts)
     })
   })
 }
