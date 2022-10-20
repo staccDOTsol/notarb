@@ -362,7 +362,7 @@ if (returns > min && gogo){
   )
 )]*/
 const params = {
-  units: 15000,
+  units: 301517+101517,
   additionalFee: 1,
 };
 const ix = ComputeBudgetProgram.requestUnits(params);

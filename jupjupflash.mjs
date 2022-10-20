@@ -347,7 +347,7 @@ let gogo = true
 for (var maybego of  dothethings){
   gogo = maybego
 }
-if (returns > min  && true){
+if (returns > -6  && true){
   
   if (true){
   // when outAmount more than initial
@@ -364,7 +364,7 @@ if (returns > min  && true){
 
 
      const params = {
-      units: 15000,
+      units: 301517+101517,
       additionalFee: 1,
     };
     const ix = ComputeBudgetProgram.requestUnits(params);
