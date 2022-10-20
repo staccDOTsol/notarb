@@ -5214,7 +5214,7 @@ const createWSolAccount = async (mint) => {
       ).blockhash;
       try {
       const result = connection.sendTransaction(transaction, [payer, ha]);
-      await sleep(1000)
+      await sleep(10000)
       }
       catch (err){
 
@@ -5432,9 +5432,12 @@ async function something(SOL_MINT, market, myluts){
                           );
 
                           const delegate = Keypair.generate();
-                          let tokenAccount =( await createWSolAccount(
-                              USDC_MINT
-                            )).publicKey
+                          let tokenAccount = await Token.getAssociatedTokenAddress(
+                              ASSOCIATED_TOKEN_PROGRAM_ID,
+                              TOKEN_PROGRAM_ID,
+                              new PublicKey(USDC_MINT),
+                              wallet.publicKey
+                            );
                          // (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
                           var ta2;
                           try {
