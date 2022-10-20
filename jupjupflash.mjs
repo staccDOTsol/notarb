@@ -5255,7 +5255,7 @@ async function something(SOL_MINT, market, myluts){
               ? Math.ceil(
                   (rando(0, 1, "float") /
                     reserve.stats.assetPriceUSD /
-                    (min * 100)) *
+                    (min )) *
                     10 ** dec
                 )
               : Math.ceil(
