@@ -6049,8 +6049,6 @@ async function something(SOL_MINT, market, myluts){
                                   } catch (err) {
                                     console.log(err);
                                   }
-
-                                  console.log(err);
                                 }
                               }
                               tx2 = new Transaction();
