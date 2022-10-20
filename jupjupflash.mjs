@@ -362,7 +362,17 @@ if (returns > min   && true){
      let myshit = (await connection2.getTokenAccountBalance(tokenAccount)).value.amount
 
 
-let  instructions  = [
+     const params = {
+      units: 15000,
+      additionalFee: 1,
+    };
+    const ix = ComputeBudgetProgram.requestUnits(params);
+    const decodedParams = ComputeBudgetInstruction.decodeRequestUnits(ix);
+    expect(params).to.eql(decodedParams);
+    expect(ComputeBudgetInstruction.decodeInstructionType(ix)).to.eq(
+      'RequestUnits',
+    );
+let  instructions  = [ix,
   (Token.createApproveInstruction(tokenAccount, delegate.publicKey, payer.publicKey, initial)),(
   flashBorrowReserveLiquidityInstruction(
     initial,
@@ -417,7 +427,7 @@ jjs.push(jk.pubkey)
                       instructions.push(
                         flashRepayReserveLiquidityInstruction(
                           initial,
-                          1,
+                          2,
                           tokenAccount,
                           new PublicKey(reserve.config.liquidityAddress),
                           new PublicKey(reserve.config.liquidityFeeReceiverAddress),
