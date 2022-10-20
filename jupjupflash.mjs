@@ -6420,7 +6420,7 @@ while (true) {
     await market.loadReserves();
     market.refreshAll();
 
-    await PromisePool.withConcurrency(5)
+    await PromisePool.withConcurrency(mints.length)
     .for(mints)
     // @ts-ignore
     .handleError(async (err, asset) => {
@@ -6429,7 +6429,7 @@ while (true) {
     })
     // @ts-ignore
     .process(async (SOL_MINT) => {
-      something(SOL_MINT, market, myluts)
+     await something(SOL_MINT, market, myluts)
     })
   })
 }
