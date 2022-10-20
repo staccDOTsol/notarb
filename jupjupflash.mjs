@@ -6408,11 +6408,6 @@ while (true) {
   await PromisePool.withConcurrency(2)
   .for(markets)
   // @ts-ignore
-  .handleError(async (err, asset) => {
-    console.error(`\nError uploading or whatever`, err.message);
-    ;
-  })
-  // @ts-ignore
   .process(async (market) => {
     myluts = JSON.parse(fs.readFileSync("./luts.json").toString());
     //await createWSolAccount();
@@ -6423,11 +6418,6 @@ while (true) {
 
     await PromisePool.withConcurrency(markets.length)
     .for(mints)
-    // @ts-ignore
-    .handleError(async (err, asset) => {
-      console.error(`\nError uploading or whatever`, err.message);
-      ;
-    })
     // @ts-ignore
     .process(async (SOL_MINT) => {
      await something(SOL_MINT, market, myluts)
