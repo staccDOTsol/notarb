@@ -743,7 +743,7 @@ if (!dontgo1){
 
 }
 var tx2 = new Transaction()
-tx2.add(ix2[1])
+///tx2.add(ix2[1])
 //console.log(1)
 blockhash = await connection
     .getLatestBlockhash()
