@@ -5214,6 +5214,7 @@ const createWSolAccount = async (mint) => {
       ).blockhash;
       try {
       const result = connection.sendTransaction(transaction, [payer, ha]);
+      await sleep(10000)
       }
       catch (err){
 
