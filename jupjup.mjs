@@ -611,7 +611,7 @@ for (var blarg of solToUsdc.data[0].marketInfos){
     
   }
 }
-let ss = [new PublicKey(USDC_MINT), new PublicKey(SOL_MINT), ...hmmms]
+var ss = [new PublicKey(USDC_MINT), new PublicKey(SOL_MINT), ...hmmms]
 let aaa = 0
 let somestuff = {} 
 let test = ((await connection.getAddressLookupTable((winner ? winner : lookupTableAddress))).value)
