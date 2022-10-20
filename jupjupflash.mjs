@@ -6396,7 +6396,7 @@ async function something(SOL_MINT, market, myluts){
           } catch (err) {console.log(err)}
         }
       }
-    } catch (err) {}
+    } catch (err) {return}
   }
   return
 }
@@ -6429,7 +6429,7 @@ while (true) {
     })
     // @ts-ignore
     .process(async (SOL_MINT) => {
-     await something(SOL_MINT, market, myluts)
+      something(SOL_MINT, market, myluts)
     })
   })
 }
