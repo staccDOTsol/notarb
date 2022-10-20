@@ -276,7 +276,7 @@ let min = ( reserve.stats.flashLoanFeePercentage )
       try {
         const initial = rando(true, false) ? 
         Math.floor( ((rando(0,  5, "float") / reserve.stats.assetPriceUSD )/ (min)) * 10 ** dec) 
-        : Math.floor( ((rando(0, 500, "float") / reserve.stats.assetPriceUSD )) * 10 ** dec);
+        : Math.floor( ((rando(0, 5, "float") / reserve.stats.assetPriceUSD )) * 10 ** dec);
    
         // 0.1 SOL
         try {
