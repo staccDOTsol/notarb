@@ -738,7 +738,7 @@ const extendInstruction = AddressLookupTableProgram.extendLookupTable({
   addresses: ss
   
 });
-let ix2 =  [lookupTableInst,_, extendInstruction2, extendInstruction3]
+let ix2 =  [lookupTableInst,null, extendInstruction2, extendInstruction3]
 if (!dontgo1){
 
 }
