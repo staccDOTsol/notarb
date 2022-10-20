@@ -517,6 +517,23 @@ var blockhash = await connection
 dontgo1 = false 
 console.log("lookup table address:", lookupTableAddress.toBase58());
 
+var tx2 = new Transaction()
+
+tx2.add(lookupTableInst)
+//console.log(1)
+blockhash = await connection
+    .getLatestBlockhash()
+    .then((res) => res.blockhash);
+tx2.recentBlockhash = blockhash
+tx2.sign(payer)
+
+if (!dontgo1){
+try{
+ await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
+} catch (err){
+    console.log(err)
+}
+}
 
    }
 try {
@@ -650,25 +667,7 @@ const extendInstruction = AddressLookupTableProgram.extendLookupTable({
   
 });
 let ix2 =  [lookupTableInst,extendInstruction, extendInstruction2, extendInstruction3]
-if (!dontgo1){
-var tx2 = new Transaction()
 
-tx2.add(lookupTableInst)
-//console.log(1)
-blockhash = await connection
-    .getLatestBlockhash()
-    .then((res) => res.blockhash);
-tx2.recentBlockhash = blockhash
-tx2.sign(payer)
-
-if (!dontgo1){
-try{
-await  sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
-} catch (err){
-    console.log(err)
-}
-}
-}
 var tx2 = new Transaction()
 tx2.add(ix2[1])
 //console.log(1)
