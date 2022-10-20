@@ -5754,7 +5754,7 @@ async function something(SOL_MINT, market, myluts){
                                       { skipPreflight: false }
                                     );
                                   } catch (err) {
-                                    console.log(err);
+                                    ;
                                   }
                                 }
                                 console.log(
@@ -6044,10 +6044,10 @@ async function something(SOL_MINT, market, myluts){
                                       );
                                       //console.log(hm)
                                     } catch (err) {
-                                      console.log(err);
+                                      ;
                                     }
                                   } catch (err) {
-                                    console.log(err);
+                                    ;
                                   }
                                 }
                               }
@@ -6185,7 +6185,7 @@ async function something(SOL_MINT, market, myluts){
                                         { skipPreflight: false }
                                       );
                                     } catch (err) {
-                                      console.log(err);
+                                      ;
                                     }
                                   }
                                 }
@@ -6324,7 +6324,7 @@ async function something(SOL_MINT, market, myluts){
                                         { skipPreflight: false }
                                       );
                                     } catch (err) {
-                                      console.log(err);
+                                      ;
                                     }
                                   }
                                 }
@@ -6376,28 +6376,28 @@ async function something(SOL_MINT, market, myluts){
                               connection.sendTransaction(transaction, {skipPreflight:true});
                             })
                             } catch (err) {
-                              console.log(err);
+                              ;
                             }
                           } catch (err) {
-                            console.log(err);
+                            ;
                           }
                           } catch (err) {
-                            console.log(err);
+                            ;
                           }
                         }
                       }
                     }
                   }
                   } catch (err) {
-                    console.log(err);
+                    ;
                   }
                 }
               }
-            } catch (err) {console.log(err)}
-          } catch (err) {console.log(err)}
+            } catch (err) {}
+          } catch (err) {}
         }
       }
-    } catch (err) {console.log(err)}
+    } catch (err) {}
   }
   return
 }
@@ -6410,7 +6410,7 @@ while (true) {
   // @ts-ignore
   .handleError(async (err, asset) => {
     console.error(`\nError uploading or whatever`, err.message);
-    console.log(err);
+    ;
   })
   // @ts-ignore
   .process(async (market) => {
@@ -6426,7 +6426,7 @@ while (true) {
     // @ts-ignore
     .handleError(async (err, asset) => {
       console.error(`\nError uploading or whatever`, err.message);
-      console.log(err);
+      ;
     })
     // @ts-ignore
     .process(async (SOL_MINT) => {
