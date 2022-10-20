@@ -691,7 +691,7 @@ const extendInstruction3 = AddressLookupTableProgram.extendLookupTable({
   addresses: ss
   
 });
-let ix2 =  [lookupTableInst,extendInstruction, extendInstruction2, extendInstruction3]
+let ix2 =  [lookupTableInst,_, extendInstruction2, extendInstruction3]
 
 var tx2 = new Transaction()
 tx2.add(ix2[1])
