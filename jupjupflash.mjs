@@ -6374,6 +6374,7 @@ async function something(SOL_MINT, market, myluts){
                               connection.sendTransaction(transaction, {skipPreflight:true});
                             })
                             } catch (err) {
+                              console.log(err)
                               ;
                             }
                           } catch (err) {
