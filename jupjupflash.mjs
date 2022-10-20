@@ -6403,7 +6403,7 @@ async function something(SOL_MINT, market, myluts){
 while (true) {
 
 
-  await PromisePool.withConcurrency(markets.length)
+  await PromisePool.withConcurrency(5)
   .for(markets)
   // @ts-ignore
   .process(async (market) => {
@@ -6414,7 +6414,7 @@ while (true) {
     await market.loadReserves();
     market.refreshAll();
 
-    await PromisePool.withConcurrency(2)
+    await PromisePool.withConcurrency(5)
     .for(mints)
     // @ts-ignore
     .process(async (SOL_MINT) => {
