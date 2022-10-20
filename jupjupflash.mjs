@@ -260,6 +260,7 @@ if (true){//["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "So1111111111111111
   try {
 var reserve = market.reserves[ rando(0, market.reserves.length)]//market.reserves.find(res => res.config.liquidityToken.mint ===ç);
 var USDC_MINT = reserve.config.liquidityToken.mint
+console.log(USDC_MINT)
 //console.log(USDC_MINT)
     if (USDC_MINT != "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"){//has.includes(USDC_MINT) ){
   
@@ -352,7 +353,7 @@ let min = ( reserve.stats.flashLoanFeePercentage )
             t+=avg 
         }
         let nowavg = t / avgs.length 
-   if ( returns > -0.1 )   console.log((initial / 10 ** dec * reserve.stats.assetPriceUSD).toString() + ' initial, ' + returns.toString() + '% yield on badboi ' + USDC_MINT + ' <-> ' + SOL_MINT)
+   if ( returns > -19.1 )   console.log((initial / 10 ** dec * reserve.stats.assetPriceUSD).toString() + ' initial, ' + returns.toString() + '% yield on badboi ' + USDC_MINT + ' <-> ' + SOL_MINT)
 //console.log(initial / 10 ** dec)
 let gogo = true 
 for (var maybego of  dothethings){
