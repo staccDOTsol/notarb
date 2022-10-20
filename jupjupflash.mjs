@@ -15,7 +15,8 @@ import {
   TransactionMessage,
   VersionedTransaction,
   sendAndConfirmTransaction,
-  AddressLookupTableProgram
+  AddressLookupTableProgram,
+  ComputeBudgetProgram
 } from "@solana/web3.js";
 import got from "got";
 import { Wallet } from "@project-serum/anchor";
@@ -346,7 +347,7 @@ let gogo = true
 for (var maybego of  dothethings){
   gogo = maybego
 }
-if (returns > -1   && true){
+if (returns > -2   && true){
   
   if (true){
   // when outAmount more than initial
