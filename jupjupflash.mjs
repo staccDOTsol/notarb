@@ -45,7 +45,8 @@ import { PromisePool }from '@supercharge/promise-pool'
 // invalid cache. I will recommend using a paid RPC endpoint.
 let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost:8899' : 'https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr'), {skipPreflight: false});
 const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: false});
-connection = connection2
+
+process.env.SEARCHER ? connection = connection2 : connection = connection
 
 const wallet = new Wallet(
   Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/Users/jarettdunn') + '/notjaregm.json').toString()))));
@@ -248,15 +249,14 @@ for (var reserve of market.reserves){//["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwy
  reserve = market.reserves[Math.floor( rando(0, 1, "float")* market.reserves.length)]//market.reserves.find(res => res.config.liquidityToken.mint ===ç);
 var USDC_MINT = reserve.config.liquidityToken.mint
 
-
     if (USDC_MINT != "So11111111111111111111111111111111111111112" && has.includes(USDC_MINT) ){
   
 var dec =  reserve.config.liquidityToken.decimals
-let min = ( reserve.stats.borrowFeePercentage )
+let min = ( reserve.stats.flashLoanFeePercentage )
     let cba = -1
     abc++
 
-        if (!baddies.includes(SOL_MINT+USDC_MINT) &&  !baddies.includes(USDC_MINT+SOL_MINT) && min < 1){
+        if (!baddies.includes(SOL_MINT+USDC_MINT) &&  !baddies.includes(USDC_MINT+SOL_MINT) && min < 1991){
         //  console.log(min)
 
       let dothethings = []
@@ -346,7 +346,7 @@ let gogo = true
 for (var maybego of  dothethings){
   gogo = maybego
 }
-if (returns > min / 1.1  && true){
+if (returns > min   && true){
   
   if (true){
   // when outAmount more than initial

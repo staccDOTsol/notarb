@@ -41,8 +41,9 @@ import { PromisePool }from '@supercharge/promise-pool'
 // invalid cache. I will recommend using a paid RPC endpoint.
     let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost' : 'http://localhost') +":8899", {skipPreflight: false});
     const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: false});
-    connection = connection2
 
+    process.env.SEARCHER ? connection = connection2 : connection = connection
+    
 const wallet = new Wallet(
   Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/Users/jarettdunn') + '/notjaregm.json').toString()))));
   const payer = (
@@ -58,6 +59,7 @@ let myluts = JSON.parse(fs.readFileSync("./luts.json").toString())
 const somestuff3= JSON.parse(fs.readFileSync("./stuff.json").toString())
 
 const has = [
+  "So11111111111111111111111111111111111111112",
   "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
     "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB", 
     "USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX",
