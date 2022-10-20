@@ -466,9 +466,8 @@ for (var key of Object.keys(myluts)){
    c = -1
 for (var bca of messageV0.staticAccountKeys){
   let want = bca.toBase58()
-  if (key.split(',')[1] == USDC_MINT && key.split(',')[2 ] == SOL_MINT
-  && key.split(',')[3 ] == hmmms[0].toBase58()
-  && key.split(',')[4 ]== hmmms[1].toBase58()){
+  if ( key.split(',').includes(USDC_MINT) && key.split(',').includes(SOL_MINT)
+  && key.split(',').includes(hmmms[0].toBase58()) && key.split(',').includes(hmmms[1].toBase58())&& key.split(',').includes(want)){
       c++
       if (c > w){
         if (!winners.includes(new PublicKey(Object.values(myluts)[vbb]))){
