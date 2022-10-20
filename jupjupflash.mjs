@@ -817,9 +817,19 @@ await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 }
 
 }
-//await sleep(50000)
+if (winner != undefined){
+  lookupTableAddress = winner
+}
 if (goaccs.length == 0 ){
+ 
+  try {
+
+  
+goaccs = [(await connection.getAddressLookupTable(lookupTableAddress.toBase58())).value]
+  } catch (err){
+
 goaccs = [(await connection.getAddressLookupTable(lookupTableAddress)).value]
+  }
 }
 blockhash = await connection
     .getLatestBlockhash()

@@ -778,8 +778,11 @@ await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 }
 
 }
-await sleep(50000)
+if (winner != undefined){
+  lookupTableAddress = winner
+}
 if (goaccs.length == 0 ){
+ 
   try {
 
   
