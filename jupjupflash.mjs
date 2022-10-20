@@ -5,7 +5,7 @@ import {rando, randoSequence} from '@nastyox/rando.js';
 
 
 import { borrowObligationLiquidityInstruction, flashBorrowReserveLiquidityInstruction, flashRepayReserveLiquidityInstruction, parseObligation, refreshObligationInstruction, refreshReserveInstruction, SolendAction, SolendMarket, SolendReserve, SOLEND_PRODUCTION_PROGRAM_ID } from "@solendprotocol/solend-sdk";
-let baddies = []//JSON.parse(fs.readFileSync('./baddies.json').toString())
+let baddies = JSON.parse(fs.readFileSync('./baddies.json').toString())
 import {
   Connection,
   Keypair,
@@ -298,8 +298,8 @@ let min = ( reserve.stats.flashLoanFeePercentage )
                   }         }
       } catch (err){
         baddies.push(USDC_MINT+SOL_MINT)
-    
-        let tbaddies =[]// JSON.parse(fs.readFileSync('./baddies.json').toString())
+    console.log(baddies.length)
+        let tbaddies =JSON.parse(fs.readFileSync('./baddies.json').toString())
         for (var b of baddies){
             if (!tbaddies.includes(b)){
                 tbaddies.push(b)
@@ -327,8 +327,10 @@ let min = ( reserve.stats.flashLoanFeePercentage )
       } catch (err){
            
         baddies.push(SOL_MINT + USC_MINT)
+        console.log(baddies.length)
+
     
-        let tbaddies = []//JSON.parse(fs.readFileSync('./baddies.json').toString())
+        let tbaddies = JSON.parse(fs.readFileSync('./baddies.json').toString())
         for (var b of baddies){
             if (!tbaddies.includes(b)){
                 tbaddies.push(b)
