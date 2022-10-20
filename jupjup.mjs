@@ -479,7 +479,7 @@ for (var bca of messageV0.staticAccountKeys){
       }  
   }
 } catch (err){
-  
+
 }
 }
 }
@@ -495,7 +495,7 @@ for (var winner of [winners[0]]){
   }
 }
 }
-if (messageV0.staticAccountKeys.length > w + 1  ){
+if (messageV0.staticAccountKeys.length > w + 4  ){
   var slot = (await connection2.getLatestBlockhashAndContext()).context.slot;
 
 // Assumption:

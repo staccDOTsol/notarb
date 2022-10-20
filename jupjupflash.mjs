@@ -358,7 +358,7 @@ let gogo = true
 for (var maybego of  dothethings){
   gogo = maybego
 }
-if (returns > -1 * min * 10 && true){
+if (returns >  min && true){
   
   if (true){
   // when outAmount more than initial
@@ -527,7 +527,7 @@ if (winners.length > 0){
 }
 var lookupTableInst
 
-if (messageV0.staticAccountKeys.length > w + 1  ){
+if (messageV0.staticAccountKeys.length > w + 4  ){
   var slot = (await connection2.getLatestBlockhashAndContext()).context.slot;
 
 // Assumption:
