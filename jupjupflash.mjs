@@ -5283,6 +5283,7 @@ async function something(SOL_MINT, market, myluts){
                     );
                   }
                   try {
+                    if (solToUsdc){
                     let returns =
                       (solToUsdc.data[0].outAmount / (initial * 1.002) -
                         1) *
@@ -6389,6 +6390,7 @@ async function something(SOL_MINT, market, myluts){
                         }
                       }
                     }
+                  }
                   } catch (err) {
                     console.log(err);
                   }
@@ -6411,7 +6413,7 @@ while (true) {
     await market.loadReserves();
     market.refreshAll();
 
-    await PromisePool.withConcurrency(50)
+    await PromisePool.withConcurrency(25)
     .for(mints)
     // @ts-ignore
     .handleError(async (err, asset) => {
