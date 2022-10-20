@@ -6414,7 +6414,15 @@ async function something(SOL_MINT, market, myluts){
                             // sign your transaction with the required `Signers`
                             console.log(123);
                             console.log(transaction)
+                            if (!wsolAccount) {
+                              await transaction.sign([ha, payer, delegate]); //, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
+
+                            }
+                            else {
+
+                            
                             await transaction.sign([payer, delegate]); //, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
+                            }
                             try {
                               setTimeout(async function(){
                              let hm = await  sendAndConfirmTransaction(skippy, transaction);
