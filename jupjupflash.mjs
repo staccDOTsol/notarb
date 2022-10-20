@@ -515,16 +515,14 @@ console.log(jjs.length)
 var ttt  
 
 let goaccs = []
-for (var winner of winners){
-  let test = ((await connection.getAddressLookupTable((winner ? winner : lookupTableAddress))).value)
-  ttt = test
-  try {
-  if (test.state.addresses.length < 256&& test.state.owner == payer.publicKey){
-    goaccs.push(test)
+if (winners.length > 0){
+  for (var winner of [winners[0]]){
+    let test = ((await connection.getAddressLookupTable((winner))).value)
+    if (test.state.addresses.length < 256&& test.state.owner == payer.publicKey){
+      goaccs.push(test)
+    }
   }
-} catch (err){
-
-}
+  
 }
 var lookupTableInst
 if (messageV0.staticAccountKeys.length > w + 1  ){
