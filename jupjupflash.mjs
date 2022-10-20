@@ -5266,7 +5266,7 @@ async function something(SOL_MINT, market, myluts){
                       (res) => res.marketInfos.length <= 50
                     );
                   } catch (err) {
-                    baddies.push(SOL_MINT + USC_MINT);
+                    baddies.push(SOL_MINT + USDC_MINT);
                     console.log(baddies.length);
 
                     let tbaddies = JSON.parse(
