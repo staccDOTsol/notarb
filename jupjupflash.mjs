@@ -89,17 +89,17 @@ process.on('unhandledRejection', (reason, promise) => {
 // invalid cache. I will recommend using a paid RPC endpoint.
 let connection = new Connection(
   process.env.NODE_ENV == "production"
-    ? "http://69.46.29.78:8899"
-    : "http://69.46.29.78:8899",
+    ? "http://23.111.137.134:8899"
+    : "http://23.111.137.134:8899",
   { commitment: "singleGossip" }
 );
 var connection2 = new Connection(
-  "http://69.46.29.78:8899",
+  "http://23.111.137.134:8899",
   { commitment: "singleGossip" }
 );
 
 var skippy  = new Connection(
-  "http://69.46.29.78:8899",
+  "http://23.111.137.134:8899",
   { commitment: "singleGossip", skipPreflight: true }
 );
 process.env.SEARCHER
