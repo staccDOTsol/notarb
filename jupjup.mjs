@@ -505,7 +505,7 @@ var blockhash = await connection
    var lookupTableInst
     if (w == -1){
   
-    var  [lookupTableInst, lookupTableAddress] =
+     [lookupTableInst, lookupTableAddress] =
   AddressLookupTableProgram.createLookupTable({
     authority: payer.publicKey,
     payer: payer.publicKey,
@@ -527,23 +527,11 @@ try {
    lookupTableAddress = new PublicKey(winner)
    if (test.state.deactivationSlot != 18446744073709551615n)
   {
-    var  [lookupTableInst, lookupTableAddress] =
-  AddressLookupTableProgram.createLookupTable({
-    authority: payer.publicKey,
-    payer: payer.publicKey,
-    recentSlot: slot,
-  });
 //  lookupTableAddress = new PublicKey("7XH2JSueLJMTuDLE67Qw92KKwAdLjggszDSN5GVoK3qD")
-dontgo1 = false 
 console.log("lookup table address:", lookupTableAddress.toBase58());
   }
 } catch (err){
-var  [lookupTableInst, lookupTableAddress] =
-  AddressLookupTableProgram.createLookupTable({
-    authority: payer.publicKey,
-    payer: payer.publicKey,
-    recentSlot: slot,
-  });
+
   let ttt = await connection
   .getAddressLookupTable(lookupTableAddress)
   .then((res) => res.value);
@@ -551,7 +539,6 @@ var  [lookupTableInst, lookupTableAddress] =
 
 //  lookupTableAddress = new PublicKey("7XH2JSueLJMTuDLE67Qw92KKwAdLjggszDSN5GVoK3qD")
 //lookupTableAddress = new PublicKey("H3pPX8AYP2neyH6AL5mPZmcEWzCbKEU22gWUpY8JASu5")
-dontgo1 = false 
 console.log("lookup table address:", winner);
 }
 let dg1 = false 
