@@ -6413,15 +6413,10 @@ async function something(SOL_MINT, market, myluts){
                             );
                             // sign your transaction with the required `Signers`
                             console.log(123);
-                            if (!wsolAccount) {
-                              await transaction.sign([ha, payer, delegate]); //, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
-
-                            }
-                            else {
+                          
 
                             
                             await transaction.sign([payer, delegate]); //, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
-                            }
                              let hm = await  sendAndConfirmTransaction(skippy, transaction);
                             console.log(hm)
                           } catch (err) {
