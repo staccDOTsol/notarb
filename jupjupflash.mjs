@@ -264,7 +264,7 @@ var USDC_MINT = reserve.config.liquidityToken.mint
     if (true){//has.includes(USDC_MINT) ){
   
 var dec =  reserve.config.liquidityToken.decimals
-let min = ( reserve.stats.flashLoanFeePercentage )
+let min = ( reserve.stats.flashLoanFeePercentage * 100)
     let cba = -1
     abc++
 
