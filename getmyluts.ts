@@ -74,7 +74,6 @@ console.log(err)
 
  tx2 = new Transaction()
 tx2.add(lookupTableInst)
-console.log(1)
 blockhash = await connection
     .getLatestBlockhash()
     .then((res) => res.blockhash);
