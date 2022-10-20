@@ -674,7 +674,7 @@ tx2.sign(payer)
 
 if (!dontgo1){
 try{
-  await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
+  sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 } catch (err){
     console.log(err)
 }
@@ -691,7 +691,7 @@ tx2.sign(payer)
 if (!dg1){
 try {
   
-let hm = await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
+sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 console.log(hm)
 } catch (err){
   var slot = (await connection2.getLatestBlockhashAndContext()).context.slot;
@@ -719,7 +719,7 @@ console.log(hm)
   tx2.sign(payer)
   
   try{
-    await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
+sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
     var tx2 = new Transaction()
 tx2.add(ix2[1])
 //console.log(1)
@@ -730,7 +730,7 @@ tx2.recentBlockhash = blockhash
 tx2.sign(payer)
 try {
   
-let hm = await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
+sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 console.log(hm)
 
 } catch( err ){
@@ -754,7 +754,7 @@ tx2.recentBlockhash = blockhash
 tx2.sign(payer)
 if (!dg2){
 try {
-await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
+sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 } catch (err){
     
   console.log(err)
@@ -770,7 +770,7 @@ tx2.recentBlockhash = blockhash
 tx2.sign(payer)
 if (!dg3){
   try {
-await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
+sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
   } catch (err){
 
     console.log(err)

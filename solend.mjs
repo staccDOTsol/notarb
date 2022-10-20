@@ -269,7 +269,7 @@ if (!true){
   tx2.sign(payer)
   try {
     
-  let hm = await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
+  sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
   console.log(hm)
   } catch (err){
       console.log(err)
@@ -288,7 +288,7 @@ tx2.sign(payer)
 if (false){
 try {
   
-let hm = await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
+sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 console.log(hm)
 } catch (err){
     console.log(err)
@@ -307,7 +307,7 @@ tx2.sign(payer)
 if (false){
 try {
   
-let hm = await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
+sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 console.log(hm)
 } catch (err){
     console.log(err)

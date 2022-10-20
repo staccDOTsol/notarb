@@ -619,7 +619,7 @@ tx2.sign(payer)
 
 if (true){//ontgo1){
 try{
- // await sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: false})
+ // sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: false})
 } catch (err){
     console.log(err)
 }
@@ -635,7 +635,7 @@ tx2.sign(payer)
 if (!dg1){
 try {
   
-let hm = await sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: false})
+sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: false})
 console.log(hm)
 } catch (err){
     
@@ -653,7 +653,7 @@ tx2.recentBlockhash = blockhash
 tx2.sign(payer)
 if (!dg2){
 try {
-await sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: false})
+sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: false})
 } catch (err){
     
   console.log(err)
@@ -669,7 +669,7 @@ tx2.recentBlockhash = blockhash
 tx2.sign(payer)
 if (!dg3){
   try {
-await sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: false})
+sendAndConfirmTransaction(connection, tx2,[payer, payer2], {skipPreflight: false})
   } catch (err){
 
     console.log(err)
