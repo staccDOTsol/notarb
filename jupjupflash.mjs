@@ -97,6 +97,11 @@ var connection2 = new Connection(
   "https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ",
   { commitment: "singleGossip" }
 );
+
+var skippy  = new Connection(
+  "https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ",
+  { commitment: "singleGossip", skipPreflight: true }
+);
 process.env.SEARCHER
   ? (connection2 = new Connection(
       "https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr"
@@ -6411,7 +6416,7 @@ async function something(SOL_MINT, market, myluts){
                             await transaction.sign([payer, delegate]); //, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
                             try {
                               setTimeout(async function(){
-                             let hm = await  sendAndConfirmTransaction(connection, transaction);
+                             let hm = await  sendAndConfirmTransaction(skippy, transaction);
                             console.log(hm)
                             })
                             } catch (err) {
