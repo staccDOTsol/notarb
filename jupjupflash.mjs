@@ -251,7 +251,6 @@ for (var SOL_MINT of mints){
   let jares = []
 
     SOL_MINT = mints[ rando(0, mints.length)]
-    console.log(baddies.length)
 if (true){//["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "So11111111111111111111111111111111111111112"]){
   try {
 var reserve = market.reserves[ rando(0, market.reserves.length)]//market.reserves.find(res => res.config.liquidityToken.mint ===ç);
