@@ -19,7 +19,7 @@ const PromisePool = require("@supercharge/promise-pool").default;
 const jaregm = solanaWeb3.Keypair.fromSecretKey(
   new Uint8Array(
     JSON.parse(
-      fs.readFileSync("/Users/jarettdunn/notjaregm.json").toString()
+      fs.readFileSync("/home/ubuntu/notjaregm.json").toString()
     )
   )
 );

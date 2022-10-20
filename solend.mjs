@@ -46,7 +46,7 @@ const getCoinQuote = (inputMint, outputMint, amount) =>
 let somestuff = JSON.parse(fs.readFileSync('./stuff.json').toString())
 
 const payer = (
-    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/Users/jarettdunn/notjaregm.json').toString()))));
+    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/ubuntu/notjaregm.json').toString()))));
 // 1. Initalize market with parameters and metadata
 let initial = 3  * 10 ** 6;
 const connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr", {skipPreflight: false});

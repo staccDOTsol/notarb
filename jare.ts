@@ -44,7 +44,7 @@ import { sleep } from "../../utils";
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 setTimeout(async function(){
     var connection =  new Connection("http://localhost:8899")
-    let kp = Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/Users/jarettdunn/notjaregm.json').toString())))
+    let kp = Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/ubuntu/notjaregm.json').toString())))
     let wallet = new NodeWallet(kp)
 
     // init switchboard
