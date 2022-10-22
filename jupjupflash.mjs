@@ -94,7 +94,7 @@ let connection = new Connection(
   { commitment: "confirmed" }
 );
 var connection2 = new Connection(
-  "https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4",
+  "https://solana--mainnet.datahub.figment.io/apikey/1fc6d8319bddaed4e21e37e49c16b4c2",
   { commitment: "confirmed" }
 );
 
