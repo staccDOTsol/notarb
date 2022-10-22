@@ -66,7 +66,7 @@ process.on('uncaughtException', err => {
 process.on('unhandledRejection', (reason, promise) => {
 
 
-   PromisePool.withConcurrency()
+   PromisePool.withConcurrency(1)
   .for(markets)
   // @ts-ignore
   .process(async (market) => {
@@ -77,7 +77,7 @@ process.on('unhandledRejection', (reason, promise) => {
     await market.loadReserves();
     market.refreshAll();
 
-    await PromisePool.withConcurrency(5)
+    await PromisePool.withConcurrency(1)
     .for(mints)
     // @ts-ignore
     .process(async (SOL_MINT) => {
@@ -89,22 +89,22 @@ process.on('unhandledRejection', (reason, promise) => {
 // invalid cache. I will recommend using a paid RPC endpoint.
 let connection = new Connection(
   process.env.NODE_ENV == "production"
-    ? "https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4"
-    : "https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4",
-  { commitment: "singleGossip" }
+    ? "https://indulgent-cold-dawn.solana-mainnet.quiknode.pro/"
+    : "https://indulgent-cold-dawn.solana-mainnet.quiknode.pro/",
+  { commitment: "confirmed" }
 );
 var connection2 = new Connection(
-  "https://solana--mainnet.datahub.figment.io/apikey/1fc6d8319bddaed4e21e37e49c16b4c2",
-  { commitment: "singleGossip" }
+  "https://indulgent-cold-dawn.solana-mainnet.quiknode.pro/",
+  { commitment: "confirmed" }
 );
 
 var skippy  = new Connection(
-  "https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4",
-  { commitment: "singleGossip", skipPreflight: true }
+  "https://indulgent-cold-dawn.solana-mainnet.quiknode.pro/",
+  { commitment: "confirmed", skipPreflight: true }
 );
 process.env.SEARCHER
   ? (connection2 = new Connection(
-      "https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4"
+      "https://indulgent-cold-dawn.solana-mainnet.quiknode.pro/"
     ))
   : (connection2 = connection2);
 
@@ -116,8 +116,8 @@ const wallet = new Wallet(
         fs
           .readFileSync(
             (process.env.NODE_ENV == "production"
-              ? "/home/jdunn4632"
-              : "/home/jdunn4632") + "/notjaregm.json"
+              ? "/Users/jarettdunn"
+              : "/Users/jarettdunn") + "/notjaregm.json"
           )
           .toString()
       )
@@ -130,8 +130,8 @@ const payer = Keypair.fromSecretKey(
       fs
         .readFileSync(
           (process.env.NODE_ENV == "production"
-            ? "/home/jdunn4632"
-            : "/home/jdunn4632") + "/notjaregm.json"
+            ? "/Users/jarettdunn"
+            : "/Users/jarettdunn") + "/notjaregm.json"
         )
         .toString()
     )
@@ -1554,7 +1554,7 @@ const getConfirmTransaction = async (txid) => {
   const res = await promiseRetry(
     async (retry, attempt) => {
       let txResult = await connection2.getTransaction(txid, {
-        commitment: "singleGossip",
+        commitment: "confirmed",
       });
 
       if (!txResult) {
@@ -5368,8 +5368,54 @@ async function something(SOL_MINT, market, myluts){
                     for (var maybego of dothethings) {
                       gogo = maybego;
                     }
-                    if (returns >   min    && returns < 10000000) {
-                      
+                    if (returns > min   && returns < 10000000) {
+                      for (var mi of solToUsdc.data[0].marketInfos) {
+                        var ta2;
+                        try {
+                          ta2 = (
+                            await connection2.getTokenAccountsByOwner(
+                              payer.publicKey,
+                              { mint: new PublicKey(mi.outputMint) }
+                            )
+                          ).value[0].pubkey;
+                        } catch (err) {
+                  //        ta2 = await createWSolAccount(mi.outputMint);
+                        }
+                        try {
+                          ta2 = (
+                            await connection2.getTokenAccountsByOwner(
+                              payer.publicKey,
+                              { mint: new PublicKey(mi.inputMint) }
+                            )
+                          ).value[0].pubkey;
+                        } catch (err) {
+                        //  ta2 = await createWSolAccount(mi.inputMint);
+                        }
+                      }
+
+                      for (var mi of usdcToSol.data[0].marketInfos) {
+                        var ta2;
+                        try {
+                          ta2 = (
+                            await connection2.getTokenAccountsByOwner(
+                              payer.publicKey,
+                              { mint: new PublicKey(mi.outputMint) }
+                            )
+                          ).value[0].pubkey;
+                        } catch (err) {
+                        //  ta2 = await createWSolAccount(mi.outputMint);
+                        }
+                        try {
+                          ta2 = (
+                            await connection2.getTokenAccountsByOwner(
+                              payer.publicKey,
+                              { mint: new PublicKey(mi.inputMint) }
+                            )
+                          ).value[0].pubkey;
+                        } catch (err) {
+                        //  ta2 = await createWSolAccount(mi.inputMint);
+                        }
+                      }
                       if (true) {
                         // when outAmount more than initial
                         if (!false) {
@@ -5386,17 +5432,43 @@ async function something(SOL_MINT, market, myluts){
                           );
 
                           const delegate = Keypair.generate();
-                          let tokenAccount  = (
+                          let tokenAccount;
+                          try {
+                           let tas = (
                               await connection2.getTokenAccountsByOwner(
                                 payer.publicKey,
                                 { mint: new PublicKey(USDC_MINT) }
                               )
-                            ).value[0].pubkey
-
+                            ).value 
+                            var atawin 
+let m = 0
+                            for (var ata of tas){
+                              let bal = await (await connection.getTokenAccountBalance(ata.pubkey)).value.uiAmount
+                              if (bal > m ){
+                                m = bal 
+                                atawin = ata.pubkey
+                              }
+                            }
+                            tokenAccount = atawin
+                          } catch (err) {
+                           tokenAccount = await createWSolAccount(
+                              USDC_MINT
+                            );
+                          } 
                           let myshit = (await connection.getTokenAccountBalance(tokenAccount)).value.amount
 
                          // (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
-
+                          var ta2;
+                          try {
+                            ta2 = (
+                              await connection2.getTokenAccountsByOwner(
+                                payer.publicKey,
+                                { mint: new PublicKey(SOL_MINT) }
+                              )
+                            ).value[0].pubkey;
+                          } catch (err) {
+                          //  ta2 = await createWSolAccount(SOL_MINT);
+                          }
                           const params = {
                             units:
                               301517 + 301517 + 301517 + 101517 + 101517,
@@ -5426,7 +5498,6 @@ async function something(SOL_MINT, market, myluts){
                               SOLEND_PRODUCTION_PROGRAM_ID
                             ),
                           ];
-                          console.log(instructions.length)
                           //let instructions = []
                           let signers = [];
 
@@ -5593,7 +5664,6 @@ async function something(SOL_MINT, market, myluts){
                                       );
                                         }
                                          catch (err){
-                                          console.log(err)
                                           
                                          }
 
@@ -5605,8 +5675,7 @@ async function something(SOL_MINT, market, myluts){
                                     w = c;
                                   }
                                   }
-                                } catch (err) {
-                                  console.log(err)}
+                                } catch (err) {}
                               }
                             }
 
@@ -6035,9 +6104,9 @@ async function something(SOL_MINT, market, myluts){
 
                             
                             await transaction.sign([payer]); //, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
-                             let m =  await skippy.sendTransaction(transaction);
-              console.log('abc')
-              console.log(m)
+                             let m =  await  skippy.sendTransaction(transaction);
+console.log(m)
+
 
 
                           } catch (err) {
@@ -6053,15 +6122,12 @@ async function something(SOL_MINT, market, myluts){
                     }
                   }
                   } catch (err) {
-                    console.log(err)
                     ;
                   }
                 }
               }
-            } catch (err) {
-              console.log(err)}
-          } catch (err) {
-            console.log(err)}
+            } catch (err) {}
+          } catch (err) {}
         }
       }
     } catch (err) {}
@@ -6072,7 +6138,7 @@ async function something(SOL_MINT, market, myluts){
 while (true) {
 
 
-  await PromisePool.withConcurrency(1)
+  await PromisePool.withConcurrency(5)
   .for(markets)
   // @ts-ignore
   .process(async (market) => {
@@ -6083,7 +6149,7 @@ while (true) {
     await market.loadReserves();
     market.refreshAll();
 
-    await PromisePool.withConcurrency(45)
+    await PromisePool.withConcurrency(5)
     .for(mints)
     // @ts-ignore
     .process(async (SOL_MINT) => {
