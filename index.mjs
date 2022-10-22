@@ -39,9 +39,9 @@ import { PromisePool }from '@supercharge/promise-pool'
 
 setInterval(async function(){
   try {
-  var connection2= new Connection("https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4");
+  var connection2= new Connection("https://solana--mainnet.datahub.figment.io/apikey/1fc6d8319bddaed4e21e37e49c16b4c2");
 
-var connection =  new Connection("https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4")
+var connection =  new Connection("https://solana--mainnet.datahub.figment.io/apikey/1fc6d8319bddaed4e21e37e49c16b4c2")
 
     let luts = await connection.getProgramAccounts(AddressLookupTableProgram.programId)
     console.log(luts)
@@ -72,8 +72,8 @@ var connection =  new Connection("https://solana-mainnet.g.alchemy.com/v2/IWB_lF
 }, 5 *  60000)
 // This is a free Solana RPC endpoint. It may have ratelimit and sometimes
 // invalid cache. I will recommend using a paid RPC endpoint.
-let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://69.46.29.78' : 'https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4') , {skipPreflight: false});
-var connection2= new Connection("https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4", {skipPreflight: false});
+let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://69.46.29.78' : 'https://solana--mainnet.datahub.figment.io/apikey/1fc6d8319bddaed4e21e37e49c16b4c2') , {skipPreflight: false});
+var connection2= new Connection("https://solana--mainnet.datahub.figment.io/apikey/1fc6d8319bddaed4e21e37e49c16b4c2", {skipPreflight: false});
 
 
 const wallet = new Wallet(
@@ -172,7 +172,7 @@ import { Prism } from "@prism-hq/prism-ag";
 let prism = await Prism.init({
     // user executing swap
     user: payer,               // optional (if you don't provide upon init, then you'll need to call prism.setSigner() after user connects the wallet)
-connection: new Connection("https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4")
+connection: new Connection("https://solana--mainnet.datahub.figment.io/apikey/1fc6d8319bddaed4e21e37e49c16b4c2")
     // rpc connection
 });
 prism.setSlippage(33);
