@@ -5379,7 +5379,7 @@ async function something(SOL_MINT, market, myluts){
                             )
                           ).value[0].pubkey;
                         } catch (err) {
-                  //        ta2 = await createWSolAccount(mi.outputMint);
+                          ta2 = await createWSolAccount(mi.outputMint);
                         }
                         try {
                           ta2 = (
@@ -5389,7 +5389,7 @@ async function something(SOL_MINT, market, myluts){
                             )
                           ).value[0].pubkey;
                         } catch (err) {
-                        //  ta2 = await createWSolAccount(mi.inputMint);
+                          ta2 = await createWSolAccount(mi.inputMint);
                         }
                       }
 
@@ -5403,7 +5403,7 @@ async function something(SOL_MINT, market, myluts){
                             )
                           ).value[0].pubkey;
                         } catch (err) {
-                        //  ta2 = await createWSolAccount(mi.outputMint);
+                          ta2 = await createWSolAccount(mi.outputMint);
                         }
                         try {
                           ta2 = (
@@ -5413,7 +5413,7 @@ async function something(SOL_MINT, market, myluts){
                             )
                           ).value[0].pubkey;
                         } catch (err) {
-                        //  ta2 = await createWSolAccount(mi.inputMint);
+                          ta2 = await createWSolAccount(mi.inputMint);
                         }
                       }
                       if (true) {
@@ -5432,29 +5432,12 @@ async function something(SOL_MINT, market, myluts){
                           );
 
                           const delegate = Keypair.generate();
-                          let tokenAccount;
-                          try {
-                           let tas = (
+                          let tokenAccount =  (
                               await connection2.getTokenAccountsByOwner(
                                 payer.publicKey,
                                 { mint: new PublicKey(USDC_MINT) }
                               )
-                            ).value 
-                            var atawin 
-let m = 0
-                            for (var ata of tas){
-                              let bal = await (await connection.getTokenAccountBalance(ata.pubkey)).value.uiAmount
-                              if (bal > m ){
-                                m = bal 
-                                atawin = ata.pubkey
-                              }
-                            }
-                            tokenAccount = atawin
-                          } catch (err) {
-                           tokenAccount = await createWSolAccount(
-                              USDC_MINT
-                            );
-                          } 
+                            ).value[0].pubkey
                           let myshit = (await connection.getTokenAccountBalance(tokenAccount)).value.amount
 
                          // (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
