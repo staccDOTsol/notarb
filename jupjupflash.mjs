@@ -5461,15 +5461,7 @@ async function something(SOL_MINT, market, myluts){
                             ComputeBudgetProgram.requestUnits(params);
 
                           let instructions = [
-                            ix,
-                            createApproveCheckedInstruction(
-                              tokenAccount, // token account
-                              new PublicKey(USDC_MINT), // mint
-                              delegate.publicKey, // delegate
-                              payer.publicKey, // owner of token account
-                              Math.floor(initial * 1.002), // amount, if your deciamls is 8, 10^8 for 1 token
-                              dec // decimals
-                            ),                        
+                            ix,                    
                             flashBorrowReserveLiquidityInstruction(
                               Math.floor(initial * 1.002),
                               new PublicKey(
@@ -5550,7 +5542,7 @@ async function something(SOL_MINT, market, myluts){
                             instructions.push(
                               flashRepayReserveLiquidityInstruction(
                                 Math.floor(initial * 1.002),
-                                2,
+                                1,
                                 tokenAccount,
                                 new PublicKey(
                                   reserve.config.liquidityAddress
