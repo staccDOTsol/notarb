@@ -91,16 +91,16 @@ let connection = new Connection(
   process.env.NODE_ENV == "production"
     ? "https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4"
     : "https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4",
-  { commitment: "confirmed" }
+  { commitment: "singleGossip" }
 );
 var connection2 = new Connection(
   "https://solana--mainnet.datahub.figment.io/apikey/1fc6d8319bddaed4e21e37e49c16b4c2",
-  { commitment: "confirmed" }
+  { commitment: "singleGossip" }
 );
 
 var skippy  = new Connection(
   "https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4",
-  { commitment: "confirmed", skipPreflight: true }
+  { commitment: "singleGossip", skipPreflight: true }
 );
 process.env.SEARCHER
   ? (connection2 = new Connection(
@@ -1554,7 +1554,7 @@ const getConfirmTransaction = async (txid) => {
   const res = await promiseRetry(
     async (retry, attempt) => {
       let txResult = await connection2.getTransaction(txid, {
-        commitment: "confirmed",
+        commitment: "singleGossip",
       });
 
       if (!txResult) {
