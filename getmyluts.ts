@@ -10,7 +10,7 @@ var connection2= new Connection("https://solana-mainnet.g.alchemy.com/v2/IWB_lF5
 process.env.SEARCHER ? connection = connection2 : connection = connection
 
   const payer = (
-    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/Users/jarettdunn' : '/Users/jarettdunn') + '/notjaregm.json').toString()))));
+    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/jdunn4632' : '/home/jdunn4632') + '/notjaregm.json').toString()))));
 const configOrCommitment: GetProgramAccountsConfig = {
     commitment: 'confirmed',
     filters: [
@@ -33,7 +33,7 @@ while (true){
     .process(async (lut: any) => {
       // @ts-ignore
       let maybemine = await connection2.getAddressLookupTable(lut.pubkey)
-      if (maybemine.value?.state.authority?.toBase58()== (payer.publicKey.toBase58()) &&         (maybemine.value?.state.deactivationSlot != 18446744073709551615n)
+      if (maybemine.value?.state.authority?.toBase58()== (payer.publicKey.toBase58()) &&         (maybemine.value?.state.deactivationSlot == 18446744073709551615n)
 )
       {
 
@@ -81,7 +81,7 @@ tx2.recentBlockhash = blockhash
 tx2.sign(payer)
 
 try{
- await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
+ ///await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 } catch (err){
     
 console.log(err)
