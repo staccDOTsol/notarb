@@ -38,7 +38,7 @@ dotenv.config();
 // This is a free Solana RPC endpoint. It may have ratelimit and sometimes
 // invalid cache. I will recommend using a paid RPC endpoint.
 const connection = new Connection("http://localhost:8899", {skipPreflight: false});
-var connection2= new Connection("https://indulgent-cold-dawn.solana-mainnet.quiknode.pro/", {skipPreflight: false});
+var connection2= new Connection("https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4", {skipPreflight: false});
 const wallet = new Wallet(
   Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/jdunn4632/notjaregm.json').toString()))));
   const payer = (
@@ -127,7 +127,7 @@ let prism = await Prism.init({
     // user executing swap
     slippage:5,
     user: payer,               // optional (if you don't provide upon init, then you'll need to call prism.setSigner() after user connects the wallet)
-connection: new Connection("https://indulgent-cold-dawn.solana-mainnet.quiknode.pro/")
+connection: new Connection("https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4")
     // rpc connection
 });
 for (var USDC_MINT of has){
