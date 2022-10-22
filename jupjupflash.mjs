@@ -6128,11 +6128,15 @@ console.log(m)
                   }
                 }
               }
-            } catch (err) {}
-          } catch (err) {}
+            } catch (err) {
+              console.log(err)}
+          } catch (err) {
+            console.log(err)}
         }
       }
-    } catch (err) {}
+    } catch (err) {
+      console.log(err)
+    }
   }
   return
 }
@@ -6151,7 +6155,7 @@ while (true) {
     await market.loadReserves();
     market.refreshAll();
 
-    await PromisePool.withConcurrency(40)
+    await PromisePool.withConcurrency(20)
     .for(mints)
     // @ts-ignore
     .process(async (SOL_MINT) => {
