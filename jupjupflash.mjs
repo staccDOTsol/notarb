@@ -5466,7 +5466,6 @@ async function something(SOL_MINT, market, myluts){
                             ComputeBudgetProgram.requestUnits(params);
 
                           let instructions = [
-                            ix,                    
                             flashBorrowReserveLiquidityInstruction(
                               Math.floor(initial * 1.002),
                               new PublicKey(
@@ -5547,7 +5546,7 @@ async function something(SOL_MINT, market, myluts){
                             instructions.push(
                               flashRepayReserveLiquidityInstruction(
                                 Math.floor(initial * 1.002),
-                                1,
+                                0,
                                 tokenAccount,
                                 new PublicKey(
                                   reserve.config.liquidityAddress
