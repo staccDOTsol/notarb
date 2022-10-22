@@ -6035,17 +6035,9 @@ async function something(SOL_MINT, market, myluts){
 
                             
                             await transaction.sign([payer]); //, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
-                             let m =   skippy.sendTransaction(transaction);
-                    m =   skippy.sendTransaction(transaction);
-
-                    m =   skippy.sendTransaction(transaction);
-                    m =   skippy.sendTransaction(transaction);
-                    m =   skippy.sendTransaction(transaction);
-                    m =   skippy.sendTransaction(transaction);
-                    m =   skippy.sendTransaction(transaction);
-                    m =   skippy.sendTransaction(transaction);
-                    m =   skippy.sendTransaction(transaction);
-
+                             let m =  await skippy.sendTransaction(transaction);
+              console.log('abc')
+              console.log(m)
 
 
                           } catch (err) {
