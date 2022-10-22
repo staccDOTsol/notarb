@@ -116,8 +116,8 @@ const wallet = new Wallet(
         fs
           .readFileSync(
             (process.env.NODE_ENV == "production"
-              ? "/home/ubuntu"
-              : "/home/ubuntu") + "/notjaregm.json"
+              ? "/home/jdunn4632"
+              : "/home/jdunn4632") + "/notjaregm.json"
           )
           .toString()
       )
@@ -130,8 +130,8 @@ const payer = Keypair.fromSecretKey(
       fs
         .readFileSync(
           (process.env.NODE_ENV == "production"
-            ? "/home/ubuntu"
-            : "/home/ubuntu") + "/notjaregm.json"
+            ? "/home/jdunn4632"
+            : "/home/jdunn4632") + "/notjaregm.json"
         )
         .toString()
     )
