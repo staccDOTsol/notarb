@@ -1592,7 +1592,7 @@ var markets = [
     connection,
 
     "production", // optional environment argument
-    "GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q" //"GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q"
+   // "GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q" //"GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q"
   )/*
   await SolendMarket.initialize(
     connection,
@@ -5168,7 +5168,7 @@ let configs = [
   },
 ];
 for (var amarket of configs) {
-  if (false){//!amarket.hidden && !amarket.isPermissionless) {
+  if (!amarket.hidden && !amarket.isPermissionless) {
     try {
       await sleep(rando(0, 1, "float") * 1);
       let market = await SolendMarket.initialize(
