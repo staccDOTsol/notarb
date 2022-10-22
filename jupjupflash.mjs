@@ -5816,6 +5816,8 @@ async function something(SOL_MINT, market, myluts){
                                       [payer],
                                       { skipPreflight: false }
                                     );
+
+                                  await sleep(50 * 1000);
                                   } catch (err) {
                                     console.log(err)
                                   }
