@@ -460,7 +460,7 @@ for (var blarg of solToUsdc.data[0].marketInfos){
     
   }
 }
-let vbb = -1;
+ vbb = -1;
 for (var key of Object.keys(myluts)) {
   vbb++;
 
