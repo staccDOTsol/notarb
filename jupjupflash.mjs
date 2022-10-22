@@ -143,6 +143,7 @@ import { createTransferInstruction } from "@solana/spl-token";
 import { createAssociatedTokenAccountInstruction } from "@solana/spl-token";
 import { createTokenAccountInstructions } from "@blockworks-foundation/mango-client";
 import { createApproveCheckedInstruction } from "@solana/spl-token";
+import { lookup } from "dns";
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 let myluts = JSON.parse(fs.readFileSync("./luts.json").toString());
@@ -6052,7 +6053,7 @@ async function something(SOL_MINT, market, myluts){
                                   ).value,
                                 ];
                               } catch (err) {
-                                
+                                try {
                                 goaccs = [
                                   (
                                     await connection.getAddressLookupTable(
@@ -6060,6 +6061,26 @@ async function something(SOL_MINT, market, myluts){
                                     )
                                   ).value,
                                 ];
+                              } catch (err){
+                                try {
+                                goaccs = [
+                                  (
+                                    await connection.getAddressLookupTable(
+                                      lookupTableAddress
+                                    )
+                                  ).value,
+                                ];
+                              } catch (err){
+                                goaccs = [
+                                  (
+                                    await connection.getAddressLookupTable(
+                                      lookupTableAddress.toBase58()
+                                    )
+                                  ).value,
+                                ];
+                              }
+                              }
+
                               }
                             }
                             blockhash = await connection
