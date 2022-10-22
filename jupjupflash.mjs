@@ -116,8 +116,8 @@ const wallet = new Wallet(
         fs
           .readFileSync(
             (process.env.NODE_ENV == "production"
-              ? "/Users/jarettdunn"
-              : "/Users/jarettdunn") + "/notjaregm.json"
+              ? "/home/jdunn4632"
+              : "/home/jdunn4632") + "/notjaregm.json"
           )
           .toString()
       )
@@ -130,8 +130,8 @@ const payer = Keypair.fromSecretKey(
       fs
         .readFileSync(
           (process.env.NODE_ENV == "production"
-            ? "/Users/jarettdunn"
-            : "/Users/jarettdunn") + "/notjaregm.json"
+            ? "/home/jdunn4632"
+            : "/home/jdunn4632") + "/notjaregm.json"
         )
         .toString()
     )
@@ -6138,7 +6138,7 @@ console.log(m)
 while (true) {
 
 
-  await PromisePool.withConcurrency(5)
+  await PromisePool.withConcurrency(2)
   .for(markets)
   // @ts-ignore
   .process(async (market) => {
@@ -6149,7 +6149,7 @@ while (true) {
     await market.loadReserves();
     market.refreshAll();
 
-    await PromisePool.withConcurrency(5)
+    await PromisePool.withConcurrency(40)
     .for(mints)
     // @ts-ignore
     .process(async (SOL_MINT) => {
