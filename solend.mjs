@@ -46,10 +46,10 @@ const getCoinQuote = (inputMint, outputMint, amount) =>
 let somestuff = JSON.parse(fs.readFileSync('./stuff.json').toString())
 
 const payer = (
-    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/ubuntu/notjaregm.json').toString()))));
+    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync('/home/jdunn4632/notjaregm.json').toString()))));
 // 1. Initalize market with parameters and metadata
 let initial = 3  * 10 ** 6;
-var connection2= new Connection("https://solana--mainnet.datahub.figment.io/apikey/1fc6d8319bddaed4e21e37e49c16b4c2", {skipPreflight: false});
+var connection2= new Connection("https://indulgent-cold-dawn.solana-mainnet.quiknode.pro/", {skipPreflight: false});
 
 var connection =  new Connection("http://localhost:8899", {skipPreflight: false});
 const market = await SolendMarket.initialize(
