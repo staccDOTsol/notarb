@@ -112,8 +112,8 @@ const wallet = new Wallet(
         fs
           .readFileSync(
             (process.env.NODE_ENV == "production"
-              ? "/home/ubuntu"
-              : "/home/ubuntu") + "/notjaregm.json"
+              ? "/Users/jarettdunn"
+              : "/Users/jarettdunn") + "/notjaregm.json"
           )
           .toString()
       )
@@ -126,8 +126,8 @@ const payer = Keypair.fromSecretKey(
       fs
         .readFileSync(
           (process.env.NODE_ENV == "production"
-            ? "/home/ubuntu"
-            : "/home/ubuntu") + "/notjaregm.json"
+            ? "/Users/jarettdunn"
+            : "/Users/jarettdunn") + "/notjaregm.json"
         )
         .toString()
     )
@@ -1520,7 +1520,7 @@ let arg = {
 for (var add of arg.data) {
   for (var tok of add.tokens) {
     if (!mints.includes(tok.address)) {
-       mints.push(tok.address);
+        mints.push(tok.address);
     }
   }
 }
@@ -6083,7 +6083,7 @@ async function something(SOL_MINT, market, myluts) {
 }
 
 while (true) {
-  await PromisePool.withConcurrency(3)
+  await PromisePool.withConcurrency(1)
     .for(markets)
     // @ts-ignore
     .process(async (market) => {
