@@ -5613,7 +5613,7 @@ async function something(SOL_MINT, market, myluts){
                                     key.split(",").includes(USDC_MINT) &&
                                     key.split(",").includes(SOL_MINT) &&
                                     key.split(',').includes(hmmms[0])&&
-                                    key.split(',').includes(hmmms[1]) &&
+                                 //   key.split(',').includes(hmmms[1]) &&
                                     key.split(",").includes(want)
                                   ) {
                                     if (
