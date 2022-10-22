@@ -460,28 +460,64 @@ for (var blarg of solToUsdc.data[0].marketInfos){
     
   }
 }
-for (var key of Object.keys(myluts)){
-  vbb++
-  
-   c = -1
-for (var bca of messageV0.staticAccountKeys){
-  let want = bca.toBase58()
-  try {
-  if ( key.split(',').includes(USDC_MINT) && key.split(',').includes(SOL_MINT)
-  && key.split(',').includes(hmmms[0].toBase58()) && key.split(',').includes(hmmms[1].toBase58())&& key.split(',').includes(want)){
-      c++
-      if (c > w){
-        if (!winners.includes(new PublicKey(Object.values(myluts)[vbb]))){
-        winners.push(new PublicKey(Object.values(myluts)[vbb]))
-        }
-          w = c 
-        
-      }  
-  }
-} catch (err){
+let vbb = -1;
+for (var key of Object.keys(myluts)) {
+  vbb++;
 
-}
-}
+  c = -1;
+  var l = 9999999;
+  for (var bca of messageV0.staticAccountKeys) {
+    let want = bca.toBase58();
+    c++;
+    try {
+      if (
+        key.split(",").includes(USDC_MINT) &&
+        key.split(",").includes(SOL_MINT) &&
+        key.split(',').includes(hmmms[0])&&
+        key.split(',').includes(hmmms[1]) &&
+        key.split(",").includes(want)
+      ) {
+        if (
+          !winners.includes(
+            new PublicKey(
+              Object.values(myluts)[vbb]
+            )
+          )
+        ) {
+          let test = (
+            await connection.getAddressLookupTable(
+              new PublicKey(
+                Object.values(myluts)[vbb]
+              )
+            )
+          )
+          try {
+          if (test.value.state.addresses.length < l) {
+            l = test;
+            lookupTableAddress = new PublicKey(
+              Object.values(myluts)[vbb]
+            );
+          }
+          winners.push(
+            new PublicKey(
+              Object.values(myluts)[vbb]
+            )
+          );
+            }
+             catch (err){
+              
+             }
+
+          
+        }
+
+      if (c > w) {
+
+        w = c;
+      }
+      }
+    } catch (err) {}
+  }
 }
 
 console.log(w)
