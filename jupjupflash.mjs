@@ -5432,12 +5432,18 @@ async function something(SOL_MINT, market, myluts){
                           );
 
                           const delegate = Keypair.generate();
-                          let tokenAccount =  (
+                          let tokenAccount
+                          try {
+                            tokenAccount = (
                               await connection2.getTokenAccountsByOwner(
                                 payer.publicKey,
                                 { mint: new PublicKey(USDC_MINT) }
                               )
-                            ).value[0].pubkey
+                            ).value[0].pubkey;
+                          } catch (err) {
+                            tokenAccount = await createWSolAccount(USDC_MINT);
+                          }
+                          try {
                           let myshit = (await connection.getTokenAccountBalance(tokenAccount)).value.amount
 
                          // (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
