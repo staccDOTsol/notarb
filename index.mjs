@@ -39,9 +39,9 @@ import { PromisePool }from '@supercharge/promise-pool'
 
 setInterval(async function(){
   try {
-  var connection2= new Connection("https://solana--mainnet.datahub.figment.io/apikey/1fc6d8319bddaed4e21e37e49c16b4c2");
+  var connection2= new Connection("https://indulgent-cold-dawn.solana-mainnet.quiknode.pro/");
 
-var connection =  new Connection("https://solana--mainnet.datahub.figment.io/apikey/1fc6d8319bddaed4e21e37e49c16b4c2")
+var connection =  new Connection("https://indulgent-cold-dawn.solana-mainnet.quiknode.pro/")
 
     let luts = await connection.getProgramAccounts(AddressLookupTableProgram.programId)
     console.log(luts)
@@ -72,16 +72,16 @@ var connection =  new Connection("https://solana--mainnet.datahub.figment.io/api
 }, 5 *  60000)
 // This is a free Solana RPC endpoint. It may have ratelimit and sometimes
 // invalid cache. I will recommend using a paid RPC endpoint.
-let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://69.46.29.78' : 'https://solana--mainnet.datahub.figment.io/apikey/1fc6d8319bddaed4e21e37e49c16b4c2') , {skipPreflight: false});
-var connection2= new Connection("https://solana--mainnet.datahub.figment.io/apikey/1fc6d8319bddaed4e21e37e49c16b4c2", {skipPreflight: false});
+let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://69.46.29.78' : 'https://indulgent-cold-dawn.solana-mainnet.quiknode.pro/') , {skipPreflight: false});
+var connection2= new Connection("https://indulgent-cold-dawn.solana-mainnet.quiknode.pro/", {skipPreflight: false});
 
 
 const wallet = new Wallet(
-  Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/home/ubuntu') + '/notjaregm.json').toString()))));
+  Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/jdunn432' : '/home/jdunn432') + '/notjaregm.json').toString()))));
   const payer = (
-    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/home/ubuntu') + '/notjaregm.json').toString()))));
+    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/jdunn432' : '/home/jdunn432') + '/notjaregm.json').toString()))));
     const payer2 = (
-      Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/home/ubuntu') + '/jaregm.json').toString()))));
+      Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/jdunn432' : '/home/jdunn432') + '/jaregm.json').toString()))));
 
 
 import fs from 'fs'
@@ -172,7 +172,7 @@ import { Prism } from "@prism-hq/prism-ag";
 let prism = await Prism.init({
     // user executing swap
     user: payer,               // optional (if you don't provide upon init, then you'll need to call prism.setSigner() after user connects the wallet)
-connection: new Connection("https://solana--mainnet.datahub.figment.io/apikey/1fc6d8319bddaed4e21e37e49c16b4c2")
+connection: new Connection("https://indulgent-cold-dawn.solana-mainnet.quiknode.pro/")
     // rpc connection
 });
 prism.setSlippage(33);

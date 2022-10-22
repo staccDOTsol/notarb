@@ -46,16 +46,16 @@ import { PromisePool }from '@supercharge/promise-pool'
    
 // This is a free Solana RPC endpoint. It may have ratelimit and sometimes
 // invalid cache. I will recommend using a paid RPC endpoint.
-let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost:8899' : 'https://solana--mainnet.datahub.figment.io/apikey/1fc6d8319bddaed4e21e37e49c16b4c2'), {skipPreflight: false});
-var connection2= new Connection("https://solana--mainnet.datahub.figment.io/apikey/1fc6d8319bddaed4e21e37e49c16b4c2", {skipPreflight: false});
+let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost:8899' : 'https://indulgent-cold-dawn.solana-mainnet.quiknode.pro/'), {skipPreflight: false});
+var connection2= new Connection("https://indulgent-cold-dawn.solana-mainnet.quiknode.pro/", {skipPreflight: false});
 //process.env.SEARCHER ? connection2 = new Connection("https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr") : connection2 = connection2
 
 process.env.SEARCHER ? connection = connection2 : connection = connection
 
 const wallet = new Wallet(
-  Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/home/ubuntu') + '/notjaregm.json').toString()))));
+  Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/jdunn432' : '/home/jdunn432') + '/notjaregm.json').toString()))));
   const payer = (
-    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/home/ubuntu') + '/notjaregm.json').toString()))));
+    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/jdunn432' : '/home/jdunn432') + '/notjaregm.json').toString()))));
   
   
 import fs from 'fs'
