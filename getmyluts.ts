@@ -4,13 +4,13 @@ const PromisePool = require("@supercharge/promise-pool").default;
 import fs from 'fs'
 setTimeout(async function(){
 // invalid cache. I will recommend using a paid RPC endpoint.
-let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost:8899' : 'https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ'));
-var connection2= new Connection("https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ");
+let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost:8899' : 'https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4'));
+var connection2= new Connection("https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4");
 
 process.env.SEARCHER ? connection = connection2 : connection = connection
 
   const payer = (
-    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/home/ubuntu') + '/notjaregm.json').toString()))));
+    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/Users/jarettdunn' : '/Users/jarettdunn') + '/notjaregm.json').toString()))));
 const configOrCommitment: GetProgramAccountsConfig = {
     commitment: 'confirmed',
     filters: [
@@ -31,6 +31,7 @@ while (true){
     })
     // @ts-ignore
     .process(async (lut: any) => {
+      // @ts-ignore
       let maybemine = await connection2.getAddressLookupTable(lut.pubkey)
       if (maybemine.value?.state.authority?.toBase58()== (payer.publicKey.toBase58()) &&         (maybemine.value?.state.deactivationSlot == 18446744073709551615n)
 )
@@ -65,7 +66,7 @@ tx2.recentBlockhash = blockhash
 tx2.sign(payer)
 
 try{
-// sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
+//await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 } catch (err){
     
 console.log(err)
@@ -80,7 +81,7 @@ tx2.recentBlockhash = blockhash
 tx2.sign(payer)
 
 try{
- // sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
+ ///await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 } catch (err){
     
 console.log(err)
