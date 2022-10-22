@@ -112,8 +112,8 @@ const wallet = new Wallet(
         fs
           .readFileSync(
             (process.env.NODE_ENV == "production"
-              ? "/Users/jarettdunn"
-              : "/Users/jarettdunn") + "/notjaregm.json"
+              ? "/home/ubuntu"
+              : "/home/ubuntu") + "/notjaregm.json"
           )
           .toString()
       )
@@ -126,8 +126,8 @@ const payer = Keypair.fromSecretKey(
       fs
         .readFileSync(
           (process.env.NODE_ENV == "production"
-            ? "/Users/jarettdunn"
-            : "/Users/jarettdunn") + "/notjaregm.json"
+            ? "/home/ubuntu"
+            : "/home/ubuntu") + "/notjaregm.json"
         )
         .toString()
     )
@@ -5442,6 +5442,7 @@ async function something(SOL_MINT, market, myluts) {
                               ComputeBudgetProgram.requestUnits(params);
 
                             let instructions = [
+                              ix,
                               flashBorrowReserveLiquidityInstruction(
                                 Math.floor(initial * 1.002),
                                 new PublicKey(reserve.config.liquidityAddress),
@@ -5520,7 +5521,7 @@ async function something(SOL_MINT, market, myluts) {
                               instructions.push(
                                 flashRepayReserveLiquidityInstruction(
                                   Math.floor(initial * 1.002),
-                                  0,
+                                  1,
                                   tokenAccount,
                                   new PublicKey(
                                     reserve.config.liquidityAddress
@@ -6083,7 +6084,7 @@ async function something(SOL_MINT, market, myluts) {
 }
 
 while (true) {
-  await PromisePool.withConcurrency(1)
+  await PromisePool.withConcurrency(3)
     .for(markets)
     // @ts-ignore
     .process(async (market) => {
