@@ -41,50 +41,46 @@ import * as splToken from "@solana/spl-token";
 console.log({ dotenv });
 dotenv.config();
 import { PromisePool } from "@supercharge/promise-pool";
-process.on('uncaughtException', err => {
-
-
-   PromisePool.withConcurrency(1)
-  .for(markets)
-  // @ts-ignore
-  .process(async (market) => {
-    myluts = JSON.parse(fs.readFileSync("./luts.json").toString());
-    //await createWSolAccount();
-  
-        market = markets[Math.floor(rando(0, 1, "float") * markets.length)];
-    await market.loadReserves();
-    market.refreshAll();
-
-    await PromisePool.withConcurrency(1)
-    .for(mints)
+process.on("uncaughtException", (err) => {
+  PromisePool.withConcurrency(1)
+    .for(markets)
     // @ts-ignore
-    .process(async (SOL_MINT) => {
-     something(SOL_MINT, market, myluts)
-    })
-  })
-})
-process.on('unhandledRejection', (reason, promise) => {
+    .process(async (market) => {
+      myluts = JSON.parse(fs.readFileSync("./luts.json").toString());
+      //await createWSolAccount();
 
+      market = markets[Math.floor(rando(0, 1, "float") * markets.length)];
+      await market.loadReserves();
+      market.refreshAll();
 
-   PromisePool.withConcurrency(1)
-  .for(markets)
-  // @ts-ignore
-  .process(async (market) => {
-    myluts = JSON.parse(fs.readFileSync("./luts.json").toString());
-    //await createWSolAccount();
-  
-        market = markets[Math.floor(rando(0, 1, "float") * markets.length)];
-    await market.loadReserves();
-    market.refreshAll();
-
-    await PromisePool.withConcurrency(1)
-    .for(mints)
+      await PromisePool.withConcurrency(1)
+        .for(mints)
+        // @ts-ignore
+        .process(async (SOL_MINT) => {
+          something(SOL_MINT, market, myluts);
+        });
+    });
+});
+process.on("unhandledRejection", (reason, promise) => {
+  PromisePool.withConcurrency(1)
+    .for(markets)
     // @ts-ignore
-    .process(async (SOL_MINT) => {
-     something(SOL_MINT, market, myluts)
-    })
-  })
-})
+    .process(async (market) => {
+      myluts = JSON.parse(fs.readFileSync("./luts.json").toString());
+      //await createWSolAccount();
+
+      market = markets[Math.floor(rando(0, 1, "float") * markets.length)];
+      await market.loadReserves();
+      market.refreshAll();
+
+      await PromisePool.withConcurrency(1)
+        .for(mints)
+        // @ts-ignore
+        .process(async (SOL_MINT) => {
+          something(SOL_MINT, market, myluts);
+        });
+    });
+});
 // This is a free Solana RPC endpoint. It may have ratelimit and sometimes
 // invalid cache. I will recommend using a paid RPC endpoint.
 let connection = new Connection(
@@ -98,7 +94,7 @@ var connection2 = new Connection(
   { commitment: "confirmed" }
 );
 
-var skippy  = new Connection(
+var skippy = new Connection(
   "https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ",
   { commitment: "confirmed", skipPreflight: true }
 );
@@ -116,8 +112,8 @@ const wallet = new Wallet(
         fs
           .readFileSync(
             (process.env.NODE_ENV == "production"
-              ? "/Users/jarettdunn"
-              : "/Users/jarettdunn") + "/notjaregm.json"
+              ? "/home/ubuntu"
+              : "/home/ubuntu") + "/notjaregm.json"
           )
           .toString()
       )
@@ -130,8 +126,8 @@ const payer = Keypair.fromSecretKey(
       fs
         .readFileSync(
           (process.env.NODE_ENV == "production"
-            ? "/Users/jarettdunn"
-            : "/Users/jarettdunn") + "/notjaregm.json"
+            ? "/home/ubuntu"
+            : "/home/ubuntu") + "/notjaregm.json"
         )
         .toString()
     )
@@ -1524,7 +1520,7 @@ let arg = {
 for (var add of arg.data) {
   for (var tok of add.tokens) {
     if (!mints.includes(tok.address)) {
-      mints.push(tok.address);
+        mints.push(tok.address);
     }
   }
 }
@@ -1593,18 +1589,20 @@ var markets = [
     connection,
 
     "production" // optional environment argument
-  )
-,await SolendMarket.initialize(
-  connection,
-  
-  "production", // optional environment argument
-  "Epa6Sy5rhxCxEdmYu6iKKoFjJamJUJw8myjxuhfX2YJi"
-),await SolendMarket.initialize(
-  connection,
-  
-  "production", // optional environment argument
-  "GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q"
-)]
+  ),
+  await SolendMarket.initialize(
+    connection,
+
+    "production", // optional environment argument
+    "Epa6Sy5rhxCxEdmYu6iKKoFjJamJUJw8myjxuhfX2YJi"
+  ),
+  await SolendMarket.initialize(
+    connection,
+
+    "production", // optional environment argument
+    "GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q"
+  ),
+];
 let configs = [
   {
     name: "main",
@@ -5154,7 +5152,8 @@ let configs = [
   },
 ];
 for (var amarket of configs) {
-  if (false){//!amarket.hidden && !amarket.isPermissionless) {
+  if (false) {
+    //!amarket.hidden && !amarket.isPermissionless) {
     try {
       await sleep(rando(0, 1, "float") * 1);
       let market = await SolendMarket.initialize(
@@ -5200,11 +5199,12 @@ const createWSolAccount = async (mint) => {
         await connection2.getLatestBlockhash()
       ).blockhash;
       try {
-      const result = await sendAndConfirmTransaction(connection, transaction, [payer, ha]);
-      }
-      catch (err){
-
-      }
+        const result = await sendAndConfirmTransaction(
+          connection,
+          transaction,
+          [payer, ha]
+        );
+      } catch (err) {}
       wsolAccount = await connection2.getAccountInfo(wsolAddress);
     }
   } catch (err) {}
@@ -5213,16 +5213,18 @@ const createWSolAccount = async (mint) => {
 };
 let prev = new Date().getTime() / 1000;
 let avgs = [];
-async function something(SOL_MINT, market, myluts){
+async function something(SOL_MINT, market, myluts) {
   let jares = [];
 
   SOL_MINT = mints[rando(0, mints.length)];
   if (true) {
     //["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "So11111111111111111111111111111111111111112"]){
     try {
-      var reserve = market.reserves[Math.floor(Math.random()*market.reserves.length)]; //market.reserves.find(res => res.config.liquidityToken.mint ===ç);
+      var reserve =
+        market.reserves[Math.floor(Math.random() * market.reserves.length)]; //market.reserves.find(res => res.config.liquidityToken.mint ===ç);
       var USDC_MINT = reserve.config.liquidityToken.mint;
-      if (true){//USDC_MINT != "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v") {
+      if (true) {
+        //USDC_MINT != "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v") {
         //has.includes(USDC_MINT) ){
 
         var dec = reserve.config.liquidityToken.decimals;
@@ -5233,28 +5235,21 @@ async function something(SOL_MINT, market, myluts){
           !baddies.includes(USDC_MINT + SOL_MINT) &&
           min < 1991
         ) {
-
           let dothethings = [];
           cba++;
           try {
             let initial = rando(true, false)
               ? Math.ceil(
-                  (rando(1, 2, "float") /
-                    reserve.stats.assetPriceUSD) *
+                  (rando(1, 2, "float") / reserve.stats.assetPriceUSD) *
                     10 ** dec
                 )
               : Math.ceil(
-                  (rando(1, 500, "float") /
-                    reserve.stats.assetPriceUSD /
-                    1) *
+                  (rando(1, 500, "float") / reserve.stats.assetPriceUSD / 1) *
                     10 ** dec
                 );
-                initial = rando(true, false)
-                ? Math.ceil(initial / 2 ) : initial  
+            initial = rando(true, false) ? Math.ceil(initial / 2) : initial;
             if (initial > reserve.stats.reserveBorrowLimit)
-              initial = Math.floor(
-                reserve.stats.reserveBorrowLimit * 0.666
-              );
+              initial = Math.floor(reserve.stats.reserveBorrowLimit * 0.666);
             // 0.1 SOL
             try {
               if (initial != 0 && !baddies.includes(USDC_MINT + SOL_MINT)) {
@@ -5280,15 +5275,9 @@ async function something(SOL_MINT, market, myluts){
                       tbaddies.push(b);
                     }
                   }
-                  fs.writeFileSync(
-                    "./baddies.json",
-                    JSON.stringify(tbaddies)
-                  );
+                  fs.writeFileSync("./baddies.json", JSON.stringify(tbaddies));
                 }
-                if (
-                  usdcToSol &&
-                  !baddies.includes(SOL_MINT + USDC_MINT)
-                ) {
+                if (usdcToSol && !baddies.includes(SOL_MINT + USDC_MINT)) {
                   try {
                     solToUsdc = await getCoinQuote(
                       SOL_MINT,
@@ -5317,388 +5306,522 @@ async function something(SOL_MINT, market, myluts){
                     );
                   }
                   try {
-                    if (solToUsdc){
-                    let returns =
-                      (solToUsdc.data[0].outAmount / (initial * 1.002) -
-                        1) *
-                      100;
+                    if (solToUsdc) {
+                      let returns =
+                        (solToUsdc.data[0].outAmount / (initial * 1.002) - 1) *
+                        100;
 
-                    let now = new Date().getTime() / 1000;
-                    let diff = now - prev;
-                    prev = now;
-                    avgs.push(diff);
-                    if (avgs.length > 60) {
-                      avgs.slice(0);
-                    }
-                    let t = 0;
-                    for (var avg of avgs) {
-                      t += avg;
-                    }
-                    let nowavg = t / avgs.length;
-                    if (returns > -0.1)
-                      console.log(
-                        (
-                          (initial / 10 ** dec) *
-                          reserve.stats.assetPriceUSD
-                        ).toString() +
-                          " initial, " +
-                          returns.toString() +
-                          "% yield on badboi " +
-                          USDC_MINT +
-                          " <-> " +
-                          SOL_MINT
-                      );
-                    //console.log(initial / 10 ** dec)
-                    let gogo = true;
-                    for (var maybego of dothethings) {
-                      gogo = maybego;
-                    }
-                    if (returns > min * 100   && returns < 10000000) {
-                      for (var mi of solToUsdc.data[0].marketInfos) {
-                        var ta2;
-                        try {
-                          ta2 = (
-                            await connection2.getTokenAccountsByOwner(
-                              payer.publicKey,
-                              { mint: new PublicKey(mi.outputMint) }
-                            )
-                          ).value[0].pubkey;
-                        } catch (err) {
-                          ta2 = await createWSolAccount(mi.outputMint);
-                        }
-                        try {
-                          ta2 = (
-                            await connection2.getTokenAccountsByOwner(
-                              payer.publicKey,
-                              { mint: new PublicKey(mi.inputMint) }
-                            )
-                          ).value[0].pubkey;
-                        } catch (err) {
-                          ta2 = await createWSolAccount(mi.inputMint);
-                        }
+                      let now = new Date().getTime() / 1000;
+                      let diff = now - prev;
+                      prev = now;
+                      avgs.push(diff);
+                      if (avgs.length > 60) {
+                        avgs.slice(0);
                       }
-
-                      for (var mi of usdcToSol.data[0].marketInfos) {
-                        var ta2;
-                        try {
-                          ta2 = (
-                            await connection2.getTokenAccountsByOwner(
-                              payer.publicKey,
-                              { mint: new PublicKey(mi.outputMint) }
-                            )
-                          ).value[0].pubkey;
-                        } catch (err) {
-                          ta2 = await createWSolAccount(mi.outputMint);
-                        }
-                        try {
-                          ta2 = (
-                            await connection2.getTokenAccountsByOwner(
-                              payer.publicKey,
-                              { mint: new PublicKey(mi.inputMint) }
-                            )
-                          ).value[0].pubkey;
-                        } catch (err) {
-                          ta2 = await createWSolAccount(mi.inputMint);
-                        }
+                      let t = 0;
+                      for (var avg of avgs) {
+                        t += avg;
                       }
-                      if (true) {
-                        // when outAmount more than initial
-                        if (!false) {
-                          //returns >11111.000 ) {
-                          console.log(
+                      let nowavg = t / avgs.length;
+                      if (returns > -0.1)
+                        console.log(
+                          (
+                            (initial / 10 ** dec) *
+                            reserve.stats.assetPriceUSD
+                          ).toString() +
+                            " initial, " +
+                            returns.toString() +
+                            "% yield on badboi " +
                             USDC_MINT +
-                              " <-> " +
-                              SOL_MINT +
-                              "@ " +
-                              (initial / 10 ** dec).toString() +
-                              ": " +
-                              Math.round(returns * 10000) / 10000 +
-                              "%"
-                          );
-
-                          const delegate = Keypair.generate();
-                          let tokenAccount
-                           try {
-                          tokenAccount = (
-                            await connection2.getTokenAccountsByOwner(
-                              payer.publicKey,
-                              { mint: new PublicKey(USDC_MINT) }
-                            )
-                          ).value[0].pubkey;
-                        } catch (err) {
-                          tokenAccount = await createWSolAccount(USDC_MINT);
-                        }
-                          let myshit = (await connection.getTokenAccountBalance(tokenAccount)).value.amount
-
-                         // (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
+                            " <-> " +
+                            SOL_MINT
+                        );
+                      //console.log(initial / 10 ** dec)
+                      let gogo = true;
+                      for (var maybego of dothethings) {
+                        gogo = maybego;
+                      }
+                      if (returns > min * 100 && returns < 10000000) {
+                        for (var mi of solToUsdc.data[0].marketInfos) {
                           var ta2;
                           try {
                             ta2 = (
                               await connection2.getTokenAccountsByOwner(
                                 payer.publicKey,
-                                { mint: new PublicKey(SOL_MINT) }
+                                { mint: new PublicKey(mi.outputMint) }
                               )
                             ).value[0].pubkey;
                           } catch (err) {
-                          //  ta2 = await createWSolAccount(SOL_MINT);
+                            ta2 = await createWSolAccount(mi.outputMint);
                           }
-                          const params = {
-                            units:
-                              301517 + 301517 + 301517 + 101517 + 101517,
-                            additionalFee: 1,
-                          };
-                          const ix =
-                            ComputeBudgetProgram.requestUnits(params);
-
-                          let instructions = [
-                            flashBorrowReserveLiquidityInstruction(
-                              Math.floor(initial * 1.002),
-                              new PublicKey(
-                                reserve.config.liquidityAddress
-                              ),
-                              tokenAccount,
-                              new PublicKey(reserve.config.address),
-                              new PublicKey(market.config.address),
-                              SOLEND_PRODUCTION_PROGRAM_ID
-                            ),
-                          ];
-                          //let instructions = []
-                          let signers = [];
-
-                          // get routes based on from Token amount 10 USDC -> ? PRISM
                           try {
-                            if (true) {
-                              jares = [];
-                              await Promise.all(
-                                [usdcToSol.data[0], solToUsdc.data[0]].map(
-                                  async (route) => {
-                                    const {
-                                      setupTransaction,
-                                      swapTransaction,
-                                      cleanupTransaction,
-                                    } = await getTransaction(route);
+                            ta2 = (
+                              await connection2.getTokenAccountsByOwner(
+                                payer.publicKey,
+                                { mint: new PublicKey(mi.inputMint) }
+                              )
+                            ).value[0].pubkey;
+                          } catch (err) {
+                            ta2 = await createWSolAccount(mi.inputMint);
+                          }
+                        }
 
-                                    await Promise.all(
-                                      [
-                                        setupTransaction,
-                                        swapTransaction,
-                                        cleanupTransaction,
-                                      ]
-                                        .filter(Boolean)
-                                        .map(
-                                          async (serializedTransaction) => {
-                                            // get transaction object from serialized transaction
-                                            const transaction =
-                                              Transaction.from(
-                                                Buffer.from(
-                                                  serializedTransaction,
-                                                  "base64"
-                                                )
-                                              );
-                                            instructions.push(
-                                              ...transaction.instructions
-                                            );
-                                            jares.push(
-                                              ...transaction.instructions
-                                            );
-                                            // perform the swap
-                                            // Transaction might failed or dropped
-                                          }
-                                        )
-                                    );
-                                  }
+                        for (var mi of usdcToSol.data[0].marketInfos) {
+                          var ta2;
+                          try {
+                            ta2 = (
+                              await connection2.getTokenAccountsByOwner(
+                                payer.publicKey,
+                                { mint: new PublicKey(mi.outputMint) }
+                              )
+                            ).value[0].pubkey;
+                          } catch (err) {
+                            ta2 = await createWSolAccount(mi.outputMint);
+                          }
+                          try {
+                            ta2 = (
+                              await connection2.getTokenAccountsByOwner(
+                                payer.publicKey,
+                                { mint: new PublicKey(mi.inputMint) }
+                              )
+                            ).value[0].pubkey;
+                          } catch (err) {
+                            ta2 = await createWSolAccount(mi.inputMint);
+                          }
+                        }
+                        if (true) {
+                          // when outAmount more than initial
+                          if (!false) {
+                            //returns >11111.000 ) {
+                            console.log(
+                              USDC_MINT +
+                                " <-> " +
+                                SOL_MINT +
+                                "@ " +
+                                (initial / 10 ** dec).toString() +
+                                ": " +
+                                Math.round(returns * 10000) / 10000 +
+                                "%"
+                            );
+
+                            const delegate = Keypair.generate();
+                            let tokenAccount;
+                            try {
+                              tokenAccount = (
+                                await connection2.getTokenAccountsByOwner(
+                                  payer.publicKey,
+                                  { mint: new PublicKey(USDC_MINT) }
                                 )
-                              );
+                              ).value[0].pubkey;
+                            } catch (err) {
+                              tokenAccount = await createWSolAccount(USDC_MINT);
                             }
-                            let jjs = [];
-                            for (var j of jares) {
-                              for (var jk of j.keys) {
-                                if (!jjs.includes(jk.pubkey)) {
-                                  jjs.push(jk.pubkey);
-                                }
-                              }
+                            let myshit = (
+                              await connection.getTokenAccountBalance(
+                                tokenAccount
+                              )
+                            ).value.amount;
+
+                            // (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
+                            var ta2;
+                            try {
+                              ta2 = (
+                                await connection2.getTokenAccountsByOwner(
+                                  payer.publicKey,
+                                  { mint: new PublicKey(SOL_MINT) }
+                                )
+                              ).value[0].pubkey;
+                            } catch (err) {
+                              //  ta2 = await createWSolAccount(SOL_MINT);
                             }
-                            console.log(jjs.length);
-                            // (connection, payer, tokenAccount, delegate.publicKey, payer, Math.floor(initial*1.1))
-                            console.log(tokenAccount.toBase58())
-                            console.log(tokenAccount.toBase58())
-                            console.log(tokenAccount.toBase58())
-                            console.log(tokenAccount.toBase58())
-                            console.log(tokenAccount.toBase58())
-                            console.log(tokenAccount.toBase58())
-                            console.log(tokenAccount.toBase58())
-                            console.log(tokenAccount.toBase58())
-                            instructions.push(
-                              flashRepayReserveLiquidityInstruction(
+                            const params = {
+                              units: 301517 + 301517 + 301517 + 101517 + 101517,
+                              additionalFee: 1,
+                            };
+                            const ix =
+                              ComputeBudgetProgram.requestUnits(params);
+
+                            let instructions = [
+                              flashBorrowReserveLiquidityInstruction(
                                 Math.floor(initial * 1.002),
-                                0,
-                                tokenAccount,
-                                new PublicKey(
-                                  reserve.config.liquidityAddress
-                                ),
-                                new PublicKey(
-                                  reserve.config.liquidityFeeReceiverAddress
-                                ),
+                                new PublicKey(reserve.config.liquidityAddress),
                                 tokenAccount,
                                 new PublicKey(reserve.config.address),
                                 new PublicKey(market.config.address),
-                                payer.publicKey,
                                 SOLEND_PRODUCTION_PROGRAM_ID
-                              )
-                            );
-                            instructions.push(createTransferInstruction(
-                              tokenAccount,
-                              tokenAccount,
-                              payer.publicKey,
-                              myshit 
-                            ))
+                              ),
+                            ];
+                            //let instructions = []
+                            let signers = [];
 
-                            var blockhash = await connection
-                              .getLatestBlockhash()
-                              .then((res) => res.blockhash);
+                            // get routes based on from Token amount 10 USDC -> ? PRISM
+                            try {
+                              if (true) {
+                                jares = [];
+                                await Promise.all(
+                                  [usdcToSol.data[0], solToUsdc.data[0]].map(
+                                    async (route) => {
+                                      const {
+                                        setupTransaction,
+                                        swapTransaction,
+                                        cleanupTransaction,
+                                      } = await getTransaction(route);
 
-                            console.log(blockhash);
-                            console.log(instructions.length)
-                            
-                            // create v0 compatible message
-                            const messageV0 = new TransactionMessage({
-                              payerKey: payer.publicKey,
-                              recentBlockhash: blockhash,
-                              instructions,
-                            }).compileToV0Message();
-                            let w = 0;
-                            let c = -1;
-                            let winners = [];
-
-                            var hmmms = [];
-                            for (var blarg of usdcToSol.data[0]
-                              .marketInfos) {
-                              try {
-                                hmmms.push(blarg.id);
-                              } catch (err) {}
-                            }
-                            for (var blarg of solToUsdc.data[0]
-                              .marketInfos) {
-                              try {
-                                hmmms.push(blarg.id);
-                              } catch (err) {}
-                            }
-                            let vbb = -1;
-                            for (var key of Object.keys(myluts)) {
-                              vbb++;
-
-                              c = -1;
-                              var l = 9999999;
-                              for (var bca of messageV0.staticAccountKeys) {
-                                let want = bca.toBase58();
-                                c++;
-                                try {
-                                  if (
-                                    key.split(",").includes(USDC_MINT) &&
-                                    key.split(",").includes(SOL_MINT) &&
-                                    key.split(',').includes(hmmms[0])&&
-                                 //   key.split(',').includes(hmmms[1]) &&
-                                    key.split(",").includes(want)
-                                  ) {
-                                    if (
-                                      !winners.includes(
-                                        new PublicKey(
-                                          Object.values(myluts)[vbb]
-                                        )
-                                      )
-                                    ) {
-                                      let test = (
-                                        await connection.getAddressLookupTable(
-                                          new PublicKey(
-                                            Object.values(myluts)[vbb]
+                                      await Promise.all(
+                                        [
+                                          setupTransaction,
+                                          swapTransaction,
+                                          cleanupTransaction,
+                                        ]
+                                          .filter(Boolean)
+                                          .map(
+                                            async (serializedTransaction) => {
+                                              // get transaction object from serialized transaction
+                                              const transaction =
+                                                Transaction.from(
+                                                  Buffer.from(
+                                                    serializedTransaction,
+                                                    "base64"
+                                                  )
+                                                );
+                                              instructions.push(
+                                                ...transaction.instructions
+                                              );
+                                              jares.push(
+                                                ...transaction.instructions
+                                              );
+                                              // perform the swap
+                                              // Transaction might failed or dropped
+                                            }
                                           )
-                                        )
-                                      )
-                                      try {
-                                      if (test.value.state.addresses.length < l) {
-                                        l = test;
-                                        lookupTableAddress = new PublicKey(
-                                          Object.values(myluts)[vbb]
-                                        );
-                                      }
-                                      winners.push(
-                                        new PublicKey(
-                                          Object.values(myluts)[vbb]
-                                        )
                                       );
-                                        }
-                                         catch (err){
-                                          
-                                         }
-
-                                      
                                     }
-
-                                  if (c > w) {
-
-                                    w = c;
-                                  }
-                                  }
-                                } catch (err) {}
-                              }
-                            }
-
-                            console.log(w);
-                            console.log(messageV0.staticAccountKeys.length);
-                            console.log(w);
-                            console.log(messageV0.staticAccountKeys.length);
-                            console.log(w);
-                            console.log(messageV0.staticAccountKeys.length);
-                            var ttt;
-
-                            let goaccs = [];
-                            if (winners.length > 0) {
-                              for (var winner of winners) {
-                                let test = (
-                                  await connection.getAddressLookupTable(
-                                    winner
                                   )
-                                ).value;
-                                
-                                  goaccs.push(test);
+                                );
                               }
-                            }
-                            var lookupTableInst;
+                              let jjs = [];
+                              for (var j of jares) {
+                                for (var jk of j.keys) {
+                                  if (!jjs.includes(jk.pubkey)) {
+                                    jjs.push(jk.pubkey);
+                                  }
+                                }
+                              }
+                              console.log(jjs.length);
+                              // (connection, payer, tokenAccount, delegate.publicKey, payer, Math.floor(initial*1.1))
+                              console.log(tokenAccount.toBase58());
+                              console.log(tokenAccount.toBase58());
+                              console.log(tokenAccount.toBase58());
+                              console.log(tokenAccount.toBase58());
+                              console.log(tokenAccount.toBase58());
+                              console.log(tokenAccount.toBase58());
+                              console.log(tokenAccount.toBase58());
+                              console.log(tokenAccount.toBase58());
+                              instructions.push(
+                                flashRepayReserveLiquidityInstruction(
+                                  Math.floor(initial * 1.002),
+                                  0,
+                                  tokenAccount,
+                                  new PublicKey(
+                                    reserve.config.liquidityAddress
+                                  ),
+                                  new PublicKey(
+                                    reserve.config.liquidityFeeReceiverAddress
+                                  ),
+                                  tokenAccount,
+                                  new PublicKey(reserve.config.address),
+                                  new PublicKey(market.config.address),
+                                  payer.publicKey,
+                                  SOLEND_PRODUCTION_PROGRAM_ID
+                                )
+                              );
+                              instructions.push(
+                                createTransferInstruction(
+                                  tokenAccount,
+                                  tokenAccount,
+                                  payer.publicKey,
+                                  myshit
+                                )
+                              );
 
-                            if (
-                              messageV0.staticAccountKeys.length >
-                              w + 1
-                            ) {
-                              var slot = (
-                                await connection2.getLatestBlockhashAndContext()
-                              ).context.slot;
-
-                              // Assumption:
-                              // `payer` is a valid `Keypair` with enough SOL to pay for the execution
                               var blockhash = await connection
                                 .getLatestBlockhash()
                                 .then((res) => res.blockhash);
 
-                              var dontgo1 = true;
-                              var lookupTableAddress;
-                              if (w <= 0) {
+                              console.log(blockhash);
+                              console.log(instructions.length);
+
+                              // create v0 compatible message
+                              const messageV0 = new TransactionMessage({
+                                payerKey: payer.publicKey,
+                                recentBlockhash: blockhash,
+                                instructions,
+                              }).compileToV0Message();
+                              let w = 0;
+                              let c = -1;
+                              let winners = [];
+
+                              var hmmms = [];
+                              for (var blarg of usdcToSol.data[0].marketInfos) {
+                                try {
+                                  hmmms.push(blarg.id);
+                                } catch (err) {}
+                              }
+                              for (var blarg of solToUsdc.data[0].marketInfos) {
+                                try {
+                                  hmmms.push(blarg.id);
+                                } catch (err) {}
+                              }
+                              let vbb = -1;
+                              for (var key of Object.keys(myluts)) {
+                                vbb++;
+
+                                c = -1;
+                                var l = 9999999;
+                                for (var bca of messageV0.staticAccountKeys) {
+                                  let want = bca.toBase58();
+                                  c++;
+                                  try {
+                                    if (
+                                      key.split(",").includes(USDC_MINT) &&
+                                      key.split(",").includes(SOL_MINT) &&
+                                      key.split(",").includes(hmmms[0]) &&
+                                      key.split(",").includes(hmmms[1]) &&
+                                      key.split(",").includes(want)
+                                    ) {
+                                      if (
+                                        !winners.includes(
+                                          new PublicKey(
+                                            Object.values(myluts)[vbb]
+                                          )
+                                        )
+                                      ) {
+                                        let test =
+                                          await connection.getAddressLookupTable(
+                                            new PublicKey(
+                                              Object.values(myluts)[vbb]
+                                            )
+                                          );
+                                        try {
+                                          if (
+                                            test.value.state.addresses.length <
+                                            l
+                                          ) {
+                                            l = test;
+                                            lookupTableAddress = new PublicKey(
+                                              Object.values(myluts)[vbb]
+                                            );
+                                          }
+                                        } catch (err) {}
+                                      }
+
+                                      if (c > w) {
+                                        w = c;
+
+                                        winners.push(
+                                          new PublicKey(
+                                            Object.values(myluts)[vbb]
+                                          )
+                                        );
+                                      }
+                                    }
+                                  } catch (err) {}
+                                }
+                              }
+
+                              console.log(w);
+                              console.log(messageV0.staticAccountKeys.length);
+                              console.log(w);
+                              console.log(messageV0.staticAccountKeys.length);
+                              console.log(w);
+                              console.log(messageV0.staticAccountKeys.length);
+                              var ttt;
+
+                              let goaccs = [];
+                              if (winners.length > 0) {
+                                for (var winner of winners) {
+                                  let test = (
+                                    await connection2.getAddressLookupTable(
+                                      winner
+                                    )
+                                  ).value;
+
+                                  goaccs.push(test);
+                                }
+                              }
+                              var lookupTableInst;
+
+                              if (messageV0.staticAccountKeys.length > w + 1) {
                                 var slot = (
-                                  await connection.getLatestBlockhashAndContext()
+                                  await connection2.getLatestBlockhashAndContext()
                                 ).context.slot;
 
-                                var [lookupTableInst, lookupTableAddress] =
-                                  AddressLookupTableProgram.createLookupTable(
-                                    {
-                                      authority: payer.publicKey,
-                                      payer: payer.publicKey,
-                                      recentSlot: slot,
+                                // Assumption:
+                                // `payer` is a valid `Keypair` with enough SOL to pay for the execution
+                                var blockhash = await connection
+                                  .getLatestBlockhash()
+                                  .then((res) => res.blockhash);
+
+                                var dontgo1 = true;
+                                var lookupTableAddress;
+                                if (w <= 0) {
+                                  var slot = (
+                                    await connection.getLatestBlockhashAndContext()
+                                  ).context.slot;
+
+                                  var [lookupTableInst, lookupTableAddress] =
+                                    AddressLookupTableProgram.createLookupTable(
+                                      {
+                                        authority: payer.publicKey,
+                                        payer: payer.publicKey,
+                                        recentSlot: slot,
+                                      }
+                                    );
+
+                                  //  lookupTableAddress = new PublicKey("7XH2JSueLJMTuDLE67Qw92KKwAdLjggszDSN5GVoK3qD")
+                                  dontgo1 = false;
+
+                                  var tx2 = new Transaction();
+                                  var hmmms = [];
+                                  for (var blarg of usdcToSol.data[0]
+                                    .marketInfos) {
+                                    try {
+                                      hmmms.push(new PublicKey(blarg.id));
+                                    } catch (err) {}
+                                  }
+                                  for (var blarg of solToUsdc.data[0]
+                                    .marketInfos) {
+                                    try {
+                                      hmmms.push(new PublicKey(blarg.id));
+                                    } catch (err) {}
+                                  }
+                                  ss = [
+                                    new PublicKey(USDC_MINT),
+                                    new PublicKey(SOL_MINT),
+                                    ...hmmms,
+                                  ];
+
+                                  aaa = 0;
+                                  for (var bca of messageV0.staticAccountKeys) {
+                                    aaa++;
+                                    if (
+                                      aaa <=
+                                      messageV0.staticAccountKeys.length / 3
+                                    ) {
+                                      if (ttt) {
+                                        if (
+                                          !ttt.state.addresses.includes(bca)
+                                        ) {
+                                          ss.push(bca);
+                                        }
+                                      } else {
+                                        ss.push(bca);
+                                      }
                                     }
+                                  }
+                                  //console.log(ss.length)
+                                  if (ss.length == 0) {
+                                    dg3 = true;
+                                  }
+                                  var ss = [
+                                    new PublicKey(USDC_MINT),
+                                    new PublicKey(SOL_MINT),
+                                    ...hmmms,
+                                  ];
+                                  var aaa = 0;
+                                  var somestuff = {};
+                                  var test = (
+                                    await connection.getAddressLookupTable(
+                                      winner ? winner : lookupTableAddress
+                                    )
+                                  ).value;
+                                  var ttt = test;
+                                  aaa = 0;
+                                  for (var bca of messageV0.staticAccountKeys) {
+                                    aaa++;
+                                    if (
+                                      aaa <=
+                                      messageV0.staticAccountKeys.length / 3
+                                    ) {
+                                      if (ttt) {
+                                        if (
+                                          !ttt.state.addresses.includes(bca)
+                                        ) {
+                                          ss.push(bca);
+                                        }
+                                      } else {
+                                        ss.push(bca);
+                                      }
+                                    }
+                                  }
+                                  //console.log(ss.length)
+                                  if (ss.length == 0) {
+                                    dg3 = true;
+                                  }
+                                  const extendInstruction =
+                                    AddressLookupTableProgram.extendLookupTable(
+                                      {
+                                        payer: payer.publicKey,
+                                        authority: payer.publicKey,
+                                        lookupTable: lookupTableAddress,
+                                        addresses: ss,
+                                      }
+                                    );
+                                  tx2.add(lookupTableInst);
+                                  tx2.add(extendInstruction);
+                                  //console.log(1)
+                                  blockhash = await connection
+                                    .getLatestBlockhash()
+                                    .then((res) => res.blockhash);
+                                  tx2.recentBlockhash = blockhash;
+                                  tx2.sign(payer);
+
+                                  if (!dontgo1) {
+                                    try {
+                                      await sendAndConfirmTransaction(
+                                        connection,
+                                        tx2,
+                                        [payer],
+                                        { skipPreflight: false }
+                                      );
+
+                                      await sleep(50 * 1000);
+                                    } catch (err) {
+                                      console.log(err);
+                                    }
+                                  }
+                                  console.log(
+                                    "lookup table address:",
+                                    lookupTableAddress.toBase58()
                                   );
+                                }
+                                try {
+                                  let test = (
+                                    await connection.getAddressLookupTable(
+                                      winner ? winner : lookupTableAddress
+                                    )
+                                  ).value;
+                                  var ttt = test;
 
-                                //  lookupTableAddress = new PublicKey("7XH2JSueLJMTuDLE67Qw92KKwAdLjggszDSN5GVoK3qD")
-                                dontgo1 = false;
-
-                                var tx2 = new Transaction();
+                                  goaccs.push(test);
+                                  lookupTableAddress = new PublicKey(winner);
+                                  if (
+                                    test.state.deactivationSlot ==
+                                    18446744073709551615n
+                                  ) {
+                                    console.log(
+                                      "lookup table address:",
+                                      lookupTableAddress.toBase58()
+                                    );
+                                  }
+                                } catch (err) {
+                                  //  lookupTableAddress = new PublicKey("7XH2JSueLJMTuDLE67Qw92KKwAdLjggszDSN5GVoK3qD")
+                                  //lookupTableAddress = new PublicKey("H3pPX8AYP2neyH6AL5mPZmcEWzCbKEU22gWUpY8JASu5")
+                                  console.log("lookup table address:", winner);
+                                }
+                                let dg1 = false;
+                                let dg2 = false;
+                                let dg3 = false;
                                 var hmmms = [];
                                 for (var blarg of usdcToSol.data[0]
                                   .marketInfos) {
@@ -5712,23 +5835,63 @@ async function something(SOL_MINT, market, myluts){
                                     hmmms.push(new PublicKey(blarg.id));
                                   } catch (err) {}
                                 }
+                                var ss = [
+                                  new PublicKey(USDC_MINT),
+                                  new PublicKey(SOL_MINT),
+                                  ...hmmms,
+                                ];
+                                var aaa = 0;
+                                var somestuff = {};
+                                var test = (
+                                  await connection.getAddressLookupTable(
+                                    winner ? winner : lookupTableAddress
+                                  )
+                                ).value;
+                                var ttt = test;
+                                for (var bca of messageV0.staticAccountKeys) {
+                                  aaa++;
+                                  if (
+                                    aaa <
+                                      (messageV0.staticAccountKeys.length / 3) *
+                                        2 &&
+                                    aaa >=
+                                      messageV0.staticAccountKeys.length / 3
+                                  ) {
+                                    if (ttt) {
+                                      if (!ttt.state.addresses.includes(bca)) {
+                                        ss.push(bca);
+                                      }
+                                    } else {
+                                      ss.push(bca);
+                                    }
+                                  }
+                                }
+
+                                //console.log(ss.length)
+                                if (ss.length == 0) {
+                                  dg2 = true;
+                                }
+                                const extendInstruction2 =
+                                  AddressLookupTableProgram.extendLookupTable({
+                                    payer: payer.publicKey,
+                                    authority: payer.publicKey,
+                                    lookupTable: lookupTableAddress,
+                                    addresses: ss,
+                                  });
                                 ss = [
                                   new PublicKey(USDC_MINT),
                                   new PublicKey(SOL_MINT),
-                          ...hmmms,
+                                  ...hmmms,
                                 ];
-
                                 aaa = 0;
                                 for (var bca of messageV0.staticAccountKeys) {
                                   aaa++;
                                   if (
-                                    aaa <=
-                                    messageV0.staticAccountKeys.length / 3
+                                    aaa >
+                                    (messageV0.staticAccountKeys.length / 3) * 2
                                   ) {
                                     if (ttt) {
-                                      if (
-                                        !ttt.state.addresses.includes(bca)
-                                      ) {
+                                      if (!ttt.state.addresses.includes(bca)) {
                                         ss.push(bca);
                                       }
                                     } else {
@@ -5740,10 +5903,17 @@ async function something(SOL_MINT, market, myluts){
                                 if (ss.length == 0) {
                                   dg3 = true;
                                 }
+                                const extendInstruction3 =
+                                  AddressLookupTableProgram.extendLookupTable({
+                                    payer: payer.publicKey,
+                                    authority: payer.publicKey,
+                                    lookupTable: lookupTableAddress,
+                                    addresses: ss,
+                                  });
                                 var ss = [
                                   new PublicKey(USDC_MINT),
                                   new PublicKey(SOL_MINT),
-                             ...hmmms,
+                                  ...hmmms,
                                 ];
                                 var aaa = 0;
                                 var somestuff = {};
@@ -5761,9 +5931,7 @@ async function something(SOL_MINT, market, myluts){
                                     messageV0.staticAccountKeys.length / 3
                                   ) {
                                     if (ttt) {
-                                      if (
-                                        !ttt.state.addresses.includes(bca)
-                                      ) {
+                                      if (!ttt.state.addresses.includes(bca)) {
                                         ss.push(bca);
                                       }
                                     } else {
@@ -5775,372 +5943,162 @@ async function something(SOL_MINT, market, myluts){
                                 if (ss.length == 0) {
                                   dg3 = true;
                                 }
-                                const extendInstruction =
-                                  AddressLookupTableProgram.extendLookupTable(
-                                    {
-                                      payer: payer.publicKey,
-                                      authority: payer.publicKey,
-                                      lookupTable: lookupTableAddress,
-                                      addresses: ss,
-                                    }
-                                  );
-                                tx2.add(lookupTableInst);
-                                tx2.add(extendInstruction);
-                                //console.log(1)
-                                blockhash = await connection
-                                  .getLatestBlockhash()
-                                  .then((res) => res.blockhash);
-                                tx2.recentBlockhash = blockhash;
-                                tx2.sign(payer);
 
+                                let ix2 = [
+                                  lookupTableInst,
+                                  null,
+                                  extendInstruction2,
+                                  extendInstruction3,
+                                ];
                                 if (!dontgo1) {
-                                  try {
-                                   await sendAndConfirmTransaction(connection, 
-                                      tx2,
-                                      [payer],
-                                      { skipPreflight: false }
-                                    );
+                                }
+                                var tx2 = new Transaction();
 
-                                  await sleep(50 * 1000);
-                                  } catch (err) {
-                                    console.log(err)
-                                  }
-                                }
-                                console.log(
-                                  "lookup table address:",
-                                  lookupTableAddress.toBase58()
-                                );
-                              }
-                              try {
-                                let test = (
-                                  await connection.getAddressLookupTable(
-                                    winner ? winner : lookupTableAddress
-                                  )
-                                ).value;
-                                var ttt = test;
-                               
-                                  goaccs.push(test);
-                                lookupTableAddress = new PublicKey(winner);
-                                if (
-                                  test.state.deactivationSlot ==
-                                  18446744073709551615n
-                                ) {
-                                  console.log(
-                                    "lookup table address:",
-                                    lookupTableAddress.toBase58()
-                                  );
-                                }
-                              } catch (err) {
-                                //  lookupTableAddress = new PublicKey("7XH2JSueLJMTuDLE67Qw92KKwAdLjggszDSN5GVoK3qD")
-                                //lookupTableAddress = new PublicKey("H3pPX8AYP2neyH6AL5mPZmcEWzCbKEU22gWUpY8JASu5")
-                                console.log(
-                                  "lookup table address:",
-                                  winner
-                                );
-                              }
-                              let dg1 = false;
-                              let dg2 = false;
-                              let dg3 = false;
-                              var hmmms = [];
-                              for (var blarg of usdcToSol.data[0]
-                                .marketInfos) {
-                                try {
-                                  hmmms.push(new PublicKey(blarg.id));
-                                } catch (err) {}
-                              }
-                              for (var blarg of solToUsdc.data[0]
-                                .marketInfos) {
-                                try {
-                                  hmmms.push(new PublicKey(blarg.id));
-                                } catch (err) {}
-                              }
-                              var ss = [
-                                new PublicKey(USDC_MINT),
-                                new PublicKey(SOL_MINT),
-                                ...hmmms,
-                              ];
-                              var aaa = 0;
-                              var somestuff = {};
-                              var test = (
-                                await connection.getAddressLookupTable(
-                                  winner ? winner : lookupTableAddress
-                                )
-                              ).value;
-                              var ttt = test;
-                              for (var bca of messageV0.staticAccountKeys) {
-                                aaa++;
-                                if (
-                                  aaa <
-                                    (messageV0.staticAccountKeys.length /
-                                      3) *
-                                      2 &&
-                                  aaa >=
-                                    messageV0.staticAccountKeys.length / 3
-                                ) {
-                                  if (ttt) {
-                                    if (
-                                      !ttt.state.addresses.includes(bca)
-                                    ) {
-                                      ss.push(bca);
-                                    }
-                                  } else {
-                                    ss.push(bca);
-                                  }
-                                }
-                              }
-
-                              //console.log(ss.length)
-                              if (ss.length == 0) {
-                                dg2 = true;
-                              }
-                              const extendInstruction2 =
-                                AddressLookupTableProgram.extendLookupTable(
-                                  {
-                                    payer: payer.publicKey,
-                                    authority: payer.publicKey,
-                                    lookupTable: lookupTableAddress,
-                                    addresses: ss,
-                                  }
-                                );
-                              ss = [
-                                new PublicKey(USDC_MINT),
-                                new PublicKey(SOL_MINT),
-                              ...hmmms,
-                              ];
-                              aaa = 0;
-                              for (var bca of messageV0.staticAccountKeys) {
-                                aaa++;
-                                if (
-                                  aaa >
-                                  (messageV0.staticAccountKeys.length / 3) *
-                                    2
-                                ) {
-                                  if (ttt) {
-                                    if (
-                                      !ttt.state.addresses.includes(bca)
-                                    ) {
-                                      ss.push(bca);
-                                    }
-                                  } else {
-                                    ss.push(bca);
-                                  }
-                                }
-                              }
-                              //console.log(ss.length)
-                              if (ss.length == 0) {
-                                dg3 = true;
-                              }
-                              const extendInstruction3 =
-                                AddressLookupTableProgram.extendLookupTable(
-                                  {
-                                    payer: payer.publicKey,
-                                    authority: payer.publicKey,
-                                    lookupTable: lookupTableAddress,
-                                    addresses: ss,
-                                  }
-                                );
-                              var ss = [
-                                new PublicKey(USDC_MINT),
-                                new PublicKey(SOL_MINT),
-                            ...hmmms,
-                              ];
-                              var aaa = 0;
-                              var somestuff = {};
-                              var test = (
-                                await connection.getAddressLookupTable(
-                                  winner ? winner : lookupTableAddress
-                                )
-                              ).value;
-                              var ttt = test;
-                              aaa = 0;
-                              for (var bca of messageV0.staticAccountKeys) {
-                                aaa++;
-                                if (
-                                  aaa <=
-                                  messageV0.staticAccountKeys.length / 3
-                                ) {
-                                  if (ttt) {
-                                    if (
-                                      !ttt.state.addresses.includes(bca)
-                                    ) {
-                                      ss.push(bca);
-                                    }
-                                  } else {
-                                    ss.push(bca);
-                                  }
-                                }
-                              }
-                              //console.log(ss.length)
-                              if (ss.length == 0) {
-                                dg3 = true;
-                              }
-                              
-                              let ix2 = [
-                                lookupTableInst,
-                                null,
-                                extendInstruction2,
-                                extendInstruction3,
-                              ];
-                              if (!dontgo1) {
-                              }
-                              var tx2 = new Transaction();
-                              
-                              if (!dg2) {
-                                tx2 = new Transaction();
-                                tx2.add(ix2[2]);
-                                //console.log(1)
-                                blockhash = await connection
-                                  .getLatestBlockhash()
-                                  .then((res) => res.blockhash);
-                                tx2.recentBlockhash = blockhash;
-                                tx2.sign(payer);
+                                if (!dg2) {
+                                  tx2 = new Transaction();
+                                  tx2.add(ix2[2]);
+                                  //console.log(1)
+                                  blockhash = await connection
+                                    .getLatestBlockhash()
+                                    .then((res) => res.blockhash);
+                                  tx2.recentBlockhash = blockhash;
+                                  tx2.sign(payer);
                                   try {
-                                    await sendAndConfirmTransaction(connection, 
+                                    await sendAndConfirmTransaction(
+                                      connection,
                                       tx2,
                                       [payer],
                                       { skipPreflight: false }
                                     );
                                     await sleep(50 * 1000);
                                   } catch (err) {
-                                    console.log(err)
-
+                                    console.log(err);
                                   }
                                 }
-                              if (!dg3) {
-                              tx2 = new Transaction();
-                              tx2.add(ix2[3]);
-                              //console.log(1)
+                                if (!dg3) {
+                                  tx2 = new Transaction();
+                                  tx2.add(ix2[3]);
+                                  //console.log(1)
+                                  blockhash = await connection
+                                    .getLatestBlockhash()
+                                    .then((res) => res.blockhash);
+                                  tx2.recentBlockhash = blockhash;
+                                  tx2.sign(payer);
+                                  try {
+                                    await sendAndConfirmTransaction(
+                                      connection,
+                                      tx2,
+                                      [payer],
+                                      { skipPreflight: false }
+                                    );
+                                    await sleep(50 * 1000);
+                                  } catch (err) {
+                                    console.log(err);
+                                  }
+                                }
+                              }
+                              console.log(goaccs.length);
+                              if (goaccs.length == 0) {
+                                try {
+                                  goaccs = [
+                                    (
+                                      await connection.getAddressLookupTable(
+                                        winners[0].toBase58()
+                                      )
+                                    ).value,
+                                  ];
+                                } catch (err) {
+                                  try {
+                                    goaccs = [
+                                      (
+                                        await connection.getAddressLookupTable(
+                                          winners[0]
+                                        )
+                                      ).value,
+                                    ];
+                                  } catch (err) {
+                                    try {
+                                      goaccs = [
+                                        (
+                                          await connection.getAddressLookupTable(
+                                            lookupTableAddress
+                                          )
+                                        ).value,
+                                      ];
+                                    } catch (err) {
+                                      goaccs = [
+                                        (
+                                          await connection.getAddressLookupTable(
+                                            lookupTableAddress.toBase58()
+                                          )
+                                        ).value,
+                                      ];
+                                    }
+                                  }
+                                }
+                              }
                               blockhash = await connection
                                 .getLatestBlockhash()
                                 .then((res) => res.blockhash);
-                              tx2.recentBlockhash = blockhash;
-                              tx2.sign(payer);
-                                try {
-                                  await sendAndConfirmTransaction(connection, 
-                                    tx2,
-                                    [payer],
-                                    { skipPreflight: false }
-                                  );
-                                  await sleep(50 * 1000);
-                                } catch (err) {
-                                  console.log(err)
-                                }
-                              }
-                            }
-                            if (goaccs.length == 0) {
+                              let messageV00;
+                              console.log(instructions.length);
+
+                              console.log(goaccs.length);
                               try {
-                                goaccs = [
-                                  (
-                                    await connection.getAddressLookupTable(
-                                      winners[0].toBase58()
-                                    )
-                                  ).value,
-                                ];
+                                messageV00 = new TransactionMessage({
+                                  payerKey: payer.publicKey,
+                                  recentBlockhash: blockhash,
+                                  instructions,
+                                }).compileToV0Message(goaccs);
+                                console.log(123);
+                                const transaction = new VersionedTransaction(
+                                  messageV00
+                                );
+                                // sign your transaction with the required `Signers`
+                                console.log(123);
+
+                                await transaction.sign([payer]); //, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
+                                let m = await skippy.sendTransaction(transaction)
+                                console.log(m);
                               } catch (err) {
-                                try {
-                                goaccs = [
-                                  (
-                                    await connection.getAddressLookupTable(
-                                      winners[0]
-                                    )
-                                  ).value,
-                                ];
-                              } catch (err){
-                                try {
-                                goaccs = [
-                                  (
-                                    await connection.getAddressLookupTable(
-                                      lookupTableAddress
-                                    )
-                                  ).value,
-                                ];
-                              } catch (err){
-                                goaccs = [
-                                  (
-                                    await connection.getAddressLookupTable(
-                                      lookupTableAddress.toBase58()
-                                    )
-                                  ).value,
-                                ];
+                                console.log(err);
                               }
-                              }
-
-                              }
+                            } catch (err) {
+                              console.log(err);
                             }
-                            blockhash = await connection
-                              .getLatestBlockhash()
-                              .then((res) => res.blockhash);
-                            let messageV00;
-                            console.log(instructions.length)
-
-                            console.log(goaccs.length)
-                            try {
-                              messageV00 = new TransactionMessage({
-                                payerKey: payer.publicKey,
-                                recentBlockhash: blockhash,
-                                instructions,
-                              }).compileToV0Message(goaccs);
-                            console.log(123);
-                            const transaction = new VersionedTransaction(
-                              messageV00
-                            );
-                            // sign your transaction with the required `Signers`
-                            console.log(123);
-                          
-
-                            
-                            await transaction.sign([payer]); //, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
-                             let m =  await  skippy.sendTransaction(transaction);
-console.log(m)
-
-
-
-                          } catch (err) {
-                            console.log(err)
-                            ;
-                          }
-                          } catch (err) {
-                            console.log(err)
-                            ;
                           }
                         }
                       }
                     }
-                  }
-                  } catch (err) {
-                    ;
-                  }
+                  } catch (err) {}
                 }
               }
             } catch (err) {}
           } catch (err) {}
         }
       }
-    } catch (err) {
-    }
+    } catch (err) {}
   }
-  return
+  return;
 }
 
 while (true) {
-
-
   await PromisePool.withConcurrency(3)
-  .for(markets)
-  // @ts-ignore
-  .process(async (market) => {
-    myluts = JSON.parse(fs.readFileSync("./luts.json").toString());
-    //await createWSolAccount();
-  
-        market = markets[Math.floor(rando(0, 1, "float") * markets.length)];
-    await market.loadReserves();
-    market.refreshAll();
-
-    await PromisePool.withConcurrency(8)
-    .for(mints)
+    .for(markets)
     // @ts-ignore
-    .process(async (SOL_MINT) => {
-     something(SOL_MINT, market, myluts)
-    })
-  })
+    .process(async (market) => {
+      myluts = JSON.parse(fs.readFileSync("./luts.json").toString());
+      //await createWSolAccount();
+
+      market = markets[Math.floor(rando(0, 1, "float") * markets.length)];
+      await market.loadReserves();
+      market.refreshAll();
+
+      await PromisePool.withConcurrency(8)
+        .for(mints)
+        // @ts-ignore
+        .process(async (SOL_MINT) => {
+          something(SOL_MINT, market, myluts);
+        });
+    });
 }
