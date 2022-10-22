@@ -5726,7 +5726,7 @@ async function something(SOL_MINT, market, myluts){
                                 ss = [
                                   new PublicKey(USDC_MINT),
                                   new PublicKey(SOL_MINT),
-                                  ...hmmms,
+                               //   ...hmmms,
                                 ];
 
                                 aaa = 0;
@@ -5754,7 +5754,7 @@ async function something(SOL_MINT, market, myluts){
                                 var ss = [
                                   new PublicKey(USDC_MINT),
                                   new PublicKey(SOL_MINT),
-                                  ...hmmms,
+                                 // ...hmmms,
                                 ];
                                 var aaa = 0;
                                 var somestuff = {};
@@ -5866,7 +5866,7 @@ async function something(SOL_MINT, market, myluts){
                               var ss = [
                                 new PublicKey(USDC_MINT),
                                 new PublicKey(SOL_MINT),
-                                ...hmmms,
+                              //  ...hmmms,
                               ];
                               var aaa = 0;
                               var somestuff = {};
@@ -5914,7 +5914,7 @@ async function something(SOL_MINT, market, myluts){
                               ss = [
                                 new PublicKey(USDC_MINT),
                                 new PublicKey(SOL_MINT),
-                                ...hmmms,
+                             //   ...hmmms,
                               ];
                               aaa = 0;
                               for (var bca of messageV0.staticAccountKeys) {
@@ -5951,7 +5951,7 @@ async function something(SOL_MINT, market, myluts){
                               var ss = [
                                 new PublicKey(USDC_MINT),
                                 new PublicKey(SOL_MINT),
-                                ...hmmms,
+                              //  ...hmmms,
                               ];
                               var aaa = 0;
                               var somestuff = {};
