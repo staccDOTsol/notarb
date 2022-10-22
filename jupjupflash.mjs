@@ -1590,19 +1590,19 @@ console.log("");
 console.log(""); //cool
 var markets = [
   await SolendMarket.initialize(
-    connection,
+    connection2,
 
     "production", // optional environment argument
     "GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q" //"GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q"
   ),
   await SolendMarket.initialize(
-    connection,
+    connection2,
 
     "production", // optional environment argument
     "Ckya2fwCXDqTUg9fnWbajR6YLcSfQmPxxy5MyAoZXgyb" //"GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q"
   ),
   await SolendMarket.initialize(
-    connection,
+    connection2,
 
     "production" // optional environment argument
   )
