@@ -1520,7 +1520,7 @@ let arg = {
 for (var add of arg.data) {
   for (var tok of add.tokens) {
     if (!mints.includes(tok.address)) {
-        mints.push(tok.address);
+       mints.push(tok.address);
     }
   }
 }
@@ -1530,7 +1530,7 @@ console.log(mints.length);
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
-      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&swapMode=ExactIn`
+      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=99&swapMode=ExactIn`
     )
     .json();
 
@@ -5240,7 +5240,7 @@ async function something(SOL_MINT, market, myluts) {
           try {
             let initial = rando(true, false)
               ? Math.ceil(
-                  (rando(1, 2, "float") / reserve.stats.assetPriceUSD) *
+                  (rando(1, 5, "float") / reserve.stats.assetPriceUSD) *
                     10 ** dec
                 )
               : Math.ceil(
