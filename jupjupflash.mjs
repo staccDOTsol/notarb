@@ -5686,7 +5686,7 @@ async function something(SOL_MINT, market, myluts){
 
                             if (
                               messageV0.staticAccountKeys.length >
-                              w + 15
+                              w + 1
                             ) {
                               var slot = (
                                 await connection2.getLatestBlockhashAndContext()
