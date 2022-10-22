@@ -89,22 +89,22 @@ process.on('unhandledRejection', (reason, promise) => {
 // invalid cache. I will recommend using a paid RPC endpoint.
 let connection = new Connection(
   process.env.NODE_ENV == "production"
-    ? "https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4"
-    : "https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4",
+    ? "https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ"
+    : "https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ",
   { commitment: "confirmed" }
 );
 var connection2 = new Connection(
-  "https://solana--mainnet.datahub.figment.io/apikey/1fc6d8319bddaed4e21e37e49c16b4c2",
+  "https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr",
   { commitment: "confirmed" }
 );
 
 var skippy  = new Connection(
-  "https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4",
+  "https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ",
   { commitment: "confirmed", skipPreflight: true }
 );
 process.env.SEARCHER
   ? (connection2 = new Connection(
-      "https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4"
+      "https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ"
     ))
   : (connection2 = connection2);
 
@@ -116,8 +116,8 @@ const wallet = new Wallet(
         fs
           .readFileSync(
             (process.env.NODE_ENV == "production"
-              ? "/home/jdunn4632"
-              : "/home/jdunn4632") + "/notjaregm.json"
+              ? "/Users/jarettdunn"
+              : "/Users/jarettdunn") + "/notjaregm.json"
           )
           .toString()
       )
@@ -130,8 +130,8 @@ const payer = Keypair.fromSecretKey(
       fs
         .readFileSync(
           (process.env.NODE_ENV == "production"
-            ? "/home/jdunn4632"
-            : "/home/jdunn4632") + "/notjaregm.json"
+            ? "/Users/jarettdunn"
+            : "/Users/jarettdunn") + "/notjaregm.json"
         )
         .toString()
     )
@@ -1592,22 +1592,8 @@ var markets = [
   await SolendMarket.initialize(
     connection,
 
-    "production", // optional environment argument
-    "GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q" //"GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q"
-  ),
-  await SolendMarket.initialize(
-    connection,
-
-    "production", // optional environment argument
-    "Ckya2fwCXDqTUg9fnWbajR6YLcSfQmPxxy5MyAoZXgyb" //"GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q"
-  ),
-  await SolendMarket.initialize(
-    connection,
-
     "production" // optional environment argument
   )
-];
-/*
 ,await SolendMarket.initialize(
   connection,
   
@@ -1618,8 +1604,7 @@ var markets = [
   
   "production", // optional environment argument
   "GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q"
-)
-*/
+)]
 let configs = [
   {
     name: "main",
@@ -5235,10 +5220,9 @@ async function something(SOL_MINT, market, myluts){
   if (true) {
     //["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "So11111111111111111111111111111111111111112"]){
     try {
-      var reserve = market.reserves[rando(0, market.reserves.length)]; //market.reserves.find(res => res.config.liquidityToken.mint ===ç);
+      var reserve = market.reserves[Math.floor(Math.random()*market.reserves.length)]; //market.reserves.find(res => res.config.liquidityToken.mint ===ç);
       var USDC_MINT = reserve.config.liquidityToken.mint;
-      //console.log(USDC_MINT)
-      if (USDC_MINT != "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v") {
+      if (true){//USDC_MINT != "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v") {
         //has.includes(USDC_MINT) ){
 
         var dec = reserve.config.liquidityToken.decimals;
@@ -6141,7 +6125,7 @@ console.log(m)
 while (true) {
 
 
-  await PromisePool.withConcurrency(2)
+  await PromisePool.withConcurrency(3)
   .for(markets)
   // @ts-ignore
   .process(async (market) => {
@@ -6152,7 +6136,7 @@ while (true) {
     await market.loadReserves();
     market.refreshAll();
 
-    await PromisePool.withConcurrency(56)
+    await PromisePool.withConcurrency(8)
     .for(mints)
     // @ts-ignore
     .process(async (SOL_MINT) => {

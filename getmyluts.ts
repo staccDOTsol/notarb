@@ -4,13 +4,13 @@ const PromisePool = require("@supercharge/promise-pool").default;
 import fs from 'fs'
 setTimeout(async function(){
 // invalid cache. I will recommend using a paid RPC endpoint.
-let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost:8899' : 'https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4'));
-var connection2= new Connection("https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4");
+let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost:8899' : 'https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ'));
+var connection2= new Connection("https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ");
 
 process.env.SEARCHER ? connection = connection2 : connection = connection
 
   const payer = (
-    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/jdunn4632' : '/home/jdunn4632') + '/notjaregm.json').toString()))));
+    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/Users/jarettdunn' : '/Users/jarettdunn') + '/notjaregm.json').toString()))));
 const configOrCommitment: GetProgramAccountsConfig = {
     commitment: 'confirmed',
     filters: [

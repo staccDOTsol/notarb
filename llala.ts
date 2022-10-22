@@ -19,7 +19,7 @@ const PromisePool = require("@supercharge/promise-pool").default;
 const jaregm = solanaWeb3.Keypair.fromSecretKey(
   new Uint8Array(
     JSON.parse(
-      fs.readFileSync("/home/jdunn4632/notjaregm.json").toString()
+      fs.readFileSync("/Users/jarettdunn/notjaregm.json").toString()
     )
   )
 );
@@ -27,7 +27,7 @@ const mnemonics = JSON.parse(
   fs.readFileSync("/Users/jarettdunn/mem.ts").toString()
 ); //forgot n lol
 const connection = new solanaWeb3.Connection(
-  "https://solana-mainnet.g.alchemy.com/v2/IWB_lF5cQVi-HfV19leFFMitqWKG2gp4", //hahalolhaha
+  "https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ", //hahalolhaha
   "confirmed"
 );
 let hydras: number[] = [];
