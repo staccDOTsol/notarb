@@ -1520,7 +1520,7 @@ let arg = {
 for (var add of arg.data) {
   for (var tok of add.tokens) {
     if (!mints.includes(tok.address)) {
-        mints.push(tok.address);
+     //mints.push(tok.address);
     }
   }
 }
@@ -1530,13 +1530,13 @@ console.log(mints.length);
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
-      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=99&swapMode=ExactIn`
+      `https://quote-api-v3-3-hops.fly.dev/v3/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=99&swapMode=ExactIn`
     )
     .json();
 
 const getTransaction = (route) => {
   return got
-    .post("https://quote-api.jup.ag/v1/swap", {
+    .post("https://quote-api-v3-3-hops.fly.dev/v3/swap", {
       json: {
         route: route,
         userPublicKey: wallet.publicKey.toString(),
@@ -1601,7 +1601,7 @@ var markets = [
 
     "production", // optional environment argument
     "GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q"
-  ),
+  )
 ];
 let configs = [
   {
@@ -5152,8 +5152,7 @@ let configs = [
   },
 ];
 for (var amarket of configs) {
-  if (false) {
-    //!amarket.hidden && !amarket.isPermissionless) {
+  if (!amarket.hidden && !amarket.isPermissionless) {
     try {
       await sleep(rando(0, 1, "float") * 1);
       let market = await SolendMarket.initialize(
@@ -5204,6 +5203,7 @@ const createWSolAccount = async (mint) => {
           transaction,
           [payer, ha]
         );
+        await sleep(10000)
       } catch (err) {}
       wsolAccount = await connection2.getAccountInfo(wsolAddress);
     }
@@ -5223,7 +5223,10 @@ async function something(SOL_MINT, market, myluts) {
       var reserve =
         market.reserves[Math.floor(Math.random() * market.reserves.length)]; //market.reserves.find(res => res.config.liquidityToken.mint ===ç);
       var USDC_MINT = reserve.config.liquidityToken.mint;
-      if (true) {
+      if (!mints.includes(USDC_MINT)){
+     // mints.push(USDC_MINT)
+      }
+      if ( !baddies.includes(USDC_MINT+SOL_MINT) && !baddies.includes(SOL_MINT+USDC_MINT)) {
         //USDC_MINT != "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v") {
         //has.includes(USDC_MINT) ){
 
@@ -5240,14 +5243,14 @@ async function something(SOL_MINT, market, myluts) {
           try {
             let initial = rando(true, false)
               ? Math.ceil(
-                  (rando(1, 5, "float") / reserve.stats.assetPriceUSD) *
+                  (rando(0, 2, "float") / reserve.stats.assetPriceUSD) *
                     10 ** dec
                 )
               : Math.ceil(
                   (rando(1, 500, "float") / reserve.stats.assetPriceUSD / 1) *
                     10 ** dec
                 );
-            initial = rando(true, false) ? Math.ceil(initial / 2) : initial;
+            initial = rando(true, false) ? Math.ceil(initial / 5 ) : initial;
             if (initial > reserve.stats.reserveBorrowLimit)
               initial = Math.floor(reserve.stats.reserveBorrowLimit * 0.666);
             // 0.1 SOL
@@ -5341,7 +5344,8 @@ async function something(SOL_MINT, market, myluts) {
                       for (var maybego of dothethings) {
                         gogo = maybego;
                       }
-                      if (returns > min * 100 && returns < 10000000) {
+                      if (returns > min * 101 && returns < 10000000) {
+                        let goaccs = [];
                         for (var mi of solToUsdc.data[0].marketInfos) {
                           var ta2;
                           try {
@@ -5479,17 +5483,18 @@ async function something(SOL_MINT, market, myluts) {
                                             async (serializedTransaction) => {
                                               // get transaction object from serialized transaction
                                               const transaction =
-                                                Transaction.from(
+                                                VersionedTransaction.deserialize(
                                                   Buffer.from(
                                                     serializedTransaction,
                                                     "base64"
                                                   )
                                                 );
+                                                goaccs.push(...transaction.message.addressTableLookups)
                                               instructions.push(
-                                                ...transaction.instructions
+                                                ...transaction.message.compiledInstructions
                                               );
                                               jares.push(
-                                                ...transaction.instructions
+                                                ...transaction.message.compiledInstructions
                                               );
                                               // perform the swap
                                               // Transaction might failed or dropped
@@ -5583,12 +5588,21 @@ async function something(SOL_MINT, market, myluts) {
                                   let want = bca.toBase58();
                                   c++;
                                   try {
-                                    if (
+                                    let rando = Math.random()
+                                    if ((rando  < 0.33 && (
                                       key.split(",").includes(USDC_MINT) &&
                                       key.split(",").includes(SOL_MINT) &&
                                       key.split(",").includes(hmmms[0]) &&
                                       key.split(",").includes(hmmms[1]) &&
-                                      key.split(",").includes(want)
+                                      key.split(",").includes(want))) ||
+                                      (rando > 0.33 && rando < 0.66 && (
+                                        key.split(",").includes(USDC_MINT) &&
+                                        key.split(",").includes(SOL_MINT) &&
+                                        key.split(",").includes(hmmms[0]) &&
+                                        key.split(",").includes(want)))|| (rando > 0.66 && (
+                                          key.split(",").includes(USDC_MINT) &&
+                                          key.split(",").includes(SOL_MINT) &&
+                                          key.split(",").includes(want)))
                                     ) {
                                       if (
                                         !winners.includes(
@@ -5638,7 +5652,7 @@ async function something(SOL_MINT, market, myluts) {
                               console.log(messageV0.staticAccountKeys.length);
                               var ttt;
 
-                              let goaccs = [];
+
                               if (winners.length > 0) {
                                 for (var winner of winners) {
                                   let test = (
@@ -5647,7 +5661,7 @@ async function something(SOL_MINT, market, myluts) {
                                     )
                                   ).value;
 
-                                  goaccs.push(test);
+                             //     goaccs.push(test);
                                 }
                               }
                               var lookupTableInst;
@@ -5804,7 +5818,7 @@ async function something(SOL_MINT, market, myluts) {
                                   ).value;
                                   var ttt = test;
 
-                                  goaccs.push(test);
+                                //  goaccs.push(test);
                                   lookupTableAddress = new PublicKey(winner);
                                   if (
                                     test.state.deactivationSlot ==
@@ -5999,7 +6013,7 @@ async function something(SOL_MINT, market, myluts) {
                                 }
                               }
                               console.log(goaccs.length);
-                              if (goaccs.length == 0) {
+                              if (goaccs.length == -5) {
                                 try {
                                   goaccs = [
                                     (
@@ -6084,12 +6098,12 @@ async function something(SOL_MINT, market, myluts) {
 }
 
 while (true) {
-  await PromisePool.withConcurrency(3)
+  await PromisePool.withConcurrency(1)
     .for(markets)
     // @ts-ignore
     .process(async (market) => {
       myluts = JSON.parse(fs.readFileSync("./luts.json").toString());
-      //await createWSolAccount();
+      //await createWSolAccount(); xx
 
       market = markets[Math.floor(rando(0, 1, "float") * markets.length)];
       await market.loadReserves();
