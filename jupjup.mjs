@@ -5370,8 +5370,7 @@ async function something(SOL_MINT, market, myluts) {
                       if (returns > -0.1)
                         console.log(
                           (
-                            (initial / 10 ** dec) *
-                            reserve.stats.assetPriceUSD
+                            (initial / 10 ** dec)
                           ).toString() +
                             " initial, " +
                             returns.toString() +
