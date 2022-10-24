@@ -5552,6 +5552,7 @@ async function something(SOL_MINT, market, myluts) {
                                         swapTransaction,
                                         cleanupTransaction,
                                       } = await getTransaction(route);
+                                      console.log(instructions.length)
 
                                       await Promise.all(
                                         [
