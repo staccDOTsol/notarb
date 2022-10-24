@@ -5548,7 +5548,6 @@ index+=","+mi.id
                               let blargs = []
                               for (var arg of Object.keys(argh)){
                                 mematey++
-                                for (var blarg of index.split(',')){
                                   if (arg.split(',').includes(index.split(',')[0])
                                 && arg.split(',').includes(index.split(',')[1]) &&
                                 arg.split(',').includes(index.split(',')[Math.floor(Math.random() * index.split(',').length)])
@@ -5559,7 +5558,6 @@ index+=","+mi.id
 
                                   }
                                 }
-                              }
                               let jjs = [];
                               console.log(instructions.length)
                               console.log(instructions.length)
