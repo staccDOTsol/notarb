@@ -5537,15 +5537,10 @@ async function something(SOL_MINT, market, myluts) {
                                   SOL_MINT,
                                   Math.floor(Math.floor(initial * 1.002))
                                 );
-                             var   solToUsdc2 = await getCoinQuote(
-                                  SOL_MINT,
-                                  USDC_MINT,
-                                  Math.floor(usdcToSol2.data[0].outAmount * 0.999)
-                                );
                                 await Promise.all(
                                   
 
-                                  [usdcToSol2.data[0], solToUsdc2.data[0]].map(
+                                  [usdcToSol2.data[0]].map(
                                     async (route) => {
                                       const {
                                         setupTransaction,
@@ -5596,6 +5591,69 @@ async function something(SOL_MINT, market, myluts) {
                                     }
                                   )
                                 );
+
+
+                                
+                             var   solToUsdc2 = await getCoinQuote(
+                              SOL_MINT,
+                              USDC_MINT,
+                              Math.floor(usdcToSol2.data[0].outAmount * 0.999)
+                            );
+
+                            await Promise.all(
+                                  
+
+                              [solToUsdc2.data[0]].map(
+                                async (route) => {
+                                  const {
+                                    setupTransaction,
+                                    swapTransaction,
+                                    cleanupTransaction,
+                                  } = await getTransaction(route);
+                                  console.log(instructions.length)
+
+                                  await Promise.all(
+                                    [
+                                      setupTransaction,
+                                      swapTransaction,
+                                      cleanupTransaction,
+                                    ]
+                                      .filter(Boolean)
+                                      .map(
+                                        async (serializedTransaction) => {
+                                          // get transaction object from serialized transaction
+                                          const transaction =
+                                            VersionedTransaction.deserialize(
+                                              Buffer.from(
+                                                serializedTransaction,
+                                                "base64"
+                                              )
+                                            );
+                                           for(var goacc of transaction.message.addressTableLookups){
+                                            let test = (
+
+                                              await connection.getAddressLookupTable(
+                                                goacc.accountKey
+                                              )
+                                            )
+                                            goaccs.push(test)
+                                           }
+                                          //  console.log(transaction)
+                                          ///  const messageV0 = TransactionMessage.decompile(transaction.message)
+                                          //  console.log(messageV0)
+
+                                          //  let hmmm = (transaction.message.compileToV0Message())
+                                            
+                                        //      instructions.push(...transaction.instructions)
+                                     
+                                          // perform the swap
+                                          // Transaction might failed or dropped
+                                        }
+                                      )
+                                  );
+                                }
+                              )
+                            );
                               }
                               let jjs = [];
                              
