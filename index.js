@@ -95,12 +95,12 @@ for (var _i = 0, _a = somestuff2.data; _i < _a.length; _i++) {
 console.log(mints.length);
 var getCoinQuote = function (inputMint, outputMint, amount) {
     return got_1["default"]
-        .get("https://quote-api.jup.ag/v1/quote?outputMint=".concat(outputMint, "&inputMint=").concat(inputMint, "&amount=").concat(amount, "&slippage=0.2"))
+        .get("https://quote-api.jup.ag/v2/quote?outputMint=".concat(outputMint, "&inputMint=").concat(inputMint, "&amount=").concat(amount, "&slippage=0.2"))
         .json();
 };
 var getTransaction = function (route) {
     return got_1["default"]
-        .post("https://quote-api.jup.ag/v1/swap", {
+        .post("https://quote-api.jup.ag/v2/swap", {
         json: {
             route: route,
             userPublicKey: wallet.publicKey.toString(),

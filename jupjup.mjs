@@ -1527,19 +1527,19 @@ for (var add of arg.data) {
 }
 console.log(mints.length);
 //mints = []
-//https://quote-api.jup.ag/v1/quote
+//https://quote-api.jup.ag/v2/quote
 
 
 const getCoinQuoteold = (inputMint, outputMint, amount) =>
   got
     .get(
-      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=99&swapMode=ExactIn`
+      `https://quote-api.jup.ag/v2/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=99&swapMode=ExactIn`
     )
     .json();
 
 const getTransactionold = (route) => {
   return got
-    .post("https://quote-api.jup.ag/v1/swap", {
+    .post("https://quote-api.jup.ag/v2/swap", {
       json: {
         route: route,
         userPublicKey: wallet.publicKey.toString(),
@@ -5285,7 +5285,7 @@ async function something(SOL_MINT, market, myluts) {
                     Math.floor(Math.floor(initial * 1))
                   );
                   usdcToSol.data[0] = usdcToSol.data.find(
-                    (res) => res.marketInfos.length <= 2
+                    (res) => res.marketInfos.length <= 50
                   );
                 } catch (err) {
                   baddies.push(USDC_MINT + SOL_MINT);
@@ -5309,7 +5309,7 @@ async function something(SOL_MINT, market, myluts) {
                     );
 
                     solToUsdc.data[0] = solToUsdc.data.find(
-                      (res) => res.marketInfos.length <= 3
+                      (res) => res.marketInfos.length <= 50
                     );
                   } catch (err) {
                     baddies.push(SOL_MINT + USDC_MINT);

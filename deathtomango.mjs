@@ -72,13 +72,13 @@ console.log(mints.length)
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
-      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=5`
+      `https://quote-api.jup.ag/v2/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=5`
     )
     .json();
 
 const getTransaction = (route) => {
   return got
-    .post("https://quote-api.jup.ag/v1/swap", {
+    .post("https://quote-api.jup.ag/v2/swap", {
       json: {
         route: route,
         userPublicKey: wallet.publicKey.toString(),
