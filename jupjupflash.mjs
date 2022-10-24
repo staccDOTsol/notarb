@@ -5502,7 +5502,7 @@ index+=","+mi.id
                                 mematey++
 if (true){
                                 for (var blarg of index.split(',')){
-                                  if (arg.split(',').includes(blarg) && !blargs.includes(blarg)){
+                                  if (arg.split(',').includes(blarg) && blarg != USDC_MINT && blarg != SOL_MINT && !blargs.includes(blarg)){
                                     for (var hmph of Object.values(argh)[mematey]){                                        if ( !goaccs.includes(test)){
                                       blargs.push(blarg)
 
