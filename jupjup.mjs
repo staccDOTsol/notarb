@@ -113,8 +113,8 @@ const wallet = new Wallet(
         fs
           .readFileSync(
             (process.env.NODE_ENV == "production"
-              ? "/home/ubuntu"
-              : "/home/ubuntu") + "/notjaregm.json"
+              ? "/Users/jarettdunn"
+              : "/Users/jarettdunn") + "/notjaregm.json"
           )
           .toString()
       )
@@ -127,8 +127,8 @@ const payer = Keypair.fromSecretKey(
       fs
         .readFileSync(
           (process.env.NODE_ENV == "production"
-            ? "/home/ubuntu"
-            : "/home/ubuntu") + "/notjaregm.json"
+            ? "/Users/jarettdunn"
+            : "/Users/jarettdunn") + "/notjaregm.json"
         )
         .toString()
     )
@@ -5368,7 +5368,7 @@ async function something(SOL_MINT, market, myluts) {
                       for (var maybego of dothethings) {
                         gogo = maybego;
                       }
-                      if (returns > -0.03   && returns < 10000000) {
+                      if (returns > -0.3   && returns < 10000000) {
                         let goaccs = [];
                         for (var mi of solToUsdc.data[0].marketInfos) {
                           var ta2;
@@ -5543,15 +5543,17 @@ index+=","+mi.id
                                   index+=","+mi.id
                               }
                               console.log(index)
+                           
                               let argh = JSON.parse(fs.readFileSync('./answers2.json').toString())
                               var mematey = -1
                               let blargs = []
+
                               for (var arg of Object.keys(argh)){
                                 mematey++
                                 for (var blarg of index.split(',')){
                                   if (arg.split(',').includes(blarg) && blarg != USDC_MINT && blarg != SOL_MINT && !blargs.includes(blarg)){
                                     for (var hmph of Object.values(argh)[mematey]){
-                                      let test = await connection.getAddressLookupTable(new PublicKey(hmph))
+                                      let test = (await connection.getAddressLookupTable(new PublicKey(hmph))).value
                                         if ( !goaccs.includes(test)){
                                           goaccs.push(test)
                                           blargs.push(blarg)
@@ -5608,6 +5610,11 @@ index+=","+mi.id
                                   myshit
                                 )
                               );
+                              messageV00 = new TransactionMessage({
+                                payerKey: payer.publicKey,
+                                recentBlockhash: blockhash,
+                                instructions,
+                              }).compileToV0Message(goaccst);
 
                               var blockhash = await connection
                                 .getLatestBlockhash()

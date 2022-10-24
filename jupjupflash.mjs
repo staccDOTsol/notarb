@@ -5497,22 +5497,26 @@ index+=","+mi.id
                               let argh = JSON.parse(fs.readFileSync('./answers2.json').toString())
                               var mematey = -1
                               let blargs = []
+                             
                               for (var arg of Object.keys(argh)){
-                                
                                 mematey++
-if (true){
                                 for (var blarg of index.split(',')){
                                   if (arg.split(',').includes(blarg) && blarg != USDC_MINT && blarg != SOL_MINT && !blargs.includes(blarg)){
-                                    for (var hmph of Object.values(argh)[mematey]){                                        if ( !goaccs.includes(test)){
-                                      blargs.push(blarg)
-
-                                      goaccs.push(await connection.getAddressLookupTable(new PublicKey(hmph)))
+                                    for (var hmph of Object.values(argh)[mematey]){
+                                      let test = (await connection.getAddressLookupTable(new PublicKey(hmph))).value
+                                        if ( !goaccs.includes(test)){
+                                          goaccs.push(test)
+                                          blargs.push(blarg)
+                                      
+                                      
+                                    
+                                  }
+            
                                     }
-                                      }
+
                                   }
                                 }
                               }
-                            }
                               if (true) {
                                 jares = [];
                                 await Promise.all(
