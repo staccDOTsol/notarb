@@ -5571,11 +5571,10 @@ async function something(SOL_MINT, market, myluts) {
                                                   )
                                                 );
                                                for(var goacc of transaction.message.addressTableLookups){
-                                                console.log(goacc)
                                                 let test = (
 
                                                   await connection.getAddressLookupTable(
-                                                    goacc
+                                                    goacc.accountKey
                                                   )
                                                 )
                                                 goaccs.push(test)
