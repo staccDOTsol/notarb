@@ -5601,6 +5601,13 @@ async function something(SOL_MINT, market, myluts) {
                                   SOL_MINT,
                                   Math.floor(Math.floor(initial * 1.002))
                                 );
+                                await sleep(333)
+
+                             var   solToUsdc2 = await getCoinQuote(
+                              SOL_MINT,
+                              USDC_MINT,
+                              Math.floor(usdcToSol2.data[0].outAmount * 0.999)
+                            );
                                 await Promise.all(
                                   
 
@@ -5658,11 +5665,6 @@ async function something(SOL_MINT, market, myluts) {
 
 
                                 
-                             var   solToUsdc2 = await getCoinQuote(
-                              SOL_MINT,
-                              USDC_MINT,
-                              Math.floor(usdcToSol2.data[0].outAmount * 0.999)
-                            );
 
                             await Promise.all(
                                   
