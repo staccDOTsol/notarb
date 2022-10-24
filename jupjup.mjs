@@ -5541,12 +5541,14 @@ async function something(SOL_MINT, market, myluts) {
                                   SOL_MINT,
                                   Math.floor(Math.floor(initial * 1.002))
                                 );
+                                console.log(instructions.length)
                                 await sleep(400)
                              var   solToUsdc2 = await getCoinQuote(
                                   SOL_MINT,
                                   USDC_MINT,
                                   Math.floor(usdcToSol.data[0].outAmount * 0.999)
                                 );
+                                console.log(instructions.length)
                                 await Promise.all(
                                   
 
@@ -5602,6 +5604,11 @@ async function something(SOL_MINT, market, myluts) {
                                 );
                               }
                               let jjs = [];
+                              console.log(instructions.length)
+                              console.log(instructions.length)
+                              console.log(instructions.length)
+                              console.log(instructions.length)
+                              console.log(instructions.length)
                               /*
                              
                               // (connection, payer, tokenAccount, delegate.publicKey, payer, Math.floor(initial*1.1))
