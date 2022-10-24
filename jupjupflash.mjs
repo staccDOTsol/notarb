@@ -5271,7 +5271,23 @@ async function something(SOL_MINT, market, myluts) {
               : Math.ceil(
                   (rando(1, 500, "float") / reserve.stats.assetPriceUSD / 1) *
                     10 ** dec
-                );
+                ); 
+                let tokenAccount;
+                try {
+                  tokenAccount = (
+                    await connection2.getTokenAccountsByOwner(
+                      payer.publicKey,
+                      { mint: new PublicKey(USDC_MINT) }
+                    )
+                  ).value[0].pubkey;
+                } catch (err) {
+                  tokenAccount = await createWSolAccount(USDC_MINT);
+                }
+                let myshit = (
+                  await connection.getTokenAccountBalance(
+                    tokenAccount
+                  )
+                ).value.amount;
             initial = rando(true, false) ? Math.ceil(initial / 5 ) : initial;
             if (initial > reserve.stats.reserveBorrowLimit)
               initial = Math.floor(reserve.stats.reserveBorrowLimit * 0.666);
