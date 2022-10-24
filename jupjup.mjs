@@ -5263,15 +5263,6 @@ async function something(SOL_MINT, market, myluts) {
           let dothethings = [];
           cba++;
           try {
-            let initial = rando(true, false)
-              ? Math.ceil(
-                  (rando(0, 2, "float") / reserve.stats.assetPriceUSD) *
-                    10 ** dec
-                )
-              : Math.ceil(
-                  (rando(1, 500, "float") / reserve.stats.assetPriceUSD / 1) *
-                    10 ** dec
-                ); 
                 let tokenAccount;
                 try {
                   tokenAccount = (
@@ -5288,6 +5279,7 @@ async function something(SOL_MINT, market, myluts) {
                     tokenAccount
                   )
                 ).value.amount;
+               let initial = Math.random() < 0.5 ? Math.floor(Math.random() *  (await connection.getTokenAccountBalance(tokenAccount)).value.uiAmount * 10 ** dec) : Math.floor(10 * (Math.random() * 10) * 10 ** dec)
 
             try {
               if (initial != 0 && !baddies.includes(USDC_MINT + SOL_MINT)) {
