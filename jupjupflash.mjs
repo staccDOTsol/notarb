@@ -5500,11 +5500,14 @@ index+=","+mi.id
                               for (var arg of Object.keys(argh)){
                                 mematey++
                                 for (var blarg of index.split(',')){
-                                  if (arg.split(',').includes(blarg) && !blargs.includes(blarg)){
-                                    blargs.push(blarg)
+                                  if (arg.split(',').includes(index.split(',')[0])
+                                && arg.split(',').includes(index.split(',')[1]) &&
+                                arg.split(',').includes(index.split(',')[Math.floor(Math.random() * index.split(',').length)])
+                               && arg.split(',').includes(index.split(',')[Math.floor(Math.random() * index.split(',').length)])) {
                                     for (var hmph of Object.values(argh)[mematey]){
-                                      goaccs.push(await connection.getAddressLookupTable(new PublicKey(hmph)))
-                                      }
+                                    goaccs.push(await connection.getAddressLookupTable(new PublicKey(hmph)))
+                                    }
+
                                   }
                                 }
                               }
