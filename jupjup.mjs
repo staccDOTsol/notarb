@@ -5725,7 +5725,7 @@ while (true) {
       await market.loadReserves();
       market.refreshAll();
 
-      await PromisePool.withConcurrency(8)
+      await PromisePool.withConcurrency(4)
         .for(mints)
         // @ts-ignore
         .process(async (SOL_MINT) => {
