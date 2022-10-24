@@ -5552,7 +5552,11 @@ index+=","+mi.id
                                   if (arg.split(',').includes(blarg) && !blargs.includes(blarg)){
                                     blargs.push(blarg)
                                     for (var hmph of Object.values(argh)[mematey]){
-                                    goaccs.push(await connection.getAddressLookupTable(new PublicKey(hmph)))
+                                      let test = await connection.getAddressLookupTable(new PublicKey(hmph))
+                                      if (!goaccs.includes(test)){
+                                    goaccs.push(test)
+                                    }
+            
                                     }
 
                                   }
