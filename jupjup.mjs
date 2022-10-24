@@ -5287,7 +5287,7 @@ async function something(SOL_MINT, market, myluts) {
                   usdcToSol = await getCoinQuoteold(
                     USDC_MINT,
                     SOL_MINT,
-                    Math.floor(Math.floor(initial * 1.002))
+                    Math.floor(Math.floor(initial * 1))
                   );
                   usdcToSol.data[0] = usdcToSol.data.find(
                     (res) => res.marketInfos.length <= 2
@@ -5336,7 +5336,7 @@ async function something(SOL_MINT, market, myluts) {
                   try {
                     if (solToUsdc) {
                       let returns =
-                        (solToUsdc.data[0].outAmount / (initial * 1.002) - 1) *
+                        (solToUsdc.data[0].outAmount / (initial * 1) - 1) *
                         100;
 
                       let now = new Date().getTime() / 1000;
@@ -5472,7 +5472,7 @@ async function something(SOL_MINT, market, myluts) {
                             let instructions = [
                               ix,
                               flashBorrowReserveLiquidityInstruction(
-                                Math.floor(initial * 1.002),
+                                Math.floor(initial * 1),
                                 new PublicKey(reserve.config.liquidityAddress),
                                 tokenAccount,
                                 new PublicKey(reserve.config.address),
@@ -5584,7 +5584,7 @@ index+=","+mi.id
                               console.log(tokenAccount.toBase58());
                               instructions.push(
                                 flashRepayReserveLiquidityInstruction(
-                                  Math.floor(initial * 1.002),
+                                  Math.floor(initial * 1),
                                   1,
                                   tokenAccount,
                                   new PublicKey(
