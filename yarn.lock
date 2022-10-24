@@ -236,9 +236,9 @@
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
 "@jup-ag/core@^3.0.0-beta.1":
-  version "3.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@jup-ag/core/-/core-3.0.0-beta.1.tgz#df4012f52d4591d0ebe0a717fed3f3952e6d098c"
-  integrity sha512-S5Oor/7m4y4dbpOzi5nLrHsmXjn8ZlCygoocBIUKZxHtU3Cr9vyJI5E0HaNOU0f8Ln9O3kVxKHtGXAkHPZYpOg==
+  version "3.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@jup-ag/core/-/core-3.0.0-beta.2.tgz#53ca81ed7d62046ca830a368b3aa16cf35a3f05c"
+  integrity sha512-3T2lMhR6pXv3NokzW1mQsjCXU5CuKrWpfklDoyq/lQmYcw+k1O3ymkiaEbZy0gQkO3VPichN+FscVLWOeq2j6w==
   dependencies:
     "@jup-ag/crema-sdk" "2.0.7"
     "@jup-ag/cykura-sdk" "0.1.25"
@@ -247,7 +247,7 @@
     "@jup-ag/goosefx-ssl-sdk" "1.2.13"
     "@jup-ag/invariant" "0.9.35"
     "@jup-ag/lifinity-sdk" "0.1.72"
-    "@jup-ag/math" "3.0.0-beta.1"
+    "@jup-ag/math" "3.0.0-beta.2"
     "@jup-ag/whirlpool-sdk" "0.1.1"
     "@mercurial-finance/dynamic-amm-sdk" "0.1.4"
     "@mercurial-finance/optimist" "0.1.8"
@@ -337,10 +337,10 @@
     "@solana/web3.js" "1.31.0"
     decimal.js "^10.3.1"
 
-"@jup-ag/math@3.0.0-beta.1":
-  version "3.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@jup-ag/math/-/math-3.0.0-beta.1.tgz#8fce70de0bfd8344d77cc635e5faacb358370157"
-  integrity sha512-NbmHk1j7KTlCbccItUUAAhy4w8OIerAS2VfALEFOPAm1T85zvF4X2FDBVIL7BgzOm1ZlcZkUupGaVTXRypfRUw==
+"@jup-ag/math@3.0.0-beta.2":
+  version "3.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@jup-ag/math/-/math-3.0.0-beta.2.tgz#3fad0dc257bea8e7a30dd6a44d570840f0f6b0d2"
+  integrity sha512-kHgIVhJLjpNMc/ZKpPISpb68vkgvTbrG32dLU1cSmKMhLu6GU/0pY9Feq+LvcEJ8MVv8qAGvjTibYA1UmTNagg==
   dependencies:
     decimal.js "10.3.1"
     jsbi "4.3.0"

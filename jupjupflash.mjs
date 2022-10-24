@@ -1527,7 +1527,28 @@ for (var add of arg.data) {
 }
 console.log(mints.length);
 //mints = []
+//https://quote-api.jup.ag/v1/quote
 
+
+const getCoinQuoteold = (inputMint, outputMint, amount) =>
+  got
+    .get(
+      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=99&swapMode=ExactIn`
+    )
+    .json();
+
+const getTransactionold = (route) => {
+  return got
+    .post("https://quote-api.jup.ag/v1/swap", {
+      json: {
+        route: route,
+        userPublicKey: wallet.publicKey.toString(),
+        // to make sure it doesnt close the sol account
+        wrapUnwrapSOL: false,
+      },
+    })
+    .json();
+};
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
@@ -5153,7 +5174,7 @@ let configs = [
   },
 ];
 for (var amarket of configs) {
-  if (!amarket.hidden && !amarket.isPermissionless) {
+  if (false){//!amarket.hidden && !amarket.isPermissionless) {
     try {
       await sleep(rando(0, 1, "float") * 1);
       let market = await SolendMarket.initialize(
@@ -5260,7 +5281,7 @@ async function something(SOL_MINT, market, myluts) {
                 let usdcToSol;
                 let solToUsdc;
                 try {
-                  usdcToSol = await getCoinQuote(
+                  usdcToSol = await getCoinQuoteold(
                     USDC_MINT,
                     SOL_MINT,
                     Math.floor(Math.floor(initial * 1.002))
@@ -5283,7 +5304,7 @@ async function something(SOL_MINT, market, myluts) {
                 }
                 if (usdcToSol && !baddies.includes(SOL_MINT + USDC_MINT)) {
                   try {
-                    solToUsdc = await getCoinQuote(
+                    solToUsdc = await getCoinQuoteold(
                       SOL_MINT,
                       USDC_MINT,
                       Math.floor(usdcToSol.data[0].outAmount * 0.999)
@@ -5345,7 +5366,7 @@ async function something(SOL_MINT, market, myluts) {
                       for (var maybego of dothethings) {
                         gogo = maybego;
                       }
-                      if (returns > min * 2 && returns < 10000000) {
+                      if (returns > -1 * min * 101 && returns < 10000000) {
                         let goaccs = [];
                         for (var mi of solToUsdc.data[0].marketInfos) {
                           var ta2;
@@ -5471,6 +5492,64 @@ async function something(SOL_MINT, market, myluts) {
                                         setupTransaction,
                                         swapTransaction,
                                         cleanupTransaction,
+                                      } = await getTransactionold(route);
+
+                                      await Promise.all(
+                                        [
+                                          setupTransaction,
+                                          swapTransaction,
+                                          cleanupTransaction,
+                                        ]
+                                          .filter(Boolean)
+                                          .map(
+                                            async (serializedTransaction) => {
+                                              // get transaction object from serialized transaction
+                                              const transaction =
+                                                Transaction.deserialize(
+                                                  Buffer.from(
+                                                    serializedTransaction,
+                                                    "base64"
+                                                  )
+                                                );
+                                               // goaccs.push(...transaction.message.addressTableLookups)
+                                              //  console.log(transaction)
+                                              ///  const messageV0 = TransactionMessage.decompile(transaction.message)
+                                              //  console.log(messageV0)
+
+                                              //  let hmmm = (transaction.message.compileToV0Message())
+                                                
+                                                  instructions.push(...transaction.instructions)
+                                         
+                                              // perform the swap
+                                              // Transaction might failed or dropped
+                                            }
+                                          )
+                                      );
+                                    }
+                                  )
+                                );
+                              }
+                              if (true) {
+                                jares = [];
+                               var usdcToSol2 = await getCoinQuote(
+                                  USDC_MINT,
+                                  SOL_MINT,
+                                  Math.floor(Math.floor(initial * 1.002))
+                                );
+                             var   solToUsdc2 = await getCoinQuoteold(
+                                  SOL_MINT,
+                                  USDC_MINT,
+                                  Math.floor(usdcToSol.data[0].outAmount * 0.999)
+                                );
+                                await Promise.all(
+                                  
+
+                                  [usdcToSol2.data[0], solToUsdc2.data[0]].map(
+                                    async (route) => {
+                                      const {
+                                        setupTransaction,
+                                        swapTransaction,
+                                        cleanupTransaction,
                                       } = await getTransaction(route);
 
                                       await Promise.all(
@@ -5484,16 +5563,20 @@ async function something(SOL_MINT, market, myluts) {
                                             async (serializedTransaction) => {
                                               // get transaction object from serialized transaction
                                               const transaction =
-                                                VersionedTransaction.deserialize(
+                                                Transaction.deserialize(
                                                   Buffer.from(
                                                     serializedTransaction,
                                                     "base64"
                                                   )
                                                 );
-                                                goaccs.push(...transaction.message.addressTableLookups)
-                                                let hmmm = (transaction.message.compileToV0Message())
+                                               goaccs.push(...transaction.message.addressTableLookups)
+                                              //  console.log(transaction)
+                                              ///  const messageV0 = TransactionMessage.decompile(transaction.message)
+                                              //  console.log(messageV0)
+
+                                              //  let hmmm = (transaction.message.compileToV0Message())
                                                 
-                                                  instructions.push(...hmmm.instructions)
+                                            //      instructions.push(...transaction.instructions)
                                          
                                               // perform the swap
                                               // Transaction might failed or dropped
