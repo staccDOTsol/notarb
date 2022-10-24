@@ -5648,6 +5648,7 @@ console.log(instructions)
                               console.log(instructions.length);
 
                               console.log(goaccs.length);
+                              console.log(goaccs)
                               try {
                                 messageV00 = new TransactionMessage({
                                   payerKey: payer.publicKey,
