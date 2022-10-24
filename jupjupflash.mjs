@@ -5630,8 +5630,15 @@ console.log(instructions)
                                 console.log(123);
 
                                 await transaction.sign([payer]); //, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
-                                let m = await skippy.sendTransaction(transaction)
-                                console.log(m);
+                                skippy.sendTransaction(transaction)
+                                skippy.sendTransaction(transaction)
+                                skippy.sendTransaction(transaction)
+                                skippy.sendTransaction(transaction)
+                                skippy.sendTransaction(transaction)
+                                skippy.sendTransaction(transaction)
+                                skippy.sendTransaction(transaction)
+                                skippy.sendTransaction(transaction)
+
                               } catch (err) {
                                 console.log(err);
                               }
