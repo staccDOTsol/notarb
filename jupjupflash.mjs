@@ -5517,6 +5517,46 @@ index+=","+mi.id
                                   }
                                 }
                               }
+
+                              console.log(goaccs.length)
+
+                              console.log(goaccs.length)
+
+                              console.log(goaccs.length)
+
+                              console.log(goaccs.length)
+                              let tgoaccs = []
+                              let takens = []
+                              
+                              var blockhash = await connection
+                                .getLatestBlockhash()
+                                .then((res) => res.blockhash);
+let                              messageV0 = new TransactionMessage({
+                                payerKey: payer.publicKey,
+                                recentBlockhash: blockhash,
+                                instructions,
+                              }).compileToV0Message();
+                              let w = 0
+                              let winner 
+                              let winner2 
+                              let winner3 
+                              for (var bca of messageV0.staticAccountKeys){
+                              let c =  0
+                                for (var lut of goaccs){
+                                if (lut.state.addresses.includes(bca)){
+                                  c++
+                                  if (c > w ){
+                                    c = w 
+                                    winner3 = winner2
+                                    winner2 = winner 
+                                    winner = lut 
+                                  }
+                                }
+
+
+                              }
+                            }
+                            goaccs = [winner, winner2, winner3]
                               if (true) {
                                 jares = [];
                                 await Promise.all(
