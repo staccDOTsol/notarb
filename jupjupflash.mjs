@@ -5506,17 +5506,12 @@ index+=","+mi.id
                                   && arg.split(',')[3]  == blarg[3]  && !blargs.includes(blarg)){
                                     for (var hmph of Object.values(argh)[mematey]){
                                       let test = await connection.getAddressLookupTable(new PublicKey(hmph))
-                                      for (var hmph of Object.values(argh)[mematey]){
-                                        let test = await connection.getAddressLookupTable(new PublicKey(hmph))
                                           if ( !goaccs.includes(test)){
                                             goaccs.push(test)
                                             blargs.push(blarg)
                                         
-                                        
-                                      
                                           }
-                                        }
-            
+                                      
                                     }
 
                                   }
