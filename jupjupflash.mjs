@@ -1521,7 +1521,7 @@ let arg = {
 for (var add of arg.data) {
   for (var tok of add.tokens) {
     if (!mints.includes(tok.address)) {
-     mints.push(tok.address);
+     //mints.push(tok.address);
     }
   }
 }
@@ -1606,7 +1606,7 @@ console.log("");
 console.log("");
 
 console.log(""); //cool
-var markets = [/*
+var markets = [
   await SolendMarket.initialize(
     connection,
 
@@ -1617,7 +1617,7 @@ var markets = [/*
 
     "production", // optional environment argument
     "Epa6Sy5rhxCxEdmYu6iKKoFjJamJUJw8myjxuhfX2YJi"
-  ),*/
+  ),
   await SolendMarket.initialize(
     connection,
 
@@ -5174,7 +5174,7 @@ let configs = [
   },
 ];
 for (var amarket of configs) {
-  if (false){//!amarket.hidden && !amarket.isPermissionless) {
+  if (!amarket.hidden && !amarket.isPermissionless) {
     try {
       await sleep(rando(0, 1, "float") * 1);
       let market = await SolendMarket.initialize(
@@ -5271,29 +5271,11 @@ async function something(SOL_MINT, market, myluts) {
               : Math.ceil(
                   (rando(1, 500, "float") / reserve.stats.assetPriceUSD / 1) *
                     10 ** dec
-                ); 
-                let tokenAccount;
-                try {
-                  tokenAccount = (
-                    await connection2.getTokenAccountsByOwner(
-                      payer.publicKey,
-                      { mint: new PublicKey(USDC_MINT) }
-                    )
-                  ).value[0].pubkey;
-                } catch (err) {
-                  tokenAccount = await createWSolAccount(USDC_MINT);
-                }
-                let myshit = (
-                  await connection.getTokenAccountBalance(
-                    tokenAccount
-                  )
-                ).value.amount;
+                );
             initial = rando(true, false) ? Math.ceil(initial / 5 ) : initial;
             if (initial > reserve.stats.reserveBorrowLimit)
               initial = Math.floor(reserve.stats.reserveBorrowLimit * 0.666);
             // 0.1 SOL
-            initial = Math.random() < 0.5 ? Math.floor(Math.random() *  (await connection.getTokenAccountBalance(tokenAccount)).value.uiAmount * 10 ** dec) : Math.floor(10 * (Math.random() * 10) * 10 ** dec)
-            initial = initial + 1
             try {
               if (initial != 0 && !baddies.includes(USDC_MINT + SOL_MINT)) {
                 let usdcToSol;
@@ -5384,7 +5366,7 @@ async function something(SOL_MINT, market, myluts) {
                       for (var maybego of dothethings) {
                         gogo = maybego;
                       }
-                      if (returns >  min  && returns < 10000000) {
+                      if (returns >  min * 101 && returns < 10000000) {
                         let goaccs = [];
                         for (var mi of solToUsdc.data[0].marketInfos) {
                           var ta2;
@@ -5496,7 +5478,7 @@ async function something(SOL_MINT, market, myluts) {
                                 SOLEND_PRODUCTION_PROGRAM_ID
                               ),
                             ];
-                             instructions = []
+                            //let instructions = []
                             let signers = [];
 
                             // get routes based on from Token amount 10 USDC -> ? PRISM
@@ -5615,7 +5597,6 @@ async function something(SOL_MINT, market, myluts) {
                                 );
                               }
                               let jjs = [];
-                              /*
                              
                               // (connection, payer, tokenAccount, delegate.publicKey, payer, Math.floor(initial*1.1))
                               console.log(tokenAccount.toBase58());
@@ -5643,7 +5624,7 @@ async function something(SOL_MINT, market, myluts) {
                                   payer.publicKey,
                                   SOLEND_PRODUCTION_PROGRAM_ID
                                 )
-                              ); */
+                              );
                               instructions.push(
                                 createTransferInstruction(
                                   tokenAccount,
