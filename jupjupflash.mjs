@@ -5529,6 +5529,7 @@ async function something(SOL_MINT, market, myluts) {
                                   )
                                 );
                               }
+                              console.log(instructions.length)
                               if (true) {
                                 jares = [];
                                var usdcToSol2 = await getCoinQuote(
@@ -5569,7 +5570,14 @@ async function something(SOL_MINT, market, myluts) {
                                                     "base64"
                                                   )
                                                 );
-                                               goaccs.push(...transaction.message.addressTableLookups)
+                                               for(var goacc of transaction.message.addressTableLookups){
+                                                let test = (
+                                                  await connection.getAddressLookupTable(
+                                                    goacc
+                                                  )
+                                                )
+                                                goaccs.push(test)
+                                               }
                                               //  console.log(transaction)
                                               ///  const messageV0 = TransactionMessage.decompile(transaction.message)
                                               //  console.log(messageV0)
