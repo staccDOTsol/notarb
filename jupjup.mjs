@@ -5283,12 +5283,14 @@ async function something(SOL_MINT, market, myluts) {
                 } catch (err) {
                   tokenAccount = await createWSolAccount(USDC_MINT);
                 }
-                let myshit = (
+                let myshit = (x
                   await connection.getTokenAccountBalance(
                     tokenAccount
                   )
                 ).value.amount;
             initial = rando(true, false) ? Math.ceil(initial / 5 ) : initial;
+            initial = initial + 1
+
             if (initial > reserve.stats.reserveBorrowLimit)
               initial = Math.floor(reserve.stats.reserveBorrowLimit * 0.666);
             // 0.1 SOL
