@@ -88,11 +88,11 @@ let connection = new Connection(
   process.env.NODE_ENV == "production"
     ? "https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ"
     : "https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ",
-  { commitment: "recent" }
+  { commitment: "singleGossip" }
 );
 var connection2 = new Connection(
   "https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr",
-  { commitment: "recent" }
+  { commitment: "singleGossip" }
 );
 
 var skippy = new Connection(
@@ -1573,11 +1573,11 @@ const getConfirmTransaction = async (txid) => {
   const res = await promiseRetry(
     async (retry, attempt) => {
       let txResult = await connection2.getTransaction(txid, {
-        commitment: "recent",
+        commitment: "singleGossip",
       });
 
       if (!txResult) {
-        const error = new Error("Transaction was not recent");
+        const error = new Error("Transaction was not singleGossip");
         error.txid = txid;
 
         retry(error);
