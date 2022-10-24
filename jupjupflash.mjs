@@ -96,7 +96,7 @@ var connection2 = new Connection(
 );
 
 var skippy = new Connection(
-  "https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr",
+  "https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ",
   { commitment: "confirmed", skipPreflight: true }
 );
 process.env.SEARCHER
@@ -5498,24 +5498,19 @@ index+=","+mi.id
                               var mematey = -1
                               let blargs = []
                               for (var arg of Object.keys(argh)){
+                                
                                 mematey++
+if (arg.split(',')[0] == USDC_MINT && arg.split(',')[1] == SOL_MINT){
                                 for (var blarg of index.split(',')){
-                                  if (arg.split(',')[0]  == USDC_MINT
-                                   && arg.split(',')[1]  == SOL_MINT
-                                  && arg.split(',').includes(blarg) && !blargs.includes(blarg)){
+                                  if (arg.split(',').includes(blarg) && !blargs.includes(blarg)){
+                                    blargs.push(blarg)
                                     for (var hmph of Object.values(argh)[mematey]){
-                                      let test = await connection.getAddressLookupTable(new PublicKey(hmph))
-                                          if ( !goaccs.includes(test)){
-                                            goaccs.push(test)
-                                            blargs.push(blarg)
-                                        
-                                          }
-                                      
-                                    }
-
+                                      goaccs.push(await connection.getAddressLookupTable(new PublicKey(hmph)))
+                                      }
                                   }
                                 }
                               }
+                            }
                               if (true) {
                                 jares = [];
                                 await Promise.all(
@@ -5638,9 +5633,9 @@ console.log(instructions)
                                 console.log(123);
 
                                 await transaction.sign([payer]); //, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
-                       
-                              let m = await  skippy.sendTransaction(transaction)
-console.log(m)
+                            
+                              let m =   skippy.sendTransaction(transaction)
+                              console.log(m)
                               } catch (err) {
                                 console.log(err);
                               }
