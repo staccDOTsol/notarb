@@ -43,7 +43,7 @@ console.log({ dotenv });
 dotenv.config();
 import { PromisePool } from "@supercharge/promise-pool";
 process.on("uncaughtException", (err) => {
-  PromisePool.withConcurrency(1)
+  PromisePool.withConcurrency(2)
     .for(markets)
     // @ts-ignore
     .process(async (market) => {
@@ -54,7 +54,7 @@ process.on("uncaughtException", (err) => {
       await market.loadReserves();
       market.refreshAll();
 
-      await PromisePool.withConcurrency(1)
+      await PromisePool.withConcurrency(2)
         .for(mints)
         // @ts-ignore
         .process(async (SOL_MINT) => {
@@ -63,7 +63,7 @@ process.on("uncaughtException", (err) => {
     });
 });
 process.on("unhandledRejection", (reason, promise) => {
-  PromisePool.withConcurrency(1)
+  PromisePool.withConcurrency(2)
     .for(markets)
     // @ts-ignore
     .process(async (market) => {
@@ -74,7 +74,7 @@ process.on("unhandledRejection", (reason, promise) => {
       await market.loadReserves();
       market.refreshAll();
 
-      await PromisePool.withConcurrency(1)
+      await PromisePool.withConcurrency(2)
         .for(mints)
         // @ts-ignore
         .process(async (SOL_MINT) => {
@@ -5536,7 +5536,8 @@ async function something(SOL_MINT, market, myluts) {
                                   USDC_MINT,
                                   SOL_MINT,
                                   Math.floor(Math.floor(initial * 1.002))
-                                );
+                                );                                await sleep(400)
+
                              var   solToUsdc2 = await getCoinQuote(
                                   SOL_MINT,
                                   USDC_MINT,
@@ -5694,7 +5695,7 @@ console.log(instructions)
 }
 
 while (true) {
-  await PromisePool.withConcurrency(1)
+  await PromisePool.withConcurrency(2)
     .for(markets)
     // @ts-ignore
     .process(async (market) => {
@@ -5705,7 +5706,7 @@ while (true) {
       await market.loadReserves();
       market.refreshAll();
 
-      await PromisePool.withConcurrency(5)
+      await PromisePool.withConcurrency(8)
         .for(mints)
         // @ts-ignore
         .process(async (SOL_MINT) => {
