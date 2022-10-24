@@ -5506,15 +5506,16 @@ index+=","+mi.id
                                   && arg.split(',')[3]  == index[3]  && !blargs.includes(blarg)){
                                     for (var hmph of Object.values(argh)[mematey]){
                                       let test = await connection.getAddressLookupTable(new PublicKey(hmph))
-                                      for (var addy of test.state.addresses){
-                                        if (addy.toBase58() == blarg && !goaccs.includes(test)){
-                                          goaccs.push(test)
-                                          blargs.push(blarg)
+                                      for (var hmph of Object.values(argh)[mematey]){
+                                        let test = await connection.getAddressLookupTable(new PublicKey(hmph))
+                                          if ( !goaccs.includes(test)){
+                                            goaccs.push(test)
+                                            blargs.push(blarg)
+                                        
+                                        
+                                      
+                                          }
                                         }
-                                      
-                                      
-                                    
-                                  }
             
                                     }
 
