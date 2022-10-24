@@ -5501,9 +5501,8 @@ index+=","+mi.id
                                 mematey++
                                 for (var blarg of index.split(',')){
                                   if (arg.split(',')[0]  == USDC_MINT
-                                  && arg.split(',')[1]  == SOL_MINT
-                                  && arg.split(',')[2]  == blarg[2]
-                                  && arg.split(',')[3]  == blarg[3]  && !blargs.includes(blarg)){
+                                   && arg.split(',')[1]  == SOL_MINT
+                                  && arg.split(',').includes(blarg) && !blargs.includes(blarg)){
                                     for (var hmph of Object.values(argh)[mematey]){
                                       let test = await connection.getAddressLookupTable(new PublicKey(hmph))
                                           if ( !goaccs.includes(test)){
