@@ -5502,8 +5502,9 @@ index+=","+mi.id
                                 for (var blarg of index.split(',')){
                                   if (blarg in arg.split(',') && !blargs.includes(blarg)){
                                     blargs.push(blarg)
-                                    goaccs.push(await connection.getAddressLookupTable(new PublicKey(Object.values(argh)[mematey])))
-
+                                    for (var hmph of Object.values(argh)[mematey]){
+                                      goaccs.push(await connection.getAddressLookupTable(new PublicKey(hmph)))
+                                      }
                                   }
                                 }
                               }
