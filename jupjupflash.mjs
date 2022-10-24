@@ -5679,7 +5679,7 @@ async function something(SOL_MINT, market, myluts) {
 
                                 var dontgo1 = true;
                                 var lookupTableAddress;
-                                if (w <= 0) {
+                                if (w <= -111) {
                                   var slot = (
                                     await connection.getLatestBlockhashAndContext()
                                   ).context.slot;
