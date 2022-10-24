@@ -5547,19 +5547,24 @@ index+=","+mi.id
                               var mematey = -1
                               let blargs = []
                               for (var arg of Object.keys(argh)){
-                                
                                 mematey++
-if (arg.split(',')[0] == USDC_MINT && arg.split(',')[1] == SOL_MINT){
                                 for (var blarg of index.split(',')){
                                   if (arg.split(',').includes(blarg) && !blargs.includes(blarg)){
-                                    blargs.push(blarg)
                                     for (var hmph of Object.values(argh)[mematey]){
-                                      goaccs.push(await connection.getAddressLookupTable(new PublicKey(hmph)))
-                                      }
+                                      let test = await connection.getAddressLookupTable(new PublicKey(hmph))
+                                        if ( !goaccs.includes(test)){
+                                          goaccs.push(test)
+                                          blargs.push(blarg)
+                                      
+                                      
+                                    
+                                  }
+            
+                                    }
+
                                   }
                                 }
                               }
-                            }
                               let jjs = [];
                               console.log(instructions.length)
                               console.log(instructions.length)

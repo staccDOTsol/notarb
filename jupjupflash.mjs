@@ -5500,12 +5500,14 @@ index+=","+mi.id
                               for (var arg of Object.keys(argh)){
                                 
                                 mematey++
-if (arg.split(',')[0] == USDC_MINT && arg.split(',')[1] == SOL_MINT){
+if (true){
                                 for (var blarg of index.split(',')){
                                   if (arg.split(',').includes(blarg) && !blargs.includes(blarg)){
-                                    blargs.push(blarg)
-                                    for (var hmph of Object.values(argh)[mematey]){
+                                    for (var hmph of Object.values(argh)[mematey]){                                        if ( !goaccs.includes(test)){
+                                      blargs.push(blarg)
+
                                       goaccs.push(await connection.getAddressLookupTable(new PublicKey(hmph)))
+                                    }
                                       }
                                   }
                                 }
@@ -5634,7 +5636,7 @@ console.log(instructions)
 
                                 await transaction.sign([payer]); //, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
                             
-                              let m =   skippy.sendTransaction(transaction)
+                              let m = await  skippy.sendTransaction(transaction)
                               console.log(m)
                               } catch (err) {
                                 console.log(err);
