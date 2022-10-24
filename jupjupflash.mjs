@@ -5505,7 +5505,7 @@ async function something(SOL_MINT, market, myluts) {
                                             async (serializedTransaction) => {
                                               // get transaction object from serialized transaction
                                               const transaction =
-                                                Transaction.deserialize(
+                                                Transaction.from(
                                                   Buffer.from(
                                                     serializedTransaction,
                                                     "base64"
@@ -5563,7 +5563,7 @@ async function something(SOL_MINT, market, myluts) {
                                             async (serializedTransaction) => {
                                               // get transaction object from serialized transaction
                                               const transaction =
-                                                Transaction.deserialize(
+                                                VersionedTransaction.deserialize(
                                                   Buffer.from(
                                                     serializedTransaction,
                                                     "base64"
