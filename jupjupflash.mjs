@@ -1521,7 +1521,7 @@ let arg = {
 for (var add of arg.data) {
   for (var tok of add.tokens) {
     if (!mints.includes(tok.address)) {
-     //mints.push(tok.address);
+     mints.push(tok.address);
     }
   }
 }
