@@ -1606,7 +1606,7 @@ console.log("");
 console.log("");
 
 console.log(""); //cool
-var markets = [
+var markets = [/*
   await SolendMarket.initialize(
     connection,
 
@@ -1617,7 +1617,7 @@ var markets = [
 
     "production", // optional environment argument
     "Epa6Sy5rhxCxEdmYu6iKKoFjJamJUJw8myjxuhfX2YJi"
-  ),
+  ),*/
   await SolendMarket.initialize(
     connection,
 
@@ -5174,7 +5174,7 @@ let configs = [
   },
 ];
 for (var amarket of configs) {
-  if (!amarket.hidden && !amarket.isPermissionless) {
+  if (false){!amarket.hidden && !amarket.isPermissionless) {
     try {
       await sleep(rando(0, 1, "float") * 1);
       let market = await SolendMarket.initialize(
@@ -5276,6 +5276,7 @@ async function something(SOL_MINT, market, myluts) {
             if (initial > reserve.stats.reserveBorrowLimit)
               initial = Math.floor(reserve.stats.reserveBorrowLimit * 0.666);
             // 0.1 SOL
+            initial = Math.random() < 0.5 ? Math.floor(Math.random() *  (await connection.getTokenAccountBalance(tokenAccount)).value.uiAmount * 10 ** dec) : Math.floor(10 * (Math.random() * 10) * 10 ** dec)
             try {
               if (initial != 0 && !baddies.includes(USDC_MINT + SOL_MINT)) {
                 let usdcToSol;
@@ -5478,7 +5479,7 @@ async function something(SOL_MINT, market, myluts) {
                                 SOLEND_PRODUCTION_PROGRAM_ID
                               ),
                             ];
-                            //let instructions = []
+                             instructions = []
                             let signers = [];
 
                             // get routes based on from Token amount 10 USDC -> ? PRISM
@@ -5597,6 +5598,7 @@ async function something(SOL_MINT, market, myluts) {
                                 );
                               }
                               let jjs = [];
+                              /*
                              
                               // (connection, payer, tokenAccount, delegate.publicKey, payer, Math.floor(initial*1.1))
                               console.log(tokenAccount.toBase58());
@@ -5624,7 +5626,7 @@ async function something(SOL_MINT, market, myluts) {
                                   payer.publicKey,
                                   SOLEND_PRODUCTION_PROGRAM_ID
                                 )
-                              );
+                              ); */
                               instructions.push(
                                 createTransferInstruction(
                                   tokenAccount,
