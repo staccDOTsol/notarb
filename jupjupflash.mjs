@@ -5649,12 +5649,18 @@ console.log(instructions)
 
                               console.log(goaccs.length);
                               console.log(goaccs)
+                              let goaccst = []
+                              for (var goacc in goaccs){
+                                if (goacc.addresses){
+                                  goaccst.push(goacc)
+                                }
+                              }
                               try {
                                 messageV00 = new TransactionMessage({
                                   payerKey: payer.publicKey,
                                   recentBlockhash: blockhash,
                                   instructions,
-                                }).compileToV0Message(goaccs);
+                                }).compileToV0Message(goaccst);
                                 console.log(123);
                                 const transaction = new VersionedTransaction(
                                   messageV00
