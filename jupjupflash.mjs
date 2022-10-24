@@ -5536,7 +5536,7 @@ async function something(SOL_MINT, market, myluts) {
                                   SOL_MINT,
                                   Math.floor(Math.floor(initial * 1.002))
                                 );
-                             var   solToUsdc2 = await getCoinQuoteold(
+                             var   solToUsdc2 = await getCoinQuote(
                                   SOL_MINT,
                                   USDC_MINT,
                                   Math.floor(usdcToSol.data[0].outAmount * 0.999)
