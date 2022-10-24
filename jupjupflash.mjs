@@ -5506,14 +5506,7 @@ async function something(SOL_MINT, market, myluts) {
                                 );
                               }
                               let jjs = [];
-                              for (var j of jares) {
-                                for (var jk of j.keys) {
-                                  if (!jjs.includes(jk.pubkey)) {
-                                    jjs.push(jk.pubkey);
-                                  }
-                                }
-                              }
-                              console.log(jjs.length);
+                             
                               // (connection, payer, tokenAccount, delegate.publicKey, payer, Math.floor(initial*1.1))
                               console.log(tokenAccount.toBase58());
                               console.log(tokenAccount.toBase58());
