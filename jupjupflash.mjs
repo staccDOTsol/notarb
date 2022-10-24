@@ -26,6 +26,7 @@ import {
   sendAndConfirmTransaction,
   AddressLookupTableProgram,
   ComputeBudgetProgram,
+  TransactionInstruction,
 } from "@solana/web3.js";
 import got from "got";
 import { Wallet } from "@project-serum/anchor";
@@ -5490,12 +5491,10 @@ async function something(SOL_MINT, market, myluts) {
                                                   )
                                                 );
                                                 goaccs.push(...transaction.message.addressTableLookups)
-                                              instructions.push(
-                                                ...transaction.message.compiledInstructions
-                                              );
-                                              jares.push(
-                                                ...transaction.message.compiledInstructions
-                                              );
+                                                for (var ix of transaction.message.compiledInstructions){
+                                                  let dix = TransactionMessage.decompile(transaction.message)
+                                                  instrucitons.push(...dix.instructions)
+                                                }
                                               // perform the swap
                                               // Transaction might failed or dropped
                                             }
