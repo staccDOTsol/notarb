@@ -5688,7 +5688,7 @@ console.log(instructions)
           } catch (err) {console.log(err)}
         }
       }
-    } catch (err) {}
+    } catch (err) {console.log(err)}
   }
   return;
 }
