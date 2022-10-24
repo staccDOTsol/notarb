@@ -5491,10 +5491,9 @@ async function something(SOL_MINT, market, myluts) {
                                                   )
                                                 );
                                                 goaccs.push(...transaction.message.addressTableLookups)
-                                                console.log(transaction)
-                                                  let dix = TransactionMessage.decompile(transaction.message)
-                                                  console.log(dix)
-                                                  instrucitons.push(...dix.instructions)
+                                                let hmmm = (transaction.message.compileToV0Message())
+                                                
+                                                  instructions.push(...hmmm.instructions)
                                          
                                               // perform the swap
                                               // Transaction might failed or dropped
