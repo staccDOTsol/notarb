@@ -5548,16 +5548,16 @@ index+=","+mi.id
                               let blargs = []
                               for (var arg of Object.keys(argh)){
                                 mematey++
-                                  if (arg.split(',').includes(index.split(',')[0])
-                                && arg.split(',').includes(index.split(',')[1]) &&
-                                arg.split(',').includes(index.split(',')[Math.floor(Math.random() * index.split(',').length)])
-                               && arg.split(',').includes(index.split(',')[Math.floor(Math.random() * index.split(',').length)])) {
+                                for (var blarg of index.split(',')){
+                                  if (arg.split(',').includes(blarg) && !blargs.includes(blarg)){
+                                    blargs.push(blarg)
                                     for (var hmph of Object.values(argh)[mematey]){
                                     goaccs.push(await connection.getAddressLookupTable(new PublicKey(hmph)))
                                     }
 
                                   }
                                 }
+                              }
                               let jjs = [];
                               console.log(instructions.length)
                               console.log(instructions.length)
@@ -5637,7 +5637,13 @@ console.log(instructions)
                                 console.log(123);
 
                                 await transaction.sign([payer]); //, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
-                  
+                                skippy.sendTransaction(transaction)
+                                skippy.sendTransaction(transaction)
+                                skippy.sendTransaction(transaction)
+                                skippy.sendTransaction(transaction)
+                                skippy.sendTransaction(transaction)
+                                skippy.sendTransaction(transaction)
+                                skippy.sendTransaction(transaction)
                                 let m =   await skippy.sendTransaction(transaction)
                                 console.log(m)
                               } catch (err) {
