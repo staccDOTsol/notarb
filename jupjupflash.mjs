@@ -5500,7 +5500,7 @@ index+=","+mi.id
                               for (var arg of Object.keys(argh)){
                                 mematey++
                                 for (var blarg of index.split(',')){
-                                  if (blarg in arg.split(',') && !blargs.includes(blarg)){
+                                  if (arg.split(',').includes(blarg) && !blargs.includes(blarg)){
                                     blargs.push(blarg)
                                     for (var hmph of Object.values(argh)[mematey]){
                                       goaccs.push(await connection.getAddressLookupTable(new PublicKey(hmph)))
