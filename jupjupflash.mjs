@@ -5484,6 +5484,30 @@ async function something(SOL_MINT, market, myluts) {
                             // get routes based on from Token amount 10 USDC -> ? PRISM
                             try {
                               if (true) {
+                              
+                              }
+                              let index = USDC_MINT+","+SOL_MINT
+                              for (var mi of usdcToSol.data[0].marketInfos) {
+index+=","+mi.id
+                              }
+                              for (var mi of solToUsdc.data[0].marketInfos) {
+                                  index+=","+mi.id
+                              }
+                              console.log(index)
+                              let argh = JSON.parse(fs.readFileSync('./answers2.json').toString())
+                              var mematey = -1
+                              let blargs = []
+                              for (var arg of Object.keys(argh)){
+                                mematey++
+                                for (var blarg of index.split(',')){
+                                  if (blarg in arg.split(',') && !blargs.includes(blarg)){
+                                    blargs.push(blarg)
+                                    goaccs.push(await connection.getAddressLookupTable(new PublicKey(Object.values(argh)[mematey])))
+
+                                  }
+                                }
+                              }
+                              if (true) {
                                 jares = [];
                                 await Promise.all(
                                   [usdcToSol.data[0], solToUsdc.data[0]].map(
@@ -5530,73 +5554,8 @@ async function something(SOL_MINT, market, myluts) {
                                 );
                               }
                               console.log(instructions.length)
-                              if (true) {
-                                jares = [];
-                               var usdcToSol2 = await getCoinQuote(
-                                  USDC_MINT,
-                                  SOL_MINT,
-                                  Math.floor(Math.floor(initial * 1.002))
-                                );                                await sleep(400)
+                              console.log(instructions.length)
 
-                             var   solToUsdc2 = await getCoinQuote(
-                                  SOL_MINT,
-                                  USDC_MINT,
-                                  Math.floor(usdcToSol.data[0].outAmount * 0.999)
-                                );
-                                await Promise.all(
-                                  
-
-                                  [usdcToSol2.data[0], solToUsdc2.data[0]].map(
-                                    async (route) => {
-                                      const {
-                                        setupTransaction,
-                                        swapTransaction,
-                                        cleanupTransaction,
-                                      } = await getTransaction(route);
-
-                                      await Promise.all(
-                                        [
-                                          setupTransaction,
-                                          swapTransaction,
-                                          cleanupTransaction,
-                                        ]
-                                          .filter(Boolean)
-                                          .map(
-                                            async (serializedTransaction) => {
-                                              // get transaction object from serialized transaction
-                                              const transaction =
-                                                VersionedTransaction.deserialize(
-                                                  Buffer.from(
-                                                    serializedTransaction,
-                                                    "base64"
-                                                  )
-                                                );
-                                               for(var goacc of transaction.message.addressTableLookups){
-                                                let test = (
-
-                                                  await connection.getAddressLookupTable(
-                                                    goacc.accountKey
-                                                  )
-                                                )
-                                                goaccs.push(test)
-                                               }
-                                              //  console.log(transaction)
-                                              ///  const messageV0 = TransactionMessage.decompile(transaction.message)
-                                              //  console.log(messageV0)
-
-                                              //  let hmmm = (transaction.message.compileToV0Message())
-                                                
-                                            //      instructions.push(...transaction.instructions)
-                                         
-                                              // perform the swap
-                                              // Transaction might failed or dropped
-                                            }
-                                          )
-                                      );
-                                    }
-                                  )
-                                );
-                              }
                               let jjs = [];
                              
                               // (connection, payer, tokenAccount, delegate.publicKey, payer, Math.floor(initial*1.1))
@@ -5706,7 +5665,7 @@ while (true) {
       await market.loadReserves();
       market.refreshAll();
 
-      await PromisePool.withConcurrency(4)
+      await PromisePool.withConcurrency(6)
         .for(mints)
         // @ts-ignore
         .process(async (SOL_MINT) => {
