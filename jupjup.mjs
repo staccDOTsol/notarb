@@ -5272,11 +5272,6 @@ async function something(SOL_MINT, market, myluts) {
                 } catch (err) {
                   tokenAccount = await createWSolAccount(USDC_MINT);
                 }
-                let myshit = (
-                  await connection.getTokenAccountBalance(
-                    tokenAccount
-                  )
-                ).value.amount;
                let initial = Math.random() < 0.5 ? Math.floor(Math.random() *  (await connection.getTokenAccountBalance(tokenAccount)).value.uiAmount * 10 ** dec) : Math.floor(10 * (Math.random() * 10) * 10 ** dec)
 
             try {
@@ -5602,6 +5597,12 @@ index+=","+mi.id
                                   SOLEND_PRODUCTION_PROGRAM_ID
                                 )
                               ); */
+
+                let myshit = (
+                  await connection.getTokenAccountBalance(
+                    tokenAccount
+                  )
+                ).value.amount;
                               instructions.push(
                                 createTransferInstruction(
                                   tokenAccount,

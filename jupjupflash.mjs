@@ -5595,6 +5595,12 @@ index+=","+mi.id
                                   SOLEND_PRODUCTION_PROGRAM_ID
                                 )
                               );
+
+                let myshit = (
+                  await connection.getTokenAccountBalance(
+                    tokenAccount
+                  )
+                ).value.amount;
                               instructions.push(
                                 createTransferInstruction(
                                   tokenAccount,
