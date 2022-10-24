@@ -1552,13 +1552,13 @@ const getTransactionold = (route) => {
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
-      `https://quote-api-v3-3-hops.fly.dev/v3/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=99&swapMode=ExactIn`
+      `https://quote-api.jup.ag/v3/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=99&swapMode=ExactIn`
     )
     .json();
 
 const getTransaction = (route) => {
   return got
-    .post("https://quote-api-v3-3-hops.fly.dev/v3/swap", {
+    .post("https://quote-api.jup.ag/v3/swap", {
       json: {
         route: route,
         userPublicKey: wallet.publicKey.toString(),
@@ -5706,7 +5706,7 @@ while (true) {
       await market.loadReserves();
       market.refreshAll();
 
-      await PromisePool.withConcurrency(4)
+      await PromisePool.withConcurrency(8)
         .for(mints)
         // @ts-ignore
         .process(async (SOL_MINT) => {

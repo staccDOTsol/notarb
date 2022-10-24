@@ -1552,13 +1552,13 @@ const getTransactionold = (route) => {
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
-      `https://quote-api-v3-3-hops.fly.dev/v3/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=99&swapMode=ExactIn`
+      `https://quote-api.jup.ag/v3/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=99&swapMode=ExactIn`
     )
     .json();
 
 const getTransaction = (route) => {
   return got
-    .post("https://quote-api-v3-3-hops.fly.dev/v3/swap", {
+    .post("https://quote-api.jup.ag/v3/swap", {
       json: {
         route: route,
         userPublicKey: wallet.publicKey.toString(),
@@ -5245,20 +5245,18 @@ async function something(SOL_MINT, market, myluts) {
       var reserve =
         market.reserves[Math.floor(Math.random() * market.reserves.length)]; //market.reserves.find(res => res.config.liquidityToken.mint ===ç);
       var USDC_MINT = reserve.config.liquidityToken.mint;
+     // console.log(USDC_MINT)
       if (!mints.includes(USDC_MINT)){
      // mints.push(USDC_MINT)
       }
-      if ( !baddies.includes(USDC_MINT+SOL_MINT) && !baddies.includes(SOL_MINT+USDC_MINT)) {
+      if ( true){//!baddies.includes(USDC_MINT+SOL_MINT) && !baddies.includes(SOL_MINT+USDC_MINT)) {
         //USDC_MINT != "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v") {
         //has.includes(USDC_MINT) ){
 
         var dec = reserve.config.liquidityToken.decimals;
         let min = reserve.stats.flashLoanFeePercentage;
         let cba = -1;
-        if (
-          !baddies.includes(SOL_MINT + USDC_MINT) &&
-          !baddies.includes(USDC_MINT + SOL_MINT) &&
-          min < 1991
+        if (true
         ) {
           let dothethings = [];
           cba++;
@@ -5370,7 +5368,7 @@ async function something(SOL_MINT, market, myluts) {
                       for (var maybego of dothethings) {
                         gogo = maybego;
                       }
-                      if (returns >  min  && returns < 10000000) {
+                      if (returns >  -100){//min  && returns < 10000000) {
                         let goaccs = [];
                         for (var mi of solToUsdc.data[0].marketInfos) {
                           var ta2;
@@ -5542,13 +5540,13 @@ async function something(SOL_MINT, market, myluts) {
                                   Math.floor(Math.floor(initial * 1.002))
                                 );
                                 console.log(instructions.length)
-                                await sleep(400)
                              var   solToUsdc2 = await getCoinQuote(
                                   SOL_MINT,
                                   USDC_MINT,
                                   Math.floor(usdcToSol.data[0].outAmount * 0.999)
                                 );
                                 console.log(instructions.length)
+                                console.log(usdcToSol2.data[0])
                                 await Promise.all(
                                   
 
@@ -5718,7 +5716,7 @@ while (true) {
       await market.loadReserves();
       market.refreshAll();
 
-      await PromisePool.withConcurrency(4)
+      await PromisePool.withConcurrency(8)
         .for(mints)
         // @ts-ignore
         .process(async (SOL_MINT) => {
