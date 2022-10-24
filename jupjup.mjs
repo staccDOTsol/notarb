@@ -5288,13 +5288,7 @@ async function something(SOL_MINT, market, myluts) {
                     tokenAccount
                   )
                 ).value.amount;
-            initial = rando(true, false) ? Math.ceil(initial / 5 ) : initial;
-            initial = initial + 1
-            if (initial > reserve.stats.reserveBorrowLimit)
-              initial = Math.floor(reserve.stats.reserveBorrowLimit * 0.666);
-            // 0.1 SOL
-            initial = Math.random() < 0.5 ? Math.floor(Math.random() *  (await connection.getTokenAccountBalance(tokenAccount)).value.uiAmount * 10 ** dec) : Math.floor(10 * (Math.random() * 10) * 10 ** dec)
-            initial = initial + 1
+
             try {
               if (initial != 0 && !baddies.includes(USDC_MINT + SOL_MINT)) {
                 let usdcToSol;
