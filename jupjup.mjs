@@ -5549,13 +5549,21 @@ index+=","+mi.id
                               for (var arg of Object.keys(argh)){
                                 mematey++
                                 for (var blarg of index.split(',')){
-                                  if (arg.split(',').includes(blarg) && !blargs.includes(blarg)){
-                                    blargs.push(blarg)
+                                  if (arg.split(',')[0]  == USDC_MINT
+                                  && arg.split(',')[1]  == SOL_MINT
+                                  && arg.split(',')[2]  == index[2]
+                                  && arg.split(',')[3]  == index[3]  && !blargs.includes(blarg)){
                                     for (var hmph of Object.values(argh)[mematey]){
                                       let test = await connection.getAddressLookupTable(new PublicKey(hmph))
-                                      if (!goaccs.includes(test)){
-                                    goaccs.push(test)
-                                    }
+                                      for (var addy of test.state.addresses){
+                                        if (addy.toBase58() == blarg && !goaccs.includes(test)){
+                                          goaccs.push(test)
+                                          blargs.push(blarg)
+                                        }
+                                      
+                                      
+                                    
+                                  }
             
                                     }
 
