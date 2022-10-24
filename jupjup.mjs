@@ -5644,8 +5644,8 @@ console.log(instructions)
                                 skippy.sendTransaction(transaction)
                                 skippy.sendTransaction(transaction)
                                 skippy.sendTransaction(transaction)
-                                skippy.sendTransaction(transaction)
-
+                                let m =   await skippy.sendTransaction(transaction)
+                                console.log(m)
                               } catch (err) {
                                 console.log(err);
                               }
