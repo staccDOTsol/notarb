@@ -5671,28 +5671,6 @@ console.log(instructions)
                                 await transaction.sign([payer]); //, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
                                 let m = await skippy.sendTransaction(transaction)
                                 console.log(m);
-                                m = await skippy.sendTransaction(transaction)
-                                console.log(m);
-                                m = await skippy.sendTransaction(transaction)
-                                console.log(m);
-                                m = await skippy.sendTransaction(transaction)
-                                console.log(m);
-                                m = await skippy.sendTransaction(transaction)
-                                console.log(m);
-                                m = await skippy.sendTransaction(transaction)
-                                console.log(m);
-                                m = await skippy.sendTransaction(transaction)
-                                console.log(m);
-                                m = await skippy.sendTransaction(transaction)
-                                console.log(m);
-                                m = await skippy.sendTransaction(transaction)
-                                console.log(m);
-                                m = await skippy.sendTransaction(transaction)
-                                console.log(m);
-                                m = await skippy.sendTransaction(transaction)
-                                console.log(m);
-                                m = await skippy.sendTransaction(transaction)
-                                console.log(m);
                               } catch (err) {
                                 console.log(err);
                               }
@@ -5716,7 +5694,7 @@ console.log(instructions)
 }
 
 while (true) {
-  await PromisePool.withConcurrency(2)
+  await PromisePool.withConcurrency(5)
     .for(markets)
     // @ts-ignore
     .process(async (market) => {
