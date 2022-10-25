@@ -28,7 +28,7 @@ function forecastBuy(market, orderBook, pcIn, slippage) {
             availablePc -= orderPcVaule;
         }
     }
-    coinOut = coinOut * 0.9996;
+    coinOut = coinOut6;
     // @ts-ignore
     const priceImpact = ((worstPrice - bestPrice) / bestPrice) * 100;
     // worstPrice = (worstPrice * (100 + slippage)) / 100
@@ -77,7 +77,7 @@ function forecastSell(market, orderBook, coinIn, slippage) {
             availableCoin -= size;
         }
     }
-    pcOut = pcOut * 0.9996;
+    pcOut = pcOut6;
     let minout = market.quoteSizeLotsToNumber(new bn_js_1.BN(1));
     let divout = pcOut / minout;
     let maxPcOut = Math.floor(divout) * minout;

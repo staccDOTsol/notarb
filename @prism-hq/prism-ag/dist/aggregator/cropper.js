@@ -13,7 +13,7 @@ function cropperRoute(fromCoin, toCoin, fromCoinAmount, option, liquidityData, s
         [fromToken, toToken] = [toToken, fromToken];
         mint = cropperInfo.mintB;
     }
-    let afterX = beforeX + fromCoinAmount * 0.999 * 10 ** fromCoin.decimals;
+    let afterX = beforeX + fromCoinAmount * 10 ** fromCoin.decimals;
     let afterY = beforeX * beforeY / afterX;
     let received = (beforeY - afterY) / 10 ** toCoin.decimals * 0.998;
     let bestPrice = beforeY / beforeX;

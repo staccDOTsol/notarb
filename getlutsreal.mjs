@@ -1527,19 +1527,19 @@ for (var add of arg.data) {
 }
 console.log(mints.length);
 //mints = []
-//https://quote-api.jup.ag/v2/quote
+//https://quote-api.jup.ag/v1/quote
 
 
 const getCoinQuoteold = (inputMint, outputMint, amount) =>
   got
     .get(
-      `https://quote-api.jup.ag/v2/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=99&swapMode=ExactIn`
+      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=99&swapMode=ExactIn`
     )
     .json();
 
 const getTransactionold = (route) => {
   return got
-    .post("https://quote-api.jup.ag/v2/swap", {
+    .post("https://quote-api.jup.ag/v1/swap", {
       json: {
         route: route,
         userPublicKey: wallet.publicKey.toString(),
@@ -5318,7 +5318,7 @@ async function something(SOL_MINT, market, myluts) {
                     solToUsdc = await getCoinQuote(
                       SOL_MINT,
                       USDC_MINT,
-                      Math.floor(usdcToSol.data[0].outAmount * 0.999)
+                      Math.floor(usdcToSol.data[0].outAmount)
                     );
 
                     solToUsdc.data[0] = solToUsdc.data.find(
@@ -5471,7 +5471,7 @@ await sleep(1000)
                              var   solToUsdc2 = await getCoinQuote(
                                   SOL_MINT,
                                   USDC_MINT,
-                                  Math.floor(usdcToSol.data[0].outAmount * 0.999)
+                                  Math.floor(usdcToSol.data[0].outAmount)
                                 );
                                 console.log(instructions.length)
                                 console.log(usdcToSol2.data[0])

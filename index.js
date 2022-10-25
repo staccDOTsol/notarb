@@ -95,12 +95,12 @@ for (var _i = 0, _a = somestuff2.data; _i < _a.length; _i++) {
 console.log(mints.length);
 var getCoinQuote = function (inputMint, outputMint, amount) {
     return got_1["default"]
-        .get("https://quote-api.jup.ag/v2/quote?outputMint=".concat(outputMint, "&inputMint=").concat(inputMint, "&amount=").concat(amount, "&slippage=0.2"))
+        .get("https://quote-api.jup.ag/v1/quote?outputMint=".concat(outputMint, "&inputMint=").concat(inputMint, "&amount=").concat(amount, "&slippage=0.2"))
         .json();
 };
 var getTransaction = function (route) {
     return got_1["default"]
-        .post("https://quote-api.jup.ag/v2/swap", {
+        .post("https://quote-api.jup.ag/v1/swap", {
         json: {
             route: route,
             userPublicKey: wallet.publicKey.toString(),
@@ -197,8 +197,8 @@ setTimeout(function () {
                                     return [4 /*yield*/, getCoinQuote(USDC_MINT, SOL_MINT, initial)];
                                 case 3:
                                     usdcToSol = _k.sent();
-                                    routes = prism.getRoutes(usdcToSol.data[0].outAmount * 0.999);
-                                    returns = (((routes[0].amountOut / initial * 0.999) - 1));
+                                    routes = prism.getRoutes(usdcToSol.data[0].outAmount);
+                                    returns = (((routes[0].amountOut / initial) - 1));
                                     console.log(returns);
                                     if (returns > -50) {
                                         console.log(USDC_MINT + " <-> " + SOL_MINT + ": " + (Math.round(returns * 10000) / 10000) + '%');
