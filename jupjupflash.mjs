@@ -1521,7 +1521,7 @@ let arg = {
 for (var add of arg.data) {
   for (var tok of add.tokens) {
     if (!mints.includes(tok.address)) {
-    // mints.push(tok.address);
+     mints.push(tok.address);
     }
   }
 }
@@ -5246,7 +5246,7 @@ async function something(SOL_MINT, market, myluts) {
         market.reserves[Math.floor(Math.random() * market.reserves.length)]; //market.reserves.find(res => res.config.liquidityToken.mint ===ç);
       var USDC_MINT = reserve.config.liquidityToken.mint;
       if (!mints.includes(USDC_MINT)){
-    //  mints.push(USDC_MINT)
+      mints.push(USDC_MINT)
       }
       if ( !baddies.includes(USDC_MINT+SOL_MINT) && !baddies.includes(SOL_MINT+USDC_MINT)) {
         //USDC_MINT != "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v") {
@@ -5556,7 +5556,7 @@ let                              messageV0 = new TransactionMessage({
 
                               }
                             }
-                            goaccs = [goaccs[0], goaccs[1], goaccs[2]]
+                        //    goaccs = [goaccs[0], goaccs[1], goaccs[2]]
                               if (true) {
                                 jares = [];
                                 await Promise.all(
@@ -5676,7 +5676,7 @@ console.log(instructions)
                                   payerKey: payer.publicKey,
                                   recentBlockhash: blockhash,
                                   instructions,
-                                }).compileToV0Message(goaccst);
+                                }).compileToV0Message(goaccs);
                                 console.log(123);
                                 const transaction = new VersionedTransaction(
                                   messageV00

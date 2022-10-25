@@ -5600,7 +5600,7 @@ let                              messageV0 = new TransactionMessage({
 
                               }
                             }
-                            goaccs = [goaccs[0], goaccs[1], goaccs[2]]
+                           // goaccs = [goaccs[0], goaccs[1], goaccs[2]]
                               let jjs = [];
                               console.log(instructions.length)
                               console.log(instructions.length)
@@ -5676,7 +5676,7 @@ console.log(instructions)
                                   payerKey: payer.publicKey,
                                   recentBlockhash: blockhash,
                                   instructions,
-                                }).compileToV0Message(goaccst);
+                                }).compileToV0Message(goaccs);
                                 console.log(123);
                                 const transaction = new VersionedTransaction(
                                   messageV00
