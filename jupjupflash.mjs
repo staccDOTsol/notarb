@@ -5241,7 +5241,9 @@ async function something(SOL_MINT, market, myluts) {
 
         var dec = reserve.config.liquidityToken.decimals;
         let min = reserve.stats.flashLoanFeePercentage;
+        if (min != 0.003){
         console.log(min)
+        }
         let cba = -1;
         if (
           !baddies.includes(SOL_MINT + USDC_MINT) &&
@@ -5354,7 +5356,7 @@ async function something(SOL_MINT, market, myluts) {
                       for (var maybego of dothethings) {
                         gogo = maybego;
                       }
-                      if (returns >  min && returns < 10000000) {
+                      if (returns >  min * 100 && returns < 10000000) {
                         let goaccs = [];
                         for (var mi of solToUsdc.data[0].marketInfos) {
                           var ta2;
