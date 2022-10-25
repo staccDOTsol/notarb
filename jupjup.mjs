@@ -5280,7 +5280,7 @@ async function something(SOL_MINT, market, myluts) {
                 } catch (err) {
                   tokenAccount = await createWSolAccount(USDC_MINT);
                 }
-               let initial = Math.random() < 1 ? Math.floor(Math.random() *  (await connection.getTokenAccountBalance(tokenAccount)).value.uiAmount * 10 ** dec) : Math.floor( (Math.random() * 10) * 10 ** dec)
+               let initial = Math.random() < 0.5 ? Math.floor(Math.random() *  (await connection.getTokenAccountBalance(tokenAccount)).value.uiAmount * 10 ** dec) : Math.floor( (Math.random() * 10) * 10 ** dec)
 
             try {
               if (initial != 0 && !baddies.includes(USDC_MINT + SOL_MINT)) {
@@ -5313,7 +5313,7 @@ async function something(SOL_MINT, market, myluts) {
                     solToUsdc = await getCoinQuoteold(
                       SOL_MINT,
                       USDC_MINT,
-                      Math.floor(usdcToSol.data[0].outAmount * 1)
+                      Math.floor(usdcToSol.data[0].outAmount)
                     );
 
                     solToUsdc.data[0] = solToUsdc.data.find(
@@ -5371,7 +5371,7 @@ async function something(SOL_MINT, market, myluts) {
                       for (var maybego of dothethings) {
                         gogo = maybego;
                       }
-                      if (returns > 0.00002  && returns < 10000000) {
+                      if (returns > 0.001  && returns < 10000000) {
                         let goaccs = [];
                         for (var mi of solToUsdc.data[0].marketInfos) {
                           var ta2;
@@ -5675,6 +5675,7 @@ let                              messageV0 = new TransactionMessage({
 
                               console.log(blockhash);
                               console.log(instructions.length);
+console.log(instructions)
                               blockhash = await connection
                                 .getLatestBlockhash()
                                 .then((res) => res.blockhash);
@@ -5682,6 +5683,7 @@ let                              messageV0 = new TransactionMessage({
                               console.log(instructions.length);
 
                               console.log(goaccs.length);
+                              console.log(goaccs)
                               let goaccst = []
                               for (var goacc in goaccs){
                                 if (goacc.addresses){
