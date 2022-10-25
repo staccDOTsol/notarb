@@ -5249,7 +5249,7 @@ async function something(SOL_MINT, market, myluts) {
       if (!mints.includes(USDC_MINT)){
      // mints.push(USDC_MINT)
       }
-      if ( true){//!baddies.includes(USDC_MINT+SOL_MINT) && !baddies.includes(SOL_MINT+USDC_MINT)) {
+      if ( USDC_MINT != "9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i"){//!baddies.includes(USDC_MINT+SOL_MINT) && !baddies.includes(SOL_MINT+USDC_MINT)) {
         //USDC_MINT != "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v") {
         //has.includes(USDC_MINT) ){
 
@@ -5689,7 +5689,7 @@ console.log(instructions)
                                 skippy.sendTransaction(transaction)
                                 skippy.sendTransaction(transaction)
                                 skippy.sendTransaction(transaction)
-                                
+
                                 let m =   await skippy.sendTransaction(transaction)
                                 console.log(m)
                               } catch (err) {
@@ -5726,7 +5726,7 @@ while (true) {
       await market.loadReserves();
       market.refreshAll();
 
-      await PromisePool.withConcurrency(6)
+      await PromisePool.withConcurrency(9)
         .for(mints)
         // @ts-ignore
         .process(async (SOL_MINT) => {

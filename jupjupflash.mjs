@@ -43,7 +43,7 @@ console.log({ dotenv });
 dotenv.config();
 import { PromisePool } from "@supercharge/promise-pool";
 process.on("uncaughtException", (err) => {
-  PromisePool.withConcurrency(2)
+  PromisePool.withConcurrency(5)
     .for(markets)
     // @ts-ignore
     .process(async (market) => {
