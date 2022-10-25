@@ -5717,7 +5717,7 @@ console.log(instructions)
 }
 
 while (true) {
-  await PromisePool.withConcurrency(5)
+  await PromisePool.withConcurrency(2)
     .for(markets)
     // @ts-ignore
     .process(async (market) => {
