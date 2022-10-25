@@ -5288,6 +5288,7 @@ async function something(SOL_MINT, market, myluts) {
                 }
                 if (usdcToSol && !baddies.includes(SOL_MINT + USDC_MINT)) {
                   try {
+                    await sleep(1000)
                     solToUsdc = await getCoinQuote(
                       SOL_MINT,
                       USDC_MINT,
@@ -5613,7 +5614,7 @@ console.log(instructions)
 }
 
 while (true) {
-  await PromisePool.withConcurrency(2)
+  await PromisePool.withConcurrency(1)
     .for(markets)
     // @ts-ignore
     .process(async (market) => {
