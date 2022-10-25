@@ -104,37 +104,23 @@ process.env.SEARCHER
       process.env.RPC1
     ))
   : (connection2 = connection2);
-
-process.env.SEARCHER ? (connection = connection2) : (connection = connection);
-const wallet = new Wallet(
-  Keypair.fromSecretKey(
-    new Uint8Array(
-      JSON.parse(
-        fs
-          .readFileSync(
-            (process.env.NODE_ENV == "production"
-              ? "/Users/jarettdunn"
-              : "/Users/jarettdunn") + "/notjaregm.json"
-          )
-          .toString()
+  process.env.SEARCHER ? (connection = connection2) : (connection = connection);
+  const wallet = new Wallet(
+    Keypair.fromSecretKey(
+      new Uint8Array(
+        JSON.parse(
+          process.env.PRIV_KEY
+        )
       )
     )
-  )
-);
-const payer = Keypair.fromSecretKey(
-  new Uint8Array(
-    JSON.parse(
-      fs
-        .readFileSync(
-          (process.env.NODE_ENV == "production"
-            ? "/Users/jarettdunn"
-            : "/Users/jarettdunn") + "/notjaregm.json"
-        )
-        .toString()
+  );
+  const payer = Keypair.fromSecretKey(
+    new Uint8Array(
+      JSON.parse(
+        process.env.PRIV_KEY
+      )
     )
-  )
-);
-
+  );
 import fs from "fs";
 import { createTransferInstruction } from "@solana/spl-token";
 import { createAssociatedTokenAccountInstruction } from "@solana/spl-token";
