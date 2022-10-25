@@ -5374,7 +5374,7 @@ index+=","+mi.id
 
                               if (!Object.keys(tanswers).includes(index)) {
                                 jares = [];
-                                await sleep(100)
+                                await sleep(1000)
                                 await Promise.all(
                                   [i, xi].map(
                                     async (route) => {
@@ -5551,7 +5551,7 @@ await sleep(1000)
 console.log(instructions)
                               blockhash = await connection
                                 .getLatestBlockhash()
-                                .then((res) => res.blockhash);
+                                .then((res) => res.blockhash);a
                               let messageV00;
                               console.log(instructions.length);
 
