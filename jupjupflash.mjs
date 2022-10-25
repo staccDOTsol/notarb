@@ -5446,7 +5446,7 @@ async function something(SOL_MINT, market, myluts) {
                                 )).amount
                                 if (amt > w){
                                   w = amt
-                                  tokenAccount = args
+                                  tokenAccount = args.pubkey
                                 }
                               }
             
