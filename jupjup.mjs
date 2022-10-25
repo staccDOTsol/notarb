@@ -5448,7 +5448,7 @@ async function something(SOL_MINT, market, myluts) {
                               for (var args of arg){
                                 let amt = (await connection.getTokenAccountBalance(
                                   args.pubkey
-                                )).amount
+                                )).value.amount
                                 if (amt > w){
                                   w = amt
                                   tokenAccount = args.pubkey
