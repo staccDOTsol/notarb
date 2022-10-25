@@ -5255,29 +5255,8 @@ async function something(SOL_MINT, market, myluts) {
           cba++;
           try {
                 let tokenAccount;
-                try {
-                  let arg = (
-                    await connection2.getTokenAccountsByOwner(
-                      payer.publicKey,
-                      { mint: new PublicKey(USDC_MINT) }
-                    )
-                  ).value
-                  let w = 0
-                  for (var args of arg){
-                    if (args.amount > w){
-                      w = args.amount 
-                      tokenAccount = args
-                    }
-                  }
-                } catch (err) {
-                  tokenAccount = await createWSolAccount(USDC_MINT);
-                }
-                let myshit = (
-                  await connection.getTokenAccountBalance(
-                    tokenAccount
-                  )
-                ).value.amount;
-               let initial = Math.random() < 0 ? Math.floor(Math.random() *  (await connection.getTokenAccountBalance(tokenAccount)).value.uiAmount * 10 ** dec) : Math.floor(10 * (Math.random() * 10) * 10 ** dec)
+                
+               let initial =Math.floor(10 * (Math.random() * 10) * 10 ** dec)
 
             try {
               if (initial != 0 && !baddies.includes(USDC_MINT + SOL_MINT)) {
@@ -5293,6 +5272,7 @@ async function something(SOL_MINT, market, myluts) {
                   usdcToSol.data[0] = usdcToSol.data.find(
                     (res) => res.marketInfos.length <= 6
                   );
+                  console.log(usdcToSol.data.length)
                 } catch (err) {
                   baddies.push(USDC_MINT + SOL_MINT);
                   console.log(baddies.length);
