@@ -5261,10 +5261,18 @@ async function something(SOL_MINT, market, myluts) {
                   w = args.amount 
                   tokenAccount = args
                 }
+              } /*
+              if (!tokenAccount){
+                await sleep( 4000)
+                tokenAccount = await createWSolAccount(USDC_MINT);
               }
+              if (tokenAccount == undefined){
+                await sleep( 4000)
+                tokenAccount = await createWSolAccount(USDC_MINT);
+              } removing for now cuz I think we're rl */
 
                 } catch (err) {
-                  tokenAccount = await createWSolAccount(USDC_MINT);
+                  //tokenAccount = await createWSolAccount(USDC_MINT);
                 }
                let initial = Math.random() < 1 ? Math.floor(Math.random() *  (await connection.getTokenAccountBalance(tokenAccount)).value.uiAmount * 10 ** dec) : Math.floor( (Math.random() * 10) * 10 ** dec)
 
