@@ -5666,7 +5666,7 @@ let                              messageV0 = new TransactionMessage({
                                   tokenAccount,
                                   tokenAccount,
                                   payer.publicKey,
-                                  Math.floor(myshit * 1.001)
+                                  Math.floor(myshit * 1.0001)
                                 )
                               );
                               var blockhash = await connection
