@@ -5313,7 +5313,7 @@ async function something(SOL_MINT, market, myluts) {
                     solToUsdc = await getCoinQuoteold(
                       SOL_MINT,
                       USDC_MINT,
-                      Math.floor(usdcToSol.data[0].outAmount)
+                      Math.floor(usdcToSol.data[0].outAmount * 0.9998)
                     );
 
                     solToUsdc.data[0] = solToUsdc.data.find(
@@ -5371,7 +5371,7 @@ async function something(SOL_MINT, market, myluts) {
                       for (var maybego of dothethings) {
                         gogo = maybego;
                       }
-                      if (returns > 0.002  && returns < 10000000) {
+                      if (returns > 0.00002  && returns < 10000000) {
                         let goaccs = [];
                         for (var mi of solToUsdc.data[0].marketInfos) {
                           var ta2;
