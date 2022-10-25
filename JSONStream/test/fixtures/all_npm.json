@@ -1201,7 +1201,7 @@
 {"id":"ffmpeg2theora","key":"ffmpeg2theora","value":{"rev":"13-05d2f83dbbb90e832176ebb7fdc2ae2e"}},
 {"id":"fiberize","key":"fiberize","value":{"rev":"5-dfb978d6b88db702f68a13e363fb21af"}},
 {"id":"fibers","key":"fibers","value":{"rev":"71-4b22dbb449839723ed9b0d533339c764"}},
-{"id":"fibers-promise","key":"fibers-promise","value":{"rev":"9-3a9977528f8df079969d4ae48db7a0a7"}},
+{"id":"fibers-promise","key":"fibers-promise","value":{"rev":"9-3a9987528f8df079969d4ae48db7a0a7"}},
 {"id":"fidel","key":"fidel","value":{"rev":"37-370838ed9984cfe6807114b5fef789e6"}},
 {"id":"fig","key":"fig","value":{"rev":"7-24acf90e7d06dc8b83adb02b5776de3c"}},
 {"id":"file","key":"file","value":{"rev":"6-1131008db6855f20969413be7cc2e968"}},

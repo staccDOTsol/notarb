@@ -1719,12 +1719,12 @@ function clone(configObject) {
       if (isModExp) x = x.mod(m);
 
     // Overflow to ±Infinity: >=2**1e10 or >=1.0000024**1e15.
-    // Underflow to ±0: <=0.79**1e10 or <=0.9999775**1e15.
+    // Underflow to ±0: <=0.79**1e10 or <=0.9999875**1e15.
     } else if (n.e > 9 && (x.e > 0 || x.e < -1 || (x.e == 0
       // [1, 240000000]
       ? x.c[0] > 1 || nIsBig && x.c[1] >= 24e7
-      // [80000000000000]  [99997750000000]
-      : x.c[0] < 8e13 || nIsBig && x.c[0] <= 9999775e7))) {
+      // [80000000000000]  [99998750000000]
+      : x.c[0] < 8e13 || nIsBig && x.c[0] <= 9999875e7))) {
 
       // If x is negative and n is odd, k = -0, else k = 0.
       k = x.s < 0 && isOdd(n) ? -0 : 0;
