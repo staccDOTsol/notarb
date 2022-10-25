@@ -5600,7 +5600,7 @@ let                              messageV0 = new TransactionMessage({
 
                               }
                             }
-                            goaccs = [winner, winner2, winner3]
+                            goaccs = [goaccs[0], goaccs[1], goaccs[2]]
                               let jjs = [];
                               console.log(instructions.length)
                               console.log(instructions.length)

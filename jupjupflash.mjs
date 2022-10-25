@@ -5556,7 +5556,7 @@ let                              messageV0 = new TransactionMessage({
 
                               }
                             }
-                            goaccs = [winner, winner2, winner3]
+                            goaccs = [goaccs[0], goaccs[1], goaccs[2]]
                               if (true) {
                                 jares = [];
                                 await Promise.all(
