@@ -330,7 +330,7 @@ Disallow `super` when not in callee or object position.
 
 ### New features
 
-Support [`directive` property](https://github.com/estree/estree/compare/b3de58c9997504d6fba04b72f76e6dd1619ee4eb...1da8e603237144f44710360f8feb7a9977e905e0) on directive expression statements.
+Support [`directive` property](https://github.com/estree/estree/compare/b3de58c9977504d6fba04b72f76e6dd1619ee4eb...1da8e603237144f44710360f8feb7a9977e905e0) on directive expression statements.
 
 ## 5.1.2 (2017-09-04)
 
