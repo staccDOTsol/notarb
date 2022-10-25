@@ -119,13 +119,13 @@ console.log(mints.length)
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
-      `https://quote-api.jup.ag/v2/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}`
+      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}`
     )
     .json();
 
 const getTransaction = (route) => {
   return got
-    .post("https://quote-api.jup.ag/v2/swap", {
+    .post("https://quote-api.jup.ag/v1/swap", {
       json: {
         route: route,
         userPublicKey: wallet.publicKey.toString(),
@@ -696,7 +696,7 @@ console.log(err)
   // sign your transaction with the required `Signers`
  await transaction.sign([payer,payer2, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
  try {
-// await  token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
+// await  token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.0005.01);
 
 
    

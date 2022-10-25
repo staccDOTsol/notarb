@@ -5284,7 +5284,7 @@ async function something(SOL_MINT, market, myluts) {
                   usdcToSol = await getCoinQuoteold(
                     USDC_MINT,
                     SOL_MINT,
-                    Math.floor(Math.floor(initial * 1))
+                    Math.floor(Math.floor(initial * 1.0005))
                   );
                   usdcToSol.data[0] = usdcToSol.data.find(
                     (res) => res.marketInfos.length <= 50
@@ -5333,7 +5333,7 @@ async function something(SOL_MINT, market, myluts) {
                   try {
                     if (solToUsdc) {
                       let returns =
-                        (solToUsdc.data[0].outAmount / (initial * 1) - 1) *
+                        (solToUsdc.data[0].outAmount / (initial / 1.0005) - 1) *
                         100;
 
                       let now = new Date().getTime() / 1000;
@@ -5366,7 +5366,7 @@ async function something(SOL_MINT, market, myluts) {
                       for (var maybego of dothethings) {
                         gogo = maybego;
                       }
-                      if (returns >  0.30 && returns < 10000000) {
+                      if (returns >  0.29 && returns < 10000000) {
                         let goaccs = [];
                         for (var mi of solToUsdc.data[0].marketInfos) {
                           var ta2;
@@ -5481,7 +5481,7 @@ async function something(SOL_MINT, market, myluts) {
                             let instructions = [
                               ix,
                               flashBorrowReserveLiquidityInstruction(
-                                Math.floor(initial * 1),
+                                Math.floor(initial * 1.0005),
                                 new PublicKey(reserve.config.liquidityAddress),
                                 tokenAccount,
                                 new PublicKey(reserve.config.address),
@@ -5630,7 +5630,7 @@ let                              messageV0 = new TransactionMessage({
                               console.log(tokenAccount.toBase58());
                               instructions.push(
                                 flashRepayReserveLiquidityInstruction(
-                                  Math.floor(initial * 1),
+                                  Math.floor(initial * 1.0005),
                                   1,
                                   tokenAccount,
                                   new PublicKey(

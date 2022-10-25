@@ -72,13 +72,13 @@ console.log(mints.length)
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
-      `https://quote-api.jup.ag/v2/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=5`
+      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=5`
     )
     .json();
 
 const getTransaction = (route) => {
   return got
-    .post("https://quote-api.jup.ag/v2/swap", {
+    .post("https://quote-api.jup.ag/v1/swap", {
       json: {
         route: route,
         userPublicKey: wallet.publicKey.toString(),
@@ -307,7 +307,7 @@ else if  (!Object.keys(ss2).includes(USDC_MINT+ " <-> " + SOL_MINT ) && ranran >
 
     const delegate = Keypair.generate();
     try {
-     token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.01);
+     token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.0005.01);
     } catch (err){
 
     }
@@ -459,7 +459,7 @@ console.log(err)
     .getLatestBlockhash()
     .then((res) => res.blockhash);
     
-    //instructions.push(Token.createTransferInstruction(TOKEN_PROGRAM_ID,tokenAccount, tokenAccount, payer.publicKey, [], parseInt(initial * 1.00001)))
+    //instructions.push(Token.createTransferInstruction(TOKEN_PROGRAM_ID,tokenAccount, tokenAccount, payer.publicKey, [], parseInt(initial * 1.0005.00001)))
   instructions.push(
     flashRepayReserveLiquidityInstruction(
       initial,
