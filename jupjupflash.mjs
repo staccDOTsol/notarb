@@ -5333,7 +5333,7 @@ async function something(SOL_MINT, market, myluts) {
                   try {
                     if (solToUsdc) {
                       let returns =
-                        (solToUsdc.data[0].outAmount / (initial / 1.0005) - 1) *
+                        (solToUsdc.data[0].outAmount / (initial / 1.0006) - 1) *
                         100;
 
                       let now = new Date().getTime() / 1000;
