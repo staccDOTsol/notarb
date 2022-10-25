@@ -5,7 +5,7 @@ import fs from 'fs'
 setTimeout(async function(){
 // invalid cache. I will recommend using a paid RPC endpoint.
 let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost:8899' : 'https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ'));
-var connection2= new Connection("https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ");
+var connection2= new Connection(process.env.RPC1);
 
 process.env.SEARCHER ? connection = connection2 : connection = connection
 

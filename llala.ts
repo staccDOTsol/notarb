@@ -27,7 +27,7 @@ const mnemonics = JSON.parse(
   fs.readFileSync("/Users/jarettdunn/mem.ts").toString()
 ); //forgot n lol
 const connection = new solanaWeb3.Connection(
-  "https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ", //hahalolhaha
+  process.env.RPC1, //hahalolhaha
   "confirmed"
 );
 let hydras: number[] = [];

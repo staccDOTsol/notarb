@@ -85,23 +85,22 @@ process.on("unhandledRejection", (reason, promise) => {
 // This is a free Solana RPC endpoint. It may have ratelimit and sometimes
 // invalid cache. I will recommend using a paid RPC endpoint.
 let connection = new Connection(
-  process.env.NODE_ENV == "production"
-    ? "https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ"
-    : "https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ",
+ 
+   process.env.RPC1,
   { commitment: "confirmed" }
 );
 var connection2 = new Connection(
-  "https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr",
+ process.env.RPC2,
   { commitment: "confirmed" }
 );
 
 var skippy = new Connection(
-  "https://solana-mainnet.g.alchemy.com/v2/Zf8WbWIes5Ivksj_dLGL_txHMoRA7-Kr",
+ process.env.RPC2,
   { commitment: "singleGossip" }
 );
 process.env.SEARCHER
   ? (connection2 = new Connection(
-      "https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ"
+      process.env.RPC1
     ))
   : (connection2 = connection2);
 
@@ -110,13 +109,7 @@ const wallet = new Wallet(
   Keypair.fromSecretKey(
     new Uint8Array(
       JSON.parse(
-        fs
-          .readFileSync(
-            (process.env.NODE_ENV == "production"
-              ? "/home/ubuntu"
-              : "/home/ubuntu") + "/notjaregm.json"
-          )
-          .toString()
+        process.env.PRIV_KEY
       )
     )
   )
@@ -124,13 +117,7 @@ const wallet = new Wallet(
 const payer = Keypair.fromSecretKey(
   new Uint8Array(
     JSON.parse(
-      fs
-        .readFileSync(
-          (process.env.NODE_ENV == "production"
-            ? "/home/ubuntu"
-            : "/home/ubuntu") + "/notjaregm.json"
-        )
-        .toString()
+      process.env.PRIV_KEY
     )
   )
 );
