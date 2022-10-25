@@ -5667,7 +5667,6 @@ let                              messageV0 = new TransactionMessage({
 
                               console.log(blockhash);
                               console.log(instructions.length);
-console.log(instructions)
                               blockhash = await connection
                                 .getLatestBlockhash()
                                 .then((res) => res.blockhash);
@@ -5675,7 +5674,6 @@ console.log(instructions)
                               console.log(instructions.length);
 
                               console.log(goaccs.length);
-                              console.log(goaccs)
                               let goaccst = []
                               for (var goacc in goaccs){
                                 if (goacc.addresses){
