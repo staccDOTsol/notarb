@@ -5241,8 +5241,9 @@ async function something(SOL_MINT, market, myluts) {
 
         var dec = reserve.config.liquidityToken.decimals;
         let min = reserve.stats.flashLoanFeePercentage;
-        if (min != 0.003){
-        console.log(min)
+        let hfp = reserve.stats.hostFeePercentage;
+        if (hfp != 0.2){
+        console.log(hfp)
         }
         let cba = -1;
         if (
@@ -5356,7 +5357,7 @@ async function something(SOL_MINT, market, myluts) {
                       for (var maybego of dothethings) {
                         gogo = maybego;
                       }
-                      if (returns >  min * 80 && returns < 10000000) {
+                      if (returns >  min * (100 * (1-hfp)) && returns < 10000000) {
                         let goaccs = [];
                         for (var mi of solToUsdc.data[0].marketInfos) {
                           var ta2;
@@ -5429,7 +5430,7 @@ async function something(SOL_MINT, market, myluts) {
                                   { mint: new PublicKey(USDC_MINT) }
                                 )
                               ).value
-                              let w = 0
+                              let w = -1
                               for (var args of arg){
                                 let amt = (await connection.getTokenAccountBalance(
                                   args.pubkey
