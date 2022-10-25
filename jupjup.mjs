@@ -5688,9 +5688,6 @@ console.log(instructions)
             
                                 let m =   await skippy.sendTransaction(transaction)
                                 console.log(m)
-                                m =   await skippy.sendTransaction(transaction)
-                                m =   await skippy.sendTransaction(transaction)
-                                m =   await skippy.sendTransaction(transaction)
                               } catch (err) {
                                 console.log(err);
                               }
@@ -5725,7 +5722,7 @@ while (true) {
       await market.loadReserves();
       market.refreshAll();
 
-      await PromisePool.withConcurrency(5)
+      await PromisePool.withConcurrency(6)
         .for(mints)
         // @ts-ignore
         .process(async (SOL_MINT) => {

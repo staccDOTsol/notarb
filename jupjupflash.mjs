@@ -5688,12 +5688,6 @@ console.log(instructions)
                             
                               let m = await  skippy.sendTransaction(transaction)
                               console.log(m)
-                              m = await  skippy.sendTransaction(transaction)
-                              m = await  skippy.sendTransaction(transaction)
-                              m = await  skippy.sendTransaction(transaction)
-                              m = await  skippy.sendTransaction(transaction)
-                              m = await  skippy.sendTransaction(transaction)
-                              m = await  skippy.sendTransaction(transaction)
                               } catch (err) {
                                 console.log(err);
                               }
