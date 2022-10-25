@@ -5261,14 +5261,22 @@ async function something(SOL_MINT, market, myluts) {
           let dothethings = [];
           cba++;
           try {
-                let tokenAccount;
-                try {
-                  tokenAccount = (
-                    await connection2.getTokenAccountsByOwner(
-                      payer.publicKey,
-                      { mint: new PublicKey(USDC_MINT) }
-                    )
-                  ).value[0].pubkey;
+            let tokenAccount;
+            try {
+              let arg = (
+                await connection2.getTokenAccountsByOwner(
+                  payer.publicKey,
+                  { mint: new PublicKey(USDC_MINT) }
+                )
+              ).value
+              let w = 0
+              for (var args of arg){
+                if (args.amount > w){
+                  w = args.amount 
+                  tokenAccount = args
+                }
+              }
+
                 } catch (err) {
                   tokenAccount = await createWSolAccount(USDC_MINT);
                 }
@@ -5430,12 +5438,20 @@ async function something(SOL_MINT, market, myluts) {
                             const delegate = Keypair.generate();
                             let tokenAccount;
                             try {
-                              tokenAccount = (
+                              let arg = (
                                 await connection2.getTokenAccountsByOwner(
                                   payer.publicKey,
                                   { mint: new PublicKey(USDC_MINT) }
                                 )
-                              ).value[0].pubkey;
+                              ).value
+                              let w = 0
+                              for (var args of arg){
+                                if (args.amount > w){
+                                  w = args.amount 
+                                  tokenAccount = args
+                                }
+                              }
+            
                             } catch (err) {
                               tokenAccount = await createWSolAccount(USDC_MINT);
                             }

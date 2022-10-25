@@ -5270,12 +5270,19 @@ async function something(SOL_MINT, market, myluts) {
           try {
                 let tokenAccount;
                 try {
-                  tokenAccount = (
+                  let arg = (
                     await connection2.getTokenAccountsByOwner(
                       payer.publicKey,
                       { mint: new PublicKey(USDC_MINT) }
                     )
-                  ).value[0].pubkey;
+                  ).value
+                  let w = 0
+                  for (var args of arg){
+                    if (args.amount > w){
+                      w = args.amount 
+                      tokenAccount = args
+                    }
+                  }
                 } catch (err) {
                   tokenAccount = await createWSolAccount(USDC_MINT);
                 }
