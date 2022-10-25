@@ -307,7 +307,7 @@ else if  (!Object.keys(ss2).includes(USDC_MINT+ " <-> " + SOL_MINT ) && ranran >
 
     const delegate = Keypair.generate();
     try {
-     token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.0005.01);
+     token.approve(tokenAccount, delegate.publicKey, payer, [], initial.01);
     } catch (err){
 
     }
@@ -459,7 +459,7 @@ console.log(err)
     .getLatestBlockhash()
     .then((res) => res.blockhash);
     
-    //instructions.push(Token.createTransferInstruction(TOKEN_PROGRAM_ID,tokenAccount, tokenAccount, payer.publicKey, [], parseInt(initial * 1.0005.00001)))
+    //instructions.push(Token.createTransferInstruction(TOKEN_PROGRAM_ID,tokenAccount, tokenAccount, payer.publicKey, [], parseInt(initial.00001)))
   instructions.push(
     flashRepayReserveLiquidityInstruction(
       initial,

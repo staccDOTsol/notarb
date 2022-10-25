@@ -696,7 +696,7 @@ console.log(err)
   // sign your transaction with the required `Signers`
  await transaction.sign([payer,payer2, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
  try {
-// await  token.approve(tokenAccount, delegate.publicKey, payer, [], initial * 1.0005.01);
+// await  token.approve(tokenAccount, delegate.publicKey, payer, [], initial.01);
 
 
    
