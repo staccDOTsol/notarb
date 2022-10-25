@@ -5181,7 +5181,7 @@ function toObject(obj) {
     ));
 }
 for (var amarket of configs) {
-  if (false){//!amarket.hidden && !amarket.isPermissionless) {
+  if (true){//false){//!amarket.hidden && !amarket.isPermissionless) {
     try {
       await sleep(rando(0, 1, "float") * 1);
       let market = await SolendMarket.initialize(
@@ -5254,7 +5254,7 @@ async function something(SOL_MINT, market, myluts) {
       var USDC_MINT = reserve.config.liquidityToken.mint;
      // console.log(USDC_MINT)
       if (!mints.includes(USDC_MINT)){
-     // mints.push(USDC_MINT)
+     mints.push(USDC_MINT)
       }
       if ( true){//!baddies.includes(USDC_MINT+SOL_MINT) && !baddies.includes(SOL_MINT+USDC_MINT)) {
         //USDC_MINT != "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v") {
@@ -5291,7 +5291,7 @@ async function something(SOL_MINT, market, myluts) {
                     tokenAccount
                   )
                 ).value.amount;
-               let initial = Math.random() < 0.5 ? Math.floor(Math.random() *  (await connection.getTokenAccountBalance(tokenAccount)).value.uiAmount * 10 ** dec) : Math.floor(10 * (Math.random() * 10) * 10 ** dec)
+               let initial = Math.random() < 0 ? Math.floor(Math.random() *  (await connection.getTokenAccountBalance(tokenAccount)).value.uiAmount * 10 ** dec) : Math.floor(10 * (Math.random() * 10) * 10 ** dec)
 
             try {
               if (initial != 0 && !baddies.includes(USDC_MINT + SOL_MINT)) {

@@ -5436,7 +5436,12 @@ async function something(SOL_MINT, market, myluts) {
                                   tokenAccount = args.pubkey
                                 }
                               }
-            
+                                if (!tokenAccount){
+                                  tokenAccount = await createWSolAccount(USDC_MINT);
+                                }
+                                if (tokenAccount == undefined){
+                                  tokenAccount = await createWSolAccount(USDC_MINT);
+                                }
                             } catch (err) {
                               tokenAccount = await createWSolAccount(USDC_MINT);
                             }
