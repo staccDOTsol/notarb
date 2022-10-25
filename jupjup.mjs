@@ -5280,7 +5280,7 @@ async function something(SOL_MINT, market, myluts) {
                 } catch (err) {
                   tokenAccount = await createWSolAccount(USDC_MINT);
                 }
-               let initial = Math.random() < 1 ? Math.floor(Math.random() *  (await connection.getTokenAccountBalance(tokenAccount)).value.uiAmount * 10 ** dec) : Math.floor( (Math.random() * 10) * 10 ** dec)
+               let initial = Math.random() < 0.5 ? Math.floor(Math.random() *  (await connection.getTokenAccountBalance(tokenAccount)).value.uiAmount * 10 ** dec) : Math.floor( (Math.random() * 10) * 10 ** dec)
 
             try {
               if (initial != 0 && !baddies.includes(USDC_MINT + SOL_MINT)) {
@@ -5666,7 +5666,7 @@ let                              messageV0 = new TransactionMessage({
                                   tokenAccount,
                                   tokenAccount,
                                   payer.publicKey,
-                                  Math.floor(myshit * 1.00001)
+                                  Math.floor(myshit * 1.001)
                                 )
                               );
                               var blockhash = await connection
