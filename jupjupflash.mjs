@@ -5441,13 +5441,15 @@ async function something(SOL_MINT, market, myluts) {
                                 }
                               }
                                 if (!tokenAccount){
+                                  await sleep( 4000)
                                   tokenAccount = await createWSolAccount(USDC_MINT);
                                 }
                                 if (tokenAccount == undefined){
+                                  await sleep( 4000)
                                   tokenAccount = await createWSolAccount(USDC_MINT);
                                 }
                             } catch (err) {
-                              tokenAccount = await createWSolAccount(USDC_MINT);
+                            //  tokenAccount = await createWSolAccount(USDC_MINT);
                             }
                             let myshit = (
                               await connection.getTokenAccountBalance(
