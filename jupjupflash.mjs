@@ -5243,9 +5243,7 @@ async function something(SOL_MINT, market, myluts) {
         var dec = reserve.config.liquidityToken.decimals;
         let min = reserve.stats.flashLoanFeePercentage;
         let hfp = reserve.stats.hostFeePercentage;
-        if (hfp != 0.8){
-        console.log(hfp)
-        }
+        
         let cba = -1;
         if (
           true
