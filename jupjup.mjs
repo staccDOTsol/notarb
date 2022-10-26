@@ -5287,7 +5287,7 @@ async function something(SOL_MINT, market, myluts) {
                     Math.floor(Math.floor(initial))
                   );
                   usdcToSol.data[0] = usdcToSol.data.find(
-                    (res) => res.marketInfos.length <= 3
+                    (res) => res.marketInfos.length <= 2
                   );
                 } catch (err) {
                   baddies.push(USDC_MINT + SOL_MINT);
