@@ -5255,7 +5255,7 @@ async function something(SOL_MINT, market, myluts) {
                   { mint: new PublicKey(USDC_MINT) }
                 )
               ).value
-              let w = 0
+              let w = -1
               for (var args of arg){
                 if (args.amount > w){
                   w = args.amount 
