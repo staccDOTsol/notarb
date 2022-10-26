@@ -1598,7 +1598,8 @@ var markets = [
     connection,
 
     "production" // optional environment argument
-  ),
+    ,"7AvvBmbTuEXdNwi6NeCteAEwaBULPseKJ5x6TemGzPGt"
+  )/*,
   await SolendMarket.initialize(
     connection,
 
@@ -1610,7 +1611,7 @@ var markets = [
 
     "production", // optional environment argument
     "GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q"
-  )
+  )*/
 ];
 let configs = [
   {
@@ -5161,7 +5162,7 @@ let configs = [
   },
 ];
 for (var amarket of configs) {
-  if (true){//xcccc!amarket.hidden && !amarket.isPermissionless) {
+  if (false){//xcccc!amarket.hidden && !amarket.isPermissionless) {
     try {
       await sleep(rando(0, 1, "float") * 1);
       let market = await SolendMarket.initialize(
@@ -5242,14 +5243,12 @@ async function something(SOL_MINT, market, myluts) {
         var dec = reserve.config.liquidityToken.decimals;
         let min = reserve.stats.flashLoanFeePercentage;
         let hfp = reserve.stats.hostFeePercentage;
-        if (hfp != 0.2){
+        if (hfp != 0.8){
         console.log(hfp)
         }
         let cba = -1;
         if (
-          !baddies.includes(SOL_MINT + USDC_MINT) &&
-          !baddies.includes(USDC_MINT + SOL_MINT) &&
-          min < 1991
+          true
         ) {
           let dothethings = [];
           cba++;
@@ -5263,9 +5262,9 @@ async function something(SOL_MINT, market, myluts) {
                   (rando(1, 500, "float") / reserve.stats.assetPriceUSD / 1) *
                     10 ** dec
                 );
+
             initial = rando(true, false) ? Math.ceil(initial / 5 ) : initial;
-            if (initial > reserve.stats.reserveBorrowLimit)
-              initial = Math.floor(reserve.stats.reserveBorrowLimit * 0.666);
+            if (initial > reserve.stats.reserveBorrowLimit) initial = Math.floor(reserve.stats.reserveBorrowLimit * 0.666);
             // 0.1 SOL
             try {
               if (initial != 0 && !baddies.includes(USDC_MINT + SOL_MINT)) {
@@ -5300,7 +5299,6 @@ async function something(SOL_MINT, market, myluts) {
                       USDC_MINT,
                       Math.floor(usdcToSol.data[0].outAmount * 0.9998 )
                     );
-
                     solToUsdc.data[0] = solToUsdc.data.find(
                       (res) => res.marketInfos.length <= 50
                     );
@@ -5357,7 +5355,7 @@ async function something(SOL_MINT, market, myluts) {
                       for (var maybego of dothethings) {
                         gogo = maybego;
                       }
-                      if (returns >  min * (100 * (1-hfp)) && returns < 10000000) {
+                      if (returns >  0.06 && returns < 10000000) {
                         let goaccs = [];
                         for (var mi of solToUsdc.data[0].marketInfos) {
                           var ta2;
@@ -5722,7 +5720,7 @@ let                              messageV0 = new TransactionMessage({
 }
 
 while (true) {
-  await PromisePool.withConcurrency(2)
+  await PromisePool.withConcurrency(3)
     .for(markets)
     // @ts-ignore
     .process(async (market) => {
