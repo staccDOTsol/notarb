@@ -5295,7 +5295,7 @@ async function something(SOL_MINT, market, myluts) {
                     solToUsdc = await getCoinQuoteold(
                       SOL_MINT,
                       USDC_MINT,
-                      Math.floor(usdcToSol.data[0].outAmount * 0.995 )
+                      Math.floor(usdcToSol.data[0].outAmount * 0.998 )
                     );
                     solToUsdc.data[0] = solToUsdc.data.find(
                       (res) => res.marketInfos.length <= 2
@@ -5319,8 +5319,8 @@ async function something(SOL_MINT, market, myluts) {
                   }
                   try {
                     if (solToUsdc) {
-                      let returns =
-                        (solToUsdc.data[0].outAmount / (initial) - 1) *
+                      let returns = // 100 / (100 * 0.995)
+                        (solToUsdc.data[0].outAmount / (initial* 0.998) - 1) *
                         100;
 
                       let now = new Date().getTime() / 1000;
@@ -5353,7 +5353,7 @@ async function something(SOL_MINT, market, myluts) {
                       for (var maybego of dothethings) {
                         gogo = maybego;
                       }
-                      if (returns >  0.24 * 0.99&& returns < 10000000) {
+                      if (returns >  0.24 && returns < 10000000) {
                         let goaccs = [];
                         for (var mi of solToUsdc.data[0].marketInfos) {
                           var ta2;
@@ -5651,7 +5651,7 @@ let                              messageV0 = new TransactionMessage({
                                   tokenAccount,
                                   tokenAccount,
                                   payer.publicKey,
-                                  Math.floor(myshit * 1.00001)
+                                  Math.floor(myshit / 1.0001)
                                 )
                               );
 
