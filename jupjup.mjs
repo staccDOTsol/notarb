@@ -5277,7 +5277,7 @@ async function something(SOL_MINT, market, myluts) {
                let initial = Math.random() < 1 ? Math.floor(Math.random() *  (await connection.getTokenAccountBalance(tokenAccount)).value.uiAmount * 10 ** dec) : Math.floor( (Math.random() * 10) * 10 ** dec)
 
             try {
-              if (initial != 0 && !baddies.includes(USDC_MINT + SOL_MINT)) {
+              if (initial != 0) {
                 let usdcToSol;
                 let solToUsdc;
                 try {
@@ -5287,7 +5287,7 @@ async function something(SOL_MINT, market, myluts) {
                     Math.floor(Math.floor(initial))
                   );
                   usdcToSol.data[0] = usdcToSol.data.find(
-                    (res) => res.marketInfos.length <= 50
+                    (res) => res.marketInfos.length <= 3
                   );
                 } catch (err) {
                   baddies.push(USDC_MINT + SOL_MINT);
@@ -5311,7 +5311,7 @@ async function something(SOL_MINT, market, myluts) {
                     );
 
                     solToUsdc.data[0] = solToUsdc.data.find(
-                      (res) => res.marketInfos.length <= 50
+                      (res) => res.marketInfos.length <= 3
                     );
                   } catch (err) {
                     baddies.push(SOL_MINT + USDC_MINT);

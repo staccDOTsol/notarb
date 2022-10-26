@@ -1598,8 +1598,8 @@ var markets = [
     connection,
 
     "production" // optional environment argument
-    ,"7AvvBmbTuEXdNwi6NeCteAEwaBULPseKJ5x6TemGzPGt"
-  )/*,
+   // ,"7AvvBmbTuEXdNwi6NeCteAEwaBULPseKJ5x6TemGzPGt"
+  ),
   await SolendMarket.initialize(
     connection,
 
@@ -1611,7 +1611,7 @@ var markets = [
 
     "production", // optional environment argument
     "GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q"
-  )*/
+  )
 ];
 let configs = [
   {
@@ -5162,7 +5162,7 @@ let configs = [
   },
 ];
 for (var amarket of configs) {
-  if (false){//xcccc!amarket.hidden && !amarket.isPermissionless) {
+  if (!amarket.hidden && !amarket.isPermissionless) {
     try {
       await sleep(rando(0, 1, "float") * 1);
       let market = await SolendMarket.initialize(
@@ -5277,7 +5277,7 @@ async function something(SOL_MINT, market, myluts) {
                     Math.floor(Math.floor(initial))
                   );
                   usdcToSol.data[0] = usdcToSol.data.find(
-                    (res) => res.marketInfos.length <= 50
+                    (res) => res.marketInfos.length <= 3
                   );
                 } catch (err) {
                   baddies.push(USDC_MINT + SOL_MINT);
@@ -5300,7 +5300,7 @@ async function something(SOL_MINT, market, myluts) {
                       Math.floor(usdcToSol.data[0].outAmount * 0.9998 )
                     );
                     solToUsdc.data[0] = solToUsdc.data.find(
-                      (res) => res.marketInfos.length <= 50
+                      (res) => res.marketInfos.length <= 3
                     );
                   } catch (err) {
                     baddies.push(SOL_MINT + USDC_MINT);
