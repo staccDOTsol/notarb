@@ -5284,7 +5284,7 @@ async function something(SOL_MINT, market, myluts) {
                   usdcToSol = await getCoinQuoteold(
                     USDC_MINT,
                     SOL_MINT,
-                    Math.floor(Math.floor(initial))
+                    Math.floor(Math.floor(initial * 1.002))
                   );
                   usdcToSol.data[0] = usdcToSol.data.find(
                     (res) => res.marketInfos.length <= 2
@@ -5307,7 +5307,7 @@ async function something(SOL_MINT, market, myluts) {
                     solToUsdc = await getCoinQuoteold(
                       SOL_MINT,
                       USDC_MINT,
-                      Math.floor(usdcToSol.data[0].outAmount)
+                      Math.floor(usdcToSol.data[0].outAmount * 0.998)
                     );
 
                     solToUsdc.data[0] = solToUsdc.data.find(
