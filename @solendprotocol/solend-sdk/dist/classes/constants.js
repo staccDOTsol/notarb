@@ -6,7 +6,7 @@ exports.WAD = "1".concat(Array(18 + 1).join("0"));
 exports.WANG = "1".concat(Array(36 + 1).join("0"));
 exports.U64_MAX = "18446744073709551615";
 exports.SLOTS_PER_YEAR = 63072000;
-exports.SOLEND_PRODUCTION_PROGRAM_ID = new web3_js_1.PublicKey("So1endDq2YkqhipRh3WViPa8hdiSpxWy6z3Z6tMCpAo");
+exports.SOLEND_PRODUCTION_PROGRAM_ID = new web3_js_1.PublicKey("DCpzVZk8ygk1nW4SHH4YXm5BoeKe2np3MmCPVDaZyDQF");
 exports.SOLEND_DEVNET_PROGRAM_ID = new web3_js_1.PublicKey("ALend7Ketfx5bxh6ghsCDXAoDrhvEmsXT3cynB6aPLgx");
 exports.SOLEND_BETA_PROGRAM_ID = new web3_js_1.PublicKey("BLendhFh4HGnycEDDFhbeFEUYLP4fXB5tTHMoTX8Dch5");
 function getProgramId(environment) {

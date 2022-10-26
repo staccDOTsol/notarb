@@ -168,15 +168,15 @@ export class SolendAction {
         (market) => market.address == lendingMarketAddress.toBase58()
       );
       if (!lendingMarket) {
-        throw `market address not found: ${lendingMarketAddress}`;
+        //throw `market address not found: ${lendingMarketAddress}`;
       }
     } else {
       lendingMarket =
         solendInfo.find((market) => market.isPrimary) ?? solendInfo[0];
     }
 
-    const seed = lendingMarket.address.slice(0, 32);
-
+    
+    const seed = lendingMarketAddress?.toBase58() as string;
     const programId = getProgramId(environment);
 
     const obligationAddress = await PublicKey.createWithSeed(

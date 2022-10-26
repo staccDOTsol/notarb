@@ -5435,7 +5435,7 @@ async function something(SOL_MINT, market, myluts) {
                                   w = amt
                                   tokenAccount = args.pubkey
                                 }
-                              } /*
+                              } 
                                 if (!tokenAccount){
                                   await sleep( 4000)
                                   tokenAccount = await createWSolAccount(USDC_MINT);
@@ -5443,7 +5443,7 @@ async function something(SOL_MINT, market, myluts) {
                                 if (tokenAccount == undefined){
                                   await sleep( 4000)
                                   tokenAccount = await createWSolAccount(USDC_MINT);
-                                } removing for now cuz I think we're rl */
+                                }
                             } catch (err) {
                             //  tokenAccount = await createWSolAccount(USDC_MINT);
                             }

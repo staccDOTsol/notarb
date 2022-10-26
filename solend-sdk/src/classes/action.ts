@@ -163,19 +163,9 @@ export class SolendAction {
     ).data) as ConfigType;
 
     let lendingMarket: MarketConfigType | undefined;
-    if (lendingMarketAddress) {
-      lendingMarket = solendInfo.find(
-        (market) => market.address == lendingMarketAddress.toBase58()
-      );
-      if (!lendingMarket) {
-        throw `market address not found: ${lendingMarketAddress}`;
-      }
-    } else {
-      lendingMarket =
-        solendInfo.find((market) => market.isPrimary) ?? solendInfo[0];
-    }
+    
 
-    const seed = lendingMarket.address.slice(0, 32);
+    const seed = lendingMarketAddress?.toBase58()  as string;
 
     const programId = getProgramId(environment);
 
@@ -184,7 +174,7 @@ export class SolendAction {
       seed,
       programId
     );
-
+// @ts-ignore
     const reserve = lendingMarket.reserves.find(
       (res) => res.liquidityToken.symbol === symbol
     );
@@ -236,6 +226,7 @@ export class SolendAction {
       );
     }
 
+// @ts-ignore
     const tokenInfo = getTokenInfo(symbol, lendingMarket);
     const userTokenAccountAddress = await Token.getAssociatedTokenAddress(
       ASSOCIATED_TOKEN_PROGRAM_ID,
@@ -254,6 +245,7 @@ export class SolendAction {
       programId,
       connection,
       reserve,
+      // @ts-ignore
       lendingMarket,
       publicKey,
       obligationAddress,

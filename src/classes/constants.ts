@@ -6,7 +6,7 @@ export const U64_MAX = "18446744073709551615";
 export const SLOTS_PER_YEAR = 63072000;
 
 export const SOLEND_PRODUCTION_PROGRAM_ID = new PublicKey(
-  "So1endDq2YkqhipRh3WViPa8hdiSpxWy6z3Z6tMCpAo"
+  "DCpzVZk8ygk1nW4SHH4YXm5BoeKe2np3MmCPVDaZyDQF"
 );
 export const SOLEND_DEVNET_PROGRAM_ID = new PublicKey(
   "ALend7Ketfx5bxh6ghsCDXAoDrhvEmsXT3cynB6aPLgx"
