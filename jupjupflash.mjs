@@ -1598,7 +1598,7 @@ var markets = [
     connection,
 
     "production" // optional environment argument
-,"7AvvBmbTuEXdNwi6NeCteAEwaBULPseKJ5x6TemGzPGt"
+
   )/* ,
   await SolendMarket.initialize(
     connection,
