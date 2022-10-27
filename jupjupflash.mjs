@@ -5588,14 +5588,12 @@ index+=","+mi.id
                                       gogo = maybego;
                                     }
                                     if (returns > -0.1  && returns < 10000000) {
-                                      let goaccs = [];
                                      
                                       if (true) {
                                         // when outAmount more than initial
                                         if (!false) {
                                           for (var i of usdcToSol.data){
                                               for (var xi of solToUsdc.data){
-                                                  goaccs=  []
                                           let index = USDC_MINT+","+SOL_MINT
                                                                   for (var mi of i.marketInfos) {
               index+=","+mi.id
