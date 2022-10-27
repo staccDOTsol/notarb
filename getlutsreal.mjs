@@ -5167,7 +5167,7 @@ function toObject(obj) {
     ));
 }
 for (var amarket of configs) {
-  if (!amarket.hidden && !amarket.isPermissionless) {
+  if (!amarket.hidden){//} && !amarket.isPermissionless) {
     try {
       await sleep(rando(0, 1, "float") * 1);
       let market = await SolendMarket.initialize(
