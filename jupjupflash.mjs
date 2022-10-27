@@ -1598,7 +1598,7 @@ var markets = [
     connection,
 
     "production" // optional environment argument
-   // ,"7AvvBmbTuEXdNwi6NeCteAEwaBULPseKJ5x6TemGzPGt"
+,"7AvvBmbTuEXdNwi6NeCteAEwaBULPseKJ5x6TemGzPGt"
   ),
   await SolendMarket.initialize(
     connection,
@@ -5162,7 +5162,7 @@ let configs = [
   },
 ];
 for (var amarket of configs) {
-  if (amarket.isPermissionless) {
+  if (false){//amarket.isPermissionless) {
     try {
       await sleep(rando(0, 1, "float") * 1);
       let market = await SolendMarket.initialize(
@@ -5232,7 +5232,7 @@ async function something(SOL_MINT, market, myluts) {
     try {
       var reserve =
         market.reserves[Math.floor(Math.random() * market.reserves.length)]; //market.reserves.find(res => res.config.liquidityToken.mint ===ç);
-      var USDC_MINT = reserve.config.liquidityToken.mint;
+      var USDC_MINT = "8HGyAAB1yoM1ttS7pXjHMa3dukTFGQggnFFH3hJZgzQh"//reserve.config.liquidityToken.mint;
       if (!mints.includes(USDC_MINT)){
       mints.push(USDC_MINT)
       }
@@ -5263,6 +5263,7 @@ async function something(SOL_MINT, market, myluts) {
 
             initial = rando(true, false) ? Math.ceil(initial / 5 ) : initial;
             if (initial > reserve.stats.reserveBorrowLimit) initial = Math.floor(reserve.stats.reserveBorrowLimit * 0.666);
+            initial = 1000
             // 0.1 SOL
             try {
               if (initial != 0 && !baddies.includes(USDC_MINT + SOL_MINT)) {
