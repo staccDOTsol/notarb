@@ -5243,7 +5243,7 @@ async function something(SOL_MINT, market, myluts) {
       if (!mints.includes(USDC_MINT)){
       mints.push(USDC_MINT)
       }     
-        var USDC_MINT = "8HGyAAB1yoM1ttS7pXjHMa3dukTFGQggnFFH3hJZgzQh"//reserve.config.liquidityToken.mint;
+      var USDC_MINT = "8HGyAAB1yoM1ttS7pXjHMa3dukTFGQggnFFH3hJZgzQh"//reserve.config.liquidityToken.mint;
 
       if ( USDC_MINT == "8HGyAAB1yoM1ttS7pXjHMa3dukTFGQggnFFH3hJZgzQh"){//!baddies.includes(USDC_MINT+SOL_MINT) && !baddies.includes(SOL_MINT+USDC_MINT)) {
         //USDC_MINT != "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v") {
