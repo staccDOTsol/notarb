@@ -5569,7 +5569,7 @@ if (true){
               
                                               jares = [];
                                               await Promise.all(
-                                                [usdcToSol.data[0], solToUsdc[0].data].map(
+                                                [usdcToSol.data[0], solToUsdc.data[0]].map(
                                                   async (route) => {
                                                     const {
                                                       setupTransaction,
@@ -5646,22 +5646,7 @@ let                              messageV0 = new TransactionMessage({
                               let winner 
                               let winner2 
                               let winner3 
-                              for (var bca of messageV0.staticAccountKeys){
-                              let c =  0
-                                for (var lut of goaccs){
-                                if (lut.state.addresses.includes(bca)){
-                                  c++
-                                  if (c > w ){
-                                    c = w 
-                                    winner3 = winner2
-                                    winner2 = winner 
-                                    winner = lut 
-                                  }
-                                }
 
-
-                              }
-                            }
                         //    goaccs = [goaccs[0], goaccs[1], goaccs[2]]
                               if (true) {
                                 jares = [];
