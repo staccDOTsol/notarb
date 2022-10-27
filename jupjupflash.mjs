@@ -5573,7 +5573,7 @@ if (true){
                                                             for(var goacc of transaction.message.addressTableLookups){
                                                             console.log(goacc.accountKey)
                                                               
-                                                              goaccs.push((await (connection.getAddressLookupTable(goacc.accountKey))).value)
+                                                              goaccs.push((await connection.getAddressLookupTable(goacc.accountKey)).value)
                                                              }
                                                                // instructions.push(...transaction.instructions)
                                                        
