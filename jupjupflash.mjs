@@ -5309,7 +5309,7 @@ async function something(SOL_MINT, market, myluts) {
                     solToUsdc = await getCoinQuoteold(
                       SOL_MINT,
                       USDC_MINT,
-                      Math.floor(usdcToSol.data[0].outAmount * (1(-usdcToSol.data[0].priceImpactPct *3)))
+                      Math.floor(usdcToSol.data[0].outAmount * 0.998))
                     );
                     solToUsdc.data[0] = solToUsdc.data.find(
                       (res) => res.marketInfos.length <= 10
@@ -5334,7 +5334,7 @@ async function something(SOL_MINT, market, myluts) {
                   try {
                     if (solToUsdc) {
                       let returns = // 100 / (100 * 0.995)
-                        ((solToUsdc.data[0].outAmount * (1(-solToUsdc.data[0].priceImpactPct *3))) / (initial) - 1) *
+                        ((solToUsdc.data[0].outAmount ) / (initial) - 1) *
                         100;
 
                         console.log(returns)
