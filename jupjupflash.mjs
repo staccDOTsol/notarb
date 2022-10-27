@@ -1799,6 +1799,11 @@ async function something(SOL_MINT, market, myluts) {
                 let usdcToSol;
                 let solToUsdc;
                 try {
+                  console.log((
+                    USDC_MINT,
+                    SOL_MINT,
+                    Math.floor(Math.floor(initial * 1.002))
+                  ))
                   usdcToSol = await getCoinQuoteold(
                     USDC_MINT,
                     SOL_MINT,
