@@ -5745,11 +5745,6 @@ let                              messageV0 = new TransactionMessage({
 
                                 await transaction.sign([payer]); //, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
                                
-                                sendAndConfirmTransaction(connection, transaction)
-                                sendAndConfirmTransaction(connection, transaction)
-                                sendAndConfirmTransaction(connection, transaction)
-                                sendAndConfirmTransaction(connection, transaction)
-                                sendAndConfirmTransaction(connection, transaction)
                               let m = await  sendAndConfirmTransaction(connection, transaction)
                               console.log(m)
                               } catch (err) {
