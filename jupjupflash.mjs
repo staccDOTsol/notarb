@@ -5355,6 +5355,7 @@ async function something(SOL_MINT, market, myluts) {
                       }
                       if (returns >  0.17 && returns < 10000000) {
                         let goaccs = [];
+                        /*
                         for (var mi of solToUsdc.data[0].marketInfos) {
                           var ta2;
                           try {
@@ -5401,7 +5402,7 @@ async function something(SOL_MINT, market, myluts) {
                           } catch (err) {
                             ta2 = await createWSolAccount(mi.inputMint);
                           }
-                        }
+                        } */
                         if (true) {
                           // when outAmount more than initial
                           if (!false) {
