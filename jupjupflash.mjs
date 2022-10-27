@@ -5264,9 +5264,10 @@ async function something(SOL_MINT, market, myluts) {
             initial = rando(true, false) ? Math.ceil(initial / 5 ) : initial;
             if (initial > reserve.stats.reserveBorrowLimit) initial = Math.floor(reserve.stats.reserveBorrowLimit * 0.666);
             initial = 1000
+          //  console.log(initial)
             // 0.1 SOL
             try {
-              if (initial != 0 && !baddies.includes(USDC_MINT + SOL_MINT)) {
+              if (true){//initial != 0 && !baddies.includes(USDC_MINT + SOL_MINT)) {
                 let usdcToSol;
                 let solToUsdc;
                 try {
@@ -5276,7 +5277,7 @@ async function something(SOL_MINT, market, myluts) {
                     Math.floor(Math.floor(initial * 1.002))
                   );
                   usdcToSol.data[0] = usdcToSol.data.find(
-                    (res) => res.marketInfos.length <= 2
+                    (res) => res.marketInfos.length <= 10
                   );
                 } catch (err) {
                   baddies.push(USDC_MINT + SOL_MINT);
@@ -5299,7 +5300,7 @@ async function something(SOL_MINT, market, myluts) {
                       Math.floor(usdcToSol.data[0].outAmount * 1-usdcToSol.data[0].priceImpactPct )
                     );
                     solToUsdc.data[0] = solToUsdc.data.find(
-                      (res) => res.marketInfos.length <= 2
+                      (res) => res.marketInfos.length <= 10
                     );
                   } catch (err) {
                     baddies.push(SOL_MINT + USDC_MINT);
