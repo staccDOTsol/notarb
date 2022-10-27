@@ -5677,7 +5677,7 @@ let                              messageV0 = new TransactionMessage({
 
                               console.log(blockhash);
                               console.log(instructions.length);
-                              blockhash = await connection
+                              blockhash = await skippy
                                 .getLatestBlockhash()
                                 .then((res) => res.blockhash);
                               let messageV00;
