@@ -5530,7 +5530,6 @@ index+=","+mi.id
                                       100;
               
                                     if (returns > -100000001  && returns < 10000000) {
-                                      let goaccs = [];
                                      
                                       if (true) {
                                         // when outAmount more than initial
@@ -5572,7 +5571,7 @@ if (true){
                                                             //  console.log(messageV0)
                                                             //  let hmmm = (transaction.message.compileToV0Message())
                                                             for(var goacc of transaction.message.addressTableLookups){
-                                                          //   console.log(goacc.accountKey)
+                                                            console.log(goacc.accountKey)
                                                               
                                                               goaccs.push((await (connection.getAddressLookupTable(goacc.accountKey))).value)
                                                              }
