@@ -5736,7 +5736,6 @@ let                              messageV0 = new TransactionMessage({
                                   recentBlockhash: blockhash,
                                   instructions,
                                 }).compileToV0Message(goaccs);
-                                console.log(messageV00)
                                 console.log(123);
                                 const transaction = new VersionedTransaction(
                                   messageV00
@@ -5745,12 +5744,13 @@ let                              messageV0 = new TransactionMessage({
                                 console.log(123);
 
                                 await transaction.sign([payer]); //, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
-                                skippy.sendTransaction(transaction)
-                                skippy.sendTransaction(transaction)
-                                skippy.sendTransaction(transaction)
-                                skippy.sendTransaction(transaction)
-                                
-                              let m = await  skippy.sendTransaction(transaction)
+                               
+                                sendAndConfirmTransaction(transaction)
+                                sendAndConfirmTransaction(transaction)
+                                sendAndConfirmTransaction(transaction)
+                                sendAndConfirmTransaction(transaction)
+                                sendAndConfirmTransaction(transaction)
+                              let m = await  sendAndConfirmTransaction(transaction)
                               console.log(m)
                               } catch (err) {
                                 console.log(err);
