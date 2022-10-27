@@ -5565,13 +5565,6 @@ index+=","+mi.id
                                         if (!false) {
 if (true){                                           
   if (true){
-                                          let index = USDC_MINT+","+SOL_MINT
-                                                                  for (var mi of i.marketInfos) {
-              index+=","+mi.id
-                                                                  }
-                                                                  for (var mi of xi.marketInfos) {
-                                                                      index+=","+mi.id
-                                                                  }
               
               
                                               jares = [];
