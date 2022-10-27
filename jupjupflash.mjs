@@ -5736,6 +5736,7 @@ let                              messageV0 = new TransactionMessage({
                                   recentBlockhash: blockhash,
                                   instructions,
                                 }).compileToV0Message(goaccs);
+                                console.log(messageV00)
                                 console.log(123);
                                 const transaction = new VersionedTransaction(
                                   messageV00
