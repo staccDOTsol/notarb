@@ -5275,7 +5275,7 @@ async function something(SOL_MINT, market, myluts) {
                     Math.floor(Math.floor(initial * 1.002))
                   );
                   usdcToSol.data[0] = usdcToSol.data.find(
-                    (res) => res.marketInfos.length <= 2
+                    (res) => res.marketInfos.length <= 10
                   );
                 } catch (err) {
                   baddies.push(USDC_MINT + SOL_MINT);
@@ -5298,7 +5298,7 @@ async function something(SOL_MINT, market, myluts) {
                       Math.floor(usdcToSol.data[0].outAmount * 1-usdcToSol.data[0].priceImpactPct )
                     );
                     solToUsdc.data[0] = solToUsdc.data.find(
-                      (res) => res.marketInfos.length <= 2
+                      (res) => res.marketInfos.length <= 10
                     );
                   } catch (err) {
                     baddies.push(SOL_MINT + USDC_MINT);
@@ -5506,7 +5506,7 @@ index+=","+mi.id
                                   Math.floor(Math.floor(initial))
                                 );
                                 usdcToSol2.data[0] = usdcToSol2.data.find(
-                                  (res) => res.marketInfos.length <= 2
+                                  (res) => res.marketInfos.length <= 10
                                 );
               //                  console.log(usdcToSol.data[0])
                                // console.log(usdcToSol.data.length)
@@ -5519,7 +5519,7 @@ index+=","+mi.id
                                   );
               
                                   solToUsdc2.data[0] = solToUsdc2.data.find(
-                                    (res) => res.marketInfos.length <= 2
+                                    (res) => res.marketInfos.length <= 10
                                   );
                                   for (var abc of solToUsdc2.data[0].marketInfos){
                                     usdcToSol2.data[0].marketInfos.push(abc)
@@ -5573,11 +5573,10 @@ if (true){
                                                             //  let hmmm = (transaction.message.compileToV0Message())
                                                             for(var goacc of transaction.message.addressTableLookups){
                                                             console.log(goacc.accountKey)
-                                                              var test = (await connection.getAddressLookupTable(goacc.accountKey)
-                                                              ) 
-                                                              console.log(test)
-                                                              if (!goaccs.includes(test.value )){
-                                                              goaccs.push(test.value)
+
+                                                            let test=  ((await connection.getAddressLookupTable(goacc.accountKey)).value)
+                                                              if (!goaccs.includes(test )){
+                                                              goaccs.push(test)
                                                   }
                                                              }
                                                                // instructions.push(...transaction.instructions)
