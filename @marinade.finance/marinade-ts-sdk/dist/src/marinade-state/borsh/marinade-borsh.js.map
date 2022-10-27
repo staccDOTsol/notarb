@@ -1,0 +1,1 @@
+{"version":3,"file":"marinade-borsh.js","sourceRoot":"","sources":["../../../../src/marinade-state/borsh/marinade-borsh.ts"],"names":[],"mappings":";;;AAAA,qCAA4C;AAC5C,yDAA+D;AAC/D,iDAAuD;AACvD,+CAAqD;AACrD,qDAA2D;AAE3D,wDAAwD;AAC3C,QAAA,qBAAqB,GAAG,IAAI,GAAG,CAAoB;IAC9D,GAAG,0BAAiB;IACpB,GAAG,6CAA0B;IAC7B,GAAG,qCAAsB;IACzB,GAAG,mCAAqB;IACxB,GAAG,yCAAwB;CAC5B,CAAC,CAAA"}
