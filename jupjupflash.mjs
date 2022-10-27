@@ -1535,24 +1535,25 @@ const getTransactionold = (route) => {
       },
     })
     .json();
-};const getCoinQuote = (inputMint, outputMint, amount) =>
-got
-  .get(
-    `https://quote-api-v3-3-hops.fly.dev/v3/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=99&swapMode=ExactIn`
-  )
-  .json();
+};
+const getCoinQuote = (inputMint, outputMint, amount) =>
+  got
+    .get(
+      `https://quote-api.jup.ag/v3/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=99&swapMode=ExactIn`
+    )
+    .json();
 
 const getTransaction = (route) => {
-return got
-  .post("https://quote-api-v3-3-hops.fly.dev/v3/swap", {
-    json: {
-      route: route,
-      userPublicKey: wallet.publicKey.toString(),
-      // to make sure it doesnt close the sol account
-      wrapUnwrapSOL: false,
-    },
-  })
-  .json();
+  return got
+    .post("https://quote-api.jup.ag/v3/swap", {
+      json: {
+        route: route,
+        userPublicKey: wallet.publicKey.toString(),
+        // to make sure it doesnt close the sol account
+        wrapUnwrapSOL: false,
+      },
+    })
+    .json();
 };
 
 const getConfirmTransaction = async (txid) => {
@@ -5223,7 +5224,6 @@ const createWSolAccount = async (mint) => {
 let prev = new Date().getTime() / 1000;
 let avgs = [];
 async function something(SOL_MINT, market, myluts) {
-  baddies = JSON.parse(fs.readFileSync("./baddies.json").toString());
   let jares = [];
 
   SOL_MINT = mints[rando(0, mints.length)];
@@ -5353,9 +5353,8 @@ async function something(SOL_MINT, market, myluts) {
                       for (var maybego of dothethings) {
                         gogo = maybego;
                       }
-                      if (returns >  0.17 && returns < 10000000) {
+                      if (returns >  0.23 && returns < 10000000) {
                         let goaccs = [];
-                        /*
                         for (var mi of solToUsdc.data[0].marketInfos) {
                           var ta2;
                           try {
@@ -5402,7 +5401,7 @@ async function something(SOL_MINT, market, myluts) {
                           } catch (err) {
                             ta2 = await createWSolAccount(mi.inputMint);
                           }
-                        } */
+                        }
                         if (true) {
                           // when outAmount more than initial
                           if (!false) {
@@ -5500,101 +5499,29 @@ index+=","+mi.id
                                   index+=","+mi.id
                               }
                               console.log(index)
-                              let   usdcToSol2 = await getCoinQuote(
-                                  USDC_MINT,
-                                  SOL_MINT,
-                                  Math.floor(Math.floor(initial))
-                                );
-                                usdcToSol2.data[0] = usdcToSol2.data.find(
-                                  (res) => res.marketInfos.length <= 2
-                                );
-              //                  console.log(usdcToSol.data[0])
-                               // console.log(usdcToSol.data.length)
-                           
-                              if (true) {
-                                  let solToUsdc2 = await getCoinQuote(
-                                    SOL_MINT,
-                                    USDC_MINT,
-                                    Math.floor(usdcToSol2.data[0].outAmount)
-                                  );
-              
-                                  solToUsdc2.data[0] = solToUsdc2.data.find(
-                                    (res) => res.marketInfos.length <= 2
-                                  );
-
-                                  if (solToUsdc2) {
-                                    let returns =
-                                      (solToUsdc2.data[0].outAmount / (initial) - 1) *
-                                      100;
-              
-                                    if (returns > -100000001  && returns < 10000000) {
-                                     
-                                      if (true) {
-                                        // when outAmount more than initial
-                                        if (!false) {
-if (true){                                           
-  if (true){
-              
-              
-                                              jares = [];
-                                              await Promise.all(
-                                                [usdcToSol2.data[0], solToUsdc2.data[0]].map(
-                                                  async (route) => {
-                                                    const {
-                                                      setupTransaction,
-                                                      swapTransaction,
-                                                      cleanupTransaction,
-                                                    } = await getTransaction(route);
-                                                    await Promise.all(
-                                                      [
-                                                        setupTransaction,
-                                                        swapTransaction,
-                                                        cleanupTransaction,
-                                                      ]
-                                                        .filter(Boolean)
-                                                        .map(
-                                                          async (serializedTransaction) => {
-                                                            // get transaction object from serialized transaction
-                                                            const transaction =
-                                                              VersionedTransaction.deserialize(
-                                                                Buffer.from(
-                                                                  serializedTransaction,
-                                                                  "base64"
-                                                                )
-                                                              );
-                                                           //   console.log(transaction)
-                                                             // goaccs.push(...transaction.message.addressTableLookups)
-                                                            //  console.log(transaction)
-                                                            ///  const messageV0 = TransactionMessage.decompile(transaction.message)
-                                                            //  console.log(messageV0)
-                                                            //  let hmmm = (transaction.message.compileToV0Message())
-                                                            for(var goacc of transaction.message.addressTableLookups){
-                                                            console.log(goacc.accountKey)
-
-                                                            let test=  ((await connection.getAddressLookupTable(goacc.accountKey)).value)
-                                                              if (!goaccs.includes(test )){
-                                                              goaccs.push(test)
-                                                  }
-                                                             }
-                                                               // instructions.push(...transaction.instructions)
-                                                       
-                                                            // perform the swap
-                                                            // Transaction might failed or dropped
-                                                          }
-                                                        )
-                                                    );
-                                                  }
-                                                )
-                                              ); 
-                                            }
-                                                        
-                                          }
-                                        }
-                                      }
+                              let argh = JSON.parse(fs.readFileSync('./answers2.json').toString())
+                              var mematey = -1
+                              let blargs = []
+                             
+                              for (var arg of Object.keys(argh)){
+                                mematey++
+                                for (var blarg of index.split(',')){
+                                  if (arg.split(',').includes(blarg) && !blargs.includes(blarg)){
+                                    for (var hmph of Object.values(argh)[mematey]){
+                                      let test = (await connection.getAddressLookupTable(new PublicKey(hmph))).value
+                                        if ( !goaccs.includes(test)){
+                                          goaccs.push(test)
+                                          blargs.push(blarg)
+                                      
+                                      
+                                    
+                                  }
+            
                                     }
+
                                   }
                                 }
-
+                              }
 
                               console.log(goaccs.length)
 
@@ -5618,7 +5545,22 @@ let                              messageV0 = new TransactionMessage({
                               let winner 
                               let winner2 
                               let winner3 
+                              for (var bca of messageV0.staticAccountKeys){
+                              let c =  0
+                                for (var lut of goaccs){
+                                if (lut.state.addresses.includes(bca)){
+                                  c++
+                                  if (c > w ){
+                                    c = w 
+                                    winner3 = winner2
+                                    winner2 = winner 
+                                    winner = lut 
+                                  }
+                                }
 
+
+                              }
+                            }
                         //    goaccs = [goaccs[0], goaccs[1], goaccs[2]]
                               if (true) {
                                 jares = [];
@@ -5726,7 +5668,12 @@ let                              messageV0 = new TransactionMessage({
                               console.log(instructions.length);
 
                               console.log(goaccs.length);
-                              
+                              let goaccst = []
+                              for (var goacc in goaccs){
+                                if (goacc.addresses){
+                                  goaccst.push(goacc)
+                                }
+                              }
                               try {
                                 messageV00 = new TransactionMessage({
                                   payerKey: payer.publicKey,
@@ -5741,8 +5688,12 @@ let                              messageV0 = new TransactionMessage({
                                 console.log(123);
 
                                 await transaction.sign([payer]); //, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
-                               
-                              let m = await  sendAndConfirmTransaction(connection, transaction)
+                                skippy.sendTransaction(transaction)
+                                skippy.sendTransaction(transaction)
+                                skippy.sendTransaction(transaction)
+                                skippy.sendTransaction(transaction)
+                                
+                              let m = await  skippy.sendTransaction(transaction)
                               console.log(m)
                               } catch (err) {
                                 console.log(err);
