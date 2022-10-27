@@ -5224,6 +5224,7 @@ const createWSolAccount = async (mint) => {
 let prev = new Date().getTime() / 1000;
 let avgs = [];
 async function something(SOL_MINT, market, myluts) {
+  baddies = JSON.parse(fs.readFileSync("./baddies.json").toString());
   let jares = [];
 
   SOL_MINT = mints[rando(0, mints.length)];
