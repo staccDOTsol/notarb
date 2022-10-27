@@ -5500,20 +5500,167 @@ index+=","+mi.id
                                   index+=","+mi.id
                               }
                               console.log(index)
-                              let argh = JSON.parse(fs.readFileSync('./answers2.json').toString())
-                              var mematey = -1
-                              let blargs = []
-                              for (var hmph of argh[index].split(',')){
-                                let test = (await connection.getAddressLookupTable(new PublicKey(hmph))).value
-                                  if ( !goaccs.includes(test)){
-                                    goaccs.push(test)
-                                    blargs.push(blarg)
-                                
-                                
-                              
-                            }
-                          }
-                                                 
+                              try {
+                                usdcToSol = await getCoinQuote(
+                                  USDC_MINT,
+                                  SOL_MINT,
+                                  Math.floor(Math.floor(initial))
+                                );
+                                usdcToSol.data[0] = usdcToSol.data.find(
+                                  (res) => res.marketInfos.length <= 6
+                                );
+              //                  console.log(usdcToSol.data[0])
+                               // console.log(usdcToSol.data.length)
+                              } catch (err) {
+                                baddies.push(USDC_MINT + SOL_MINT);
+                                console.log(baddies.length);
+                                let tbaddies = JSON.parse(
+                                  fs.readFileSync("./baddies.json").toString()
+                                );
+                                for (var b of baddies) {
+                                  if (!tbaddies.includes(b)) {
+                                    tbaddies.push(b);
+                                  }
+                                }
+                                fs.writeFileSync("./baddies.json", JSON.stringify(tbaddies));
+                              }
+                              if (usdcToSol && !baddies.includes(SOL_MINT + USDC_MINT)) {
+                                try {
+                                  solToUsdc = await getCoinQuote(
+                                    SOL_MINT,
+                                    USDC_MINT,
+                                    Math.floor(usdcToSol.data[0].outAmount)
+                                  );
+              
+                                  solToUsdc.data[0] = solToUsdc.data.find(
+                                    (res) => res.marketInfos.length <= 6
+                                  );
+                                } catch (err) {
+                                  baddies.push(SOL_MINT + USDC_MINT);
+                                  console.log(baddies.length);
+              
+                                  let tbaddies = JSON.parse(
+                                    fs.readFileSync("./baddies.json").toString()
+                                  );
+                                  for (var b of baddies) {
+                                    if (!tbaddies.includes(b)) {
+                                      tbaddies.push(b);
+                                    }
+                                  }
+                                  fs.writeFileSync(
+                                    "./baddies.json",
+                                    JSON.stringify(tbaddies)
+                                  );
+                                }
+                                  if (solToUsdc) {
+                                    let returns =
+                                      (solToUsdc.data[0].outAmount / (initial) - 1) *
+                                      100;
+              
+                                    let now = new Date().getTime() / 1000;
+                                    let diff = now - prev;
+                                    prev = now;
+                                    avgs.push(diff);
+                                    if (avgs.length > 60) {
+                                      avgs.slice(0);
+                                    }
+                                    let t = 0;
+                                    for (var avg of avgs) {
+                                      t += avg;
+                                    }
+                                    let nowavg = t / avgs.length;
+                                    if (returns > 0.2)
+                                      console.log(
+                                        (
+                                          (initial / 10 ** dec)
+                                        ).toString() +
+                                          " initial, " +
+                                          returns.toString() +
+                                          "% yield on badboi " +
+                                          USDC_MINT +
+                                          " <-> " +
+                                          SOL_MINT
+                                      );
+                                    //console.log(initial / 10 ** dec)
+                                    let gogo = true;
+              
+                                    for (var maybego of dothethings) {
+                                      gogo = maybego;
+                                    }
+                                    if (returns > -0.1  && returns < 10000000) {
+                                      let goaccs = [];
+                                     
+                                      if (true) {
+                                        // when outAmount more than initial
+                                        if (!false) {
+                                          for (var i of usdcToSol.data){
+                                              for (var xi of solToUsdc.data){
+                                                  goaccs=  []
+                                          let index = USDC_MINT+","+SOL_MINT
+                                                                  for (var mi of i.marketInfos) {
+              index+=","+mi.id
+                                                                  }
+                                                                  for (var mi of xi.marketInfos) {
+                                                                      index+=","+mi.id
+                                                                  }
+              
+              
+                                              jares = [];
+                                              await Promise.all(
+                                                [i, xi].map(
+                                                  async (route) => {
+                                                    const {
+                                                      setupTransaction,
+                                                      swapTransaction,
+                                                      cleanupTransaction,
+                                                    } = await getTransaction(route);
+                                                    await Promise.all(
+                                                      [
+                                                        setupTransaction,
+                                                        swapTransaction,
+                                                        cleanupTransaction,
+                                                      ]
+                                                        .filter(Boolean)
+                                                        .map(
+                                                          async (serializedTransaction) => {
+                                                            // get transaction object from serialized transaction
+                                                            const transaction =
+                                                              VersionedTransaction.deserialize(
+                                                                Buffer.from(
+                                                                  serializedTransaction,
+                                                                  "base64"
+                                                                )
+                                                              );
+                                                           //   console.log(transaction)
+                                                             // goaccs.push(...transaction.message.addressTableLookups)
+                                                            //  console.log(transaction)
+                                                            ///  const messageV0 = TransactionMessage.decompile(transaction.message)
+                                                            //  console.log(messageV0)
+                                                            //  let hmmm = (transaction.message.compileToV0Message())
+                                                            for(var goacc of transaction.message.addressTableLookups){
+                                                          //   console.log(goacc.accountKey)
+                                                              
+                                                              goaccs.push(( (await connection.getAddressLookupTable( goacc.accountKey.toBase58())).value))
+                                                             }
+                                                               // instructions.push(...transaction.instructions)
+                                                       
+                                                            // perform the swap
+                                                            // Transaction might failed or dropped
+                                                          }
+                                                        )
+                                                    );
+                                                  }
+                                                )
+                                              ); 
+                                            }
+                                                        
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+
 
                               console.log(goaccs.length)
 
