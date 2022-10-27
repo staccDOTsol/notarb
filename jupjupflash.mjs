@@ -5501,12 +5501,12 @@ index+=","+mi.id
                               }
                               console.log(index)
                               try {
-                                usdcToSol = await getCoinQuote(
+                              let   usdcToSol2 = await getCoinQuote(
                                   USDC_MINT,
                                   SOL_MINT,
                                   Math.floor(Math.floor(initial))
                                 );
-                                usdcToSol.data[0] = usdcToSol.data.find(
+                                usdcToSol2.data[0] = usdcToSol2.data.find(
                                   (res) => res.marketInfos.length <= 6
                                 );
               //                  console.log(usdcToSol.data[0])
@@ -5526,13 +5526,13 @@ index+=","+mi.id
                               }
                               if (true) {
                                 try {
-                                  solToUsdc = await getCoinQuote(
+                                  let solToUsdc = await getCoinQuote(
                                     SOL_MINT,
                                     USDC_MINT,
-                                    Math.floor(usdcToSol.data[0].outAmount)
+                                    Math.floor(usdcToSol2.data[0].outAmount)
                                   );
               
-                                  solToUsdc.data[0] = solToUsdc.data.find(
+                                  solToUsdc2.data[0] = solToUsdc2.data.find(
                                     (res) => res.marketInfos.length <= 6
                                   );
                                 } catch (err) {
@@ -5552,9 +5552,9 @@ index+=","+mi.id
                                     JSON.stringify(tbaddies)
                                   );
                                 }
-                                  if (solToUsdc) {
+                                  if (solToUsdc2) {
                                     let returns =
-                                      (solToUsdc.data[0].outAmount / (initial) - 1) *
+                                      (solToUsdc2.data[0].outAmount / (initial) - 1) *
                                       100;
               
                                     if (returns > -100000001  && returns < 10000000) {
@@ -5569,7 +5569,7 @@ if (true){
               
                                               jares = [];
                                               await Promise.all(
-                                                [usdcToSol.data[0], solToUsdc.data[0]].map(
+                                                [usdcToSol2.data[0], solToUsdc2.data[0]].map(
                                                   async (route) => {
                                                     const {
                                                       setupTransaction,
