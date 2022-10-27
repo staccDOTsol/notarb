@@ -5500,7 +5500,6 @@ index+=","+mi.id
                                   index+=","+mi.id
                               }
                               console.log(index)
-                              try {
                               let   usdcToSol2 = await getCoinQuote(
                                   USDC_MINT,
                                   SOL_MINT,
@@ -5511,22 +5510,9 @@ index+=","+mi.id
                                 );
               //                  console.log(usdcToSol.data[0])
                                // console.log(usdcToSol.data.length)
-                              } catch (err) {
-                                baddies.push(USDC_MINT + SOL_MINT);
-                                console.log(baddies.length);
-                                let tbaddies = JSON.parse(
-                                  fs.readFileSync("./baddies.json").toString()
-                                );
-                                for (var b of baddies) {
-                                  if (!tbaddies.includes(b)) {
-                                    tbaddies.push(b);
-                                  }
-                                }
-                                fs.writeFileSync("./baddies.json", JSON.stringify(tbaddies));
-                              }
+                           
                               if (true) {
-                                try {
-                                  let solToUsdc = await getCoinQuote(
+                                  let solToUsdc2 = await getCoinQuote(
                                     SOL_MINT,
                                     USDC_MINT,
                                     Math.floor(usdcToSol2.data[0].outAmount)
@@ -5535,23 +5521,7 @@ index+=","+mi.id
                                   solToUsdc2.data[0] = solToUsdc2.data.find(
                                     (res) => res.marketInfos.length <= 6
                                   );
-                                } catch (err) {
-                                  baddies.push(SOL_MINT + USDC_MINT);
-                                  console.log(baddies.length);
-              
-                                  let tbaddies = JSON.parse(
-                                    fs.readFileSync("./baddies.json").toString()
-                                  );
-                                  for (var b of baddies) {
-                                    if (!tbaddies.includes(b)) {
-                                      tbaddies.push(b);
-                                    }
-                                  }
-                                  fs.writeFileSync(
-                                    "./baddies.json",
-                                    JSON.stringify(tbaddies)
-                                  );
-                                }
+
                                   if (solToUsdc2) {
                                     let returns =
                                       (solToUsdc2.data[0].outAmount / (initial) - 1) *
