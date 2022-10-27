@@ -5411,7 +5411,7 @@ await sleep(100)
 await sleep(1000)
                                               //  let hmmm = (transaction.message.compileToV0Message())
                                               for(var goacc of transaction.message.addressTableLookups){
-                                               console.log(goacc.accountKey)
+                                            //   console.log(goacc.accountKey)
                                                 
                                                 goaccs.push(goacc.accountKey.toBase58())
                                                }
@@ -5425,12 +5425,7 @@ await sleep(1000)
                                     }
                                   )
                                 );  var tanswers = JSON.parse(fs.readFileSync('./answers2.json').toString())
-                                console.log(index)
-                                console.log(goaccs.length)
-                                console.log(goaccs.length)
-                                console.log(goaccs.length)
-                                console.log(goaccs.length)
-                                console.log(goaccs.length)
+
                                 tanswers[index] = goaccs 
                               }
                             
