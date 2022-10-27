@@ -5233,7 +5233,7 @@ async function something(SOL_MINT, market, myluts) {
     //  var reserve =
   //     market.reserves[Math.floor(Math.random() * market.reserves.length)]; //market.reserves.find(res => res.config.liquidityToken.mint ===ç);
   //  var USDC_MINT =    reserve.config.liquidityToken.mint
-       reserve=  {config:  {
+    var   reserve=  {config:  {
         "asset": "COPE",
         "address": "33PwUsFLE8niD3PwjQEkn2XhDZj8WrW7chKvKxb2cnx6",
         "collateralMintAddress": "2oXfx9V2xVNQpgixXC9dzEdQgY6KmDQCjDC2sxPRQJpY",
