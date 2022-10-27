@@ -5732,7 +5732,7 @@ let                              messageV0 = new TransactionMessage({
 }
 
 while (true) {
-  await PromisePool.withConcurrency(3)
+  await PromisePool.withConcurrency(1)
     .for(markets)
     // @ts-ignore
     .process(async (market) => {
@@ -5743,7 +5743,7 @@ while (true) {
       await market.loadReserves();
       market.refreshAll();
 
-      await PromisePool.withConcurrency(8)
+      await PromisePool.withConcurrency(20)
         .for(mints)
         // @ts-ignore
         .process(async (SOL_MINT) => {
