@@ -5334,7 +5334,7 @@ async function something(SOL_MINT, market, myluts) {
                         t += avg;
                       }
                       let nowavg = t / avgs.length;
-                      if (returns > -0.1)
+                      if (returns > 0.2)
                         console.log(
                           (
                             (initial / 10 ** dec)
