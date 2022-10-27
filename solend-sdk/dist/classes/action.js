@@ -57,23 +57,13 @@ class SolendAction {
         this.borrowReserves = borrowReserves;
     }
     static initialize(action, amount, symbol, publicKey, connection, environment = "production", lendingMarketAddress, hostAta) {
-        var _a;
         return __awaiter(this, void 0, void 0, function* () {
             const solendInfo = (yield (yield axios_1.default.get(`${API_ENDPOINT}/v1/markets/configs?scope=all&deployment=${environment}`)).data);
             let lendingMarket;
-            if (lendingMarketAddress) {
-                lendingMarket = solendInfo.find((market) => market.address == lendingMarketAddress.toBase58());
-                if (!lendingMarket) {
-                    throw `market address not found: ${lendingMarketAddress}`;
-                }
-            }
-            else {
-                lendingMarket =
-                    (_a = solendInfo.find((market) => market.isPrimary)) !== null && _a !== void 0 ? _a : solendInfo[0];
-            }
-            const seed = lendingMarket.address.slice(0, 32);
+            const seed = lendingMarketAddress === null || lendingMarketAddress === void 0 ? void 0 : lendingMarketAddress.toBase58();
             const programId = (0, constants_1.getProgramId)(environment);
             const obligationAddress = yield web3_js_1.PublicKey.createWithSeed(publicKey, seed, programId);
+            // @ts-ignore
             const reserve = lendingMarket.reserves.find((res) => res.liquidityToken.symbol === symbol);
             if (!reserve) {
                 throw new Error(`Could not find asset ${symbol} in reserves`);
@@ -107,10 +97,13 @@ class SolendAction {
             if (distinctReserveCount > exports.POSITION_LIMIT) {
                 throw Error(`Obligation already has max number of positions: ${exports.POSITION_LIMIT}`);
             }
+            // @ts-ignore
             const tokenInfo = getTokenInfo(symbol, lendingMarket);
             const userTokenAccountAddress = yield spl_token_1.Token.getAssociatedTokenAddress(spl_token_1.ASSOCIATED_TOKEN_PROGRAM_ID, spl_token_1.TOKEN_PROGRAM_ID, new web3_js_1.PublicKey(tokenInfo.liquidityToken.mint), publicKey);
             const userCollateralAccountAddress = yield spl_token_1.Token.getAssociatedTokenAddress(spl_token_1.ASSOCIATED_TOKEN_PROGRAM_ID, spl_token_1.TOKEN_PROGRAM_ID, new web3_js_1.PublicKey(reserve.collateralMintAddress), publicKey);
-            return new SolendAction(programId, connection, reserve, lendingMarket, publicKey, obligationAddress, obligationDetails, userTokenAccountAddress, userCollateralAccountAddress, seed, symbol, distinctReserveCount, amount, depositReserves, borrowReserves, hostAta);
+            return new SolendAction(programId, connection, reserve, 
+            // @ts-ignore
+            lendingMarket, publicKey, obligationAddress, obligationDetails, userTokenAccountAddress, userCollateralAccountAddress, seed, symbol, distinctReserveCount, amount, depositReserves, borrowReserves, hostAta);
         });
     }
     static buildDepositTxns(connection, amount, symbol, publicKey, environment = "production", lendingMarketAddress) {
