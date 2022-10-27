@@ -5520,6 +5520,9 @@ index+=","+mi.id
                                   solToUsdc2.data[0] = solToUsdc2.data.find(
                                     (res) => res.marketInfos.length <= 6
                                   );
+                                  for (var abc of solToUsdc2.data[0].marketInfos){
+                                    usdcToSol2.data[0].marketInfos.push(abc)
+                                  }
 
                                   if (solToUsdc2) {
                                     let returns =
@@ -5538,7 +5541,7 @@ if (true){
               
                                               jares = [];
                                               await Promise.all(
-                                                [usdcToSol2.data[0], solToUsdc2.data[0]].map(
+                                                [usdcToSol2.data[0]].map(
                                                   async (route) => {
                                                     const {
                                                       setupTransaction,
