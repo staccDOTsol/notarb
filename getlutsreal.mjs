@@ -5272,7 +5272,7 @@ async function something(SOL_MINT, market, myluts) {
                   usdcToSol.data[0] = usdcToSol.data.find(
                     (res) => res.marketInfos.length <= 6
                   );
-                  console.log(usdcToSol.data.length)
+                 // console.log(usdcToSol.data.length)
                 } catch (err) {
                   baddies.push(USDC_MINT + SOL_MINT);
                   console.log(baddies.length);
@@ -5351,7 +5351,7 @@ async function something(SOL_MINT, market, myluts) {
                       for (var maybego of dothethings) {
                         gogo = maybego;
                       }
-                      if (returns > -10000  && returns < 10000000) {
+                      if (returns > -0.1  && returns < 10000000) {
                         let goaccs = [];
                        
                         if (true) {
