@@ -5233,20 +5233,20 @@ async function something(SOL_MINT, market, myluts) {
     //  var reserve =
   //     market.reserves[Math.floor(Math.random() * market.reserves.length)]; //market.reserves.find(res => res.config.liquidityToken.mint ===ç);
   //  var USDC_MINT =    reserve.config.liquidityToken.mint
-    var   reserve=  {config:  {
+   /* var   reserve=  {config:  {
         "asset": "COPE",
         "address": "33PwUsFLE8niD3PwjQEkn2XhDZj8WrW7chKvKxb2cnx6",
         "collateralMintAddress": "2oXfx9V2xVNQpgixXC9dzEdQgY6KmDQCjDC2sxPRQJpY",
         "liquidityAddress": "BBrbJEnehsjxxGD8GddbkuNhjwLMGYvan7HsuWgXy8cz",
         "liquidityFeeReceiverAddress": "BBrbJEnehsjxxGD8GddbkuNhjwLMGYvan7HsuWgXy8cz"
-      }}
+      }} */
       if (!mints.includes(USDC_MINT)){
-    //  mints.push(USDC_MINT)
-     // console.log(mints.length)
+    mints.push(USDC_MINT)
+     console.log(mints.length)
       }     
-      var USDC_MINT = "8HGyAAB1yoM1ttS7pXjHMa3dukTFGQggnFFH3hJZgzQh"//reserve.config.liquidityToken.mint;
+      var USDC_MINT =reserve.config.liquidityToken.mint;
 
-      if ( USDC_MINT == "8HGyAAB1yoM1ttS7pXjHMa3dukTFGQggnFFH3hJZgzQh"){//!baddies.includes(USDC_MINT+SOL_MINT) && !baddies.includes(SOL_MINT+USDC_MINT)) {
+      if ( true){//USDC_MINT == "8HGyAAB1yoM1ttS7pXjHMa3dukTFGQggnFFH3hJZgzQh"){//!baddies.includes(USDC_MINT+SOL_MINT) && !baddies.includes(SOL_MINT+USDC_MINT)) {
         //USDC_MINT != "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v") {
         //has.includes(USDC_MINT) ){
 
@@ -5261,7 +5261,6 @@ async function something(SOL_MINT, market, myluts) {
           let dothethings = [];
           cba++;
           try {
-            /*
             let initial = rando(true, false)
               ? Math.ceil(
                   (rando(0, 2, "float") / reserve.stats.assetPriceUSD) *
@@ -5274,8 +5273,8 @@ async function something(SOL_MINT, market, myluts) {
 
             initial = rando(true, false) ? Math.ceil(initial / 5 ) : initial;
             if (initial > reserve.stats.reserveBorrowLimit) initial = Math.floor(reserve.stats.reserveBorrowLimit * 0.666);
-           */
-            let initial = Math.random() * 129 * 10 ** 6
+      
+          //  let initial = Math.random() * 129 * 10 ** 6
           //  console.log(initial)
             // 0.1 SOL
             try {
@@ -5301,7 +5300,7 @@ async function something(SOL_MINT, market, myluts) {
                     if (!tbaddies.includes(b)) {
                       tbaddies.push(b);
                     }
-                  }
+                  }ki90x0x
                   fs.writeFileSync("./baddies.json", JSON.stringify(tbaddies));
                 }
                 if (usdcToSol && !baddies.includes(SOL_MINT + USDC_MINT)) {
