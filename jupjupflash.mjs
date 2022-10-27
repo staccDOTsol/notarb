@@ -95,7 +95,7 @@ var connection2 = new Connection(
 );
 
 var skippy = new Connection(
- process.env.RPC2,
+ process.env.RPC3,
   { commitment: "singleGossip" }
 );
 process.env.SEARCHER
