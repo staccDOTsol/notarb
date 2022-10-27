@@ -5184,6 +5184,7 @@ configs =
       "authorityAddress": "HECVhRpddhzhkn6n1vdiqhQe1Y65yjXuwb45jKspD1VV",
       "reserves": [
         {
+          config:{liquidityToken:{mint:"So11111111111111111111111111111111111111112"}},
           "asset": "SOL",
           "address": "fuSA8HSSku7BwRsVFWotGcVpwH3QrGtnhqWRS4orhXG",
           "collateralMintAddress": "44PeAshzRSmhzQ3Da9z22YXYRN18PfsTHVXZpcQ7p7TH",
@@ -5195,6 +5196,7 @@ configs =
           "reserveSupplyCap": 40000
         },
         {
+          config:{liquidityToken:{mint:"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"}},
           "asset": "USDC",
           "address": "5guv5xt2we2FpPXkSPN8oaz6C876NjiV62Np5RxghDnb",
           "collateralMintAddress": "CnwtgyFcTyuQMKDSU1KCXVS4jPksjJUVQaMkgZ2WU3ny",
@@ -5206,6 +5208,7 @@ configs =
           "reserveSupplyCap": 1000000
         },
         {
+          config:{liquidityToken:{mint:"8HGyAAB1yoM1ttS7pXjHMa3dukTFGQggnFFH3hJZgzQh"}},
           "asset": "SRM",
           "address": "CoQgPXDKkBo84K14uFbGqkNmXHjKLYXt6d4BvLY6LWpu",
           "collateralMintAddress": "EHSug7WuXkoPDaeF2Cog4mcZ6SKZ5iJ1rkXFoczrXWqL",
@@ -5245,25 +5248,7 @@ configs =
   }
 }
 configs = configs.markets 
-let markets = []
-for (var amarket of configs) {
-  if (true){//!amarket.hidden && !amarket.isPermissionless) {
-    try {
-      await sleep(rando(0, 1, "float") * 1);
-      let market = await SolendMarket.initialize(
-        connection,
-
-        "production", // optional environment argument'
-        amarket.address,
-        "E4AifNCQZzPjE1pTjAWS8ii4ovLNruSGsdWRMBSq2wBa"
-      );
-
-      markets.push(market);
-      console.log(markets.length);
-    } catch (err) {}
-  }
-}
-
+let markets = configs
 // wsol account
 const createWSolAccount = async (mint) => {
   const wsolAddress = await Token.getAssociatedTokenAddress(
@@ -5316,9 +5301,10 @@ async function something(SOL_MINT, market, myluts) {
   if (true) {
     //["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "So11111111111111111111111111111111111111112"]){
     try {
-    //  var reserve =
-  //     market.reserves[Math.floor(Math.random() * market.reserves.length)]; //market.reserves.find(res => res.config.liquidityToken.mint ===ç);
-  //  var USDC_MINT =    reserve.config.liquidityToken.mint
+      let which = Math.floor(Math.random() * market.reserves.length)
+    var reserve =
+   market.reserves[which]; //market.reserves.find(res => res.config.liquidityToken.mint ===ç);
+ var USDC_MINT =    reserve.config.liquidityToken.mint
    /* var   reserve=  {config:  {
         "asset": "COPE",
         "address": "33PwUsFLE8niD3PwjQEkn2XhDZj8WrW7chKvKxb2cnx6",
@@ -5330,13 +5316,12 @@ async function something(SOL_MINT, market, myluts) {
     mints.push(USDC_MINT)
      console.log(mints.length)
       }     
-      var USDC_MINT =reserve.config.liquidityToken.mint;
+   //   var USDC_MINT =reserve.config.liquidityToken.mint;
 
       if ( true){//USDC_MINT == "8HGyAAB1yoM1ttS7pXjHMa3dukTFGQggnFFH3hJZgzQh"){//!baddies.includes(USDC_MINT+SOL_MINT) && !baddies.includes(SOL_MINT+USDC_MINT)) {
         //USDC_MINT != "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v") {
         //has.includes(USDC_MINT) ){
-
-        var dec = 6//reserve.config.liquidityToken.decimals;
+//reserve.config.liquidityToken.decimals;
       //  let min = reserve.stats.flashLoanFeePercentage;
      //   let hfp = reserve.stats.hostFeePercentage;
         
@@ -5347,19 +5332,16 @@ async function something(SOL_MINT, market, myluts) {
           let dothethings = [];
           cba++;
           try {
-            let initial = rando(true, true)
-              ? Math.ceil(
-                  (rando(1, 5, "float") / reserve.stats.assetPriceUSD) *
-                    10 ** dec
-                )
-              : Math.ceil(
-                  (rando(1, 500, "float") / reserve.stats.assetPriceUSD / 1) *
-                    10 ** dec
-                );
-
-            initial = rando(true, false) ? Math.ceil(initial / 5 ) : initial;
-            if (initial > reserve.stats.reserveBorrowLimit) initial = Math.floor(reserve.stats.reserveBorrowLimit * 0.666);
-      
+            let initial 
+            if (which == 0){
+              initial = 0.15 * 10 ** 9
+            }
+            if (which == 1){
+              initial = 4 * 10 ** 6
+            }
+            if (which == 2){
+              initial = 100 * 10 ** 6
+            }
           //  let initial = Math.random() * 129 * 10 ** 6
           //  console.log(initial)
             // 0.1 SOL
@@ -5376,7 +5358,9 @@ async function something(SOL_MINT, market, myluts) {
                   usdcToSol.data[0] = usdcToSol.data.find(
                     (res) => res.marketInfos.length <= 3
                   );
+                  console.log(usdcToSol.data.length)
                 } catch (err) {
+                  console.log(err)
                   baddies.push(USDC_MINT + SOL_MINT);
                   console.log(baddies.length);
                   let tbaddies = JSON.parse(
@@ -5438,10 +5422,7 @@ async function something(SOL_MINT, market, myluts) {
                       let nowavg = t / avgs.length;
                       if (returns > -0.5)
                         console.log(
-                          (
-                            (initial / 10 ** dec) *
-                           0.05// reserve.stats.assetPriceUSD
-                          ).toString() +
+                            (initial).toString() +
                             " initial, " +
                             returns.toString() +
                             "% yield on badboi " +
@@ -5454,7 +5435,7 @@ async function something(SOL_MINT, market, myluts) {
                       for (var maybego of dothethings) {
                         gogo = maybego;
                       }
-                      if (returns >  0.24 && returns < 10000000) {
+                      if (returns >  0.06 && returns < 10000000) {
                         let goaccs = [];
                         for (var mi of solToUsdc.data[0].marketInfos) {
                           var ta2;
@@ -5512,7 +5493,7 @@ async function something(SOL_MINT, market, myluts) {
                                 " <-> " +
                                 SOL_MINT +
                                 "@ " +
-                                (initial / 10 ** dec).toString() +
+                                (initial ).toString() +
                                 ": " +
                                 Math.round(returns * 10000) / 10000 +
                                 "%"
@@ -5866,8 +5847,7 @@ while (true) {
       //await createWSolAccount(); xx
 
       market = markets[Math.floor(rando(0, 1, "float") * markets.length)];
-      await market.loadReserves();
-      market.refreshAll();
+
 
       await PromisePool.withConcurrency(20)
         .for(mints)
