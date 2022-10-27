@@ -5575,6 +5575,7 @@ if (true){
                                                             console.log(goacc.accountKey)
                                                               var test = (await connection.getAddressLookupTable(goacc.accountKey)
                                                               ) 
+                                                              console.log(test)
                                                               if (!goaccs.includes(test.value )){
                                                               goaccs.push(test.value)
                                                   }
