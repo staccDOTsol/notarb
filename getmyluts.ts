@@ -5,12 +5,12 @@ import fs from 'fs'
 setTimeout(async function(){
 // invalid cache. I will recommend using a paid RPC endpoint.
 let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'http://localhost:8899' : 'https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ'));
-var connection2= new Connection(process.env.RPC1);
+var connection2= new Connection(process.env.RPC1 as string);
 
 process.env.SEARCHER ? connection = connection2 : connection = connection
 
   const payer = (
-    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/home/ubuntu' : '/home/ubuntu') + '/notjaregm.json').toString()))));
+    Keypair.fromSecretKey(new Uint8Array(JSON.parse(fs.readFileSync((process.env.NODE_ENV == 'production' ? '/Users/jarettdunn' : '/Users/jarettdunn') + '/jaregm.json').toString()))));
 const configOrCommitment: GetProgramAccountsConfig = {
     commitment: 'confirmed',
     filters: [
@@ -66,7 +66,7 @@ tx2.recentBlockhash = blockhash
 tx2.sign(payer)
 
 try{
-//await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
+await sendAndConfirmTransaction(connection, tx2,[payer], {skipPreflight: false})
 } catch (err){
     
 console.log(err)

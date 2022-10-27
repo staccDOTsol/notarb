@@ -1593,13 +1593,7 @@ console.log("");
 console.log("");
 
 console.log(""); //cool
-var markets = [
-  await SolendMarket.initialize(
-    connection,
-
-    "production" // optional environment argument
-
-  )/* ,
+/* ,
   await SolendMarket.initialize(
     connection,
 
@@ -1612,7 +1606,6 @@ var markets = [
     "production", // optional environment argument
     "GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q"
   ) */
-];
 let configs = [
   {
     name: "main",
@@ -5161,15 +5154,108 @@ let configs = [
     ],
   },
 ];
+configs = 
+{
+  "programID": "DLendnZuSiCK4kBRtX126ogq1uRnb1TGGsjW6Tnw1vMJ",
+  "assets": [
+    {
+      "name": "Solana",
+      "symbol": "SOL",
+      "decimals": 9,
+      "mintAddress": "So11111111111111111111111111111111111111112"
+    },
+    {
+      "name": "USDC",
+      "symbol": "USDC",
+      "decimals": 6,
+      "mintAddress": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+    },
+    {
+      "name": "Serum",
+      "symbol": "SRM",
+      "decimals": 6,
+      "mintAddress": ""
+    }
+  ],
+  "markets": [
+    {
+      "name": "main",
+      "address": "F8dCQofhBuspm1sVsrfr8NReJvGn1JfiR9xARnUBQgo1",
+      "authorityAddress": "HECVhRpddhzhkn6n1vdiqhQe1Y65yjXuwb45jKspD1VV",
+      "reserves": [
+        {
+          "asset": "SOL",
+          "address": "fuSA8HSSku7BwRsVFWotGcVpwH3QrGtnhqWRS4orhXG",
+          "collateralMintAddress": "44PeAshzRSmhzQ3Da9z22YXYRN18PfsTHVXZpcQ7p7TH",
+          "jareMint": "7yN93TFSCZqseppJyxXjnAnps7wH1wRtvgemFXksc25t",
+          "collateralSupplyAddress": "A8aUS1MBosuSLXwfP16iYL3VgJvPKhLGwGzvpuieRTvJ",
+          "liquidityAddress": "CBH6VFEhBatZ265jrfKDMey5NQgMZhedk7piu5BCDYfW",
+          "liquidityFeeReceiverAddress": "wwQZH2vvWqiqwudoQYQ5RydW2CkgD5FApgD6f92KqHb",
+          "userSupplyCap": 4,
+          "reserveSupplyCap": 40000
+        },
+        {
+          "asset": "USDC",
+          "address": "5guv5xt2we2FpPXkSPN8oaz6C876NjiV62Np5RxghDnb",
+          "collateralMintAddress": "CnwtgyFcTyuQMKDSU1KCXVS4jPksjJUVQaMkgZ2WU3ny",
+          "jareMint": "2DvSLHu3HDTDEdWnYETdTtuywTvenmVQpsvn5ybEbKpA",
+          "collateralSupplyAddress": "HxL7nx79BLBwjGKAmnSYPhxdbPCpzHqj7UVb1ni3iUFC",
+          "liquidityAddress": "Ho9gUv6Y5KKZzxat5pbnf2skppcVpniss6zrabhWwi1n",
+          "liquidityFeeReceiverAddress": "8c5tAQAobrRyHgtLZJyaprLjv4yyL5YPEqS2S4wqD9UR",
+          "userSupplyCap": 10000,
+          "reserveSupplyCap": 1000000
+        },
+        {
+          "asset": "SRM",
+          "address": "CoQgPXDKkBo84K14uFbGqkNmXHjKLYXt6d4BvLY6LWpu",
+          "collateralMintAddress": "EHSug7WuXkoPDaeF2Cog4mcZ6SKZ5iJ1rkXFoczrXWqL",
+          "jareMint": "kALzvjmLZSWMJMQj1bgdKT9hb3VLCKbnZ8uiPyjU4FJ",
+          "collateralSupplyAddress": "4RjkXaYqrKX8pd5t9RvPt4UmhyzuXjKT25ysXWQD2V56",
+          "liquidityAddress": "6q7eZ2XBkgrwRpWnaVct6aRTKV9zmiGgXYuCQs4BQsjh",
+          "liquidityFeeReceiverAddress": "47AV9KQgT8MxFrBnQC5uGK56NLQRMZPgze4G4i4sgGzJ",
+          "userSupplyCap": 2500,
+          "reserveSupplyCap": 300000
+        }
+      ]
+    }
+  ],
+  "oracles": {
+    "pythProgramID": "gSbePebfvPy7tRqimPoVecS2UsBvYv46ynrzWocc92s",
+    "switchboardProgramID": "7azgmy1pFXHikv36q1zZASvFq5vFa39TT9NweVugKKTU",
+    "assets": [
+      {
+        "asset": "SOL",
+        "oracleAddress": "8GWTTbNiXdmyZREXbjsZBmCRuzdPrW55dnZGDkTRjWvb",
+        "priceAddress": "Gnt27xtC473ZT2Mw5u8wZ68Z3gULkSTb5DuxJy7eJotD",
+        "switchboardFeedAddress": "AdtRGGhmqvom3Jemp5YNrxd9q9unX36BZk1pujkkXijL"
+      },
+      {
+        "asset": "USDC",
+        "oracleAddress": "EMkxjGC1CQ7JLiutDbfYb7UKb3zm9SJcUmr1YicBsdpZ",
+        "priceAddress": "JBu1AL4obBcCMqKBBxhpWCNUt136ijcuMZLFvTP7iWdB",
+        "switchboardFeedAddress": "CZx29wKMUxaJDq6aLVQTdViPL754tTR64NAgQBUGxxHb"
+      },
+      {
+        "asset": "SRM",
+        "oracleAddress": "2nBBaJ2WozeqyDGaVXAqm3d5YqCjeDhoqpfTjyLNykxe",
+        "priceAddress": "9xYBiDWYsh2fHzpsz3aaCnNHCKWBNtfEDLtU6kS4aFD9",
+        "switchboardFeedAddress": "BAoygKcKN7wk8yKzLD6sxzUQUqLvhBV1rjMA4UJqfZuH"
+      }
+    ]
+  }
+}
+configs = configs.markets 
+let markets = []
 for (var amarket of configs) {
-  if (!amarket.hidden && !amarket.isPermissionless) {
+  if (true){//!amarket.hidden && !amarket.isPermissionless) {
     try {
       await sleep(rando(0, 1, "float") * 1);
       let market = await SolendMarket.initialize(
         connection,
 
         "production", // optional environment argument'
-        amarket.address
+        amarket.address,
+        "E4AifNCQZzPjE1pTjAWS8ii4ovLNruSGsdWRMBSq2wBa"
       );
 
       markets.push(market);
@@ -5261,9 +5347,9 @@ async function something(SOL_MINT, market, myluts) {
           let dothethings = [];
           cba++;
           try {
-            let initial = rando(true, false)
+            let initial = rando(true, true)
               ? Math.ceil(
-                  (rando(0, 2, "float") / reserve.stats.assetPriceUSD) *
+                  (rando(1, 5, "float") / reserve.stats.assetPriceUSD) *
                     10 ** dec
                 )
               : Math.ceil(
@@ -5459,15 +5545,34 @@ async function something(SOL_MINT, market, myluts) {
                                   await sleep( 4000)
                                   tokenAccount = await createWSolAccount(USDC_MINT);
                                 }
+                                let tokenAccount2;
+                                  let arg2 = (
+                                    await connection2.getTokenAccountsByOwner(
+                                      payer.publicKey,
+                                      { mint: new PublicKey(SOL_MINT) }
+                                    )
+                                  ).value
+                                   w = -1
+                                  for (var args of arg2){
+                                    let amt = (await connection.getTokenAccountBalance(
+                                      args.pubkey
+                                    )).value.amount
+                                    if (amt > w){
+                                      w = amt
+                                      tokenAccount2 = args.pubkey
+                                    }
+                                  } 
+                                    if (!tokenAccount2){
+                                      await sleep( 4000)
+                                      tokenAccount2 = await createWSolAccount(SOL_MINT);
+                                    }
+                                    if (tokenAccount == undefined){
+                                      await sleep( 4000)
+                                      tokenAccount2 = await createWSolAccount(SOL_MINT);
+                                    }
                             } catch (err) {
                             //  tokenAccount = await createWSolAccount(USDC_MINT);
                             }
-                            let myshit = (
-                              await connection.getTokenAccountBalance(
-                                tokenAccount
-                              )
-                            ).value.amount;
-
                             // (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
                             var ta2;
                             try {
@@ -5669,7 +5774,27 @@ let                              messageV0 = new TransactionMessage({
                                   Math.floor(myshit * 1.0000)
                                 )
                               );
-
+                              let myshit2 = (
+                                await connection.getTokenAccountBalance(
+                                  tokenAccount2
+                                )
+                              ).value.amount;
+                                            instructions.push(
+                                              createTransferInstruction(
+                                                tokenAccount,
+                                                tokenAccount,
+                                                payer.publicKey,
+                                                Math.floor(myshit * 1.0000)
+                                              )
+                                            );
+                                            instructions.push(
+                                              createTransferInstruction(
+                                                tokenAccount2,
+                                                tokenAccount2,
+                                                payer.publicKey,
+                                                Math.floor(myshit2 * 1.0000)
+                                              )
+                                            );
                               var blockhash = await connection
                                 .getLatestBlockhash()
                                 .then((res) => res.blockhash);
