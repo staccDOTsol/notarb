@@ -5593,7 +5593,6 @@ if (true){
                                                                   "base64"
                                                                 )
                                                               );
-                                                              console.log(transaction)
                                                            //   console.log(transaction)
                                                              // goaccs.push(...transaction.message.addressTableLookups)
                                                             //  console.log(transaction)
