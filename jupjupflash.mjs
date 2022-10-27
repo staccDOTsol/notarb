@@ -13,7 +13,7 @@ import {
   SolendMarket,
   SolendReserve,
   SOLEND_PRODUCTION_PROGRAM_ID,
-} from "./solendPublic/solend-sdk/src";
+} from "./solend-sdk/src";
 let baddies = JSON.parse(fs.readFileSync("./baddies.json").toString());
 import {
   Connection,
