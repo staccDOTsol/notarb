@@ -5721,14 +5721,14 @@ let                              messageV0 = new TransactionMessage({
                         }
                       }
                     }
-                  } catch (err) {}
+                  } catch (err) {console.log(err)}
                 }
               }
-            } catch (err) {}
-          } catch (err) {}
+            } catch (err) {console.log(err)}
+          } catch (err) {console.log(err)}
         }
       }
-    } catch (err) {}
+    } catch (err) {console.log(err)}
   }
   return;
 }
