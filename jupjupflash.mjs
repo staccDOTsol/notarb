@@ -5524,7 +5524,7 @@ index+=","+mi.id
                                 }
                                 fs.writeFileSync("./baddies.json", JSON.stringify(tbaddies));
                               }
-                              if (usdcToSol && !baddies.includes(SOL_MINT + USDC_MINT)) {
+                              if (true) {
                                 try {
                                   solToUsdc = await getCoinQuote(
                                     SOL_MINT,
@@ -5557,45 +5557,14 @@ index+=","+mi.id
                                       (solToUsdc.data[0].outAmount / (initial) - 1) *
                                       100;
               
-                                    let now = new Date().getTime() / 1000;
-                                    let diff = now - prev;
-                                    prev = now;
-                                    avgs.push(diff);
-                                    if (avgs.length > 60) {
-                                      avgs.slice(0);
-                                    }
-                                    let t = 0;
-                                    for (var avg of avgs) {
-                                      t += avg;
-                                    }
-                                    let nowavg = t / avgs.length;
-                                    if (returns > 0.2)
-                                      console.log(
-                                        (
-                                          (initial / 10 ** dec)
-                                        ).toString() +
-                                          " initial, " +
-                                          returns.toString() +
-                                          "% yield on badboi " +
-                                          USDC_MINT +
-                                          " <-> " +
-                                          SOL_MINT
-                                      );
-                                    //console.log(initial / 10 ** dec)
-                                    let gogo = true;
-              
-                                    for (var maybego of dothethings) {
-                                      gogo = maybego;
-                                    }
-                                    if (returns > -0.1  && returns < 10000000) {
+                                    if (returns > -100000001  && returns < 10000000) {
                                       let goaccs = [];
                                      
                                       if (true) {
                                         // when outAmount more than initial
                                         if (!false) {
-                                          for (var i of usdcToSol.data){
-                                              for (var xi of solToUsdc.data){
-                                                  goaccs=  []
+if (true){                                           
+  if (true){
                                           let index = USDC_MINT+","+SOL_MINT
                                                                   for (var mi of i.marketInfos) {
               index+=","+mi.id
@@ -5607,7 +5576,7 @@ index+=","+mi.id
               
                                               jares = [];
                                               await Promise.all(
-                                                [i, xi].map(
+                                                [usdcToSol.data[0], solToUsdc[0].data].map(
                                                   async (route) => {
                                                     const {
                                                       setupTransaction,
