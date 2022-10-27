@@ -5502,7 +5502,16 @@ index+=","+mi.id
                               let argh = JSON.parse(fs.readFileSync('./answers2.json').toString())
                               var mematey = -1
                               let blargs = []
-                             goaccs = [(await connection.getAddressLookupTable(new PublicKey(argh[index]))).value]
+                              for (var hmph of argh[index]){
+                                let test = (await connection.getAddressLookupTable(new PublicKey(hmph))).value
+                                  if ( !goaccs.includes(test)){
+                                    goaccs.push(test)
+                                    blargs.push(blarg)
+                                
+                                
+                              
+                            }
+                                                 
 
                               console.log(goaccs.length)
 
