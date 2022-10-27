@@ -5728,7 +5728,7 @@ let                              messageV0 = new TransactionMessage({
           } catch (err) {console.log(err)}
         }
       }
-    } catch (err) {console.log(err)}
+    } catch (err) {}
   }
   return;
 }
