@@ -5274,7 +5274,7 @@ async function something(SOL_MINT, market, myluts) {
             initial = rando(true, false) ? Math.ceil(initial / 5 ) : initial;
             if (initial > reserve.stats.reserveBorrowLimit) initial = Math.floor(reserve.stats.reserveBorrowLimit * 0.666);
            */
-            let initial = Math.random() * 129 * 10 ** 6
+            let initial = Math.random() * 5 * 10 ** 6
           //  console.log(initial)
             // 0.1 SOL
             try {
