@@ -5240,7 +5240,7 @@ async function something(SOL_MINT, market, myluts) {
         //USDC_MINT != "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v") {
         //has.includes(USDC_MINT) ){
 
-        var dec = reserve.config.liquidityToken.decimals;
+        var dec = 6//reserve.config.liquidityToken.decimals;
         let min = reserve.stats.flashLoanFeePercentage;
         let hfp = reserve.stats.hostFeePercentage;
         
