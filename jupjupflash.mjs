@@ -1770,7 +1770,7 @@ async function something(SOL_MINT, market, myluts) {
       }     
      // var USDC_MINT =reserve.config.liquidityToken.mint;
 
-      if ( true){//USDC_MINT == "8HGyAAB1yoM1ttS7pXjHMa3dukTFGQggnFFH3hJZgzQh"){//!baddies.includes(USDC_MINT+SOL_MINT) && !baddies.includes(SOL_MINT+USDC_MINT)) {
+      if (!baddies.includes(USDC_MINT+SOL_MINT) && !baddies.includes(SOL_MINT+USDC_MINT)) {
         //USDC_MINT != "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v") {
         //has.includes(USDC_MINT) ){
 
