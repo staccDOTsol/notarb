@@ -5309,7 +5309,7 @@ async function something(SOL_MINT, market, myluts) {
                     solToUsdc = await getCoinQuoteold(
                       SOL_MINT,
                       USDC_MINT,
-                      Math.floor(usdcToSol.data[0].outAmount * 0.998))
+                      Math.floor(usdcToSol.data[0].outAmount * 0.998)
                     );
                     solToUsdc.data[0] = solToUsdc.data.find(
                       (res) => res.marketInfos.length <= 10
