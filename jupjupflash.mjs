@@ -5337,6 +5337,8 @@ async function something(SOL_MINT, market, myluts) {
                         ((solToUsdc.data[0].outAmount * (1(-solToUsdc.data[0].priceImpactPct *3))) / (initial) - 1) *
                         100;
 
+                        console.log(returns)
+
                       let now = new Date().getTime() / 1000;
                       let diff = now - prev;
                       prev = now;
