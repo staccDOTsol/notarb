@@ -5231,8 +5231,15 @@ async function something(SOL_MINT, market, myluts) {
     //["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "So11111111111111111111111111111111111111112"]){
     try {
       var reserve =
-        market.reserves[Math.floor(Math.random() * market.reserves.length)]; //market.reserves.find(res => res.config.liquidityToken.mint ===ç);
-      var USDC_MINT = reserve.config.liquidityToken.mint;
+       // market.reserves[Math.floor(Math.random() * market.reserves.length)]; //market.reserves.find(res => res.config.liquidityToken.mint ===ç);
+     {config:  {
+        "asset": "COPE",
+        "address": "33PwUsFLE8niD3PwjQEkn2XhDZj8WrW7chKvKxb2cnx6",
+        "collateralMintAddress": "2oXfx9V2xVNQpgixXC9dzEdQgY6KmDQCjDC2sxPRQJpY",
+        "liquidityAddress": "BBrbJEnehsjxxGD8GddbkuNhjwLMGYvan7HsuWgXy8cz",
+        "liquidityFeeReceiverAddress": "BBrbJEnehsjxxGD8GddbkuNhjwLMGYvan7HsuWgXy8cz"
+      }}
+       var USDC_MINT = "8HGyAAB1yoM1ttS7pXjHMa3dukTFGQggnFFH3hJZgzQh"//reserve.config.liquidityToken.mint;
       if (!mints.includes(USDC_MINT)){
       mints.push(USDC_MINT)
       }
@@ -5241,8 +5248,8 @@ async function something(SOL_MINT, market, myluts) {
         //has.includes(USDC_MINT) ){
 
         var dec = 6//reserve.config.liquidityToken.decimals;
-        let min = reserve.stats.flashLoanFeePercentage;
-        let hfp = reserve.stats.hostFeePercentage;
+      //  let min = reserve.stats.flashLoanFeePercentage;
+     //   let hfp = reserve.stats.hostFeePercentage;
         
         let cba = -1;
         if (
@@ -5251,6 +5258,7 @@ async function something(SOL_MINT, market, myluts) {
           let dothethings = [];
           cba++;
           try {
+            /*
             let initial = rando(true, false)
               ? Math.ceil(
                   (rando(0, 2, "float") / reserve.stats.assetPriceUSD) *
@@ -5263,7 +5271,8 @@ async function something(SOL_MINT, market, myluts) {
 
             initial = rando(true, false) ? Math.ceil(initial / 5 ) : initial;
             if (initial > reserve.stats.reserveBorrowLimit) initial = Math.floor(reserve.stats.reserveBorrowLimit * 0.666);
-            initial = 1000
+           */
+            let initial = 5 * 10 ** 6
           //  console.log(initial)
             // 0.1 SOL
             try {
@@ -5341,7 +5350,7 @@ async function something(SOL_MINT, market, myluts) {
                         console.log(
                           (
                             (initial / 10 ** dec) *
-                            reserve.stats.assetPriceUSD
+                           0.05// reserve.stats.assetPriceUSD
                           ).toString() +
                             " initial, " +
                             returns.toString() +
@@ -5355,7 +5364,7 @@ async function something(SOL_MINT, market, myluts) {
                       for (var maybego of dothethings) {
                         gogo = maybego;
                       }
-                      if (returns >  0.23 && returns < 10000000) {
+                      if (returns >  0.06 && returns < 10000000) {
                         let goaccs = [];
                         for (var mi of solToUsdc.data[0].marketInfos) {
                           var ta2;
@@ -5473,7 +5482,7 @@ async function something(SOL_MINT, market, myluts) {
                             };
                             const ix =
                               ComputeBudgetProgram.requestUnits(params);
-
+                              market.config.address = "3SS5HjEVy5jY41g24ACcLzizA2qNgtGonjiEo8yg2SFX"
                             let instructions = [
                               ix,
                               flashBorrowReserveLiquidityInstruction(
