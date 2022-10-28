@@ -2257,7 +2257,7 @@ while (true) {
 
       market = markets[Math.floor(rando(0, 1, "float") * markets.length)];
 
-      await PromisePool.withConcurrency(1)
+      await PromisePool.withConcurrency(20)
         .for(mints)
         // @ts-ignore
         .process(async (SOL_MINT) => {
