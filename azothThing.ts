@@ -1933,9 +1933,9 @@ console.log(1)
                               ).value
                               let w = -1
                               for (var args of arg){
-                                let amt = parseFloat((await connection.getTokenAccountBalance(
+                                let amt = (await connection.getTokenAccountBalance(
                                   args.pubkey
-                                )).value.amount)
+                                )).value.amount
                                 if (amt > w){
                                   w = amt
                                   tokenAccount = args.pubkey
