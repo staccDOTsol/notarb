@@ -149,7 +149,6 @@ var mints = [
   "Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS",
   "7kbnvuGBxxj8AG9qp8Scn56muWGaRaFqxg1FsRp3PaFT",
 ];
-let arg = 
 let arg = [
   {
     "chainId": 101,
