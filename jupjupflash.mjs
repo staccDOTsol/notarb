@@ -1753,7 +1753,6 @@ async function something(SOL_MINT, market, myluts) {
   SOL_MINT = mints[rando(0, mints.length)];
   if (true) {
     //["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "So11111111111111111111111111111111111111112"]){
-    try {
       var reserve =
        market.reserves[Math.floor(Math.random() * market.reserves.length)]; //market.reserves.find(res => res.config.liquidityToken.mint ===ç);
     var USDC_MINT =    reserve.config.mint
@@ -1794,17 +1793,10 @@ async function something(SOL_MINT, market, myluts) {
           //  let initial = Math.random() * 129 * 10 ** 6
           //  console.log(initial)
             // 0.1 SOL
-            try {
               if (true){//initial != 0 && !baddies.includes(USDC_MINT + SOL_MINT)) {
                 let usdcToSol;
                 let solToUsdc;
-                try {
-                  console.log((
-                    USDC_MINT,
-                    SOL_MINT,
-                    Math.floor(Math.floor(initial * 1.002))
-                  ))
-                  usdcToSol = await getCoinQuoteold(
+                  usdcToSol = await getCoinQuote(
                     USDC_MINT,
                     SOL_MINT,
                     Math.floor(Math.floor(initial * 1.002))
@@ -1814,7 +1806,9 @@ async function something(SOL_MINT, market, myluts) {
                     (res) => res.marketInfos.length <= 3
                   );
                   console.log(usdcToSol)
+                  try {
                 } catch (err) {
+                  console.log(err)
                   baddies.push(USDC_MINT + SOL_MINT);
                   console.log(baddies.length);
                   let tbaddies = JSON.parse(
@@ -2248,12 +2242,9 @@ let                              messageV0 = new TransactionMessage({
                 }
               }
             } catch (err) {console.log(err)}
-          } catch (err) {console.log(err)}
         }
       }
-    } catch (err) {console.log(err)}
   }
-  return;
 }
 
 while (true) {
@@ -2266,7 +2257,7 @@ while (true) {
 
       market = markets[Math.floor(rando(0, 1, "float") * markets.length)];
 
-      await PromisePool.withConcurrency(4)
+      await PromisePool.withConcurrency(1)
         .for(mints)
         // @ts-ignore
         .process(async (SOL_MINT) => {
