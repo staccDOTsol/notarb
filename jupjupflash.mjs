@@ -1764,7 +1764,7 @@ async function something(SOL_MINT, market, myluts) {
                   (rando(0, 2, "float") / reserve.config.assetPriceUSD) *
                     10 ** dec
                 )
-           initial = rando(true, false) ? Math.ceil(initial / 5 ) : initial;
+         //  initial = rando(true, false) ? Math.ceil(initial / 5 ) : initial;
       
           //  let initial = Math.random() * 129 * 10 ** 6
             // 0.1 SOL
