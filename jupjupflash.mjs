@@ -1533,7 +1533,7 @@ const getTransactionold = (route) => {
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
-      `https://quote-api.jup.ag/v3/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=99`
+      `https://quote-api.jup.ag/v3/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=99&swapMode=ExactIn`
     )
     .json();
 
@@ -1761,10 +1761,10 @@ async function something(SOL_MINT, market, myluts) {
           let dothethings = [];
           cba++;
             let initial =  Math.ceil(
-                  (rando(0, 2, "float") / reserve.config.assetPriceUSD) *
+                  (rando(0, 1, "float") / reserve.config.assetPriceUSD) *
                     10 ** dec
                 )
-         //  initial = rando(true, false) ? Math.ceil(initial / 5 ) : initial;
+           initial = rando(true, false) ? Math.ceil(initial / 5 ) : initial;
       
           //  let initial = Math.random() * 129 * 10 ** 6
             // 0.1 SOL
@@ -1774,11 +1774,11 @@ async function something(SOL_MINT, market, myluts) {
                
                 try { 
                   usdcToSol = await( await fetch(
-                    `https://quote-api.jup.ag/v1/quote?outputMint=${SOL_MINT}&inputMint=${USDC_MINT}&amount=${ (Math.floor(Math.floor(initial * 1.002))).toString()}&slippage=99`
+                    `https://quote-api.jup.ag/v1/quote?outputMint=${SOL_MINT}&inputMint=${USDC_MINT}&amount=${ (Math.floor(Math.floor(initial * 1.002))).toString()}&slippage=99&swapMode=ExactIn`
                   ))
                   .json()
                   usdcToSol.data[0] = usdcToSol.data.find(
-                    (res) => res.marketInfos.length <= 3
+                    (res) => res.marketInfos.length <= 2
                   );
               
                 } catch (err) {
@@ -1797,11 +1797,11 @@ async function something(SOL_MINT, market, myluts) {
                 if (usdcToSol && !baddies.includes(SOL_MINT + USDC_MINT)) {
                   try {//( Math.floor(usdcToSol.data[0].outAmount * 0.9998)).toString()
                     solToUsdc =  await( await fetch(
-                      `https://quote-api.jup.ag/v1/quote?outputMint=${USDC_MINT}&inputMint=${SOL_MINT}&amount=${ (( Math.floor(usdcToSol.data[0].outAmount * 0.997)).toString())}&slippage=99`
+                      `https://quote-api.jup.ag/v1/quote?outputMint=${USDC_MINT}&inputMint=${SOL_MINT}&amount=${ (( Math.floor(usdcToSol.data[0].outAmount * 0.9985)).toString())}&slippage=99&swapMode=ExactIn`
                     ))
                     .json()
                     solToUsdc.data[0] = solToUsdc.data.find(
-                      (res) => res.marketInfos.length <= 2
+                      (res) => res.marketInfos.length <= 1
                     );
                   } catch (err) {
                     baddies.push(SOL_MINT + USDC_MINT);
@@ -1827,7 +1827,6 @@ async function something(SOL_MINT, market, myluts) {
                         100;
 console.log(1)
                         console.log(returns)
-                        returns = returns * 1.005
 
                       let now = new Date().getTime() / 1000;
                       let diff = now - prev;
@@ -2020,7 +2019,7 @@ console.log(1)
                               if (true) {
                               
                               }
-                              let index = ""
+                              let index = USDC_MINT+","+SOL_MINT
                               for (var mi of usdcToSol.data[0].marketInfos) {
 index+=","+mi.id
                               }
@@ -2031,11 +2030,11 @@ index+=","+mi.id
                               let argh = JSON.parse(fs.readFileSync('./answers2.json').toString())
                               var mematey = -1
                               let blargs = []
-                             let blargs2 = []
+                             
                               for (var arg of Object.keys(argh)){
                                 mematey++
                                 for (var blarg of index.split(',')){
-                                  if (arg.split(',').includes(blarg) && !blargs.includes(blarg)&& !blargs2.includes(blarg)){
+                                  if (arg.split(',').includes(blarg) && !blargs.includes(blarg)){
                                     for (var hmph of Object.values(argh)[mematey]){
                                       let test = (await connection.getAddressLookupTable(new PublicKey(hmph))).value
                                         if ( !goaccs.includes(test)){
@@ -2217,9 +2216,13 @@ let                              messageV0 = new TransactionMessage({
                                 console.log(123);
 
                                 await transaction.sign([payer]); //, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
-                             
+                                skippy.sendTransaction(transaction)
+                                skippy.sendTransaction(transaction)
+                                skippy.sendTransaction(transaction)
+                                skippy.sendTransaction(transaction)
+                                
                               let m = await  skippy.sendTransaction(transaction)
-                              console.log('tx' + m.toString())
+                              console.log(m)
                               } catch (err) {
                                 console.log(err);
                               }
@@ -2255,7 +2258,7 @@ while (true) {
 
       market = markets[Math.floor(rando(0, 1, "float") * markets.length)];
 
-      await PromisePool.withConcurrency(14)
+      await PromisePool.withConcurrency(20)
         .for(mints)
         // @ts-ignore
         .process(async (SOL_MINT) => {
