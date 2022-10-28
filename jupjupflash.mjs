@@ -1821,7 +1821,7 @@ async function something(SOL_MINT, market, myluts) {
                     );
                   }
                   try {
-                    if (solToUsdc) {
+                    if (solToUsdc.data[0]) {
                       let returns = // 100 / (100 * 0.995)
                         ((solToUsdc.data[0].outAmount ) / (initial) - 1) *
                         100;
