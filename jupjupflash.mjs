@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 import bs58 from "bs58";
+import fetch from 'node-fetch';
 import { rando, randoSequence } from "@nastyox/rando.js";
 
 import {
@@ -1517,13 +1518,6 @@ console.log(mints.length);
 //https://quote-api.jup.ag/v1/quote
 
 
-const getCoinQuoteold = (inputMint, outputMint, amount) =>
-  got
-    .get(
-      `https://quote-api.jup.ag/v1/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=99&swapMode=ExactIn`
-    )
-    .json();
-
 const getTransactionold = (route) => {
   return got
     .post("https://quote-api.jup.ag/v1/swap", {
@@ -1686,20 +1680,18 @@ let configs =
 configs = configs.markets
 let markets = []
 for (var amarket of configs) {
-  if (!amarket.hidden && !amarket.isPermissionless) {
     try {
       await sleep(rando(0, 1, "float") * 1);
       let market = await SolendMarket.initialize(
         connection,
 
         "production", // optional environment argument'
-        amarket.address
       );
 
       markets.push(market);
       console.log(markets.length);
     } catch (err) {console.log(err)}
-  }
+
 }
 
 // wsol account
@@ -1783,7 +1775,6 @@ async function something(SOL_MINT, market, myluts) {
         ) {
           let dothethings = [];
           cba++;
-          try {
             let initial =  Math.ceil(
                   (rando(1, 5, "float") / reserve.config.assetPriceUSD) *
                     10 ** dec
@@ -1791,24 +1782,21 @@ async function something(SOL_MINT, market, myluts) {
            // initial = rando(true, false) ? Math.ceil(initial / 5 ) : initial;
       
           //  let initial = Math.random() * 129 * 10 ** 6
-          //  console.log(initial)
             // 0.1 SOL
               if (true){//initial != 0 && !baddies.includes(USDC_MINT + SOL_MINT)) {
                 let usdcToSol;
                 let solToUsdc;
-                  usdcToSol = await getCoinQuote(
-                    USDC_MINT,
-                    SOL_MINT,
-                    Math.floor(Math.floor(initial * 1.002))
-                  );
-                  console.log(usdcToSol)
+               
+                try { 
+                  usdcToSol = await( await fetch(
+                    `https://quote-api.jup.ag/v1/quote?outputMint=${SOL_MINT}&inputMint=${USDC_MINT}&amount=${ (Math.floor(Math.floor(initial * 1.002))).toString()}&slippage=99&swapMode=ExactIn`
+                  ))
+                  .json()
                   usdcToSol.data[0] = usdcToSol.data.find(
                     (res) => res.marketInfos.length <= 3
                   );
-                  console.log(usdcToSol)
-                  try {
+              
                 } catch (err) {
-                  console.log(err)
                   baddies.push(USDC_MINT + SOL_MINT);
                   console.log(baddies.length);
                   let tbaddies = JSON.parse(
@@ -1822,12 +1810,11 @@ async function something(SOL_MINT, market, myluts) {
                   fs.writeFileSync("./baddies.json", JSON.stringify(tbaddies));
                 }
                 if (usdcToSol && !baddies.includes(SOL_MINT + USDC_MINT)) {
-                  try {
-                    solToUsdc = await getCoinQuoteold(
-                      SOL_MINT,
-                      USDC_MINT,
-                      Math.floor(usdcToSol.data[0].outAmount * 0.9998)
-                    );
+                  try {//( Math.floor(usdcToSol.data[0].outAmount * 0.9998)).toString()
+                    solToUsdc =  await( await fetch(
+                      `https://quote-api.jup.ag/v1/quote?outputMint=${USDC_MINT}&inputMint=${SOL_MINT}&amount=${ (( Math.floor(usdcToSol.data[0].outAmount * 0.9998)).toString())}&slippage=99&swapMode=ExactIn`
+                    ))
+                    .json()
                     solToUsdc.data[0] = solToUsdc.data.find(
                       (res) => res.marketInfos.length <= 3
                     );
@@ -1868,7 +1855,7 @@ console.log(1)
                         t += avg;
                       }
                       let nowavg = t / avgs.length;
-                      if (returns > -0.5)
+                      if (returns > 0)
                         console.log(
                           (
                             (initial / 10 ** dec) *
@@ -2241,7 +2228,6 @@ let                              messageV0 = new TransactionMessage({
                   } catch (err) {console.log(err)}
                 }
               }
-            } catch (err) {console.log(err)}
         }
       }
   }
@@ -2261,7 +2247,7 @@ while (true) {
         .for(mints)
         // @ts-ignore
         .process(async (SOL_MINT) => {
-          something(SOL_MINT, market, myluts);
+        await  something(SOL_MINT, market, myluts);
         });
     });
 }
