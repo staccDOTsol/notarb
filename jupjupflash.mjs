@@ -2020,6 +2020,7 @@ console.log(1)
                               if (true) {
                               
                               }
+                              let index = ""
                               for (var mi of usdcToSol.data[0].marketInfos) {
 index+=","+mi.id
                               }
