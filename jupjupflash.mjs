@@ -13,7 +13,7 @@ import {
   SolendAction,
   SolendMarket,
   SolendReserve,
-  SOLEND_PRODUCTION_PROGRAM_ID,
+  
 } from "@solendprotocol/solend-sdk";
 let baddies = JSON.parse(fs.readFileSync("./baddies.json").toString());
 import {
@@ -39,7 +39,7 @@ import {
 
 import * as Token from "@solana/spl-token";
 import * as splToken from "@solana/spl-token";
-
+let SOLEND_PRODUCTION_PROGRAM_ID = new PublicKey("E4AifNCQZzPjE1pTjAWS8ii4ovLNruSGsdWRMBSq2wBa")
 console.log({ dotenv });
 dotenv.config();
 import { PromisePool } from "@supercharge/promise-pool";
