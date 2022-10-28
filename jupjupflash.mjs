@@ -2035,7 +2035,7 @@ index+=","+mi.id
                               for (var arg of Object.keys(argh)){
                                 mematey++
                                 for (var blarg of index.split(',')){
-                                  if (arg.split(',').includes(blarg) && !blargs.includes(blarg)){
+                                  if (arg.split(',').includes(blarg) ){
                                     for (var hmph of Object.values(argh)[mematey]){
                                       let test = (await connection.getAddressLookupTable(new PublicKey(hmph))).value
                                         if ( !goaccs.includes(test)){
