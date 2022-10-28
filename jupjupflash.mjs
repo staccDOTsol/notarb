@@ -1952,7 +1952,7 @@ console.log(1)
                             } catch (err) {
                             //  tokenAccount = await createWSolAccount(USDC_MINT);
                             }
-                            let ta2;
+                            var ta2;
                             try {
                               let arg = (
                                 await connection2.getTokenAccountsByOwner(
