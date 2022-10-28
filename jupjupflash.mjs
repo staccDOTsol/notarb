@@ -1686,6 +1686,7 @@ for (var amarket of configs) {
         connection,
 
         "production", // optional environment argument'
+        amarket.address
       );
 
       markets.push(market);
