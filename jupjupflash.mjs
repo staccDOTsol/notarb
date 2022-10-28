@@ -1778,7 +1778,7 @@ async function something(SOL_MINT, market, myluts) {
                   ))
                   .json()
                   usdcToSol.data[0] = usdcToSol.data.find(
-                    (res) => res.marketInfos.length <= 3
+                    (res) => res.marketInfos.length <= 2
                   );
               
                 } catch (err) {
@@ -1801,7 +1801,7 @@ async function something(SOL_MINT, market, myluts) {
                     ))
                     .json()
                     solToUsdc.data[0] = solToUsdc.data.find(
-                      (res) => res.marketInfos.length <= 3
+                      (res) => res.marketInfos.length <= 2
                     );
                   } catch (err) {
                     baddies.push(SOL_MINT + USDC_MINT);
