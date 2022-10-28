@@ -1770,6 +1770,7 @@ async function something(SOL_MINT, market, myluts) {
                 let usdcToSol;
                 let solToUsdc;
                 let tokenAccount;
+                let goaccs = []
                 let ta2
                
                 try { 
