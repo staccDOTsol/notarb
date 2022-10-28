@@ -2216,13 +2216,9 @@ let                              messageV0 = new TransactionMessage({
                                 console.log(123);
 
                                 await transaction.sign([payer]); //, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
-                                skippy.sendTransaction(transaction)
-                                skippy.sendTransaction(transaction)
-                                skippy.sendTransaction(transaction)
-                                skippy.sendTransaction(transaction)
-                                
+                             
                               let m = await  skippy.sendTransaction(transaction)
-                              console.log(m)
+                              console.log('tx' + m.toString())
                               } catch (err) {
                                 console.log(err);
                               }
