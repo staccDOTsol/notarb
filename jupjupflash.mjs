@@ -1778,7 +1778,7 @@ async function something(SOL_MINT, market, myluts) {
                   ))
                   .json()
                   usdcToSol.data[0] = usdcToSol.data.find(
-                    (res) => res.marketInfos.length <= 2
+                    (res) => res.marketInfos.length <= 3
                   );
               
                 } catch (err) {
@@ -1797,7 +1797,7 @@ async function something(SOL_MINT, market, myluts) {
                 if (usdcToSol && !baddies.includes(SOL_MINT + USDC_MINT)) {
                   try {//( Math.floor(usdcToSol.data[0].outAmount * 0.9998)).toString()
                     solToUsdc =  await( await fetch(
-                      `https://quote-api.jup.ag/v1/quote?outputMint=${USDC_MINT}&inputMint=${SOL_MINT}&onlyDirectRoutes=true&amount=${ (( Math.floor(usdcToSol.data[0].outAmount * 0.997)).toString())}&slippage=99`
+                      `https://quote-api.jup.ag/v1/quote?outputMint=${USDC_MINT}&inputMint=${SOL_MINT}&amount=${ (( Math.floor(usdcToSol.data[0].outAmount * 0.997)).toString())}&slippage=99`
                     ))
                     .json()
                     solToUsdc.data[0] = solToUsdc.data.find(
@@ -1821,7 +1821,7 @@ async function something(SOL_MINT, market, myluts) {
                     );
                   }
                   try {
-                    if (solToUsdc.data[0]) {
+                    if (solToUsdc) {
                       let returns = // 100 / (100 * 0.995)
                         ((solToUsdc.data[0].outAmount ) / (initial) - 1) *
                         100;
