@@ -1678,22 +1678,6 @@ let configs =
   }
 }
 configs = configs.markets
-let markets = []
-for (var amarket of configs) {
-    try {
-      await sleep(rando(0, 1, "float") * 1);
-      let market = await SolendMarket.initialize(
-        connection,
-
-        "production", // optional environment argument'
-        amarket.address
-      );
-
-      markets.push(market);
-      console.log(markets.length);
-    } catch (err) {console.log(err)}
-
-}
 
 // wsol account
 const createWSolAccount = async (mint) => {
@@ -1968,11 +1952,6 @@ console.log(1)
                             } catch (err) {
                             //  tokenAccount = await createWSolAccount(USDC_MINT);
                             }
-                            let myshit = (
-                              await connection.getTokenAccountBalance(
-                                tokenAccount
-                              )
-                            ).value.amount;
 
                             // (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
                             var ta2;
@@ -1992,7 +1971,6 @@ console.log(1)
                             };
                             const ix =
                               ComputeBudgetProgram.requestUnits(params);
-                              market.config.address = "3SS5HjEVy5jY41g24ACcLzizA2qNgtGonjiEo8yg2SFX"
                             let instructions = [
                               ix,
                               flashBorrowReserveLiquidityInstruction(
@@ -2000,7 +1978,7 @@ console.log(1)
                                 new PublicKey(reserve.config.liquidityAddress),
                                 tokenAccount,
                                 new PublicKey(reserve.config.address),
-                                new PublicKey(market.config.address),
+                                new PublicKey("F8dCQofhBuspm1sVsrfr8NReJvGn1JfiR9xARnUBQgo1"),
                                 SOLEND_PRODUCTION_PROGRAM_ID
                               ),
                             ];
@@ -2156,7 +2134,7 @@ let                              messageV0 = new TransactionMessage({
                                   ),
                                   tokenAccount,
                                   new PublicKey(reserve.config.address),
-                                  new PublicKey(market.config.address),
+                                  new PublicKey("F8dCQofhBuspm1sVsrfr8NReJvGn1JfiR9xARnUBQgo1"),
                                   payer.publicKey,
                                   SOLEND_PRODUCTION_PROGRAM_ID
                                 )
@@ -2233,8 +2211,15 @@ let                              messageV0 = new TransactionMessage({
       }
   }
 }
+let markets = []
 
 while (true) {
+   markets = [await SolendMarket.initialize(
+    connection,
+  
+    "production", // optional environment argument'
+    "F8dCQofhBuspm1sVsrfr8NReJvGn1JfiR9xARnUBQgo1"
+  )]
   await PromisePool.withConcurrency(1)
     .for(markets)
     // @ts-ignore
