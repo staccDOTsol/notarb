@@ -110,7 +110,9 @@ var mints = [
 
 for (var add of arg.data){
   for (var tok of add.tokens){
+    if (!mints.includes(tok.address)){
   mints.push(tok.address)
+    }
   }
   
   }
@@ -183,7 +185,7 @@ console.log('')
 var markets = [  await SolendMarket.initialize(
   connection2,
   
-  "production", // optional environment argument
+  "production", // optional environment argument,""
   
 )]
 for (var amarket of [
@@ -266,14 +268,14 @@ console.log(err)
 }
 };
 while (true) {
- await createWSolAccount();
+ //await createWSolAccount();
 
   let abc = -1
 for (var market of markets){
   market = markets[0]//Math.floor(Math.random()*markets.length)]
 await market.loadReserves();
 market.refreshAll();
-for (var USDC_MINT of ["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "So11111111111111111111111111111111111111112"]){
+for (var USDC_MINT of [ "So11111111111111111111111111111111111111112","EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"]){
   const reserve = market.reserves.find(res => res.config.liquidityToken.mint ===USDC_MINT);
 
     console.log(USDC_MINT)
@@ -300,10 +302,41 @@ let min = ( reserve.stats.borrowFeePercentage * 100)
 var dec2 = 0
 var toArr = []
 var fromArr = []
-if (true){
-let  r = routes[0]
+for (var r of routes){
+  console.log(r)
+//let  r = routes[0]
  var tos = {}
 var froms = {}
+let ehh = Object.values(r.routeData)[0]
+console.log(ehh)
+try {
+let ehh2 = Object.values(ehh.routeData)[0]
+console.log(ehh2)
+try {
+console.log(ehh2.routeData.exchange.programId.toBase58())
+} catch (err){
+try {
+console.log(ehh2.routeData.poolPublicKey.toBase58())
+}
+catch (err){
+  try {
+
+  console.log(ehh2.swapAccount)
+  }
+  catch (err){
+    console.log(ehh2.stableSwap.config.swapProgramID.toBase58())
+  }
+}
+}
+} catch (err){
+  try {
+  console.log(ehh.swapAccounts.program.toBase58())
+  }
+  catch (err){
+    console.log(ehh.swapAccount)
+
+  }
+}
 try { tos[Object.values(r.routeData)[0].to] =0
  froms[Object.values(r.routeData)[0].from] = 0
  tos[Object.values(r.routeData)[1].to] =0

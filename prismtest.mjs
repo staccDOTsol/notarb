@@ -35,9 +35,9 @@ import promiseRetry from "promise-retry";
 import {
   ASSOCIATED_TOKEN_PROGRAM_ID,
   TOKEN_PROGRAM_ID,
+  Token
 } from "@solana/spl-token";
 
-import * as Token from "@solana/spl-token";
 import * as splToken from "@solana/spl-token";
 let SOLEND_PRODUCTION_PROGRAM_ID = new PublicKey("E4AifNCQZzPjE1pTjAWS8ii4ovLNruSGsdWRMBSq2wBa")
 console.log({ dotenv });
@@ -124,10 +124,7 @@ const payer = Keypair.fromSecretKey(
 );
 
 import fs from "fs";
-import { createTransferInstruction } from "@solana/spl-token";
-import { createAssociatedTokenAccountInstruction } from "@solana/spl-token";
 import { createTokenAccountInstructions } from "@blockworks-foundation/mango-client";
-import { createApproveCheckedInstruction } from "@solana/spl-token";
 import { lookup } from "dns";
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -1509,7 +1506,7 @@ let arg = {
 for (var add of arg.data) {
   for (var tok of add.tokens) {
     if (!mints.includes(tok.address)) {
-     mints.push(tok.address);
+    // mints.push(tok.address);
     }
   }
 }
@@ -1678,7 +1675,8 @@ let configs =
   }
 }
 configs = configs.markets
-
+let prisms = []
+let prismroutes = {}
 // wsol account
 const createWSolAccount = async (mint) => {
   const wsolAddress = await Token.getAssociatedTokenAddress(
@@ -1695,7 +1693,7 @@ const createWSolAccount = async (mint) => {
       const instructions = [];
       const ha = Keypair.generate();
       instructions.push(
-        ...(await createTokenAccountInstructions(
+        ...(await Token.createTokenAccountInstructions(
           connection,
           payer.publicKey,
           ha.publicKey,
@@ -1714,11 +1712,11 @@ const createWSolAccount = async (mint) => {
           transaction,
           [payer, ha]
         );
-        await sleep(10000)
-      } catch (err) {}
+        console.log(result)
+      } catch (err) {console.log(err)}
       wsolAccount = await connection2.getAccountInfo(wsolAddress);
     }
-  } catch (err) {}
+  } catch (err) {console.log(err)}
 
   return wsolAddress;
 };
@@ -1761,26 +1759,31 @@ async function something(SOL_MINT, market, myluts) {
           let dothethings = [];
           cba++;
             let initial =  Math.ceil(
-                  (rando(0, 20, "float") / reserve.config.assetPriceUSD) *
+                  (rando(0, 7, "float") / reserve.config.assetPriceUSD) *
                     10 ** dec
                 )
-           initial = rando(true, false) ? Math.ceil(initial / 5 ) : initial;
+           //initial = rando(true, false) ? Math.ceil(initial / 5 ) : initial;
       
           //  let initial = Math.random() * 129 * 10 ** 6
             // 0.1 SOL
               if (true){//initial != 0 && !baddies.includes(USDC_MINT + SOL_MINT)) {
                 let usdcToSol;
                 let solToUsdc;
+                let tokenAccount;
+                let ta2
                
                 try { 
-                  usdcToSol = await( await fetch(
-                    `https://quote-api.jup.ag/v1/quote?outputMint=${SOL_MINT}&inputMint=${USDC_MINT}&amount=${ (Math.floor(Math.floor(initial * 1.002))).toString()}&slippage=99&swapMode=ExactIn`
-                  ))
-                  .json()
-                  usdcToSol.data[0] = usdcToSol.data.find(
-                    (res) => res.marketInfos.length <= 2
-                  );
-              
+if (!Object.keys(prismroutes).includes(USDC_MINT + SOL_MINT )){
+prismroutes[USDC_MINT+SOL_MINT] = await Prism.init({
+    // user executing swap
+    user: payer,               // optional (if you don't provide upon init, then you'll need to call prism.setSigner() after user connects the wallet)
+connection: new Connection(process.env.RPC1)
+    // rpc connection
+});
+await (prismroutes[USDC_MINT+SOL_MINT]).loadRoutes(USDC_MINT, SOL_MINT ); 
+
+}
+   usdcToSol = (prismroutes[USDC_MINT+SOL_MINT]).getRoutes(Math.floor(initial) / 10 ** dec);
                 } catch (err) {
                   baddies.push(USDC_MINT + SOL_MINT);
                   console.log(baddies.length);
@@ -1796,14 +1799,73 @@ async function something(SOL_MINT, market, myluts) {
                 }
                 if (usdcToSol && !baddies.includes(SOL_MINT + USDC_MINT)) {
                   try {//( Math.floor(usdcToSol.data[0].outAmount * 0.9998)).toString()
-                    solToUsdc =  await( await fetch(
-                      `https://quote-api.jup.ag/v1/quote?outputMint=${USDC_MINT}&inputMint=${SOL_MINT}&amount=${ (( Math.floor(usdcToSol.data[0].outAmount * 0.9985)).toString())}&slippage=99&swapMode=ExactIn`
-                    ))
-                    .json()
-                    solToUsdc.data[0] = solToUsdc.data.find(
-                      (res) => res.marketInfos.length <= 2
-                    );
+                   
+                    try {
+                      let arg = (
+                        await connection2.getTokenAccountsByOwner(
+                          payer.publicKey,
+                          { mint: new PublicKey(USDC_MINT) }
+                        )
+                      ).value
+                      let w = -1
+                      for (var args of arg){
+                        let amt = parseFloat((await connection.getTokenAccountBalance(
+                          args.pubkey
+                        )).value.amount)
+                        if (amt > w){
+                          w = amt
+                          tokenAccount = args.pubkey
+                        }
+                      } 
+                        if (!tokenAccount){
+                        //  await sleep( 4000)
+                         tokenAccount = await createWSolAccount(USDC_MINT);
+                        }
+                    } catch (err) {
+                        console.log(err)
+                    //  tokenAccount = await createWSolAccount(USDC_MINT);
+                    }
+                    try {
+                      let arg = (
+                        await connection2.getTokenAccountsByOwner(
+                          payer.publicKey,
+                          { mint: new PublicKey(SOL_MINT) }
+                        )
+                      ).value
+                      let w = -1
+                      for (var args of arg){
+                        let amt = parseFloat((await connection.getTokenAccountBalance(
+                          args.pubkey
+                        )).value.amount)
+                        if (amt > w){
+                          w = amt
+                          ta2 = args.pubkey
+                        }
+                      } 
+                        if (!ta2){
+                        //  await sleep( 4000)
+                         ta2 = await createWSolAccount(SOL_MINT);
+                        }
+                    } catch (err) {
+                        console.log(err)
+                     ta2 = await createWSolAccount(SOL_MINT);
+                    }
+
+
+                    let dec2 = ((await connection.getTokenAccountBalance(ta2)).value.decimals)
+                    if (!Object.keys(prismroutes).includes(SOL_MINT + USDC_MINT )){
+                    prismroutes[SOL_MINT + USDC_MINT] = await Prism.init({
+                        // user executing swap
+                        user: payer,               // optional (if you don't provide upon init, then you'll need to call prism.setSigner() after user connects the wallet)
+                    connection: new Connection(process.env.RPC1)
+                        // rpc connection
+                    });
+                    await prismroutes[SOL_MINT + USDC_MINT] .loadRoutes(SOL_MINT + USDC_MINT ); 
+
+                    }
+                    solToUsdc = (prismroutes[SOL_MINT + USDC_MINT]).getRoutes(usdcToSol[0].amountWithFees);
                   } catch (err) {
+                    console.log(err)
                     baddies.push(SOL_MINT + USDC_MINT);
                     console.log(baddies.length);
 
@@ -1823,24 +1885,9 @@ async function something(SOL_MINT, market, myluts) {
                   try {
                     if (solToUsdc) {
                       let returns = // 100 / (100 * 0.995)
-                        ((solToUsdc.data[0].outAmount ) / (initial) - 1) *
+                        ((solToUsdc[0].amountWithFees ) / (initial / 10 ** dec) - 1) *
                         100;
-console.log(1)
-returns = returns * 1.0015
-                        console.log(returns)
-
-                      let now = new Date().getTime() / 1000;
-                      let diff = now - prev;
-                      prev = now;
-                      avgs.push(diff);
-                      if (avgs.length > 60) {
-                        avgs.slice(0);
-                      }
-                      let t = 0;
-                      for (var avg of avgs) {
-                        t += avg;
-                      }
-                      let nowavg = t / avgs.length;
+console.log(returns)
                       if (returns > 0)
                         console.log(
                           (
@@ -1855,59 +1902,9 @@ returns = returns * 1.0015
                             SOL_MINT
                         );
                       //console.log(initial / 10 ** dec)
-                      let gogo = true;
-                      for (var maybego of dothethings) {
-                        gogo = maybego;
-                      }
+                      
                       if (returns >  0.06 && returns < 10000000) {
-                        let goaccs = [];
-                        for (var mi of solToUsdc.data[0].marketInfos) {
-                          var ta2;
-                          try {
-                            ta2 = (
-                              await connection2.getTokenAccountsByOwner(
-                                payer.publicKey,
-                                { mint: new PublicKey(mi.outputMint) }
-                              )
-                            ).value[0].pubkey;
-                          } catch (err) {
-                           // ta2 = await createWSolAccount(mi.outputMint);
-                          }
-                          try {
-                            ta2 = (
-                              await connection2.getTokenAccountsByOwner(
-                                payer.publicKey,
-                                { mint: new PublicKey(mi.inputMint) }
-                              )
-                            ).value[0].pubkey;
-                          } catch (err) {
-                          //  ta2 = await createWSolAccount(mi.inputMint);
-                          }
-                        }
-
-                        for (var mi of usdcToSol.data[0].marketInfos) {
-                          var ta2;
-                          try {
-                            ta2 = (
-                              await connection2.getTokenAccountsByOwner(
-                                payer.publicKey,
-                                { mint: new PublicKey(mi.outputMint) }
-                              )
-                            ).value[0].pubkey;
-                          } catch (err) {
-                        ///    ta2 = await createWSolAccount(mi.outputMint);
-                          }
-                          try {
-                            ta2 = (
-                              await connection2.getTokenAccountsByOwner(
-                                payer.publicKey,
-                                { mint: new PublicKey(mi.inputMint) }
-                              )
-                            ).value[0].pubkey;
-                          } catch (err) {
-                         //  ta2 = await createWSolAccount(mi.inputMint);
-                          }
-                        }
+                       
                         if (true) {
                           // when outAmount more than initial
                           if (!false) {
@@ -1917,76 +1914,12 @@ returns = returns * 1.0015
                                 " <-> " +
                                 SOL_MINT +
                                 "@ " +
-                                (initial / 10 ** dec).toString() +
+                                (initial ).toString() +
                                 ": " +
                                 Math.round(returns * 10000) / 10000 +
                                 "%"
                             );
 
-                            const delegate = Keypair.generate();
-                            let tokenAccount;
-                            try {
-                              let arg = (
-                                await connection2.getTokenAccountsByOwner(
-                                  payer.publicKey,
-                                  { mint: new PublicKey(USDC_MINT) }
-                                )
-                              ).value
-                              let w = -1
-                              for (var args of arg){
-                                let amt = parseFloat((await connection.getTokenAccountBalance(
-                                  args.pubkey
-                                )).value.amount)
-                                if (amt > w){
-                                  w = amt
-                                  tokenAccount = args.pubkey
-                                }
-                              } 
-                                if (!tokenAccount){
-                                //  await sleep( 4000)
-                                 tokenAccount = await createWSolAccount(USDC_MINT);
-                                }
-                            } catch (err) {
-                            //  tokenAccount = await createWSolAccount(USDC_MINT);
-                            }
-                            var ta2;
-                            try {
-                              let arg = (
-                                await connection2.getTokenAccountsByOwner(
-                                  payer.publicKey,
-                                  { mint: new PublicKey(SOL_MINT) }
-                                )
-                              ).value
-                              let w = -1
-                              for (var args of arg){
-                                let amt = parseFloat((await connection.getTokenAccountBalance(
-                                  args.pubkey
-                                )).value.amount)
-                                if (amt > w){
-                                  w = amt
-                                  ta2 = args.pubkey
-                                }
-                              } 
-                                if (!ta2){
-                                //  await sleep( 4000)
-                                 ta2 = await createWSolAccount(SOL_MINT);
-                                }
-                            } catch (err) {
-                            //  tokenAccount = await createWSolAccount(USDC_MINT);
-                            }
-
-                            // (await connection2.getTokenAccountsByOwner(payer.publicKey, {mint: new PublicKey(USDC_MINT)})).value[0].pubkey //new PublicKey(atas[abc]) //new PublicKey("JCJtFvMZTmdH9pLgKdMLyJdpRUgScAtnBNB4GptuvxSD")// await token.createAccount(payer.publicKey);
-                            var ta2;
-                            try {
-                              ta2 = (
-                                await connection2.getTokenAccountsByOwner(
-                                  payer.publicKey,
-                                  { mint: new PublicKey(SOL_MINT) }
-                                )
-                              ).value[0].pubkey;
-                            } catch (err) {
-                              //  ta2 = await createWSolAccount(SOL_MINT);
-                            }
                             const params = {
                               units: 301517 + 301517 + 301517 + 101517 + 101517,
                               additionalFee: 1,
@@ -2004,20 +1937,75 @@ returns = returns * 1.0015
                                 SOLEND_PRODUCTION_PROGRAM_ID
                               ),
                             ];
-                            //let instructions = []
-                            let signers = [];
-
                             // get routes based on from Token amount 10 USDC -> ? PRISM
                             try {
                               if (true) {
                               
                               }
                               let index = USDC_MINT+","+SOL_MINT
-                              for (var mi of usdcToSol.data[0].marketInfos) {
-index+=","+mi.id
+                              let r = usdcToSol[0]
+                              let ehh = Object.values(r.routeData)[0]
+                              try {
+                              let ehh2 = Object.values(ehh.routeData)[0]
+                              try {
+                              index+=(ehh2.routeData.exchange.programId.toBase58())
+                              } catch (err){
+                              try {
+                                index+=(ehh2.routeData.poolPublicKey.toBase58())
                               }
-                              for (var mi of solToUsdc.data[0].marketInfos) {
-                                  index+=","+mi.id
+                              catch (err){
+                                try {
+                              
+                                    index+=(ehh2.swapAccount)
+                                }
+                                catch (err){
+                                    index+=(ehh2.stableSwap.config.swapProgramID.toBase58())
+                                }
+                              }
+                              }
+                              } catch (err){
+                                try {
+                                    index+=(ehh.swapAccounts.program.toBase58())
+                                }
+                                catch (err){
+                               try {
+                                index+=(ehh.swapAccount)
+                               } catch (err){
+                                console.log(ehh)
+                               }
+                                }
+                              }
+                              r = solToUsdc[0]
+                               ehh = Object.values(r.routeData)[0]
+                              try {
+                              let ehh2 = Object.values(ehh.routeData)[0]
+                              try {
+                              index+=(ehh2.routeData.exchange.programId.toBase58())
+                              } catch (err){
+                              try {
+                                index+=(ehh2.routeData.poolPublicKey.toBase58())
+                              }
+                              catch (err){
+                                try {
+                              
+                                    index+=(ehh2.swapAccount)
+                                }
+                                catch (err){
+                                    index+=(ehh2.stableSwap.config.swapProgramID.toBase58())
+                                }
+                              }
+                              }
+                              } catch (err){
+                                try {
+                                    index+=(ehh.swapAccounts.program.toBase58())
+                                }
+                                catch (err){
+                               try {
+                                index+=(ehh.swapAccount)
+                               } catch (err){
+                                console.log(ehh)
+                               }
+                                }
                               }
                               console.log(index)
                               let argh = JSON.parse(fs.readFileSync('./answers2.json').toString())
@@ -2053,82 +2041,28 @@ index+=","+mi.id
                               console.log(goaccs.length)
                               let tgoaccs = []
                               let takens = []
-                              
-                              var blockhash = await connection
-                                .getLatestBlockhash()
-                                .then((res) => res.blockhash);
-let                              messageV0 = new TransactionMessage({
-                                payerKey: payer.publicKey,
-                                recentBlockhash: blockhash,
-                                instructions,
-                              }).compileToV0Message();
-                              let w = 0
-                              let winner 
-                              let winner2 
-                              let winner3 
-                              for (var bca of messageV0.staticAccountKeys){
-                              let c =  0
-                                for (var lut of goaccs){
-                                if (lut.state.addresses.includes(bca)){
-                                  c++
-                                  if (c > w ){
-                                    c = w 
-                                    winner3 = winner2
-                                    winner2 = winner 
-                                    winner = lut 
-                                  }
-                                }
-
-
-                              }
-                            }
+                           
                         //    goaccs = [goaccs[0], goaccs[1], goaccs[2]]
                               if (true) {
                                 jares = [];
+                                var swapTransaction = await prism.generateSwapTransactions(usdcToSol[0]);        // execute swap (sign, send and confirm transaction)
+                                //console.log(swapTransaction)
                                 await Promise.all(
-                                  [usdcToSol.data[0], solToUsdc.data[0]].map(
-                                    async (route) => {
-                                      const {
-                                        setupTransaction,
-                                        swapTransaction,
-                                        cleanupTransaction,
-                                      } = await getTransactionold(route);
-
-                                      await Promise.all(
-                                        [
-                                          setupTransaction,
-                                          swapTransaction,
-                                          cleanupTransaction,
-                                        ]
-                                          .filter(Boolean)
-                                          .map(
-                                            async (serializedTransaction) => {
-                                              // get transaction object from serialized transaction
-                                              const transaction =
-                                                Transaction.from(
-                                                  Buffer.from(
-                                                    serializedTransaction,
-                                                    "base64"
-                                                  )
-                                                );
-                                               // goaccs.push(...transaction.message.addressTableLookups)
-                                              //  console.log(transaction)
-                                              ///  const messageV0 = TransactionMessage.decompile(transaction.message)
-                                              //  console.log(messageV0)
-
-                                              //  let hmmm = (transaction.message.compileToV0Message())
-                                                
-                                                  instructions.push(...transaction.instructions)
-                                         
-                                              // perform the swap
-                                              // Transaction might failed or dropped
-                                            }
-                                          )
-                                      );
+                                  [swapTransaction.preTransaction, swapTransaction.mainTransaction, swapTransaction.postTransaction]
+                                    .filter(Boolean)
+                                    .map(async (serializedTransaction) => {
+                                      instructions.push(...serializedTransaction.instructions)
+                                    }))
+                                
+                                    var swapTransaction2 = await prism.generateSwapTransactions(solToUsdc[0]);        // execute swap (sign, send and confirm transaction)
+                                    //console.log(swapTransaction)
+                                    await Promise.all(
+                                      [swapTransaction2.preTransaction, swapTransaction2.mainTransaction, swapTransaction2.postTransaction]
+                                        .filter(Boolean)
+                                        .map(async (serializedTransaction) => {
+                                          instructions.push(...serializedTransaction.instructions)
+                                        }))
                                     }
-                                  )
-                                );
-                              }
                               console.log(instructions.length)
                               console.log(instructions.length)
 
@@ -2168,13 +2102,13 @@ let                              messageV0 = new TransactionMessage({
                   )
                 ).value.amount;
                               instructions.push(
-                                createTransferInstruction(
+                                Token.createTransferInstruction(TOKEN_PROGRAM_ID,
                                   tokenAccount,
                                   tokenAccount,
-                                  payer.publicKey,
+                                  payer.publicKey,[],
                                   Math.floor(myshit * 1.0000)
                                 )
-                              );
+                              ); 
 
                               var blockhash = await connection
                                 .getLatestBlockhash()
@@ -2231,14 +2165,25 @@ let                              messageV0 = new TransactionMessage({
   }
 }
 let markets = []
-
+import { Prism } from "@prism-hq/prism-ag";
+let prism 
 while (true) {
+    console.log(1)
+ prism = await Prism.init({
+    // user executing swap
+    user: payer,               // optional (if you don't provide upon init, then you'll need to call prism.setSigner() after user connects the wallet)
+connection: new Connection(process.env.RPC1)
+    // rpc connection
+});
+console.log(2)
+prism.setSlippage(10);
    markets = [await SolendMarket.initialize(
     connection,
   
     "production", // optional environment argument'
     "F8dCQofhBuspm1sVsrfr8NReJvGn1JfiR9xARnUBQgo1"
   )]
+  console.log(3)
   await PromisePool.withConcurrency(1)
     .for(markets)
     // @ts-ignore
