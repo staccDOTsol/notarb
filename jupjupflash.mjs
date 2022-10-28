@@ -1870,7 +1870,7 @@ console.log(1)
                               )
                             ).value[0].pubkey;
                           } catch (err) {
-                            ta2 = await createWSolAccount(mi.outputMint);
+                           // ta2 = await createWSolAccount(mi.outputMint);
                           }
                           try {
                             ta2 = (
@@ -1880,7 +1880,7 @@ console.log(1)
                               )
                             ).value[0].pubkey;
                           } catch (err) {
-                            ta2 = await createWSolAccount(mi.inputMint);
+                          //  ta2 = await createWSolAccount(mi.inputMint);
                           }
                         }
 
@@ -1894,7 +1894,7 @@ console.log(1)
                               )
                             ).value[0].pubkey;
                           } catch (err) {
-                            ta2 = await createWSolAccount(mi.outputMint);
+                        ///    ta2 = await createWSolAccount(mi.outputMint);
                           }
                           try {
                             ta2 = (
@@ -1904,7 +1904,7 @@ console.log(1)
                               )
                             ).value[0].pubkey;
                           } catch (err) {
-                            ta2 = await createWSolAccount(mi.inputMint);
+                         //  ta2 = await createWSolAccount(mi.inputMint);
                           }
                         }
                         if (true) {
@@ -1942,12 +1942,12 @@ console.log(1)
                                 }
                               } 
                                 if (!tokenAccount){
-                                  await sleep( 4000)
-                                  tokenAccount = await createWSolAccount(USDC_MINT);
+                                //  await sleep( 4000)
+                                //  tokenAccount = await createWSolAccount(USDC_MINT);
                                 }
                                 if (tokenAccount == undefined){
-                                  await sleep( 4000)
-                                  tokenAccount = await createWSolAccount(USDC_MINT);
+                                 // await sleep( 4000)
+                                 // tokenAccount = await createWSolAccount(USDC_MINT);
                                 }
                             } catch (err) {
                             //  tokenAccount = await createWSolAccount(USDC_MINT);
