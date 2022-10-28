@@ -2031,16 +2031,20 @@ index+=","+mi.id
                               let argh = JSON.parse(fs.readFileSync('./answers2.json').toString())
                               var mematey = -1
                               let blargs = []
-                             
+                             let blargs2 = []
                               for (var arg of Object.keys(argh)){
                                 mematey++
                                 for (var blarg of index.split(',')){
-                                  if (arg.split(',').includes(blarg) ){
+                                  if (arg.split(',').includes(blarg) && !blargs.includes(blarg)&& !blargs2.includes(blarg)){
                                     for (var hmph of Object.values(argh)[mematey]){
                                       let test = (await connection.getAddressLookupTable(new PublicKey(hmph))).value
                                         if ( !goaccs.includes(test)){
                                           goaccs.push(test)
+                                          if (!blargs.includes(blarg)){
+                                            blargs2.push(blarg)
+                                          }
                                           blargs.push(blarg)
+
                                       
                                       
                                     
