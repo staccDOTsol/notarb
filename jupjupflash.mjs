@@ -2020,7 +2020,6 @@ console.log(1)
                               if (true) {
                               
                               }
-                              let index = USDC_MINT+","+SOL_MINT
                               for (var mi of usdcToSol.data[0].marketInfos) {
 index+=","+mi.id
                               }
@@ -2040,11 +2039,7 @@ index+=","+mi.id
                                       let test = (await connection.getAddressLookupTable(new PublicKey(hmph))).value
                                         if ( !goaccs.includes(test)){
                                           goaccs.push(test)
-                                          if (blargs.includes(blarg)){
-                                            blargs2.push(blarg)
-                                          }
                                           blargs.push(blarg)
-
                                       
                                       
                                     
