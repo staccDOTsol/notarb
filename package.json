@@ -4,7 +4,7 @@
     "@nastyox/rando.js": "^2.0.5",
     "@prism-hq/prism-ag": "^0.2.20",
     "@project-serum/anchor": "^0.20.1",
-    "@solana/spl-token": "0.1.8",
+    "@solana/spl-token": "0.2.0",
     "@solana/web3.js": "^1.66.2",
     "@solendprotocol/solend-sdk": "^0.7.0",
     "@strata-foundation/spl-utils": "^3.11.2",

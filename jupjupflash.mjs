@@ -1944,7 +1944,8 @@ returns = returns * 1.0015
                               } 
                                 if (!tokenAccount){
                                 //  await sleep( 4000)
-                                 tokenAccount = await createWSolAccount(USDC_MINT);
+                              //   tokenAccount = await createWSolAccount(USDC_MINT);
+
                                 }
                             } catch (err) {
                             //  tokenAccount = await createWSolAccount(USDC_MINT);
@@ -1969,7 +1970,7 @@ returns = returns * 1.0015
                               } 
                                 if (!ta2){
                                 //  await sleep( 4000)
-                                 ta2 = await createWSolAccount(SOL_MINT);
+                           //      ta2 = await createWSolAccount(SOL_MINT);
                                 }
                             } catch (err) {
                             //  tokenAccount = await createWSolAccount(USDC_MINT);
@@ -2233,12 +2234,14 @@ let                              messageV0 = new TransactionMessage({
 let markets = []
 
 while (true) {
+  console.log(1)
    markets = [await SolendMarket.initialize(
     connection,
   
     "production", // optional environment argument'
     "F8dCQofhBuspm1sVsrfr8NReJvGn1JfiR9xARnUBQgo1"
   )]
+  console.log(2)
   await PromisePool.withConcurrency(1)
     .for(markets)
     // @ts-ignore
