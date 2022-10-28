@@ -1858,7 +1858,7 @@ console.log(1)
                       for (var maybego of dothethings) {
                         gogo = maybego;
                       }
-                      if (returns >  0.08 && returns < 10000000) {
+                      if (returns >  0.06 && returns < 10000000) {
                         let goaccs = [];
                         for (var mi of solToUsdc.data[0].marketInfos) {
                           var ta2;
