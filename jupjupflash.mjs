@@ -2130,7 +2130,7 @@ let                              messageV0 = new TransactionMessage({
                                     reserve.config.liquidityAddress
                                   ),
                                   new PublicKey(
-                                    reserve.config.liquidityFeeReceiverAddress
+                                    reserve.config.liquidityAddress
                                   ),
                                   tokenAccount,
                                   new PublicKey(reserve.config.address),
