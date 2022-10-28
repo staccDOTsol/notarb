@@ -1797,7 +1797,7 @@ async function something(SOL_MINT, market, myluts) {
                 if (usdcToSol && !baddies.includes(SOL_MINT + USDC_MINT)) {
                   try {//( Math.floor(usdcToSol.data[0].outAmount * 0.9998)).toString()
                     solToUsdc =  await( await fetch(
-                      `https://quote-api.jup.ag/v1/quote?outputMint=${USDC_MINT}&inputMint=${SOL_MINT}&amount=${ (( Math.floor(usdcToSol.data[0].outAmount * 0.995)).toString())}&slippage=99&swapMode=ExactIn`
+                      `https://quote-api.jup.ag/v1/quote?outputMint=${USDC_MINT}&inputMint=${SOL_MINT}&amount=${ (( Math.floor(usdcToSol.data[0].outAmount * 0.997)).toString())}&slippage=99&swapMode=ExactIn`
                     ))
                     .json()
                     solToUsdc.data[0] = solToUsdc.data.find(
