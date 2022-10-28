@@ -1826,6 +1826,7 @@ async function something(SOL_MINT, market, myluts) {
                         ((solToUsdc.data[0].outAmount ) / (initial) - 1) *
                         100;
 console.log(1)
+returns = returns * 1.0015
                         console.log(returns)
 
                       let now = new Date().getTime() / 1000;
