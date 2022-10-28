@@ -1797,7 +1797,7 @@ async function something(SOL_MINT, market, myluts) {
                 if (usdcToSol && !baddies.includes(SOL_MINT + USDC_MINT)) {
                   try {//( Math.floor(usdcToSol.data[0].outAmount * 0.9998)).toString()
                     solToUsdc =  await( await fetch(
-                      `https://quote-api.jup.ag/v1/quote?outputMint=${USDC_MINT}&inputMint=${SOL_MINT}&amount=${ (( Math.floor(usdcToSol.data[0].outAmount * 0.9995)).toString())}&slippage=99&swapMode=ExactIn`
+                      `https://quote-api.jup.ag/v1/quote?outputMint=${USDC_MINT}&inputMint=${SOL_MINT}&amount=${ (( Math.floor(usdcToSol.data[0].outAmount * 0.9985)).toString())}&slippage=99&swapMode=ExactIn`
                     ))
                     .json()
                     solToUsdc.data[0] = solToUsdc.data.find(
@@ -1943,11 +1943,40 @@ console.log(1)
                               } 
                                 if (!tokenAccount){
                                 //  await sleep( 4000)
-                                //  tokenAccount = await createWSolAccount(USDC_MINT);
+                                 tokenAccount = await createWSolAccount(USDC_MINT);
                                 }
                                 if (tokenAccount == undefined){
                                  // await sleep( 4000)
-                                 // tokenAccount = await createWSolAccount(USDC_MINT);
+                                 tokenAccount = await createWSolAccount(USDC_MINT);
+                                }
+                            } catch (err) {
+                            //  tokenAccount = await createWSolAccount(USDC_MINT);
+                            }
+                            let ta2;
+                            try {
+                              let arg = (
+                                await connection2.getTokenAccountsByOwner(
+                                  payer.publicKey,
+                                  { mint: new PublicKey(USDC_MINT) }
+                                )
+                              ).value
+                              let w = -1
+                              for (var args of arg){
+                                let amt = parseFloat((await connection.getTokenAccountBalance(
+                                  args.pubkey
+                                )).value.amount)
+                                if (amt > w){
+                                  w = amt
+                                  ta2 = args.pubkey
+                                }
+                              } 
+                                if (!tokenAccount){
+                                //  await sleep( 4000)
+                                 ta2 = await createWSolAccount(USDC_MINT);
+                                }
+                                if (tokenAccount == undefined){
+                                 // await sleep( 4000)
+                                 ta2 = await createWSolAccount(USDC_MINT);
                                 }
                             } catch (err) {
                             //  tokenAccount = await createWSolAccount(USDC_MINT);
