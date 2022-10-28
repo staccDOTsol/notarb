@@ -1533,7 +1533,7 @@ const getTransactionold = (route) => {
 const getCoinQuote = (inputMint, outputMint, amount) =>
   got
     .get(
-      `https://quote-api.jup.ag/v3/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=99&swapMode=ExactIn`
+      `https://quote-api.jup.ag/v3/quote?outputMint=${outputMint}&inputMint=${inputMint}&amount=${amount}&slippage=99`
     )
     .json();
 
@@ -1774,7 +1774,7 @@ async function something(SOL_MINT, market, myluts) {
                
                 try { 
                   usdcToSol = await( await fetch(
-                    `https://quote-api.jup.ag/v1/quote?outputMint=${SOL_MINT}&inputMint=${USDC_MINT}&amount=${ (Math.floor(Math.floor(initial * 1.002))).toString()}&slippage=99&swapMode=ExactIn`
+                    `https://quote-api.jup.ag/v1/quote?outputMint=${SOL_MINT}&inputMint=${USDC_MINT}&amount=${ (Math.floor(Math.floor(initial * 1.002))).toString()}&slippage=99`
                   ))
                   .json()
                   usdcToSol.data[0] = usdcToSol.data.find(
@@ -1797,7 +1797,7 @@ async function something(SOL_MINT, market, myluts) {
                 if (usdcToSol && !baddies.includes(SOL_MINT + USDC_MINT)) {
                   try {//( Math.floor(usdcToSol.data[0].outAmount * 0.9998)).toString()
                     solToUsdc =  await( await fetch(
-                      `https://quote-api.jup.ag/v1/quote?outputMint=${USDC_MINT}&inputMint=${SOL_MINT}&amount=${ (( Math.floor(usdcToSol.data[0].outAmount * 0.997)).toString())}&slippage=99&swapMode=ExactIn`
+                      `https://quote-api.jup.ag/v1/quote?outputMint=${USDC_MINT}&inputMint=${SOL_MINT}&amount=${ (( Math.floor(usdcToSol.data[0].outAmount * 0.997)).toString())}&slippage=99`
                     ))
                     .json()
                     solToUsdc.data[0] = solToUsdc.data.find(
