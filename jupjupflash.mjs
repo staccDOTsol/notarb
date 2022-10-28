@@ -2040,7 +2040,7 @@ index+=","+mi.id
                                       let test = (await connection.getAddressLookupTable(new PublicKey(hmph))).value
                                         if ( !goaccs.includes(test)){
                                           goaccs.push(test)
-                                          if (!blargs.includes(blarg)){
+                                          if (blargs.includes(blarg)){
                                             blargs2.push(blarg)
                                           }
                                           blargs.push(blarg)
